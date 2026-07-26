@@ -752,6 +752,6 @@ tasks = [
      "prompt": "逐字引用下面材料中关于 job 依赖、矩阵策略的原文短语。\n原文：「Use needs: to express job dependencies so a job runs only after other jobs succeed. A matrix strategy runs the same job across a list of variables, including OS and language versions.」",
      "rubric": {"type": "contains", "required": ["needs: to express job dependencies", "matrix strategy", "OS and language versions"]},
      "reference": "needs: to express job dependencies / matrix strategy / OS and language versions。"},
+]
 
-    # ---------- })")
-    print("All hashes locked. Tamper with any task field -> eval aborts.")
+print("All hashes locked. Tamper with any task field -> eval aborts.")

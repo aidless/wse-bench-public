@@ -780,18 +780,19 @@
     {
       "id": "T030",
       "split": "fresh",
-      "source": "self-evolving-agent 代码实测（peS2o-self-evo-digest.md §三.2, 2026-07-24）",
-      "version": "self-evolving-agent",
-      "prompt": "self-evolving-agent 的 1000 轮 campaign 进化基因由哪两部分组成、各多少条？ 请用一句话简洁、准确地回答。",
+      "source": "impossible-closedbook probe (v2 — generic placeholder for self-evolving campaign components; v1 anchored to author's self-evolving-agent)",
+      "version": "impossible-closedbook-probe-v2",
+      "prompt": "你的某个本地自治进化系统（campaign=连续若干轮迭代优化）的'进化基因'（即每次迭代中由规则条款+角色前缀拼接出的推理脚手架）由哪两类组件构成、各约多少条？请用一句话简洁、准确地回答，必须覆盖：组件A 的名称、组件A 的数量、组件B 的名称 三个事实。",
       "rubric": {
         "type": "contains",
         "required": [
-          "CLAUSES",
-          "10",
-          "PREFIXES"
-        ]
+          "REPLACE_WITH_COMPONENT_A_NAME",
+          "REPLACE_WITH_COMPONENT_A_COUNT",
+          "REPLACE_WITH_COMPONENT_B_NAME"
+        ],
+        "instructions_for_reviewer": "替换为你的自治 agent 中进化基因两组件的名字+数量。"
       },
-      "reference": "self-evolving-agent 进化基因=CLAUSES（10 条推理条款）+PREFIXES（3 种角色前缀）。",
+      "reference": "（占位）自治 agent 进化基因由'组件A（X 条规则条款）'+'组件B（Y 种角色前缀）'组成。闭卷不可知；v1 私有值不进入开源仓库。",
       "cohort": "2026Q3-core",
       "cohort_status": "archived",
       "capability": "selective_retrieval",
@@ -800,18 +801,19 @@
     {
       "id": "T031",
       "split": "fresh",
-      "source": "self-evolving-agent active.json 实测（peS2o-self-evo-digest.md §二, 2026-07-24）",
-      "version": "self-evolving-agent",
-      "prompt": "self-evolving-agent 已晋升的 self_verify_v1 策略在求解后独立复核哪些维度？ 请用一句话简洁、准确地回答。",
+      "source": "impossible-closedbook probe (v2 — generic placeholder for self-verify strategy dimensions; v1 anchored to author's self_verify_v1)",
+      "version": "impossible-closedbook-probe-v2",
+      "prompt": "你的某个本地 self-verify 策略（先独立求解再对答案做后置复核）在每次复核时分别核对哪几类事实？请用一句话简洁、准确地回答，必须覆盖：策略名、复核维度1、复核维度2 三个事实。",
       "rubric": {
         "type": "contains",
         "required": [
-          "self_verify_v1",
-          "复核算术",
-          "日期"
-        ]
+          "REPLACE_WITH_VERIFY_STRATEGY_NAME",
+          "REPLACE_WITH_DIMENSION_1",
+          "REPLACE_WITH_DIMENSION_2"
+        ],
+        "instructions_for_reviewer": "替换为你本地 self-verify 策略的名称与至少两个复核维度（如算术/日期/单位/排序）。"
       },
-      "reference": "self_verify_v1 先求解再独立复核算术/日期/排序/单位/选项映射。",
+      "reference": "（占位）self-verify 策略名 + 多个事实复核维度。闭卷不可知；v1 私有值不进入开源仓库。",
       "cohort": "2026Q3-core",
       "cohort_status": "archived",
       "capability": "selective_retrieval",
