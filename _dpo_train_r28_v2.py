@@ -25,7 +25,11 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from trl import DPOConfig, DPOTrainer
 
-root = Path(r'__WSE_REPO_ROOT__')
+# WSE_REPO_ROOT is the cloned local path; falls back to the placeholder
+# if the user hasn't set it (in which case the script will FileNotFoundError
+# in a self-explanatory way; the README documents how to set the env var).
+import os as _os
+root = Path(_os.environ.get('WSE_REPO_ROOT', r'__WSE_REPO_ROOT__'))
 
 # Read DPO data
 pairs = []

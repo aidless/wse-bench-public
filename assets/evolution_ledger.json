@@ -1291,5 +1291,92 @@
   "type": "WEEKLY_CLOSED_LOOP_CHECKPOINT",
   "round": 28,
   "note": "周六自进化周度闭环(eval-gated)。完整性: --verify HASH LOCK OK; --selfcheck overall=0.782 verified=True (hard T047-T060 / sv T073-T084 / rc4 headroom 题直答0=预期; rc T091-096 / rc2 T103-108 / rc3 T109-118 声明满足). 分片: 156题/14 cohort(13 active, 2026Q3-core 已归档轮换). 画像(生产 v102): 5轴已测均~1.0(selective_retrieval 0.964最弱); baseline 弱轴 fact_recall 0.577 / reasoning 0.583; reading_comprehension 覆盖仅28%=欠测量(v102 滞后于156题). 自提议: 最弱轴 reading_comprehension 无对口未晋升候选(context_grounding_v1 已晋升). 决策依据: 生产栈7策略全 promoted+audited NECESSARY; 唯一未晋升候选 decompose_v1(#10 HOLD) 本周无新 reasoning cohort=无新 headroom, 依铁律不重跑; 路径A 5轮全 HOLD/FAILED, 无≥500独立数据, 依铁律不重复相同配置. 本周无候选具合法新 headroom -> 无实验 -> STEADY_STATE(反 Goodhart: 宁 HOLD 不凑 PROMOTE). 一致性审计: 账本 delta_overall 统一 OK / registry 顶层(7)==per-entry(7) OK / audit key _v1 OK. 首要未解决风险(接 #35): context_grounding_v1 PROMOTE(#29 v24-altgate + #32/#33 strict-confirm) 在严格多重性校正下不完全稳健 — cluster-bootstrap CI 下界触0, 事后功效0.59, 达80%功效需~94题@K=5(下季度 rc-cohort 扩容 + 多模型验证的优先项). P0(Q4-protocol T149-160 出处)已于 #34 REANCHOR_VERIFIED 消解."
+ },
+ {
+  "ts": "2026-07-26T13:30:00+08:00",
+  "type": "R28_EFFECT_REPLICATION_COMPREHENSIVE",
+  "round": 28,
+  "decision": "EFFECT_REPLICATION_CONFIRMED",
+  "method": "graded evidence: r28 large-n replication (n=480) + prefix component ablation (4 arms) + audit-tool repair (v2 heuristic) + cross-architecture effect determination",
+  "evidence": {
+   "large_n_full": {
+    "n_pairs": 480,
+    "delta": 0.2035,
+    "cohens_g": 0.408,
+    "mcnemar_p": 2.16e-10,
+    "boot_ci95": [
+     0.119,
+     0.29
+    ],
+    "prereg_rule_pass": true,
+    "post_hoc_power": 1.0
+   },
+   "replication_old16": {
+    "n_pairs": 240,
+    "delta": 0.196,
+    "cohens_g": 0.364,
+    "mcnemar_p": 4.27e-05,
+    "boot_ci95": [
+     0.063,
+     0.338
+    ],
+    "prereg_rule_pass": true
+   },
+   "heldout_new16": {
+    "n_pairs": 240,
+    "delta": 0.213,
+    "cohens_g": 0.459,
+    "mcnemar_p": 1.37e-06,
+    "boot_ci95": [
+     0.108,
+     0.308
+    ],
+    "prereg_rule_pass": true,
+    "interpretation": "tasks T091-T132 16 题是 #33 池外（rc1 cohort），效应 +21.3% 提供最强独立泛化"
+   },
+   "prefix_component_ablation": {
+    "full": "+18.8% (g=0.349)",
+    "role_only": "+1.3% (g=0.027, p=1.0)",
+    "quote_only": "+17.5% (g=0.412, p_raw=0.024)",
+    "abstain_only": "-3.8% (g=-0.103, p=0.711)",
+    "quote_abstain": "+18.8% (g=0.385, p_raw=0.024)",
+    "conclusion": "C2 quote 单独驱动几乎全部增益；C1 role 边际 ≈0；C3 abstain 单用无效应。Holm 校正后 quote arms p=0.095（探索性而非确认性）"
+   },
+   "audit_repair": {
+    "old_heuristic": "57 fp on RC-cohort（漏认「材料 A/B」「原文：」等内嵌源文本标记）",
+    "v2_heuristic": "0 fp in tracked files；未在 RC cohort 留下假阳性"
+   }
+  },
+  "power_curve_for_paired_mcnemar": {
+   "n=80 (~#33 baseline)": 0.59,
+   "n=240 (OLD16)": 0.92,
+   "n=480 (FULL)": 1.0,
+   "observation_at_p_disc=0.674": "FULL 增量样本是原始 6 倍配对 → CI 下界由 0 推到 +12% → 预注册严格规则通过"
+  },
+  "unresolved_items": [
+   {
+    "item": "single-model evidence",
+    "status": "未消",
+    "rationale": "本机 6GB VRAM + 16GB RAM 不可执行 Llama-3.1-8B / Mistral-7B 量化推理（GPU 装不下 + CPU offload 与 bnb NF4 不兼容 + 8-bit CPU 加载 OOM）。需云端 ≥24GB GPU 或 ≥64GB CPU RAM"
+   },
+   {
+    "item": "DPO path-A path (plan 4.1)",
+    "status": "训练完成，评估卡死",
+    "rationale": "训练：101 对 / β=0.05 / 1 epoch / 166s 完成；rewards/accuracies 0.875-1.0、margins 0.20-0.25 说明偏好排序被学到 （与 r23 b=c=0 完全零效应形成对比，是 path A 上的首个非零信号）。评估：v144 协议 98 题 K=1 greedy max_new_tokens=128 在 ~45 分钟后进程卡死 （最大可能为 greedy generation 在 hidden+长 context 题上死循环，已通过强制 kill-9 终止）。判读（PATH_A_META_ANALYSIS §5 预注册规则）：训练信号的可见 ≠ 部署行为增益；DPO v2 的非零训练信号**不能**直接证伪 r22 LoRA / r23 DPO 的负面部署结论。诚实结果：本机环境上小数据 DPO 既不产生可测的部署增益（连续五轮），也未能完成一致的下游评估以确认或证伪。未来：云端 GPU + 加 max_time / repetition_penalty 启动 guard 后重做。"
+   },
+   {
+    "item": "Anthropic-style infra noise (~6pp)",
+    "status": "未来工作",
+    "rationale": "未本地复现 6GB VRAM 配额对 pass 的 ±6pp 效应；将作 r29 入口"
+   }
+  ],
+  "publication_readiness": {
+   "positive_evidence_strength": "high",
+   "external_validity": "moderate (单模型；held-out 16 题上仍 +21.3% 与 full 几乎相同表明 task-level 泛化好)",
+   "reproducibility": "high (manifest + scripts + seeds + summaries 全入仓；CI 公开可重跑)",
+   "honest_claims": "EFFECT_CONFIRMED for Qwen2.5-3B-Instruct 4-bit NF4 under fixed sampling protocol; NOT generalizable to other models until cloud verification",
+   "tmlr_publishability_per_existing_decision_criteria": "满足 v10 iron-rule：strict McNemar p<0.05 + cluster bootstrap CI lower>0；HOLDOUT NEW16 进一步超过预注册门槛"
+  },
+  "note": "r28 后半场综合条目（账本 #36）。先把账本空缺回填——前三批 GPU 任务（大样本复刻、prefix 消融、清洁 session）均已完成且 .json/.md/.log 全部入仓；剩下的 DPO v2 plan 4.1 与多模型未来工作在本条目 unresolved_items 中显式标注，不混在确认结论里。**升级** #35 'EFFECT_VERIFIED_WITH_CAVEATS' 到本条 'EFFECT_REPLICATION_CONFIRMED'：差距证据（full n=480 + held-out 16 题 CI [+10.8%,+30.8%] + prefix 成分归属）已综合回填，使原 #33 报告 'CI 下界触零' 状态得到 empiric 关闭；但版本号声明明确圈在 Qwen2.5-3B-Instruct NF4 上。Fair disclosure 转移到 'unresolved_items'。"
  }
 ]

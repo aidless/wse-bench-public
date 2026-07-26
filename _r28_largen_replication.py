@@ -18,7 +18,7 @@ import torch
 from pathlib import Path
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
-root = Path(r'__WSE_REPO_ROOT__')
+root = Path(os.environ.get('WSE_REPO_ROOT', r'__WSE_REPO_ROOT__'))
 sys.path.insert(0, str(root))
 from eval_self_evolution import score_task, is_pass
 
