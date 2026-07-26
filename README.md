@@ -109,7 +109,7 @@ raw numbers in the ledger entry.
 @misc{wse-bench-2026,
   title  = {WSE-Bench: An Eval-Gated Self-Evolution Benchmark for Small LLMs},
   year   = {2026},
-  note   = {Open-source release v1.0.0, see \url{https://github.com/<your-org>/wse-bench}}
+  note   = {Open-source release v1.0.0, see \url{https://github.com/aidless/wse-bench-public}}
 }
 ```
 

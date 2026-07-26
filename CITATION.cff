@@ -26,7 +26,7 @@ abstract: |
   harness that uses 4-bit Qwen2.5-3B-Instruct under a fixed sampling
   protocol (temperature=0.7, top_p=0.9, max_new_tokens=128,
   repetition_penalty=1.05, do_sample=True).
-url: "https://github.com/<your-org>/wse-bench"
+url: "https://github.com/aidless/wse-bench-public"
 contact:
   - name: "WSE-Bench Contributors"
     email: "<your-contact>"
