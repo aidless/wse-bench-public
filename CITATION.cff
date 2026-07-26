@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: |
+  If you use this benchmark or build on the eval-gated self-evolution
+  methodology in academic work, please cite the companion technical
+  report (see README "Citation" section) and acknowledge the
+  eval-gated self-evolution framework.
+title: "WSE-Bench — Eval-Gated Self-Evolution Benchmark"
+version: 1.0.0
+date-released: 2026-07-26
+license: MIT
+type: dataset
+keywords:
+  - benchmark
+  - llm-evaluation
+  - self-evolution
+  - eval-gated
+  - mcnemar-test
+  - reproducible-research
+abstract: |
+  WSE-Bench is a 156-task reading-comprehension + reasoning + citation
+  verification benchmark designed to evaluate **eval-gated self-evolution**
+  loops on small LLMs. Each task is graded by a deterministic rubric and
+  admits paired McNemar testing across candidate vs. baseline system
+  prompts. The benchmark ships with a per-round evolution ledger, an
+  auditing toolkit for measurement-validity defects, and a generation
+  harness that uses 4-bit Qwen2.5-3B-Instruct under a fixed sampling
+  protocol (temperature=0.7, top_p=0.9, max_new_tokens=128,
+  repetition_penalty=1.05, do_sample=True).
+url: "https://github.com/<your-org>/wse-bench"
+contact:
+  - name: "WSE-Bench Contributors"
+    email: "<your-contact>"

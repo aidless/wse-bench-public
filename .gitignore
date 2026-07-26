@@ -1,0 +1,64 @@
+# --- OS / Editor noise ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.workbuddy/
+
+# --- Private work records (do not publish) ---
+# Personal agent session notes, handoff documents, and other private logs.
+# These contain the author's private paths, school/identity info, and other
+# research-internal context that is out of scope for the public benchmark repo.
+HANDOFF_NEW_CONVERSATION.md
+workbuddy-workflows.md
+self-evolution-overview.md
+peS2o-self-evo-digest.md
+_archive/
+_archive_*/
+# --- Per-task model-output submissions (contain private KB leakage in T029-T031) ---
+# These records are the model's verbatim answers to benchmark tasks. They embed
+# the author's private paths/scale numbers (peS2o E:/peS2o_kb_faiss, 541,733,
+# self-evolving-agent internals). They are kept locally for re-scoring but are
+# not part of the public benchmark dataset. Re-run reproduction scripts to
+# regenerate on your own machine.
+submissions_*.json
+blind_prompts.json
+prompts_*.json
+
+# --- Per-batch paper-discovery helpers (hard-coded to the author's local KB) ---
+_batch*_papers.py
+_batch1_synthesize.py
+papers_batch*.json
+# Personal scratchpad markdown notes — kept locally, excluded from public mirror.
+# (If you have a public-personal blog you want to mirror, list those explicitly
+#  rather than blanket-excluding by extension.)
+
+# --- Local artifacts that should not enter version control ---
+# HF model cache (downloads happen at runtime via the scripts in scripts/)
+hf_cache/
+.cache/
+.cache_*/
+# Bitsandbytes CPU offload scratch
+_offload/
+# Generic "any prefix underscore" excludes personal one-shot scripts and
+# intermediate checkpoints. Public reproduction scripts use plain names.
+
+# --- Project-specific exclusions ---
+# Large raw generation logs (per-seed generation outputs); rerun scripts
+# regenerate them deterministically via torch.manual_seed.
+logs/
+*.log
+!docs/.gitkeep
+# Test data, random fixtures
+tmp/
+# Anything the build_bench canon regenerates deterministically; we keep the
+# canonical manifest under version control but exclude per-run diffs.
+*.bak
+*.orig
