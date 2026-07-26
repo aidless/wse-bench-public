@@ -62,3 +62,8 @@ tmp/
 # canonical manifest under version control but exclude per-run diffs.
 *.bak
 *.orig
+# Dev-time hash snapshot of the manifest (point-prefixed = local cache
+# convention). The canonical artifact is `bench_manifest.json`; the snapshot
+# is a fast-canary that locks per-task hashes for re-anchoring and embeds
+# the original v1 private T029 values, hence excluded from public mirror.
+assets/.bench_snapshot.json

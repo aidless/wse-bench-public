@@ -54,7 +54,7 @@
   "disc_base_fail_cand_pass": 7,
   "decision": "REVERT",
   "license": null,
-  "note": "与#2同一检索候选，修正 T029 ground-truth(541,713->541,733,可复跑SQL核验)后复跑：fresh 0.933、overall 0.860、pass 22/31，hidden 仍 -0.080 -> 判决对答案键更正稳健，依旧 REVERT"
+  "note": "与#2同一检索候选，修正 T029 ground-truth (<redacted-private-KB-scale>，可复跑SQL核验) 后复跑：fresh 0.933、overall 0.860、pass 22/31，hidden 仍 -0.080 -> 判决对答案键更正稳健，依旧 REVERT"
  },
  {
   "ts": "2026-07-24T12:49:17",

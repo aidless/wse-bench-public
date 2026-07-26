@@ -759,18 +759,19 @@
     {
       "id": "T029",
       "split": "fresh",
-      "source": "peS2o 知识库实测（F:\\test\\2026-07-24-08-21-57\\peS2o-self-evo-digest.md §一, 2026-07-24）",
-      "version": "pes2o-kb",
-      "prompt": "peS2o 论文知识库（E:\\peS2o_kb_faiss）的论文规模、向量化模型与索引类型分别是什么？ 请用一句话简洁、准确地回答。",
+      "source": "impossible-closedbook probe (v2 — generic placeholder for private/local KB; v1 anchored to author's local peS2o KB)",
+      "version": "impossible-closedbook-probe-v2",
+      "prompt": "你本地的某私有论文知识库（路径、规模、模型、索引类型都由你自己选定，不公开）当前的论文规模数量、向量化模型类别、向量索引类型分别是什么？请用一句话简洁、准确地回答，必须覆盖：一个具体规模数字、一种 embedding 模型名、一种向量索引名 三个事实。",
       "rubric": {
         "type": "contains",
         "required": [
-          "541,733",
-          "all-MiniLM-L6-v2",
-          "FAISS"
-        ]
+          "REPLACE_WITH_YOUR_KB_PAPER_COUNT",
+          "REPLACE_WITH_YOUR_EMBEDDING_MODEL",
+          "REPLACE_WITH_YOUR_VECTOR_INDEX"
+        ],
+        "instructions_for_reviewer": "用户在 build_bench.py 中将上述三个 REPLACE 占位符替换为自己的本地 KB 实测值后再生成 manifest。原始 v1 私有值由作者留档，不进入开源仓库。"
       },
-      "reference": "peS2o 含 541,733 篇论文（papers 表实时 SELECT COUNT(*) 核验，2026-07-24），用 all-MiniLM-L6-v2 向量化，FAISS 索引。",
+      "reference": "（占位）将 prompt 中 'REPLACE_WITH_YOUR_*' 与 rubric.required 中的三处占位符同步替换为本地 KB 的实测规模数字、embedding 模型名、向量索引名。探针能力：闭卷模型无法从参数化知识命中这三项的私有取值；若被测者仍得分高，即证明存在数据泄漏。",
       "cohort": "2026Q3-core",
       "cohort_status": "archived",
       "capability": "selective_retrieval",
