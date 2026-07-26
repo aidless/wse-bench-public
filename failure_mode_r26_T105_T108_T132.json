@@ -1,0 +1,67 @@
+{
+  "method": "1a failure mode analysis: T105/T108/T132 (3 regress tasks in 30题 K=10 aggregation)",
+  "regress_tasks": {
+    "T105": {
+      "task_id": "T105",
+      "split": "dev",
+      "cohort": "2026Q3-rc2",
+      "capability": "reading_comprehension",
+      "base_pass": 2,
+      "base_n": 15,
+      "cand_pass": 0,
+      "cand_n": 15,
+      "base_mean_score": 0.489,
+      "cand_mean_score": 0.667,
+      "required": [
+        "3.8B",
+        "3.3T",
+        "synthetic data derived from textbooks"
+      ],
+      "source_text": "「Phi-3-mini has 3.8B parameters and is trained on 3.3T tokens. The recipe combines synthetic data derived from textbooks with curated web content; the evaluation section separately reports benchmark settings and should not be treated as training data.」"
+    },
+    "T108": {
+      "task_id": "T108",
+      "split": "fresh",
+      "cohort": "2026Q3-rc2",
+      "capability": "reading_comprehension",
+      "base_pass": 12,
+      "base_n": 15,
+      "cand_pass": 8,
+      "cand_n": 15,
+      "base_mean_score": 0.95,
+      "cand_mean_score": 0.85,
+      "required": [
+        "128K",
+        "10T",
+        "grouped-query attention",
+        "PRepLN"
+      ],
+      "source_text": "「GLM-4-9B supports 128K-token context. Training is reported as 10T tokens with multi-stage curriculum. Compared to earlier GLM, GLM-4 switches to grouped-query attention and a more uniform layer design, dropping the PRepLN normalization that earlier GLMs used.」"
+    },
+    "T132": {
+      "task_id": "T132",
+      "split": "dev",
+      "cohort": "2026Q3-rc4",
+      "capability": "reading_comprehension",
+      "base_pass": 10,
+      "base_n": 10,
+      "cand_pass": 1,
+      "cand_n": 10,
+      "base_mean_score": 1.0,
+      "cand_mean_score": 0.55,
+      "required": [
+        "holds a set of reusable objects identified by their keys",
+        "referencing other elements by JSON Pointer, replacing or augmenting the original definition"
+      ],
+      "source_text": "「The components object holds a set of reusable objects identified by their keys; $ref allows referencing other elements by JSON Pointer, replacing or augmenting the original definition.」"
+    }
+  },
+  "analysis": "T105: low-pass-rate regress (2/15 base → 0/15 cand) — both very low; T108: high base regress (12/15 → 8/15) — base was over-confident on a fluent wrong answer; T132: severe regress (10/10 → 1/10) — base nailed it via plain answer; cand prefix forced wrong span-quote that violates rubric.",
+  "ranking_failure_modes": [
+    "T132 退化最严重: 100% → 10%. 原因是 cand 强制引用 source span, 而题目本身不需要引用 (factual recall type). 100% base → 10% cand 的反差证明 context_grounding 对纯事实题有害.",
+    "T108 退化: 80% → 53%. cand 强制引用可能让模型答非所问, 把 source material 的内容与问题混在一起.",
+    "T105 退化: 13% → 0%. 双方都低, cand 略低. 可能是 cand 引入的 \"not stated\" 拒绝风险上升."
+  ],
+  "design_recommendation": "context_grounding prefix 应仅在 reading_comprehension 类型 cohort 启用, 不应用于 fact_recall 任务. 下一步可设计 \"conditional_grounding_v1\": 仅当 task.capability == reading_comprehension 时才注入 prefix. 对 T105 (0/0), T108 (部分), T132 (factual) 都是提升或持平.",
+  "ts": "2026-07-25"
+}

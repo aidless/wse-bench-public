@@ -1,0 +1,770 @@
+{
+  "T001": {
+    "answer": "AgentBench（代理基准测试）是一个用于评估和比较代理学习算法性能的基准测试平台。它由阿里巴巴达摩院的研究人员提出，并在多个学术会议上进行了发表。\n\n- **提出团队**：AgentBench是由阿里巴巴达摩院的研究人员提出的。\n- **发表的会议**：AgentBench最初是在2019年于NeurIPS（神经信息处理系统大会）上首次公开发布的。之后，它也在其他重要的学术会议上被讨论和展示，包括ICML（国际机器学习大会）、CVPR（计算机视觉与模式识别大会）等。\n\nAgentBench的主要目标是为代理学习领域提供一个标准化的基准测试环境，以便研究人员可以公平地比较不同代理学习算法的表现。通过使用AgentBench，研究者们能够更好地了解各种代理学习方法的有效性和局限性，从而推动该领域的技术进步。",
+    "score": 0.333,
+    "passed": false,
+    "split": "dev"
+  },
+  "T002": {
+    "answer": "HumanEval 基准是一个用于评估语言模型在编写简单Python代码能力的基准测试。它包含了一些简单的编程任务，旨在测试模型对基本编程概念的理解和应用能力。\n\n关于您提到的问题数量以及基准的发布者，目前我没有找到明确的信息表明 HumanEval 基准直接包含了多少个 Python 编程问题。HumanEval 是一个更广泛的基准，包括了多种类型的编程任务，但具体到 Python 代码的数量和来源，可能需要查阅 HumanEval 的官方文档或源代码来获得准确信息。\n\nHumanEval 由 Google 发布，旨在评估语言模型在编写简单代码时的表现。如果您需要获取 HumanEval 的具体细节，建议访问其官方网站或相关研究论文以获取最准确的信息。",
+    "score": 0.333,
+    "passed": false,
+    "split": "dev"
+  },
+  "T003": {
+    "answer": "{\"label\": \"empirical-only\", \"reason\": \"This statement is based on empirical results (model performance on MMLU), but it does not provide enough information to verify the accuracy of the claim. It's an empirical finding without further validation or proof.\"}",
+    "score": 1.0,
+    "passed": true,
+    "split": "dev"
+  },
+  "T004": {
+    "answer": "当然，以下是一个针对 MCP（Microservice Control Plane）接入层的安全审查清单示例，其中包含了您要求的 H2 小节：A2A 权限、密钥管理、注入防护。\n\n---\n\n# 安全审查清单\n\n## A2A 权限\n\n### 1. 用户认证与授权\n- 确保所有 API 调用都经过身份验证和授权。\n- 使用强密码策略，确保用户凭据的安全性。\n- 实现基于角色的访问控制 (RBAC)，限制对敏感资源的访问。\n\n### 2. API 密钥管理\n- 对 API 密钥进行加密存储，并定期更换。\n- 限制 API 密钥的生命周期，确保其安全性。\n- 实施 API 密钥的生命周期管理，包括生成、使用和删除。\n\n### 3. 注入防护\n- 避免直接在 URL 中包含敏感信息，如 API 密钥。\n- 对输入参数进行验证和清理，防止 SQL 注入、XSS 和其他类型的注入攻击。\n- 使用参数化查询和预编译语句来防止 SQL 注入攻击。\n\n## B2B 权限\n\n### 4. 服务",
+    "score": 1.0,
+    "passed": true,
+    "split": "dev"
+  },
+  "T005": {
+    "answer": "GPT-4 是一个虚构的概念，目前还没有实际存在的版本。GPT（Generative Pre-trained Transformer）系列是由 OpenAI 开发的大型语言模型。GPT-4 作为 GPT 系列的后续版本，如果它真的存在，将会是一个更先进的语言模型。\n\n关于您提到的“发布方”，GPT-4 如果真的存在，其发布方将是 OpenAI。不过请注意，目前没有公开信息表明 GPT-4 已经被开发出来或发布。\n\n如果您对 GPT-3 或其他已发布的 GPT 版本感兴趣，我可以提供相关信息。",
+    "score": 0.667,
+    "passed": false,
+    "split": "dev"
+  },
+  "T006": {
+    "answer": "{\"contribution\": \"提出了一种完全基于注意力机制的序列转换模型，摒弃了循环和卷积层\"}",
+    "score": 1.0,
+    "passed": true,
+    "split": "dev"
+  },
+  "T007": {
+    "answer": "SWE-bench 是阿里巴巴云团队为评估深度学习模型在大规模数据集上的性能而设计的一个基准测试。SWE-bench 的核心评测目标主要包括以下几个方面：\n\n1. **大规模数据集性能评估**：SWE-bench 旨在评估模型在大规模数据集上的表现，以确保模型在实际应用中的泛化能力和性能。\n\n2. **多任务学习能力**：通过设计包含多种任务的数据集，SWE-bench 能够评估模型在不同任务之间的迁移学习能力，即模型是否能够在完成一个任务后，对其他相关任务有较好的适应性。\n\n3. **模型复杂度与效率**：SWE-bench 会考虑模型的复杂度和计算效率，帮助研究者了解模型在资源限制下的表现，从而指导模型优化和选择。\n\n4. **公平性与透明性**：为了保证评测结果的公正性和透明性，SWE-bench 设计了严格的规则和流程，确保所有参与模型的评测过程都是公开透明的。\n\n5. **跨平台一致性**：SWE-bench 还致力于确保不同硬件平台（如 GPU、TPU 等）上的评测结果的一致性，以提高模型评估的可靠性。",
+    "score": 0.5,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T008": {
+    "answer": "{\"contribution\":\"BERT实现了预训练和微调的二合一，显著提升了自然语言处理任务性能；通过掩码填充技术，增强了模型对语义的理解能力。\"}",
+    "score": 1.0,
+    "passed": true,
+    "split": "hidden"
+  },
+  "T009": {
+    "answer": "LoRA（Lightweight Recursive Adapter）是一种轻量级的递归适配器，旨在简化大模型微调的过程。其核心思想主要包括以下几点：\n\n1. **轻量化**：LoRA通过将大型模型的参数分解为较小的子模块，从而降低了模型的复杂度和计算成本。\n\n2. **递归性**：LoRA使用递归的方式对模型参数进行分割，使得模型可以被高效地微调，同时保持了模型的整体结构和性能。\n\n3. **灵活性**：LoRA允许在不同的层之间共享参数，这使得模型能够更好地适应各种任务，并且在某些情况下，它甚至可以减少参数的数量。\n\n4. **可扩展性**：LoRA的设计使得它可以很容易地与现有的模型架构结合使用，从而支持更广泛的模型规模和任务类型。\n\n5. **简单性**：LoRA通过简单的参数分割和更新机制，使得模型的训练和推理过程更加简单，降低了实现的复杂度。\n\n总的来说，LoRA的核心思想是通过轻量化、递归性和灵活性来简化大模型的微调过程，从而提高模型的效率和适应性。",
+    "score": 0.667,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T010": {
+    "answer": "### 安全清单\n\n#### 密钥管理\n1. **密钥存储**\n   - 所有密钥（包括 API 密钥、数据库访问密钥等）应存储在安全的加密形式中。\n   - 使用硬件安全模块 (HSM) 或其他安全存储解决方案来保护密钥。\n2. **密钥分发**\n   - 确保密钥仅通过安全的方式分发给需要的系统或服务。\n   - 使用安全的通信协议（如 TLS）进行密钥分发。\n3. **密钥生命周期管理**\n   - 实施密钥的生命周期管理策略，包括生成、使用和销毁。\n   - 定期审查和更新密钥，确保其安全性。\n\n#### 注入防护\n1. **输入验证**\n   - 对所有输入进行严格的验证和清理，以防止 SQL 注入、XSS 和其他类型的注入攻击。\n2. **参数化查询**\n   - 使用参数化查询或预编译语句来防止 SQL 注入攻击。\n3. **输出编码**\n   - 对敏感数据进行适当的编码，如对 HTML 输出进行转义处理，防止 XSS 攻击。\n4. **白名单/黑名单**",
+    "score": 0.667,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T011": {
+    "answer": "```json\n{\n  \"framework\": \"AutoGen\",\n  \"abstraction\": \"conversable, customizable, various modes\",\n  \"domain\": \"operations research, online decision-making, entertainment\"\n}\n```\n\n解释：\n- **framework**: 框架名称为 \"AutoGen\"。\n- **abstraction**: 描述了 agent 的特性，包括“conversable”（可对话）、“customizable”（可定制）和“various modes”（多种模式）。\n- **domain**: 摘要中提到的应用领域包括“operations research”，“online decision-making”和“entertainment”。",
+    "score": 0.667,
+    "passed": false,
+    "split": "dev"
+  },
+  "T012": {
+    "answer": "根据提供的摘要内容，可以抽取并输出如下 JSON：\n\n```json\n{\n  \"framework\": \"Tree of Thoughts (ToT)\",\n  \"generalizes_from\": \"Chain of Thought\",\n  \"cot_rate\": \"4%\",\n  \"tot_rate\": \"74%\"\n}\n```\n\n解释：\n- **framework**: 根据摘要中的描述，“Tree of Thoughts (ToT)” 是新的推理框架。\n- **generalizes_from**: 框架“Tree of Thoughts (ToT)”泛化自“Chain of Thought”方法。\n- **cot_rate**: 使用链式思维提示的 GPT-4 在 Game of 24 任务上的成功率为 4%。\n- **tot_rate**: 使用 Tree of Thoughts (ToT) 方法在 Game of 24 任务上的成功率为 74%。",
+    "score": 1.0,
+    "passed": true,
+    "split": "dev"
+  },
+  "T013": {
+    "answer": "{\n  \"category\": \"Bug\",\n  \"component\": \"工具调用\",\n  \"evidence\": \"Fixes #7956. **Root cause**: When a cancellation token is cancelled during a tool call, ... propagates out of ... and into ..., which - lacking ... - re-raises immediately. The ... sentinel ... never executes, causing the consumer loop to block forever.\"\n}",
+    "score": 1.0,
+    "passed": true,
+    "split": "dev"
+  },
+  "T014": {
+    "answer": "修复了文档中一个 broken 的外部链接，并通过 Wayback Machine 使用 archived 捷存进行修复。",
+    "score": 0.5,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T015": {
+    "answer": "根据 TMLR 作者指南，作者应上传数据或代码等补充材料以提升可复现性，这些材料的格式需为 PDF 或 ZIP，大小上限为 100MB，并且所有补充材料必须以 PDF 或 ZIP 格式提交。",
+    "score": 0.6,
+    "passed": false,
+    "split": "dev"
+  },
+  "T016": {
+    "answer": "TMLR 在审稿中强调技术正确性，相对弱化主观重要性，其评审流程托管在 OpenReview 平台上。",
+    "score": 0.333,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T017": {
+    "answer": "Multi-head Latent Attention (MLA) 作为一种 KV 缓存压缩机制，首次被提出是在另一个模型家族中，但具体是哪个模型家族，需要更具体的上下文来准确回答，它最初在某些自适应的 Transformer 架构中被提出。",
+    "score": 0.5,
+    "passed": false,
+    "split": "dev"
+  },
+  "T018": {
+    "answer": "Qwen3系列使用的是开源协议，且对商用友好。",
+    "score": 0.5,
+    "passed": false,
+    "split": "dev"
+  },
+  "T019": {
+    "answer": "主流大模型家族中采用MIT协议的是Hugging Face的Transformers库。",
+    "score": 0.333,
+    "passed": false,
+    "split": "dev"
+  },
+  "T020": {
+    "answer": "Llama Community License 主要对商用限制在于需要保留原作者的署名权。",
+    "score": 0.5,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T021": {
+    "answer": "7B 模型中使用了滑动窗口注意力 (SWA) 的是 BigBench 家族。",
+    "score": 0.5,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T022": {
+    "answer": "Llama4 引入了无偏移相对位置编码 (RoPE) 变体以支持超长上下文。",
+    "score": 0.5,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T023": {
+    "answer": "Qwen3 的细粒度 MoE 配置采用了一种能够高效处理复杂任务的混合专家体系结构，其思考模式机制在于通过动态调整不同专家的权重，实现对输入数据的精细化处理和优化决策。",
+    "score": 0.333,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T024": {
+    "answer": "DeepSeek 的 MTP 机制可显著加速解码过程，相比传统方法，其投机解码加速比可达数倍。",
+    "score": 0.667,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T025": {
+    "answer": "GLM 系列在工具调用上的统一范式称为 GLM 统一 API。",
+    "score": 0.5,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T026": {
+    "answer": "Phi 系列训练数据的核心范式源自大规模多模态数据的语义理解与关联。",
+    "score": 0.5,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T027": {
+    "answer": "在GEMMA架构中，用于稳定训练并限制logits的非线性技巧包括使用修正的Softmax函数。",
+    "score": 0.333,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T028": {
+    "answer": "Llama3 的后训练对齐管线包括预处理、微调、评估和部署四个阶段。",
+    "score": 0.333,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T029": {
+    "answer": "论文知识库（E:\\peS2o_kb_faiss）包含约10万篇学术论文，使用FAISS进行向量化和索引。",
+    "score": 0.333,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T030": {
+    "answer": "自进化代理的1000轮campaign进化基因由编码策略的部分和适应性调整的部分，各500条。",
+    "score": 0.333,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T031": {
+    "answer": "自进化代理采用的自验证 v1 策略在求解后会独立复核多个关键维度以确保准确性。",
+    "score": 0.0,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T032": {
+    "answer": "DeepSeekMoE 通过动态调整专家权重实现负载均衡，而不引入额外的损失项。",
+    "score": 0.5,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T033": {
+    "answer": "DeepSeek-R1 使用的是 Actor-Critic 方法的变体，即无 critic 的强化学习算法。",
+    "score": 0.5,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T034": {
+    "answer": "Qwen2.5 的分词器词表为自研，规模约10万词。",
+    "score": 0.5,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T035": {
+    "answer": "Gemma 27B 通过从零训练或从 Gemini 蒸馏进行微调，具体采用哪种方式取决于最新训练策略，但其训练数据量未公开。",
+    "score": 0.333,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T036": {
+    "answer": "Phi-3-mini 使用的是 Multi-Head Attention (MHA)。",
+    "score": 1.0,
+    "passed": true,
+    "split": "hidden"
+  },
+  "T037": {
+    "answer": "GLM 的 1M 长上下文是通过预训练时使用大规模语料库并通过有效的注意力机制和裁剪技术实现的。",
+    "score": 0.667,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T038": {
+    "answer": "为了计算全程的平均速度，我们首先需要计算总路程和总时间。\n\n### 总路程\n\n- 第一段路程：火车以 60 km/h 的速度行驶了 2.5 小时。\n  \\[\n  路程 = 速度 \\times 时间 = 60 \\, \\text{km/h} \\times 2.5 \\, \\text{小时} = 150 \\, \\text{公里}\n  \\]\n\n- 第二段路程：火车以 90 km/h 的速度行驶了 1 小时。\n  \\[\n  路程 = 速度 \\times 时间 = 90 \\, \\text{km/h} \\times 1 \\, \\text{小时} = 90 \\, \\text{公里}\n  \\]\n\n- 总路程：\n  \\[\n  总路程 = 150 \\, \\text{公里} + 90 \\, \\text{公里} = 240 \\, \\text{公里}\n  \\]\n\n### 总时间\n\n- 第一段时间：2.5 小时\n- 第二段时间：1 小时\n- 总时间",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T039": {
+    "answer": "根据题目描述，我们可以将三个人说的话进行分析：\n\n1. 甲说：“乙说谎”。\n2. 乙说：“丙说谎”。\n3. 丙说：“甲和乙都说谎”。\n\n我们假设甲说的是真话，那么根据甲的话，乙说谎。如果乙说谎，那么丙说真话。但是，如果丙说真话，那么甲和乙都应该是说谎的，这与假设矛盾。因此，甲说真话是不成立的。\n\n接下来假设乙说的是真话，那么根据乙的话，丙说谎。如果丙说谎，那么甲和乙中至少有一个说真话。由于我们已经假设乙说真话，那么甲说谎。根据甲的话，乙说谎，这与假设矛盾。因此，乙说真话也是不成立的。\n\n最后假设丙说的是真话，那么根据丙的话，甲和乙都说谎。这意味着甲说谎，乙说谎。这样符合逻辑，因为如果甲说谎，那么乙说真话，即乙说的是真话。如果乙说真话，那么丙说谎，即丙说的是真话。所以，只有当丙说的是真话时，其他人的说法",
+    "score": 1.0,
+    "passed": true,
+    "split": "dev"
+  },
+  "T040": {
+    "answer": "为了解决这个问题，我们可以使用工作总量的概念来分析。\n\n首先，确定甲和乙各自的工作效率。甲单独完成这项工作需要6天，因此甲每天可以完成 \\(\\frac{1}{6}\\) 的工作量；乙单独完成这项工作需要12天，因此乙每天可以完成 \\(\\frac{1}{12}\\) 的工作量。\n\n当甲和乙一起工作时，他们的工作效率相加。即，甲和乙每天可以共同完成的工作量是 \\(\\frac{1}{6} + \\frac{1}{12}\\)。\n\n接下来，我们计算他们每天共同完成的工作量：\n\\[\n\\frac{1}{6} + \\frac{1}{12} = \\frac{2}{12} + \\frac{1}{12} = \\frac{3}{12} = \\frac{1}{4}\n\\]\n\n这意味着甲和乙一起每天可以完成 \\(\\frac{1}{4}\\) 的工作量。\n\n为了完成整个工作（即1的全部工作量），他们需要的时间是 \\(1 \\div \\frac{1}{4} = 4\\) 天。\n\n所以，甲和乙合作完成这项工作需要4天",
+    "score": 1.0,
+    "passed": true,
+    "split": "dev"
+  },
+  "T041": {
+    "answer": "首先，我们知道2024年是闰年，因此2月有29天。从2024年1月1日开始，我们逐步计算到2024年3月1日。\n\n1. 2024年1月1日是星期一。\n2. 1月有31天，从1月1日到1月31日，共31天。因为31除以7的余数是3，所以从1月1日到2月28/29日（29天），再过3天就是3月1日。\n3. 因此，从1月1日到3月1日共有：31（1月）+ 29（2月）+ 3（3月1日）= 63天。\n4. 接下来，我们需要确定63天后是星期几。63天可以被7整除，即63 = 7 * 9，这意味着63天后仍然是星期一。\n\n综上所述，2024年3月1日是星期一。",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T042": {
+    "answer": "首先，我们按照题目要求，一步步来计算最终的售价。\n\n### 第一步：第一次涨价\n\n原价为200元的商品第一次涨价10%。\n- 涨价金额 = 原价 × 涨价百分比 = 200 × 10% = 200 × 0.1 = 20元\n- 涨价后的价格 = 原价 + 涨价金额 = 200 + 20 = 220元\n\n### 第二步：第二次涨价\n\n在第一次涨价后的价格基础上，再次涨价15%。\n- 涨价金额 = 新价格 × 涨价百分比 = 220 × 15% = 220 × 0.15 = 33元\n- 涨价后的价格 = 第一次涨价后的价格 + 涨价金额 = 220 + 33 = 253元\n\n### 第三步：打折销售\n\n最后，以第二次涨价后的价格为基础，打8折出售。\n- 打折后的价格 = 第二次涨价后的价格 × 折扣 = 253 ×",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T043": {
+    "answer": "为了解决这个问题，我们可以设儿子今年的年龄为 \\(x\\) 岁，那么父亲今年的年龄就是 \\(4x\\) 岁。\n\n根据题目中的信息，12年后父亲的年龄是儿子的2倍。因此，我们可以建立以下方程：\n\n\\[4x + 12 = 2(x + 12)\\]\n\n接下来，我们解这个方程找出 \\(x\\) 的值。\n\n\\[\n\\begin{align*}\n4x + 12 &= 2(x + 12) \\\\\n4x + 12 &= 2x + 24 \\\\\n4x - 2x &= 24 - 12 \\\\\n2x &= 12 \\\\\nx &= 6\n\\end{align*}\n\\]\n\n所以，儿子今年6岁。根据题目中父亲的年龄是儿子的4倍，我们可以计算出父亲的年龄：\n\n\\[4x = 4 \\times 6 = 24\\]\n\n因此，父亲今年24岁。",
+    "score": 1.0,
+    "passed": true,
+    "split": "dev"
+  },
+  "T044": {
+    "answer": "为了找出在1到100之间既不能被3整除也不能被5整除的数的数量，我们可以使用集合的概念来解决这个问题。\n\n首先，我们需要确定1到100之间的所有整数总数。这个总数是100。\n\n接下来，我们分别计算能被3整除和能被5整除的数的数量，然后用这些数量减去它们的交集（即同时能被3和5整除的数）的数量，以避免重复计数。\n\n1. 能被3整除的数：从3到99，每3个数一组，共有\\( \\frac{99-3}{3} + 1 = 33 \\)个数。\n2. 能被5整除的数：从5到95，每5个数一组，共有\\( \\frac{95-5}{5} + 1 = 18 \\)个数。\n3. 同时能被3和5整除的数（即能被15整除的数）：从15到90，每15个数一组，共有\\( \\frac{90-15}{15} + 1",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T045": {
+    "answer": "为了解决这个问题，我们可以使用加权平均数的概念来分析。\n\n设男生人数为 \\(x\\)，女生人数为 \\(y\\)，根据题目信息，男生的平均分为80分，女生的平均分为90分，全班的平均分为84分。\n\n首先，我们用公式表示全班的总分和总人数：\n- 全班总分 = 男生总分 + 女生总分 = \\(80x + 90y\\)\n- 总人数 = 男生人数 + 女生人数 = \\(x + y\\)\n\n根据题意，全班的平均分是84分，所以全班总分除以总人数等于84分，即：\n\\[ \\frac{80x + 90y}{x + y} = 84 \\]\n\n接下来，我们将等式两边同时乘以 \\(x + y\\)，得到：\n\\[ 80x + 90y = 84(x + y) \\]\n\n展开等式右边：\n\\[ 80x + 90y = 84x + 84y \\]\n\n将等式两边的项重新整理，移项得到：\n\\[",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T046": {
+    "answer": "为了解决这个问题，我们可以使用相对速度的概念来简化问题。当两辆车相向而行时，它们的相对速度等于它们各自速度的和。\n\n甲车的速度是 50 千米/小时，乙车的速度是 70 千米/小时，因此它们的相对速度是 \\(50 + 70 = 120\\) 千米/小时。\n\n接下来，我们需要确定两车相遇所需的时间。由于两地之间的距离是 300 千米，我们可以用总距离除以它们的相对速度来计算相遇时间：\n\n\\[ 时间 = \\frac{距离}{相对速度} = \\frac{300}{120} = 2.5 \\text{ 小时} \\]\n\n现在我们知道两车将在 2.5 小时后相遇。为了找出甲车在这段时间内行驶的距离，我们可以使用公式：\n\n\\[ 距离 = 速度 \\times 时间 \\]\n\n甲车的速度是 50 千米/小时，所以甲车在 2.5 小时内行驶的距离是：\n\n\\[ 距离 = 50 \\times 2.5 = 125 \\text{ 千",
+    "score": 1.0,
+    "passed": true,
+    "split": "hidden"
+  },
+  "T047": {
+    "answer": "这个问题可以通过 Fermat's Little Theorem 来简化。因为 9973 是一个质数，所以对于任何与 9973 互质的整数 a，有 \\(a^{p-1} \\equiv 1 \\mod p\\)。这里 \\(p = 9973\\)，所以我们有 \\(a^{9972} \\equiv 1 \\mod 9973\\)。\n\n给定 \\(3^{200} \\mod 9973\\)，我们可以利用上述结论来简化计算。首先，我们需要找到 \\(200\\) 在模 \\(9972\\) 下的逆元。这意味着我们需要找到一个数 \\(x\\) 满足 \\(200x \\equiv 1 \\mod 9972\\)。\n\n由于 \\(9972 = 2^2 \\times 3 \\times 11 \\times 13 \\times 17\\)，我们可以使用扩展欧几里得算法来找到这个逆元。但是，为了简化计算，我们注意到 \\(200 = 2^3 \\times 5\\)，而 \\(9972 = 2^2 \\times 3 \\times",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T048": {
+    "answer": "这个问题可以通过模运算的性质来简化。首先，我们知道8191是一个素数，因此我们可以利用欧拉函数和费马小定理来解决这个问题。\n\n给定 \\( n = 131 \\) 和 \\( p = 8191 \\)，我们需要找到 \\( 7^{131} \\mod 8191 \\) 的值。\n\n根据费马小定理，如果 \\( p \\) 是素数，那么对于任意整数 \\( a \\)（\\( a \\) 不是 \\( p \\) 的倍数），有 \\( a^{p-1} \\equiv 1 \\mod p \\)。这里 \\( p = 8191 \\)，所以 \\( 7^{8190} \\equiv 1 \\mod 8191 \\)。\n\n由于 \\( 131 \\) 小于 \\( 8190 \\)，我们可以将 \\( 7^{131} \\) 表示为 \\( 7^{131} = 7^{8190 - 679} = 7^{8190} \\cdot 7^{-679} \\)。\n\n根据费马小定",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T049": {
+    "answer": "为了计算 \\(5^{177} \\mod 7919\\)，我们可以使用快速幂算法来简化计算过程。快速幂算法可以有效地减少计算量。\n\n首先，将指数分解为二进制形式，然后逐位进行计算。具体步骤如下：\n\n1. 将 177 转换为二进制：\\(177_{10} = 10110001_2\\)\n\n2. 计算 \\(5^{177}\\) 的值：\n   - \\(5^{16} = (5^8)^2 = (390625)^2 = 152587890625 \\mod 7919 = 1\\)\n   - 因为 \\(5^{16} = 1\\)，所以 \\(5^{177} = 5^{16} \\times 5^{161} = 1 \\times 5^{161} = 5^{161} \\mod 7919\\)\n   - \\(5^{161} = (5^{16})^{10} \\times",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T050": {
+    "answer": "这个问题可以通过模运算的性质来简化。首先，我们知道4999是一个素数，因此我们可以利用费马小定理来简化计算。\n\n费马小定理指出，如果\\(p\\)是素数，且\\(a\\)不是\\(p\\)的倍数，则\\(a^{p-1} \\equiv 1 \\mod p\\)。这里，\\(p = 4999\\)，所以有 \\(11^{4998} \\equiv 1 \\mod 4999\\)。\n\n我们需要计算的是 \\(11^{99} \\mod 4999\\)。为了简化这个计算，我们可以将 \\(11^{99}\\) 表示为 \\(11^{4998} \\cdot 11^{-4998}\\)，即 \\(11^{99} \\equiv 11^{-4998} \\mod 4999\\)。\n\n接下来，我们需要找到 \\(11^{-4998} \\mod 4999\\) 的值。由于 4999 是一个素数，我们可以使用扩展欧几里得算法来找到 \\(11\\) 的逆元。但是，直接使用扩展",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T051": {
+    "answer": "首先，我们需要计算77!的值，然后找出其各个位数之和。但是，直接计算77!的值会得到一个非常大的数字，直接处理这个数字可能会导致计算错误或系统限制。因此，我们将采用一种间接的方法来解决这个问题。\n\n阶乘的定义是 \\( n! = n \\times (n-1) \\times ... \\times 2 \\times 1 \\)，对于较大的数如77，直接计算会非常复杂且容易出错。我们可以通过数学性质来简化问题。\n\n阶乘的最后几位数字受模运算的影响，特别是对10取模，因为10 = 2 * 5，而阶乘中包含很多2和5的因子，但大多数情况下，5的数量少于2的数量，所以最后的阶乘结果对10取模的结果主要由5的数量决定。\n\n77!的最后几位数字之和可以通过计算77!除以10的余数来确定。由于77!中含有至少7个5（因为77/5 + 77/25 + 77/125 = 15 + 3 + 0.64 = 18.64",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T052": {
+    "answer": "首先，计算66!的值是一个非常大的数字，直接给出其十进制表示中的各位数字之和是不现实的。因此，我将使用一个更有效的方法来解决这个问题。\n\n阶乘的性质之一是，对于任何正整数n，n!的最后一位数字是0，除非n包含因子5和2，且数量足够多以至于它们相乘的结果至少有两次5和2。但是，即使如此，我们仍然需要考虑的是66!中除了10以外的因子。\n\n66!的最后一位数字实际上是0，因为66!包含了至少6个因子5（从65到66），以及更多的因子2。这意味着66!的最后一位数字是0，而其他所有位上的数字之和就是66!去掉最后一位0后的数字之和。\n\n为了找到这个和，我们可以使用一个公式来计算阶乘中所有数字的和。这个公式是基于阶乘的定义和一些数学技巧。然而，直接应用这个公式会非常复杂，所以我们可以通过编程或数学软件来计算66!的和。\n\n这里，我将使用一个简化的逻辑来估算66!的和。阶乘的和可以通过以下步骤",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T053": {
+    "answer": "首先，我们需要计算59!的值，然后找出其各个位数之和。但是，直接计算59!的值会得到一个非常大的数字，直接处理这个数字可能会导致计算错误或系统限制。因此，我们将采用一种间接的方法来解决这个问题。\n\n阶乘的定义是 \\( n! = n \\times (n-1) \\times ... \\times 2 \\times 1 \\)，对于较大的数，比如59，直接计算阶乘会变得非常复杂且容易出错。我们可以通过数学性质来简化问题。\n\n阶乘的最后几位数字受模运算的影响，特别是对10取模，因为10 = 2 * 5，而阶乘中包含很多2和5的因子，但通常情况下，阶乘的最后一位数字会受到5的因子影响较大。因此，我们可以考虑59!除以10的余数来简化问题。\n\n59!的最后一位数字取决于59!除以10的余数。由于59!中含有至少20个5（因为59/5 + 59/25 + 59/125 = 10 + 2 + 0 = 1",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T054": {
+    "answer": "这个问题涉及到非常大的数字，直接计算88!的值并求其各位数字之和是非常困难的，因为88!是一个极其庞大的数，其位数远远超过常规计算工具或编程语言所能处理的范围。此外，即使使用专门的数学软件或库函数，计算如此巨大的阶乘也会面临内存和计算资源的限制。\n\n因此，对于这个问题，我们无法直接给出一个具体的数值结果。但是，根据数学原理，阶乘的结果会包含从1到88的所有整数相乘的结果，这意味着88!是一个由许多数字组成的巨大数字，其各位数字之和将是一个相当大的数字。\n\n由于直接计算88!并求各位数字之和是不现实的，这个问题的答案超出了常规计算能力的范围。因此，我无法提供一个具体的数字作为答案。",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T055": {
+    "answer": "这个问题可以通过编程来解决，因为直接计算这个范围内的素数数量比较复杂。我们可以使用一个简单的算法来找出这个范围内所有的素数，并统计它们的数量。\n\n下面是一个简化的Python代码示例，用于找出5000到5600之间的素数数量：\n\n```python\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ncount = 0\nfor num in range(5001, 5600):\n    if is_prime(num):\n        count += 1\n\nprint(count)\n```\n\n运行上述代码可以得到结果。下面是执行该代码后输出的素数数量：\n```\n49\n```\n\n最终答案：49",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T056": {
+    "answer": "这个问题可以通过编程来解决，因为直接计算这个范围内的素数数量比较复杂。我们可以使用埃拉托色尼筛法或者简单的遍历检查每个数字是否为素数的方法来解决。\n\n这里我将使用一个简单的算法来找出3000到3600之间的素数数量。我们将遍历这个区间内的每一个数字，并检查它是否能被2到其平方根之间的任何数字整除。如果不能整除，则该数字是素数。\n\n下面是Python代码实现：\n\n```python\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ncount = 0\nfor num in range(3001, 3600):\n    if is_prime(num):\n        count += 1\n\nprint(count)\n```\n\n运行上述代码，我们得到的结果是3000到3600之间（开区间，不含端点）的素数数量。\n最终答案：149",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T057": {
+    "answer": "这个问题可以通过编程来解决，因为直接计算这个范围内的素数数量比较复杂。我们可以使用一个简单的算法来找出这个区间内的素数。下面是一个简化的Python代码示例，用于找出7001到7500之间的素数数量：\n\n```python\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ncount = 0\nfor num in range(7001, 7500):\n    if is_prime(num):\n        count += 1\n\nprint(count)\n```\n\n运行上述代码可以得到结果。这里我们不直接给出答案，但根据数学和编程验证，7001到7500之间的素数数量是34。\n\n最终答案：34",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T058": {
+    "answer": "这个问题可以通过编程来解决，因为直接计算这个范围内的素数数量比较复杂。我们可以使用埃拉托色尼筛法或者简单的遍历检查每个数字是否为素数的方法来解决。这里我将使用一个简单的遍历方法来找出2000到2500之间的素数数量。\n\n首先，我们需要定义一个函数来判断一个数是否为素数。然后，我们遍历这个区间，统计素数的数量。\n\n```python\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ncount = 0\nfor num in range(2001, 2500):\n    if is_prime(num):\n        count += 1\n\n最终答案：143\n```\n\n通过上述代码，我们计算出2000到2500之间（开区间，不含端点）的素数数量为143。",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T059": {
+    "answer": "为了解决这个问题，我们可以使用斐波那契数列的性质以及取模运算来避免计算非常大的数。我们只需要关注每一项的值对 10000 取模的结果。\n\n首先，我们知道斐波那契数列的前两项是 F(1) = 1 和 F(2) = 1。接下来，我们可以通过迭代的方式计算后续的项，并且每次计算结果对 10000 取模。\n\n```python\ndef fibonacci_modulo(n, mod):\n    if n == 1 or n == 2:\n        return 1\n    a, b = 1, 1\n    for _ in range(3, n + 1):\n        a, b = (b + a) % mod, a\n    return b\n\nresult = fibonacci_modulo(120, 10000)\n```\n\n通过上述代码，我们可以得到 F(120) 对 10000 取模的结果。最后一步是将这个结果输出。\n\n```python\nresult = fibonacci_modulo(120, 10000)\nprint(result)\n```\n\n运行上述代码后，我们得到 F(",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T060": {
+    "answer": "这个问题可以通过中国剩余定理来解决。给定的同余方程组为：\n\n\\[ \\begin{cases} \nx \\equiv 13 \\pmod{97} \\\\\nx \\equiv 29 \\pmod{101} \\\\\nx \\equiv 47 \\pmod{103}\n\\end{cases} \\]\n\n首先，我们需要找到模数的乘积 \\(N = 97 \\times 101 \\times 103\\)，然后计算每个模数的乘法逆元。\n\n\\[ N = 97 \\times 101 \\times 103 = 998513 \\]\n\n接下来，我们计算每个模数的乘法逆元：\n\n\\[ N_1 = \\frac{N}{97} = 10261 \\]\n\\[ N_2 = \\frac{N}{101} = 9877 \\]\n\\[ N_3 = \\frac{N}{103} = 9675 \\]\n\n然后，我们找到每个乘法逆元：\n\n\\[ M_1 = N_1^{-1} \\pmod{97} = 102",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T061": {
+    "answer": "{\"summary\": \"Transformer 在序列任务中优于 RNN 并成为模型骨干\", \"title\": \"Transformer 的优势和影响\"}",
+    "score": 0.667,
+    "passed": false,
+    "split": "dev"
+  },
+  "T062": {
+    "answer": "```json\n{\n  \"analysis\": {\n    \"cause\": \"取消令牌在子任务抛出异常时未被捕获\",\n    \"effect\": \"导致每次取消飞行中的工具调用时消费者循环永久阻塞\"\n  }\n}  \n```",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T063": {
+    "answer": "```json\n{\n  \"name\": \"Qwen3\",\n  \"version\": \"235B-A22B\",\n  \"license\": \"Apache-2.0\"\n}\n```",
+    "score": 0.0,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T064": {
+    "answer": "{\"label\": \"empirical-only\", \"reason\": \"This statement is based on empirical evidence (test set results) but does not claim to be proven or conjectured.\"}",
+    "score": 1.0,
+    "passed": true,
+    "split": "dev"
+  },
+  "T065": {
+    "answer": "根据这条评论的内容，我们可以分析出以下几点：\n- \"这手机续航一般\" 表明对手机的续航能力有负面评价。\n- \"但拍照惊艳\" 表明对手机的拍照功能有正面评价。\n- \"整体还行\" 表明对手机的整体表现持中性或稍微正面的态度。\n\n综合来看，虽然有正面的方面，但主要还是负面的评价，整体上可以认为是中性偏负面的评价。\n\n因此，我将输出如下 JSON 数据：\n{\"sentiment\": \"neutral\", \"score\": 3} \n\n这里给的分数为3是因为评论中有正面和负面的成分，但负面成分稍多一些。",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T066": {
+    "answer": "```json\n{\n  \"step1\": \"首先，确保你的开发环境已经配置好，包括Python环境和必要的库（如numpy, pandas等）。然后，使用pip或conda安装所需的依赖库。例如，使用pip命令安装依赖库，可以执行以下命令：\\n\\n```\\n!pip install numpy pandas scikit-learn\\n```\\n\\n注意：这里的`!pip install ...`是通过终端命令安装依赖库的方式，实际操作中可能需要根据你的环境调整。\",\n  \"step2\": \"接下来，下载你需要的数据集。假设数据集是一个CSV文件，你可以使用Python的`pandas`库来读取数据。请确保你已经将数据集下载到一个合适的路径，比如`/path/to/data.csv`。在代码中，你可以这样读取数据：\\n\\n```python\\nimport pandas as pd\\ndata = pd.read_csv('/path/to/data.csv')\\n```\\n\\n此外，还需要对数据进行预处理，例如清洗数据、处理缺失值等。\",\n  \"step3\": \"最后，运行你的训练脚本。假设你的训练脚本是一个简单的机器学习模型训练脚本，通常会包含数据加载、模型定义、",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T067": {
+    "answer": "{\n  \"summary\": \"参数高效微调降低显存需求\",\n  \"keywords\": \"PEFT 显存需求\"\n}",
+    "score": 1.0,
+    "passed": true,
+    "split": "dev"
+  },
+  "T068": {
+    "answer": "根据您的要求，服务运行在 `localhost:8080` 上，因此服务的连接配置可以表示为如下 JSON 对象：\n\n```json\n{\n  \"config\": {\n    \"host\": \"localhost\",\n    \"port\": 8080\n  }\n}\n```\n\n这个配置对象符合您的需求，即以 `config` 对象的形式，包含 `host` 和 `port` 两个属性。",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T069": {
+    "answer": "根据提供的信息，这个标题描述的是一个重构的行动，目的是为了提升代码的可维护性。因此，它更符合 refactor（重构）的范畴。\n\n```json\n{\n  \"category\": \"refactor\",\n  \"component\": \"检索模块\"\n}\n```",
+    "score": 0.0,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T070": {
+    "answer": "根据您的要求，以下是符合您描述的 JSON 格式：\n\n```json\n{\n  \"x\": 3,\n  \"y\": 4,\n  \"z\": 5,\n  \"label\": \"原点附近\"\n}\n```\n\n这个 JSON 对象包含了您所要求的四个字段：x、y、z 和 label，并且将点 P 的位置和标签正确地映射到了相应的字段中。",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T071": {
+    "answer": "```json\n{\n  \"verdict\": \"pass\",\n  \"detail\": \"假设成立，根据传递性原则，如果 a > b 且 b > c，则可以推导出 a > c。\"\n}\n```",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T072": {
+    "answer": "{\n  \"summary\": \"RAG缓解幻觉，成主流\",\n  \"title\": \"检索增强生成\"\n}",
+    "score": 1.0,
+    "passed": true,
+    "split": "fresh"
+  },
+  "T073": {
+    "answer": "首先，我们需要计算23的阶乘，即 \\(23! = 23 \\times 22 \\times 21 \\times ... \\times 1\\)。\n\n由于直接计算23的阶乘会得到一个非常大的数，我们不需要完全写出这个巨大的数字。相反，我们可以直接计算23!的各位数字之和。\n\n23!的值是一个很大的数，但我们可以知道其各位数字之和可以通过数学方法来估算或直接计算。不过，为了简化问题，我们可以使用编程语言或计算器来直接计算23!的值，然后求出各位数字之和。\n\n这里，我将直接给出结果：\n\n23! = 25852016738884976640000\n\n各位数字之和为：\n2 + 5 + 8 + 5 + 2 + 0 + 1 + 6 + 7 + 3 + 8 + 8 + 4 + 9 + 7 + 6 + 6 + 4 + 0 + 0 + 0 + 0 + 0 + 0 + 0 + 0 + 0 + 0 =",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T074": {
+    "answer": "首先，我们需要计算28!的值。28! = 28 × 27 × ... × 1。这个计算非常大，直接计算会得到一个非常大的数。但是，我们只需要知道28!的各位数字之和。\n\n由于28!是一个非常大的数，它的每一位数字之和可以通过数学性质来简化。28!的各位数字之和等于28!除以9的余数加上5的个数（因为每个10的倍数都会贡献一个5，而超过9的倍数则会贡献额外的5）减去5的个数（因为有些数会被重复计算了两次，比如25和50等）。\n\n计算28!的各位数字之和：\n- 28!的各位数字之和 = (28! / 9) % 10 + 5 - (28! 中 5 的个数 - 28! 中 25 和 50 等的个数)\n\n28! 中 5 的个数可以通过公式计算得到：\\[ \\left\\lfloor \\frac{28}{5} \\right\\rfloor + \\left\\lfloor \\",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T075": {
+    "answer": "首先，我们需要计算31!的值。31! = 31 × 30 × 29 × ... × 2 × 1。\n\n计算31!的值会非常大，直接计算可能会导致数值溢出或计算复杂度高。因此，我们不会直接计算31!的值，而是直接计算其各位数字之和。\n\n31!的位数可以通过对数来估算，但为了简化问题，我们可以使用一个已知的31!的近似值来计算各位数字之和。31!的近似值约为 5.247866667720715×10^34。这个值是一个非常大的数，但我们可以知道它是由很多小数位组成的。\n\n由于31!是一个非常大的数，它的各位数字之和将是一个很大的数字。但是，根据数学性质，31!的各位数字之和与31!本身有特定的关系。具体来说，31!的各位数字之和可以通过以下公式计算：\n\n\\[ S = \\sum_{i=1}^{n} d_i \\]\n\n其中 \\(d_i\\) 是 \\(n!\\) 的第 \\(i\\)",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T076": {
+    "answer": "首先，我们需要计算45!的值。但是，直接计算45!的值会得到一个非常大的数，远超过常规计算机处理范围。因此，我们不会直接计算45!的值，而是通过数学性质来解决这个问题。\n\n阶乘的定义是 \\( n! = n \\times (n-1) \\times ... \\times 2 \\times 1 \\)，对于任何正整数 \\( n \\)。当 \\( n \\) 较大时，\\( n! \\) 的每一位数字之和可以通过一些数学技巧来简化计算。\n\n对于任意正整数 \\( n \\)，其阶乘 \\( n! \\) 的各位数字之和 \\( S(n!) \\) 满足以下性质：\n\\[ S(n!) = S((n-1)!) + 9 \\times \\left\\lfloor \\frac{n}{9} \\right\\rfloor \\]\n这个公式基于以下几点：\n1. 对于 \\( n \\geq 9 \\)，\\( n! \\) 中包含至少一个因子9，因此每增加一个9，\\( n! \\) 的各位数字之和就会增加9。\n2. 当 \\( n \\) 是9的倍数时，",
+    "score": 0.0,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T077": {
+    "answer": "这是一个等差数列求和的问题，其公式为 \\(S_n = \\frac{n(a_1 + a_n)}{2}\\)，其中 \\(S_n\\) 是数列的和，\\(n\\) 是项数，\\(a_1\\) 是首项，\\(a_n\\) 是末项。\n\n首先，我们需要计算项数 \\(n\\)。给定的等差数列首项是 1000，末项是 15000，公差是 1000。我们可以使用以下公式来计算项数：\n\\[a_n = a_1 + (n-1)d\\]\n将已知值代入：\n\\[15000 = 1000 + (n-1) \\times 1000\\]\n解这个方程得到 \\(n = 14\\)。\n\n接下来，我们使用等差数列求和公式：\n\\[S_n = \\frac{n(a_1 + a_n)}{2} = \\frac{14(1000 + 15000)}{2} = 7 \\times 16000 = 112000\\]\n\n最终答案：",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T078": {
+    "answer": "首先，我们将每个数分别相加：\n\n7 + 77 = 84\n84 + 777 = 861\n861 + 7777 = 8638\n8638 + 77777 = 86415\n\n最终答案：86415",
+    "score": 1.0,
+    "passed": true,
+    "split": "hidden"
+  },
+  "T079": {
+    "answer": "这是一个等差数列求和的问题，公式为 \\(S = \\frac{n(a_1 + a_n)}{2}\\)，其中 \\(n\\) 是项数，\\(a_1\\) 是首项，\\(a_n\\) 是末项。\n\n在这个问题中，\\(a_1 = 1\\)，\\(a_n = 99\\)，\\(n = 99\\)。\n\n将这些值代入公式得到：\n\\[S = \\frac{99(1 + 99)}{2} = \\frac{99 \\times 100}{2} = 4950\\]\n\n最终答案：4950",
+    "score": 1.0,
+    "passed": true,
+    "split": "fresh"
+  },
+  "T080": {
+    "answer": "首先，我们来计算 \\(21\\) 除以 \\(9\\) 的余数。\n\n\\[21 \\div 9 = 2\\) 余 \\(3\\)\n\n接着，我们计算 \\(21\\) 各位数字之和的余数。\n\n\\(21\\) 的各位数字之和为 \\(2 + 1 = 3\\)\n\n然后，我们计算 \\(3\\) 除以 \\(9\\) 的余数。\n\n\\[3 \\div 9 = 0\\) 余 \\(3\\)\n\n因此，\\(21\\) 除以 \\(9\\) 的余数是 \\(3\\)，而 \\(21\\) 各位数字之和除以 \\(9\\) 的余数也是 \\(3\\)。\n\n最终答案：3",
+    "score": 1.0,
+    "passed": true,
+    "split": "dev"
+  },
+  "T081": {
+    "answer": "这个问题可以通过编程来解决，因为直接计算这个范围内的所有素数会比较复杂。我们可以使用埃拉托色尼筛法或者简单的遍历和检查的方法来找出这个范围内的素数数量。\n\n这里我将使用一个简单的算法来找出2000到2100之间的素数数量。我们将遍历这个区间，对于每个数字，我们检查它是否能被2到它的平方根之间的任何数字整除。如果不能整除，则该数字是素数。\n\n下面是Python代码实现：\n\n```python\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ncount = 0\nfor num in range(2001, 2100):\n    if is_prime(num):\n        count += 1\n\nprint(count)\n```\n\n运行上述代码，可以得到2000到2100之间素数的数量。最后的答案是通过打印的`count`变量得出的。\n\n执行上述代码后，输出结果为：`49`\n\n最终答案：49",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T082": {
+    "answer": "这个问题可以通过编程来解决，因为直接计算这个范围内的素数数量比较复杂。我们可以使用一个简单的算法来检查每个数字是否为素数，并统计在这个范围内有多少个素数。\n\n下面是一个简化的Python代码示例，用于找出8500到8600之间的素数数量：\n\n```python\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ncount = 0\nfor num in range(8500, 8600):\n    if is_prime(num):\n        count += 1\n\nprint(count)\n```\n\n运行上述代码可以得到8500到8600之间有多少个素数。下面是执行结果：\n```\n3\n```\n\n最终答案：3",
+    "score": 0.0,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T083": {
+    "answer": "首先，我们使用辗转相除法（也称为欧几里得算法）来找出48和180的最大公约数。\n\n180 ÷ 48 = 3 ... 36\n48 ÷ 36 = 1 ... 12\n36 ÷ 12 = 3 ... 0\n\n因此，48和180的最大公约数是12。\n\n最终答案：12",
+    "score": 1.0,
+    "passed": true,
+    "split": "dev"
+  },
+  "T084": {
+    "answer": "首先，我们找出270和192的最大公约数（GCD）。我们可以使用辗转相除法（也称为欧几里得算法）来找到它们的GCD。\n\n192可以被270整除一次，余数为78。\n270可以被192整除1次，余数为78。\n192可以被78整除2次，余数为0。\n\n因此，270和192的最大公约数是78。\n\n接下来，我们将这个结果加上8：\n78 + 8 = 86\n\n最终答案：86",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T085": {
+    "answer": "很遗憾，关于Meta发布的新模型Llama系列的详细信息，包括Scout模型的具体架构细节，我目前没有获取到最新的官方公开数据。通常，这些模型的架构参数会包含诸如层数、隐藏层大小、注意力头数等关键参数，但具体到Scout模型的这些细节，我无法提供准确的信息。\n\n对于最新发布的模型，建议直接访问Meta的官方网站或查阅其官方发布的文档以获取最准确和最新的信息。此外，如果您需要了解这类模型的详细技术规格，可以联系Meta的开发者团队或参与相关的学术讨论和研究社区，他们可能会提供更多关于模型架构的详细信息。",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T086": {
+    "answer": "根据我所了解的信息，Qwen3 旗舰 MoE 模型的详细参数可能会有所变化，特别是具体的内存和计算资源需求。不过，我可以提供一个大致的概览：\n\n- **模型规模**：Qwen3 旗舰 MoE 模型的参数量大约在 235 亿左右，这与“235B”中的“B”代表的十亿（billion）相吻合。\n- **架构**：该模型采用了多头注意力机制（Multi-Head Attention）、Transformer 架构，并结合了 MoE（门控专家混合）技术，以提高模型的并行性和效率。\n- **训练数据**：模型基于大量的中文文本数据进行训练，包括但不限于新闻、小说、论文等。\n- **硬件要求**：运行这样的大规模模型通常需要高性能的计算设备，例如配备大量 GPU 的服务器集群。\n\n请注意，这些信息可能随时间而更新或调整，具体细节建议参考官方发布的最新资料。如果您需要最新的准确信息，建议直接访问 Qwen3 模型的官方网站或联系相关技术支持获取最准确的数据。",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T087": {
+    "answer": "很抱歉，根据我目前可获得的信息，关于Phi-3.5系列中唯一采用MoE（门控变分自适应）架构的模型的具体专家配置和总激活参数信息没有被公开。这可能是因为这些细节是该模型专有技术的一部分，用于提升模型性能，因此可能不会在公开资料中详细说明。\n\n如果您需要了解这些具体参数，建议直接联系开发该模型的团队或查阅相关的学术论文，以获取最准确的信息。",
+    "score": 0.0,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T088": {
+    "answer": "很抱歉，关于Llama 3.1和Llama 4 Scout的具体训练数据规模（以token数量为单位）的信息，我没有找到官方的明确说明。通常来说，大型语言模型的训练数据规模会根据其设计和优化目标有所不同，但具体到Llama 3.1和Llama 4 Scout的训练数据规模，我无法提供准确的数据。\n\n如果您需要这些信息，建议直接联系Llama系列模型的开发者或查阅相关的研究论文来获取更准确的数据。此外，Llama系列模型的训练数据规模可能会随着新的版本更新而变化，因此最新的官方信息可能需要从他们的官方渠道获取。",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T089": {
+    "answer": "关于Qwen3的训练数据规模和多语言覆盖的具体官方披露数字，目前公开的信息有限。在阿里云的官方文档或新闻中，通常会提到模型的参数量、训练数据集的大小以及支持的语言数量等信息。\n\n对于Qwen3，具体的训练数据规模和多语言覆盖范围可能需要参考后续官方发布的详细技术报告或白皮书。这些信息通常会在模型发布后的一段时间内更新，以便更准确地反映模型的性能和能力。\n\n如果您需要最新的官方披露信息，建议直接访问阿里云官网或者关注其官方社交媒体账号获取最新消息。",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T090": {
+    "answer": "很抱歉，根据我目前掌握的信息，我没有具体的分词器词表大小数据来直接回答Llama 3和Qwen 2.5的分词器词表大小。这些模型的具体技术细节，包括它们使用的分词器词表大小等信息，通常不会公开。不过，一般来说，大型预训练语言模型的分词器词表会非常大，以支持处理各种复杂的语言输入。\n\n如果您需要了解这些模型的详细技术规格，建议直接访问或联系相关模型的开发者或发布者获取最准确的信息。",
+    "score": 0.0,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T091": {
+    "answer": "根据您提供的论文摘要，关于搜索策略的关键短语为：\n\n- **BFS或DFS**：文章中提到使用BFS或DFS来评估状态。\n- **生成k个候选**：文章中提到在每一步通过生成k个候选来分支。\n\n因此，逐字引用的关键短语是：**BFS或DFS、生成k个候选**。",
+    "score": 0.667,
+    "passed": false,
+    "split": "dev"
+  },
+  "T092": {
+    "answer": "根据您提供的 AutoGen 摘要内容，AutoGen agents 的核心属性短语包括：\n\n1. **customizable** - 表示可以自定义的特性。\n2. **conversable** - 表示可以进行对话的特性。\n3. **operate in various modes** - 表示可以以多种模式运行的特性。\n\n这些短语准确地描述了 AutoGen agents 的能力。",
+    "score": 1.0,
+    "passed": true,
+    "split": "hidden"
+  },
+  "T093": {
+    "answer": "根据提供的摘要信息，Qwen3 的旗舰 MoE 模型规模为 235B 参数，训练的 token 总数为 36T。具体数值和单位如下：\n\n- 参数规模：235B\n- 训练 token 数量：36T",
+    "score": 0.5,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T094": {
+    "answer": "根据您提供的摘要内容，ToT 与 Chain of Thought (CoT) 的关键区别在于 ToT 能够 **generalize over the popular Chain of Thought approach**。这表明 ToT 在保持 CoT 的优点的同时，能够扩展和改进其方法。",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T095": {
+    "answer": "对比两段卡文本中的 MATH 分数：\n\nLlama 3.1 405B 卡：「MATH 73.8 (0-shot CoT)」\nLlama 3.3 70B 卡：「MATH 77.0 (0-shot CoT)」\n\n可以看出，Llama 3.3 70B 在 MATH 上的分数为 77.0，而 Llama 3.1 405B 的 MATH 分数为 73.8。\n\n因此，Llama 3.3 70B 在 MATH 上的分数更高，高了 3.2 分。",
+    "score": 1.0,
+    "passed": true,
+    "split": "hidden"
+  },
+  "T096": {
+    "answer": "根据您提供的信息，Phi-3-mini 的训练数据规模为 3.3T tokens。关于训练范式的关键短语是 \"training recipe includes synthetic data derived from textbooks and curated web content\"。",
+    "score": 0.75,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T097": {
+    "answer": "Llama 3 和 Qwen2.5 的精确词表大小信息并没有公开。这些模型的词表大小通常是一个非常大的数值，但具体的数值是根据训练数据和模型架构定制的，因此没有公开的具体数字。如果您需要了解特定版本的这些模型的词表大小，建议直接查看官方发布的文档或联系相关团队获取准确信息。",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T098": {
+    "answer": "为了回答这个问题，我们需要了解Llama和Scout模型的参数配置。不过，由于我没有直接访问最新的模型参数信息，我将基于一个假设性的例子来计算。请注意，实际的参数数量可能会有所不同。\n\n假设Llama 4的参数配置如下：\n- 激活参数（Activation Parameters）: 1024\n- 总参数（Total Parameters）: 134048000\n- 最长上下文（Max Context Length）: 2048 (B)\n\n而Scout模型的参数配置如下：\n- 激活参数（Activation Parameters）: 512\n- 总参数（Total Parameters）: 7680000\n- 最长上下文（Max Context Length）: 1024 (M)\n\n根据这些假设值，我们可以计算出以下结果：\n\n- 激活参数总和: 1024 + 512 = 1536\n- 总参数总和: 134048000 + 7680000 = 141728000\n- 最长上下文总和",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T099": {
+    "answer": "根据您提供的信息，我理解如下：\n\n1. \"总参\"可能是指总参数量。在模型参数中，总参数量通常包括权重参数和偏置参数。\n\n2. \"激活参\"可能是指激活函数的参数。在深度学习模型中，激活函数的参数通常指的是其权重或系数。\n\n3. \"routed\"可能是指路由机制，这是一种将输入数据通过多个网络层进行处理的方式，类似于路由信号在网络中的传播。\n\n4. \"专家数\"可能是指模型中不同子网络的数量，每个子网络可以看作是一个“专家”。\n\n5. \"每token激活数\"可能是指每个token（即输入序列中的一个词或字符）被激活的次数，这与模型的训练过程有关。\n\n但是，这些术语并不是标准的深度学习或机器学习术语，因此它们的具体含义可能因上下文而异。从技术角度来看，这些术语可能对应于不同的模型参数或训练过程中的配置选项。\n\n如果您能提供更多的上下文信息，我可以尝试给出更准确的解释。",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T100": {
+    "answer": "这个问题似乎在玩文字游戏，但没有直接的依据来确定具体的数字。\"激活 + 总参 + routed 专家数\"这几个词看起来像是某种代码或缩写，但它们并没有明确的含义，也没有直接对应的实际数字。\n\n如果我们假设这些词代表了某种特定的数值组合，那么可能需要更多的上下文信息来确定具体是哪个数字。不过，根据常见的理解方式，我们可以尝试将这些词拆解并赋予它们一个合理的解释：\n\n- \"激活\"（activate）可以理解为1。\n- \"总参\"（total command）可以理解为2。\n- \"routed\"（路由）可以理解为3。\n\n因此，按照这个逻辑，这三个数字就是1、2和3。但是请注意，这只是一个假设性的解读，实际的含义可能与这些词无关。\n\n所以，答案是：1、2、3。",
+    "score": 0.0,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T101": {
+    "answer": "这个问题似乎在玩文字游戏，但没有直接的对应关系。\"激活 + 总参 + routed 专家数\"这几个词组分别代表不同的概念，而\"Behemoth\"是一个虚构的生物名称，通常用来形容巨大的、强大的事物。\n\n如果我们按照字面意思来解读，\"激活\"可能是指某种系统或设备的状态，\"总参\"可能是指某个组织或机构，\"routed 专家数\"可能是指经过特定路径的专家数量。但是，这些词语并没有直接与\"Behemoth\"（巨兽）相关联的含义。\n\n因此，很难给出一个具体的答案，因为这需要更多的上下文信息。如果你能提供更多的背景信息或者明确的关联，我可能会给出更准确的回答。",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T102": {
+    "answer": "根据我的了解，Qwen3的配置信息中并没有明确提到“routed expert number”和“activated experts per token”的具体数值。这些参数通常用于描述大型语言模型的架构细节，包括专家网络（expert networks）的设计。\n\n在Qwen3的架构中，它采用了多层专家网络结构，每个token激活一个专家网络。但是具体的专家数量以及每token激活的专家数量，需要参考官方发布的详细技术文档或最新的研究论文来获取最准确的信息。\n\n如果您有更多关于Qwen3的详细信息或者可以访问到其最新技术文档，那么您将能够获得更精确的数据。如果没有这些信息，我无法给出确切的答案。",
+    "score": 0.0,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T103": {
+    "answer": "当然可以，以下是两段材料的逐字引用，并标注了来源：\n\nA：「Tree of Thoughts generalizes over Chain of Thought and enables exploration over coherent units of text (thoughts) that serve as intermediate steps toward problem solving.」\nB：「ToT explores the space of reasoning steps by branching at each step via generating k candidates and can use BFS or DFS with evaluation and backtracking.」",
+    "score": 1.0,
+    "passed": true,
+    "split": "dev"
+  },
+  "T104": {
+    "answer": "「AutoGen agents 均可自定义、对话，并能在多种模式下运作，这些模式结合了 LLMs、人类输入和工具。某些配置中使用单一模型重复多次，而其他配置则协调多个代理以完成任务。」",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T105": {
+    "answer": "根据您提供的摘要，以下是逐字引用的训练数据规模与数据来源信息：\n\n- 训练数据规模：3.8B 参数\n- 数据来源：3.3T 令牌\n\n其中，\"3.8B 参数\" 和 \"3.3T 令牌\" 分别对应原文中的 \"Phi-mli mini has 3.8B parameters\" 和 \"trained on 3.3T tokens\"。",
+    "score": 0.667,
+    "passed": false,
+    "split": "dev"
+  },
+  "T106": {
+    "answer": "### 训练规模\n- **训练规模**：Qwen3-235B-A22B 被训练了大约 360 亿个 token，涵盖了 119 种语言和方言。\n\n### 多语言覆盖\n- **多语言覆盖**：该模型覆盖了大约 360 亿个 token，涉及 119 种语言和方言。",
+    "score": 0.25,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T107": {
+    "answer": "首先，我们需要逐字对比两段卡文本中的 MATH 分数。\n\nLlama 3.1 405B 卡的 MATH 分数是 \"MATH 73.8 (0-shot CoT)\"。\n\nLlama 3.3 70B 卡的 MATH 分数是 \"MATH 77.0 (0-shot CoT)\"。\n\n从上面的分数可以看出，Llama 3.3 70B 的 MATH 分数为 77.0，而 Llama 3.1 405B 的 MATH 分数为 73.8。因此，Llama 3.3 70B 在 MATH 上的分数更高。\n\n接下来，我们计算两个分数之间的差距：\n\\[ 77.0 - 73.8 = 3.2 \\]\n\n所以，Llama 3.3 70B 在 MATH 上的分数比 Llama 3.1 405B 高 3.2 分。",
+    "score": 1.0,
+    "passed": true,
+    "split": "fresh"
+  },
+  "T108": {
+    "answer": "逐字引用的 GLM-4-9B 的上下文窗口长度、训练 token 总量以及与旧版本 GLM 相比的关键技术差异如下：\n\n1. **上下文窗口长度**：\n   - \"GLM-4-9B supports 128K-token context.\"\n\n2. **训练 token 总量**：\n   - \"Training is reported as 10T tokens with multi-stage curriculum.\"\n\n3. **关键技术差异**：\n   - \"switches to grouped-query attention\"\n   - \"a more uniform layer design\"\n   - \"drops the PRepLN normalization\"\n\n综上所述，这些信息可以总结为：\n\n- **上下文窗口长度**：128K-token\n- **训练 token 总量**：10T tokens\n- **关键技术差异**：\n  - 使用分组查询注意力\n  - 层次设计更加均匀\n  - 摒弃了早期 GLM 使用的 PRepLN 规范化",
+    "score": 1.0,
+    "passed": true,
+    "split": "fresh"
+  },
+  "T109": {
+    "answer": "\"function calling 让模型输出一个结构化的 JSON 参数，主机应用程序可以将此参数路由到真正的函数；模型本身并未执行 API 调用，工具应被沙箱化。\"",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T110": {
+    "answer": "原文短语是 \"the implicit default is deny\"。",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T111": {
+    "answer": "「ada-002」固定在1536维度且无法截断；而embedding-3-small返回1536维向量，支持较短输出维度；embedding-3-large输出可达3072维。",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T112": {
+    "answer": "根据您提供的信息，以下是逐字引用的两条原文短语：\n\n1. \"JetStream supports both Limits-based and Interest-based retention.\"\n2. \"Replay policy can be set to instant for fast catch-up or replay-all for full event log replay.\"",
+    "score": 1.0,
+    "passed": true,
+    "split": "hidden"
+  },
+  "T113": {
+    "answer": "以下是逐字引用的原文短语：\n\n- `mount --bind`\n- `mount -o remount,ro`",
+    "score": 0.5,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T114": {
+    "answer": "原文短语为：“With :members: it includes documented members; with :undoc-members: it also includes undocumented members.”",
+    "score": 0.667,
+    "passed": false,
+    "split": "dev"
+  },
+  "T115": {
+    "answer": "以下是逐字引用的原文短语：\n\n- \"Imports should usually be on separate lines;\"\n- \"import\" \n- \"are grouped\"\n- \"in the following order:\"\n- \"standard library imports,\"\n- \"related third party imports,\"\n- \"and finally\"\n- \"local application/library specific imports.\"",
+    "score": 1.0,
+    "passed": true,
+    "split": "fresh"
+  },
+  "T116": {
+    "answer": "以下是逐字引用的原文短语：\n\n- \"EXPLAIN ANALYZE actually runs the query and returns measured run time and row counts.\"\n- \"Reading plans top-down helps catch overestimates;\"\n- \"cost values are not seconds but planner units.\"\n\n这些短语直接摘自您提供的段落，准确反映了原文内容。",
+    "score": 1.0,
+    "passed": true,
+    "split": "hidden"
+  },
+  "T117": {
+    "answer": "逐字引用如下：\n\n- \"session-based 推理\" 对应的原文短语是 \"sessions\"\n- \"state across requests\" 对应的原文短语是 \"carry state across requests\"\n- \"guided generation\" 对应的原文短语是 \"guided generation\"\n- \"constrains tool calls to a JSON schema you provide\" 对应的原文短语是 \"constrains tool calls to a JSON schema you provide\"\n- \"On-device inference\" 对应的原文短语是 \"On-device inference\"\n- \"never leaves the device\" 对应的原文短语是 \"never leaves the device\"\n\n因此，整句对应的原文短语为：\"sessions carry state across requests; guided generation constrains tool calls to a JSON schema you provide. On-device inference never leaves the device.\"",
+    "score": 1.0,
+    "passed": true,
+    "split": "dev"
+  },
+  "T118": {
+    "answer": "以下是逐字引用的原文短语：\n\n- \"Use needs\"：表达工作依赖关系，以便一个工作只有在其他工作成功之后才能运行。\n- \"job dependencies\"：工作依赖关系\n- \"a job runs only after other jobs succeed\"：一个工作只有在其他工作成功之后才能运行\n- \"matrix strategy\"：矩阵策略\n- \"runs the same job across a list of variables\"：在一个变量列表上运行相同的作业\n- \"including OS and language versions\"：包括操作系统和语言版本\n\n综上所述，逐字引用的原文短语为：\"Use needs: to express job dependencies so a job runs only after other jobs succeed. A matrix strategy runs the same job across a list of variables, including OS and language versions.\"",
+    "score": 1.0,
+    "passed": true,
+    "split": "fresh"
+  },
+  "T123": {
+    "answer": "逐字引用如下：\n\n- 关于 BPF 尾部调用的原文短语是：\"issue tail calls via bpf_tail_call()\"。\n- 关于 helper 函数调用的原文短语是：\"exposes functions like bpf_probe_read()\"。",
+    "score": 0.667,
+    "passed": false,
+    "split": "dev"
+  },
+  "T124": {
+    "answer": "根据您提供的 Vim 文档内容，关于寄存器 '%' 前缀的引用方式与无名寄存器的原文短语是：\n\n```\n%a for the alphanumeric register,\n%_ for the black hole register,\n%# for the alternate filename.\n```\n\n这里 `%` 前接的字符分别代表了不同的寄存器：\n- `%a` 用于 alphanumeric register（字母数字寄存器）。\n- `%_` 用于 black hole register（黑洞寄存器）。\n- `#` 用于 alternate filename（替代文件名）。",
+    "score": 1.0,
+    "passed": true,
+    "split": "hidden"
+  },
+  "T125": {
+    "answer": "@$@ 评估为目标文件名，$< 为第一个前提条件，$^ 为所有前提条件。",
+    "score": 1.0,
+    "passed": true,
+    "split": "fresh"
+  },
+  "T126": {
+    "answer": "\"A coroutine is a function that suspends execution and later resumes; `co_await` suspends pending an awaitable, `co_yield` emits a result, `co_return` completes the coroutine.\"",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T127": {
+    "answer": "\"threadgroup memory is shared among threads within a single threadgroup whereas device memory is accessible to all threads but without caching.\"",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T128": {
+    "answer": "好的，根据您提供的 SQLite 文档中的内容，以下是逐字引用的原文描述：\n\n- **IN 操作符**：返回其左侧操作数等于右侧列表中的任何一个值时为真；\n\n- **BETWEEN 操作符**：返回其值大于或等于下界且小于或等于上界时为真。\n\n逐字引用如下：\n- **IN 操作符**：返回其左侧操作数等于右侧列表中的任何一个值时为真；\n- **BETWEEN 操作符**：返回其值大于或等于下界且小于或等于上界时为真。",
+    "score": 0.0,
+    "passed": false,
+    "split": "fresh"
+  },
+  "T129": {
+    "answer": "filter() 返回一个新的 QuerySet，包含那些匹配给定查找参数的对象；exclude() 返回一个新的 QuerySet，包含那些不匹配给定查找参数的对象。",
+    "score": 0.0,
+    "passed": false,
+    "split": "dev"
+  },
+  "T130": {
+    "answer": "桥接驱动创建一个虚拟以太网桥，容器会连接到这个桥上；而主机驱动则取消网络隔离，并直接使用主机的网络设置。",
+    "score": 0.0,
+    "passed": false,
+    "split": "hidden"
+  },
+  "T131": {
+    "answer": "好的，根据您提供的 OAuth 2.1 草案中的原文，逐字引用如下：\n\n\"The code_challenge and code_verifier parameters implement Proof Key for Code Exchange (PKCE); the scope parameter delimits the privileges requested by the client.\"\n\n逐字引用如下：\n- \"code_challenge\"\n- \"code_verifier\"\n- \"parameters\"\n- \"implement\"\n- \"Proof Key for Code Exchange (PKCE)\"\n- \"scope\"\n- \"parameter\"\n- \"delimits\"\n- \"privileges\"\n- \"requested\"\n- \"by\"\n- \"the\"\n- \"client\"",
+    "score": 1.0,
+    "passed": true,
+    "split": "fresh"
+  },
+  "T132": {
+    "answer": "好的，根据您提供的 OpenAPI 文档中的描述，以下是逐字引用的原文定义短语：\n\n- **The components object holds a set of reusable objects identified by their keys;**\n   - 原文：`The components object holds a set of reusable objects identified by their keys;`\n\n- **$ref allows referencing other elements by JSON Pointer, replacing or augmenting the original definition.`\n   - 原文：`$ref allows referencing other elements by JSON Pointer, replacing or augmenting the original definition.`",
+    "score": 1.0,
+    "passed": true,
+    "split": "dev"
+  }
+}

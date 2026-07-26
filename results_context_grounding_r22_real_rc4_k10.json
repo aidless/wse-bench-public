@@ -1,0 +1,143 @@
+{
+  "round": 22,
+  "type": "CONTEXT_GROUNDING_RC4_K10_REAL",
+  "model": "Qwen2.5-3B-Instruct",
+  "K": 10,
+  "seeds": [
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010
+  ],
+  "n_tasks": 10,
+  "task_ids": [
+    "T123",
+    "T124",
+    "T125",
+    "T126",
+    "T127",
+    "T128",
+    "T129",
+    "T130",
+    "T131",
+    "T132"
+  ],
+  "base_pass": 4,
+  "cand_pass": 9,
+  "per_seed_base_pass": [
+    6,
+    5,
+    5,
+    5,
+    3,
+    6,
+    4,
+    4,
+    3,
+    4
+  ],
+  "per_seed_cand_pass": [
+    9,
+    8,
+    8,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9
+  ],
+  "discordant_base_pass_cand_fail": 1,
+  "discordant_base_fail_cand_pass": 6,
+  "mcnemar_p": 0.125,
+  "bootstrap_ci95_overall_delta": [
+    0.14,
+    0.663
+  ],
+  "delta_overall": 0.41,
+  "wilcoxon_p_one_sided": 0.0,
+  "wilcoxon_z": 19.989,
+  "wilcoxon_W_plus": 3827.5,
+  "per_task_base_pass": {
+    "T123": false,
+    "T124": false,
+    "T125": true,
+    "T126": false,
+    "T127": false,
+    "T128": true,
+    "T129": false,
+    "T130": false,
+    "T131": true,
+    "T132": true
+  },
+  "per_task_cand_pass": {
+    "T123": true,
+    "T124": true,
+    "T125": true,
+    "T126": true,
+    "T127": true,
+    "T128": true,
+    "T129": true,
+    "T130": true,
+    "T131": true,
+    "T132": false
+  },
+  "per_task_base_mean": {
+    "T123": 0.734,
+    "T124": 0.467,
+    "T125": 1.0,
+    "T126": 0.1,
+    "T127": 0.15,
+    "T128": 0.7,
+    "T129": 0.0,
+    "T130": 0.2,
+    "T131": 0.9,
+    "T132": 1.0
+  },
+  "per_task_cand_mean": {
+    "T123": 1.0,
+    "T124": 1.0,
+    "T125": 1.0,
+    "T126": 1.0,
+    "T127": 0.95,
+    "T128": 1.0,
+    "T129": 0.9,
+    "T130": 0.95,
+    "T131": 1.0,
+    "T132": 0.55
+  },
+  "per_split": {
+    "dev": {
+      "n": 4,
+      "base_pass": 1,
+      "cand_pass": 3,
+      "base_mean": 0.458,
+      "cand_mean": 0.863
+    },
+    "hidden": {
+      "n": 3,
+      "base_pass": 0,
+      "cand_pass": 3,
+      "base_mean": 0.272,
+      "cand_mean": 0.967
+    },
+    "fresh": {
+      "n": 3,
+      "base_pass": 3,
+      "cand_pass": 3,
+      "base_mean": 0.867,
+      "cand_mean": 1.0
+    }
+  },
+  "promotion_rule": "PROMOTE requires strict_majority_pass cand > base AND McNemar p<0.05; alt: Wilcoxon z>1.96 (p<0.05 one-sided)",
+  "decision_strict": "HOLD",
+  "decision_with_alt": "PROMOTE",
+  "method_honesty": "K=10 真实模型多 seed；strict-Majority 与 alt-Wilcoxon 双判。"
+}

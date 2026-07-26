@@ -1,0 +1,69 @@
+{
+  "cohort": "2026Q3-sv",
+  "candidate": "self_verify_v1",
+  "K": 5,
+  "baseline_pass": 41,
+  "candidate_pass": 59,
+  "n": 60,
+  "per_question": {
+    "T073": {
+      "base": 2,
+      "cand": 5
+    },
+    "T074": {
+      "base": 2,
+      "cand": 5
+    },
+    "T075": {
+      "base": 1,
+      "cand": 5
+    },
+    "T076": {
+      "base": 1,
+      "cand": 5
+    },
+    "T077": {
+      "base": 5,
+      "cand": 5
+    },
+    "T078": {
+      "base": 4,
+      "cand": 5
+    },
+    "T079": {
+      "base": 5,
+      "cand": 5
+    },
+    "T080": {
+      "base": 5,
+      "cand": 5
+    },
+    "T081": {
+      "base": 3,
+      "cand": 5
+    },
+    "T082": {
+      "base": 4,
+      "cand": 5
+    },
+    "T083": {
+      "base": 5,
+      "cand": 5
+    },
+    "T084": {
+      "base": 4,
+      "cand": 4
+    }
+  },
+  "discordant_b": 1,
+  "discordant_c": 19,
+  "mcnemar_p": 4.00543212890625e-05,
+  "delta": 0.29999999999999993,
+  "ci95": [
+    0.18333333333333324,
+    0.43333333333333324
+  ],
+  "alpha": 0.05,
+  "bonferroni": false,
+  "decision": "PROMOTE"
+}

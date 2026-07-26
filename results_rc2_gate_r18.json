@@ -1,0 +1,83 @@
+{
+  "round": 18,
+  "type": "CONTEXT_GROUNDING_RC2_GATE",
+  "cohort": "2026Q3-rc2",
+  "n_tasks": 6,
+  "K": 5,
+  "base_pass": 1,
+  "cand_pass": 6,
+  "discordant_base_pass_cand_fail": 0,
+  "discordant_base_fail_cand_pass": 5,
+  "mcnemar_p": 0.0625,
+  "bootstrap_ci95_overall_delta": [
+    0.18,
+    0.764
+  ],
+  "delta_overall": 0.472,
+  "per_task_base_median": {
+    "T103": 0.0,
+    "T104": 0.0,
+    "T105": 0.667,
+    "T106": 0.75,
+    "T107": 1.0,
+    "T108": 0.75
+  },
+  "per_task_cand_median": {
+    "T103": 1.0,
+    "T104": 1.0,
+    "T105": 1.0,
+    "T106": 1.0,
+    "T107": 1.0,
+    "T108": 1.0
+  },
+  "per_task_base_pass": {
+    "T103": false,
+    "T104": false,
+    "T105": false,
+    "T106": false,
+    "T107": true,
+    "T108": false
+  },
+  "per_task_cand_pass": {
+    "T103": true,
+    "T104": true,
+    "T105": true,
+    "T106": true,
+    "T107": true,
+    "T108": true
+  },
+  "per_split": {
+    "dev": {
+      "n": 2,
+      "base_pass": 0,
+      "cand_pass": 2
+    },
+    "hidden": {
+      "n": 2,
+      "base_pass": 0,
+      "cand_pass": 2
+    },
+    "fresh": {
+      "n": 2,
+      "base_pass": 1,
+      "cand_pass": 2
+    }
+  },
+  "per_seed_pass_base": [
+    1,
+    2,
+    2,
+    1,
+    1
+  ],
+  "per_seed_pass_cand": [
+    6,
+    6,
+    5,
+    5,
+    6
+  ],
+  "verified_hash": true,
+  "promotion_rule": "PROMOTE requires base pass < cand pass AND McNemar p<0.05 AND CI95 lower bound > 0",
+  "decision_attempted": "HOLD"
+}

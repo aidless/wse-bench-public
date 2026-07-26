@@ -1,0 +1,21 @@
+{
+  "scores": {
+    "T097": 0.0,
+    "T098": 0.0,
+    "T099": 0.375,
+    "T100": 0.333,
+    "T101": 0.0,
+    "T102": 0.0
+  },
+  "split": {
+    "dev": 0.188,
+    "hidden": 0.0,
+    "fresh": 0.167
+  },
+  "overall": 0.118,
+  "verified": true,
+  "seeds": "2026Q3-verify baseline B1-B10（全新 seed）",
+  "aggregation": "per-question median",
+  "manifest_tasks": 6,
+  "note": "轮17 verify cohort 直答基线 K=10 逐题中位数聚合。"
+}

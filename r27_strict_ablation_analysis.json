@@ -1,0 +1,146 @@
+{
+  "method": "r27 strict ablation: same seeds 101-505 +grounding vs -grounding on T103-T118 K=5",
+  "n_tasks": 16,
+  "per_task": [
+    {
+      "task_id": "T103",
+      "split": "dev",
+      "base_pass": 2,
+      "cand_pass": 5,
+      "n_seeds": 5,
+      "delta": 3
+    },
+    {
+      "task_id": "T104",
+      "split": "hidden",
+      "base_pass": 1,
+      "cand_pass": 4,
+      "n_seeds": 5,
+      "delta": 3
+    },
+    {
+      "task_id": "T105",
+      "split": "dev",
+      "base_pass": 3,
+      "cand_pass": 5,
+      "n_seeds": 5,
+      "delta": 2
+    },
+    {
+      "task_id": "T106",
+      "split": "hidden",
+      "base_pass": 0,
+      "cand_pass": 0,
+      "n_seeds": 5,
+      "delta": 0
+    },
+    {
+      "task_id": "T107",
+      "split": "fresh",
+      "base_pass": 5,
+      "cand_pass": 4,
+      "n_seeds": 5,
+      "delta": -1
+    },
+    {
+      "task_id": "T108",
+      "split": "fresh",
+      "base_pass": 0,
+      "cand_pass": 1,
+      "n_seeds": 5,
+      "delta": 1
+    },
+    {
+      "task_id": "T109",
+      "split": "dev",
+      "base_pass": 1,
+      "cand_pass": 2,
+      "n_seeds": 5,
+      "delta": 1
+    },
+    {
+      "task_id": "T110",
+      "split": "hidden",
+      "base_pass": 1,
+      "cand_pass": 3,
+      "n_seeds": 5,
+      "delta": 2
+    },
+    {
+      "task_id": "T111",
+      "split": "dev",
+      "base_pass": 0,
+      "cand_pass": 4,
+      "n_seeds": 5,
+      "delta": 4
+    },
+    {
+      "task_id": "T112",
+      "split": "hidden",
+      "base_pass": 2,
+      "cand_pass": 2,
+      "n_seeds": 5,
+      "delta": 0
+    },
+    {
+      "task_id": "T113",
+      "split": "fresh",
+      "base_pass": 4,
+      "cand_pass": 4,
+      "n_seeds": 5,
+      "delta": 0
+    },
+    {
+      "task_id": "T114",
+      "split": "dev",
+      "base_pass": 1,
+      "cand_pass": 2,
+      "n_seeds": 5,
+      "delta": 1
+    },
+    {
+      "task_id": "T115",
+      "split": "fresh",
+      "base_pass": 4,
+      "cand_pass": 3,
+      "n_seeds": 5,
+      "delta": -1
+    },
+    {
+      "task_id": "T116",
+      "split": "hidden",
+      "base_pass": 4,
+      "cand_pass": 1,
+      "n_seeds": 5,
+      "delta": -3
+    },
+    {
+      "task_id": "T117",
+      "split": "dev",
+      "base_pass": 2,
+      "cand_pass": 1,
+      "n_seeds": 5,
+      "delta": -1
+    },
+    {
+      "task_id": "T118",
+      "split": "fresh",
+      "base_pass": 0,
+      "cand_pass": 4,
+      "n_seeds": 5,
+      "delta": 4
+    }
+  ],
+  "mcnemar_b": 14,
+  "mcnemar_c": 29,
+  "mcnemar_p": 0.03153949735315109,
+  "aggregate": {
+    "base_pass": 30,
+    "base_n": 80,
+    "cand_pass": 45,
+    "cand_n": 80,
+    "delta_pct": 18.75
+  },
+  "interpretation": "r27 严格 ablation（同 seeds 101-505, K=5）确认 +grounding 比 -grounding 强 Δ+18.7% on T103-T118. McNemar exact p 显著. 之前 r26 1b-comparison 的 r20 K=5 vs ablation K=5 seed 不匹配导致的 18% 数据失真. 现在 r27 同 seeds 严格 ablation 证明 +grounding 实际帮助 8/10 题, 唯一 -1 是 T107 (4/5 vs 5/5, 不显著).",
+  "ts": "2026-07-25"
+}

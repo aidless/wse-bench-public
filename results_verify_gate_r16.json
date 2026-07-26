@@ -1,0 +1,45 @@
+{
+  "cohort": "2026Q3-verify",
+  "candidate": "verifier_v1",
+  "K": 5,
+  "baseline_pass": 22,
+  "candidate_pass": 27,
+  "n": 30,
+  "per_question": {
+    "T097": {
+      "base": 0,
+      "cand": 5
+    },
+    "T098": {
+      "base": 4,
+      "cand": 4
+    },
+    "T099": {
+      "base": 5,
+      "cand": 5
+    },
+    "T100": {
+      "base": 5,
+      "cand": 5
+    },
+    "T101": {
+      "base": 5,
+      "cand": 5
+    },
+    "T102": {
+      "base": 3,
+      "cand": 3
+    }
+  },
+  "discordant_b": 2,
+  "discordant_c": 7,
+  "mcnemar_p": 0.1796875,
+  "delta": 0.16666666666666674,
+  "ci95": [
+    -0.033333333333333326,
+    0.3666666666666667
+  ],
+  "alpha": 0.05,
+  "bonferroni": false,
+  "decision": "HOLD"
+}

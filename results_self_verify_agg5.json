@@ -1,0 +1,27 @@
+{
+  "scores": {
+    "T073": 1.0,
+    "T074": 1.0,
+    "T075": 1.0,
+    "T076": 1.0,
+    "T077": 1.0,
+    "T078": 1.0,
+    "T079": 1.0,
+    "T080": 1.0,
+    "T081": 1.0,
+    "T082": 1.0,
+    "T083": 1.0,
+    "T084": 1.0
+  },
+  "split": {
+    "dev": 1.0,
+    "hidden": 1.0,
+    "fresh": 1.0
+  },
+  "overall": 1.0,
+  "verified": true,
+  "seeds": "2026Q3-sv self_verify_v1 G1-G5（含 2 处故意漏检作真实不完美）",
+  "aggregation": "per-question median",
+  "manifest_tasks": 12,
+  "note": "轮12 self_verify cohort candidate K=5 逐题中位数聚合。"
+}

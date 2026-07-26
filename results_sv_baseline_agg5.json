@@ -1,0 +1,27 @@
+{
+  "scores": {
+    "T073": 0.0,
+    "T074": 0.0,
+    "T075": 0.0,
+    "T076": 0.0,
+    "T077": 1.0,
+    "T078": 1.0,
+    "T079": 1.0,
+    "T080": 1.0,
+    "T081": 1.0,
+    "T082": 1.0,
+    "T083": 1.0,
+    "T084": 1.0
+  },
+  "split": {
+    "dev": 0.6,
+    "hidden": 0.75,
+    "fresh": 0.667
+  },
+  "overall": 0.667,
+  "verified": true,
+  "seeds": "2026Q3-sv baseline B1-B5（全新 seed，不复用预检 P1-P3）",
+  "aggregation": "per-question median",
+  "manifest_tasks": 12,
+  "note": "轮12 self_verify cohort 直答基线 K=5 逐题中位数聚合。"
+}

@@ -1,0 +1,21 @@
+{
+  "scores": {
+    "T085": 0.6,
+    "T086": 1.0,
+    "T087": 1.0,
+    "T088": 1.0,
+    "T089": 0.5,
+    "T090": 0.0
+  },
+  "split": {
+    "dev": 0.8,
+    "hidden": 0.75,
+    "fresh": 0.5
+  },
+  "overall": 0.683,
+  "verified": true,
+  "seeds": "2026Q3-fact baseline B1-B5（全新 seed，不复用预检 P1-P3）",
+  "aggregation": "per-question median",
+  "manifest_tasks": 6,
+  "note": "轮14 fact_recall cohort 直答基线 K=5 逐题中位数聚合。"
+}

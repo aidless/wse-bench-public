@@ -1,0 +1,45 @@
+{
+  "cohort": "2026Q3-rc",
+  "candidate": "context_grounding_v1",
+  "K": 5,
+  "baseline_pass": 23,
+  "candidate_pass": 29,
+  "n": 30,
+  "per_question": {
+    "T091": {
+      "base": 5,
+      "cand": 5
+    },
+    "T092": {
+      "base": 4,
+      "cand": 4
+    },
+    "T093": {
+      "base": 5,
+      "cand": 5
+    },
+    "T094": {
+      "base": 1,
+      "cand": 5
+    },
+    "T095": {
+      "base": 5,
+      "cand": 5
+    },
+    "T096": {
+      "base": 3,
+      "cand": 5
+    }
+  },
+  "discordant_b": 1,
+  "discordant_c": 7,
+  "mcnemar_p": 0.0703125,
+  "delta": 0.19999999999999996,
+  "ci95": [
+    0.033333333333333326,
+    0.3666666666666667
+  ],
+  "alpha": 0.05,
+  "bonferroni": false,
+  "decision": "HOLD"
+}

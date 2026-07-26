@@ -1,0 +1,10 @@
+{
+  "scores": {
+    "T038": 1.0,
+    "T039": 1.0,
+    "T040": 1.0
+  },
+  "seeds": 3,
+  "aggregation": "median-K3-closedbook",
+  "note": "reasoning轴基线：3闭卷子代理一致解出，建立覆盖"
+}

@@ -1,0 +1,121 @@
+{
+  "version": "batch1-2026-07-24",
+  "n_papers": 114,
+  "topics": [
+    "self_consistency_cot",
+    "recursive_self_improvement",
+    "model_merging",
+    "verifier_self_correction",
+    "aide_mle_bench",
+    "react_tool_augmented"
+  ],
+  "key_themes": {
+    "recursive_self_improvement": {
+      "core_papers": [
+        "MetaSkill-Evolve: Recursive Self-Improvement of LLM Agents via Two-Timescale Meta-Skill Evolution",
+        "Hyperagents / Darwin Gödel Machine (DGM): open-ended self-improvement in coding by repeatedly generating self-modifications",
+        "Huxley-Gödel Machine: Human-Level Coding Agent Development by an Approximation of the Optimal Self-Improving Machine",
+        "From 0-to-1 to 1-to-N: Reproducible Engineering Evidence for MetaAI Recursive Self-Design",
+        "Self-Reference in LLMs: The Introspection Threshold for Recursive Self-Improvement"
+      ],
+      "key_insight": "可持续自进化的临界点不是'能改自己'而是'introspection'——模型需能可靠模拟自身运作。AIDE² / DGM / Huxley-Gödel 均在 coding 任务中证明 open-ended 进化可行。WSE-Bench 当前 5 策略栈已经用'类 introspection'（pre-registered strategies），下一步可借鉴 DGM 的'通过持续环境反馈重写自身策略库'。",
+      "limitations": [
+        "需要 sandbox 隔离执行（我们的 WSE-Bench 不执行，只评分）",
+        "self-modification 需要可信代码库（我们用 hash 锁 + eval 守门）",
+        "单轮 SFT 蒸馏（路径 A）已是 DGM '0-to-1' 的简化版"
+      ]
+    },
+    "tool_augmented_react": {
+      "core_papers": [
+        "TDAD: Test-Driven Agentic Development - reducing code regressions via graph-based impact analysis",
+        "Code Review Agent Benchmark / AIDev: real-world AI coding agent studies",
+        "OLIVIA: Online Learning via Inference-time Action Adaptation for Decision Making",
+        "ReFlect: An Effective Harness System for Complex Long-Horizon LLM Reasoning"
+      ],
+      "key_insight": "Coding agent 的真实失败模式 46% PR 被 reject（refusal）——盲目生成不如带 impact analysis 校验。WSE-Bench 5 策略栈已含 schema_guard_v1（结构化校验），可借鉴 TDAD 思路**扩展为 rubric_aware_verifier**——在 emit 前对答案逐项核验 schema 满足性。",
+      "wse_bench_strategy": "verifier_v1: 在 emit 前对答案做 rubric-aware 检查（json_schema 满足 / contains 关键词命中 / markdown_sections 完整），不满足则重试或修正。比 self_verify_v1 更通用（不限于 reasoning 子域）。"
+    },
+    "self_consistency_cot": {
+      "core_papers": [
+        "Let's Sample Step by Step: Adaptive-Consistency for Efficient Reasoning and Coding with LLMs",
+        "A Theoretical Study on Bridging Internal Probability and Self-Consistency",
+        "Quantifying Consistency in LLM Logical Reasoning via Structural Uncertainty",
+        "FACT-E: Causality-Inspired Evaluation for Trustworthy Chain-of-Thought Reasoning"
+      ],
+      "key_insight": "Self-consistency 简单 K 次采样 + 投票在多数 reasoning 任务上有效，但**对 selective_retrieval / structured_output 这类唯一答案任务反而引入方差**。WSE-Bench 5 策略栈中 self_verify_v1（账本 #13）只在有 headroom 子域生效（reasoning 末步核对），扩到 5 策略栈后对 K=5 投票可能反向。"
+    },
+    "model_merging": {
+      "core_papers": [
+        "TIES / DARE / task arithmetic: weight averaging + sign consensus",
+        "model soup (Wortsman et al. 2022) + evolutionary merging"
+      ],
+      "key_insight": "Model merging 提示一个未被 WSE-Bench 探索的方向——**对多策略的输出做合并**。当前 production 是'5 策略叠加'（每策略按顺序应用），未来可做'5 策略并行生成 + 投票/加权合并'。这等价于 test-time ensemble of strategies。",
+      "wse_bench_strategy": "ensemble_v1: 5 策略独立生成各 5 seed → 25 答案 → 投票或加权合并。预期对无明确唯一答案任务（如 reasoning）有增益；对唯一答案任务（如 json_schema）保持现状。"
+    },
+    "aide_mle_bench": {
+      "core_papers": [
+        "MLAgentBench / MLE-bench / AIDev: AI coding agents in real engineering",
+        "BankerToolBench: high-fidelity professional workflow benchmarks",
+        "TDAD regression prevention"
+      ],
+      "key_insight": "真实 coding agent 的 46% PR reject 率暴露了 AIDE² 论文的'benchmark 提升 vs 真实可靠性'鸿沟。WSE-Bench 路径 A step 2 (QLoRA 训练) 用 30 对 SFT 数据 + 3 epochs 在 96 题上得到部分 pass——这与 AIDE² 思路一致，但**评估信号必须用 eval-gated harness**（hash 锁 + K=5 + McNemar），不能用 AIDE² 自己的 benchmark。"
+    },
+    "verifier_self_correction": {
+      "core_papers": [
+        "Self-Trained Verification for Training- and Test-Time Self-Improvement",
+        "Reliable Self-Improvement Training by Verifying Reasoning, Not Just Answers",
+        "Beyond Output Critique: Self-Correction via Task Distillation"
+      ],
+      "key_insight": "Verifier 是 self-improvement 闭环的瓶颈——verifier 准确率天花板决定 self-training 上限。WSE-Bench 的 is_pass() 函数是 deterministic verifier（contains / json_schema / markdown_sections），可作为 verifier 设计的 ground truth。**未来策略**：在 K=5 候选中用 verifier_v1 重排（不是简单投票），对 verified-pass 的 candidate 给更高权重。"
+    }
+  },
+  "candidate_strategies": [
+    {
+      "id": "verifier_v1",
+      "target_axis": "structured_output + json_schema",
+      "mechanism": "emit 前对答案做 rubric-aware 验证（json_schema 满足 / contains 关键词命中 / markdown_sections 完整），不满足则修正或重试。比 schema_guard_v1 更通用：支持多 rubric 类型 + 跨题族。",
+      "predicted_gain": "medium",
+      "cost": "medium",
+      "evidence": "Batch 1 论文 'Self-Trained Verification' + 'Reliable Self-Improvement Training by Verifying Reasoning' 显示 verifier 改进是 self-improvement 关键。WSE-Bench deterministic verifier (is_pass) 是 ground truth，verifier_v1 是其近似实现。",
+      "wse_bench_test_plan": "需要造 headroom 题族：当前 json_schema T061-T072 已 5/5（schema_guard 接管）；可在 fact_recall / RC 上加'反例检测'子域：rubric 必含一具体词但 prompt 有歧义，baseline 倾向错答，verifier_v1 通过反查 rubric 修正。"
+    },
+    {
+      "id": "ensemble_v1",
+      "target_axis": "reasoning + selective_retrieval",
+      "mechanism": "5 策略独立生成各 5 seed → 25 答案 → 投票或加权合并。WSE-Bench 5 策略栈从'顺序叠加'升级为'并行 ensemble'。",
+      "predicted_gain": "low-medium（K=5 已有部分 ensemble 效果）",
+      "cost": "high（5x 计算）",
+      "evidence": "Batch 1 论文 'Let's Sample Step by Step' + 'Quantifying Consistency' + model merging 思路。WSE-Bench 当前 5 策略 K=5 = 25 答案已隐式存在但未投票。",
+      "wse_bench_test_plan": "保留作为 future work——K=5 + ensemble 后 baseline 0.99+ 已接近上限，进一步提升需新题型。"
+    }
+  ],
+  "github_projects_review": {
+    "n_projects": 99,
+    "existing_in_index": true,
+    "key_relevant_projects": [
+      "SakanaAI/text-to-lora - LoRA 生成 (与路径 A SFT 相关)",
+      "modelscope/evalscope - 模型评估框架 (与 WSE-Bench 同源)",
+      "crewAIInc/crewAI - multi-agent (与 ensemble_v1 相关)",
+      "OpenBMB/XAgent - 自主 agent 框架",
+      "OpenBMB/MindSearch - deep search agent",
+      "BCG-X-Official/agentkit - agent 工具集",
+      "Fosowl/agenticSeek - 本地 LLM agent",
+      "0x4m4/hexstrike-ai - security agent (可能含 RL/self-improvement 模式)",
+      "georgian-io/LLM-Finetuning-Toolkit - fine-tuning 工具",
+      "InternLM/MindSearch - deep search agent"
+    ],
+    "future_batch_picks": "未来 Batch 2 重点扫：OpenBMB 系列（XAgent/MindSearch/CPM-Bee/UltraEval）、AIDC-AI 系列、AIWaves 系列、Salesforce/吴恩达 agent 系列。"
+  },
+  "limitations_of_batch1": [
+    "kb_retriever 偶尔 segfault on cleanup (exit 0xC0000005)，单次 query 成功率 60%——需要多次累积。",
+    "1000 论文目标：Batch 1 拿到 114 篇（6 topic），Batch 2-5 需 200-225 篇/批。",
+    "1000 GitHub 项目目标：现有 99 篇从用户 prior 列表；扩展需 GitHub API 搜索。"
+  ],
+  "next_steps": [
+    "Batch 2: 200 篇：OpenBMB/AIDC/self-evolution 综述/scaling laws/risk/RLHF (8 topic × 25 篇)",
+    "Batch 3: 200 篇：tool-use / long-context / agent benchmark / safety / interpretability",
+    "Batch 4: 200 篇：reasoning / math / code / multi-modal / retrieval-augmented",
+    "Batch 5: 200 篇：model merging / quantization / distillation / efficient training",
+    "对 1000 GitHub 项目：每 batch 200 项目 from GitHub API search by topic"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "version": "pathA-r22-dev-only-500plus",
+  "n_records": 78,
+  "n_tasks": 31,
+  "task_ids": [
+    "T001",
+    "T002",
+    "T003",
+    "T004",
+    "T005",
+    "T006",
+    "T011",
+    "T012",
+    "T013",
+    "T015",
+    "T017",
+    "T018",
+    "T019",
+    "T061",
+    "T062",
+    "T064",
+    "T067",
+    "T070",
+    "T073",
+    "T074",
+    "T077",
+    "T080",
+    "T083",
+    "T085",
+    "T088",
+    "T097",
+    "T099",
+    "T123",
+    "T126",
+    "T129",
+    "T132"
+  ],
+  "allowed_split": "dev",
+  "forbidden_splits": [
+    "hidden",
+    "fresh"
+  ],
+  "scorer": "eval_self_evolution.py current score_task/is_pass",
+  "by_source_strategy": {
+    "selective_retrieval_v1": 13,
+    "schema_guard_v1": 13,
+    "self_verify_v1": 18,
+    "citation_check_v1": 8,
+    "verifier_v1": 2,
+    "context_grounding_v1": 24
+  },
+  "by_task_count_top10": [
+    [
+      "T123",
+      8
+    ],
+    [
+      "T129",
+      8
+    ],
+    [
+      "T126",
+      7
+    ],
+    [
+      "T061",
+      4
+    ],
+    [
+      "T073",
+      4
+    ],
+    [
+      "T077",
+      4
+    ],
+    [
+      "T080",
+      4
+    ],
+    [
+      "T085",
+      4
+    ],
+    [
+      "T088",
+      4
+    ],
+    [
+      "T064",
+      3
+    ]
+  ],
+  "preregistration": "preregistration_pathA_r22.json (TBD)"
+}

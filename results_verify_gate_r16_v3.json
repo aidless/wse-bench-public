@@ -1,0 +1,46 @@
+{
+  "cohort": "2026Q3-verify",
+  "candidate": "verifier_v1",
+  "K": 10,
+  "baseline_pass": 3,
+  "candidate_pass": 59,
+  "n": 60,
+  "per_question": {
+    "T097": {
+      "base": 0,
+      "cand": 10
+    },
+    "T098": {
+      "base": 0,
+      "cand": 9
+    },
+    "T099": {
+      "base": 0,
+      "cand": 10
+    },
+    "T100": {
+      "base": 0,
+      "cand": 10
+    },
+    "T101": {
+      "base": 0,
+      "cand": 10
+    },
+    "T102": {
+      "base": 3,
+      "cand": 10
+    }
+  },
+  "discordant_b": 0,
+  "discordant_c": 56,
+  "mcnemar_p": 1.582067810090848e-15,
+  "delta": 0.9333333333333332,
+  "ci95": [
+    0.8666666666666666,
+    0.9833333333333333
+  ],
+  "alpha": 0.05,
+  "bonferroni": false,
+  "decision": "PROMOTE",
+  "note": "v3 重设计后 (T097-T102 全部 baseline 必漏具体数字/术语)，K=10 配对 McNemar + bootstrap 95% CI。"
+}

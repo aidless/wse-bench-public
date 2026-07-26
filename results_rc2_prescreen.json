@@ -1,0 +1,86 @@
+{
+  "round": 18,
+  "type": "RC2_HEADROOM_PRESCREEN",
+  "cohort": "2026Q3-rc2",
+  "n_tasks": 6,
+  "n_seeds": 3,
+  "total_pass": 4,
+  "total_attempts": 18,
+  "headroom": 0.222,
+  "per_task": {
+    "T103": 0,
+    "T104": 0,
+    "T105": 0,
+    "T106": 0,
+    "T107": 3,
+    "T108": 1
+  },
+  "details": [
+    {
+      "task_id": "T103",
+      "split": "dev",
+      "passes": 0,
+      "of": 3,
+      "scores": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "task_id": "T104",
+      "split": "hidden",
+      "passes": 0,
+      "of": 3,
+      "scores": [
+        0.0,
+        0.0,
+        0.333
+      ]
+    },
+    {
+      "task_id": "T105",
+      "split": "dev",
+      "passes": 0,
+      "of": 3,
+      "scores": [
+        0.667,
+        0.667,
+        0.667
+      ]
+    },
+    {
+      "task_id": "T106",
+      "split": "hidden",
+      "passes": 0,
+      "of": 3,
+      "scores": [
+        0.75,
+        0.75,
+        0.75
+      ]
+    },
+    {
+      "task_id": "T107",
+      "split": "fresh",
+      "passes": 3,
+      "of": 3,
+      "scores": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "task_id": "T108",
+      "split": "fresh",
+      "passes": 1,
+      "of": 3,
+      "scores": [
+        1.0,
+        0.75,
+        0.75
+      ]
+    }
+  ]
+}

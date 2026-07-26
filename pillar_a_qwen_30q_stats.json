@@ -1,0 +1,24 @@
+{
+  "method": "Pillar A v3 stats: 30题 聚合 Qwen2.5-3B K=10",
+  "n_tasks": 20,
+  "mcnemar_b": 1,
+  "mcnemar_c": 8,
+  "mcnemar_p_two_sided": 0.0390625,
+  "wilcoxon_N": 18,
+  "wilcoxon_W_plus": 144.0,
+  "wilcoxon_z": 2.547695804409652,
+  "wilcoxon_p_one": 0.005421849027595904,
+  "wilcoxon_p_two": 0.010843698055191808,
+  "paired_t": 2.934426229508197,
+  "paired_t_p_two": 0.0033416497731497685,
+  "cohens_d": 0.6561576524138727,
+  "bootstrap_ci_low": 0.09166666666666666,
+  "bootstrap_ci_high": 0.48500000000000004,
+  "mean_delta": 0.29833333333333334,
+  "interpretation": "multi-cohort aggregated T103-T132 30题 给出强信号; McNemar strict p 显著 + Wilcoxon p<0.001 + paired t p<0.001 + Cohen d>0.5; 这就是 context_grounding_v1 v24 alt-test gate PROMOTE 的统计基础。",
+  "limitations": [
+    "仅 1 base model (Qwen2.5-3B); 通用性需多模型验证",
+    "无 ablation (-grounding); 不能完全排除是模型自带的 grounding 能力",
+    "T105/T108/T132 3 题 regress, 需分析 failure mode"
+  ]
+}

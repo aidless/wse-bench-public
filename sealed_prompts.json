@@ -1,0 +1,157 @@
+[
+  {
+    "id": "T001",
+    "split": "dev",
+    "prompt": "AgentBench 的全称、提出团队与发表 venue 是什么？"
+  },
+  {
+    "id": "T002",
+    "split": "dev",
+    "prompt": "HumanEval 基准包含多少个 Python 编程问题？由谁发布？"
+  },
+  {
+    "id": "T003",
+    "split": "dev",
+    "prompt": "将以下 claim 分类为 proven / conjecture / empirical-only / self-rebutted，并输出 JSON {\"label\":..., \"reason\":...}：'Our decoder-only model achieves 2.3% higher accuracy than the baseline on MMLU.'"
+  },
+  {
+    "id": "T004",
+    "split": "dev",
+    "prompt": "为 ReviewerSim 的 MCP 接入层产出安全审查清单，必须含 H2 小节：A2A 权限、密钥管理、注入防护。"
+  },
+  {
+    "id": "T005",
+    "split": "dev",
+    "prompt": "GPT-4 的发布方与模型类型是什么？"
+  },
+  {
+    "id": "T006",
+    "split": "dev",
+    "prompt": "用不超过 40 词概括以下论文的核心贡献并输出 JSON {\"contribution\":...}：'Attention Is All You Need' 提出完全基于注意力机制的序列转换模型，摒弃循环与卷积。"
+  },
+  {
+    "id": "T007",
+    "split": "hidden",
+    "prompt": "SWE-bench 的核心评测目标是什么？"
+  },
+  {
+    "id": "T008",
+    "split": "hidden",
+    "prompt": "用不超过 40 词概括 BERT 的核心贡献并输出 JSON {\"contribution\":...}。"
+  },
+  {
+    "id": "T009",
+    "split": "hidden",
+    "prompt": "LoRA 的核心思想是什么？"
+  },
+  {
+    "id": "T010",
+    "split": "hidden",
+    "prompt": "为 ML 论文助手的混合检索 API 产出安全清单，必须含 H2 小节：密钥管理、注入防护、速率限制。"
+  },
+  {
+    "id": "T011",
+    "split": "dev",
+    "prompt": "从以下 AutoGen 论文摘要中抽取关键信息并输出 JSON {framework, abstraction, domain}：\nframework=框架名称；abstraction=描述 agent 可对话/可定制特性的关键词；domain=摘要列出的任一应用领域。\n摘要原文：「AutoGen is an open-source framework that allows developers to build LLM applications via multiple agents that can converse with each other to accomplish tasks. AutoGen agents are customizable, conversable, and can operate in various modes that employ combinations of LLMs, human inputs, and tools. ... Empirical studies demonstrate the effectiveness of the framework in many example applications, with domains ranging from mathematics, coding, question answering, operations research, online decision-making, entertainment, etc.」"
+  },
+  {
+    "id": "T012",
+    "split": "dev",
+    "prompt": "从以下 Tree of Thoughts 摘要中抽取并输出 JSON {framework, generalizes_from, cot_rate, tot_rate}：\nframework=框架名称；generalizes_from=它泛化自哪种已有 prompting 方法；cot_rate / tot_rate=Game of 24 任务上 CoT 与 ToT 的 GPT-4 成功率（含百分号）。\n摘要原文：「... we introduce a new framework for language model inference, Tree of Thoughts (ToT), which generalizes over the popular Chain of Thought approach to prompting language models ... For instance, in Game of 24, while GPT-4 with chain-of-thought prompting only solved 4% of tasks, our method achieved a success rate of 74%.」"
+  },
+  {
+    "id": "T013",
+    "split": "dev",
+    "prompt": "以下是 microsoft/autogen 仓库真实 issue #7987。请输出 JSON {category, component, evidence}：\ncategory ∈ {Bug, Feature, Documentation, Refactor}；component=受影响核心模块；evidence=issue 正文中出现的原文片段（逐字，不得改写）。\n标题：「[BUG] fix deadlock when cancelling in-flight tool calls (#7956)」\n正文：「Fixes #7956. **Root cause**: When a cancellation token is cancelled during a tool call, ... propagates out of ... and into ..., which - lacking ... - re-raises immediately. The ... sentinel ... never executes, causing the consumer loop to block forever. **Changes**: 1. catch ... alongside ... in both ... and ..., formatting the cancellation as a regular error. 2. use ... and move the sentinel into a block, guaranteeing the consumer loop terminates even when a child task raises.」"
+  },
+  {
+    "id": "T014",
+    "split": "hidden",
+    "prompt": "以下是 microsoft/autogen 仓库真实 issue #7989。请抽取该 issue 修复的对象并输出一句话，必须覆盖：broken、link、docs、Wayback 四个事实。\n标题：「docs: fix 1 broken link(s) via archive.org」\n正文：「Fixes 1 broken outbound link(s) in docs using archived snapshots (Wayback). **LinkMedic** · confidence 0.66 - README.md: https://twitter.com/pyautogen… → archive. Related to #7492」"
+  },
+  {
+    "id": "T015",
+    "split": "dev",
+    "prompt": "根据 TMLR 作者指南，作者被鼓励上传什么材料以提升可复现性？补充材料（supplementary material）的格式与大小上限是什么？输出一句话，必须覆盖：data、code、100MB、PDF、ZIP 五个事实。\n依据原文：「We encourage authors to, whenever possible, upload materials that improve reproducibility. Specifically, it is suggested that authors submit supplementary material including data or code towards this end. ... Authors may submit up to 100MB of supplementary material, such data, source code or illustrative videos; all supplementary materials must be in PDF or ZIP format.」"
+  },
+  {
+    "id": "T016",
+    "split": "hidden",
+    "prompt": "根据 TMLR 官方说明，TMLR 在审稿中强调什么、相对弱化什么？其评审流程托管在哪个平台？输出一句话，必须覆盖：technical correctness、subjective significance、OpenReview 三个事实。\n依据原文：「TMLR emphasizes technical correctness over subjective significance, to ensure that we facilitate scientific discourse ... TMLR maximizes openness and transparency by hosting the review process on OpenReview.」"
+  },
+  {
+    "id": "T017",
+    "split": "dev",
+    "prompt": "哪个模型家族首次提出 Multi-head Latent Attention (MLA) 作为 KV 缓存压缩机制？ 请用一句话简洁、准确地回答。"
+  },
+  {
+    "id": "T018",
+    "split": "dev",
+    "prompt": "Qwen3 系列使用的开源协议是什么？是否对商用友好？ 请用一句话简洁、准确地回答。"
+  },
+  {
+    "id": "T019",
+    "split": "dev",
+    "prompt": "在主流大模型家族中，哪些采用 MIT 协议（最宽松）？ 请用一句话简洁、准确地回答。"
+  },
+  {
+    "id": "T020",
+    "split": "hidden",
+    "prompt": "Llama Community License 对商用的主要限制是什么？ 请用一句话简洁、准确地回答。"
+  },
+  {
+    "id": "T021",
+    "split": "hidden",
+    "prompt": "哪个家族在 7B 密集模型中使用 Sliding Window Attention (SWA)？ 请用一句话简洁、准确地回答。"
+  },
+  {
+    "id": "T022",
+    "split": "fresh",
+    "prompt": "Llama4 为支持超长上下文引入了哪种无需绝对位置嵌入的 RoPE 变体？ 请用一句话简洁、准确地回答。"
+  },
+  {
+    "id": "T023",
+    "split": "fresh",
+    "prompt": "Qwen3 的细粒度 MoE 配置示例及其思考模式机制是什么？ 请用一句话简洁、准确地回答。"
+  },
+  {
+    "id": "T024",
+    "split": "fresh",
+    "prompt": "DeepSeek 的多 token 预测（MTP）机制带来的投机解码加速比约为多少？ 请用一句话简洁、准确地回答。"
+  },
+  {
+    "id": "T025",
+    "split": "fresh",
+    "prompt": "GLM 系列在工具调用上的统一范式叫什么？ 请用一句话简洁、准确地回答。"
+  },
+  {
+    "id": "T026",
+    "split": "fresh",
+    "prompt": "Phi 系列训练数据的核心范式源自什么？ 请用一句话简洁、准确地回答。"
+  },
+  {
+    "id": "T027",
+    "split": "fresh",
+    "prompt": "Gemma 架构中用于稳定训练/限制 logit 的非线性技巧有哪些？ 请用一句话简洁、准确地回答。"
+  },
+  {
+    "id": "T028",
+    "split": "fresh",
+    "prompt": "Llama3 的后训练对齐管线依次包含哪些阶段？ 请用一句话简洁、准确地回答。"
+  },
+  {
+    "id": "T029",
+    "split": "fresh",
+    "prompt": "peS2o 论文知识库（E:\\peS2o_kb_faiss）的论文规模、向量化模型与索引类型分别是什么？ 请用一句话简洁、准确地回答。"
+  },
+  {
+    "id": "T030",
+    "split": "fresh",
+    "prompt": "self-evolving-agent 的 1000 轮 campaign 进化基因由哪两部分组成、各多少条？ 请用一句话简洁、准确地回答。"
+  },
+  {
+    "id": "T031",
+    "split": "fresh",
+    "prompt": "self-evolving-agent 已晋升的 self_verify_v1 策略在求解后独立复核哪些维度？ 请用一句话简洁、准确地回答。"
+  }
+]

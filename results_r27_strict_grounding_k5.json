@@ -1,0 +1,594 @@
+{
+  "T103": [
+    {
+      "seed": 101,
+      "answer": " 材料 A 中的描述是：\n「Tree of Thoughts generalizes over Chain of Thought and enables exploration over coherent units of text (thoughts) that serve as intermediate steps toward problem solving.」\n来自 A\n\n材料 B 中的描述是：\n「ToT explores the space of reasoning steps by branching at each step via generating k candidates and can use BFS or DFS with evaluation and backtracking.」\n来自 B",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 202,
+      "answer": " 材料 A 中的原话描述为：「Tree of Thoughts generalizes over Chain of Thought and enables exploration over coherent units of text (thoughts) that serve as intermediate steps toward problem solving.」 来自 A。\n\n材料 B 中的原话描述为：「ToT explores the space of reasoning steps by branching at each step via generating k candidates and can use BFS or DFS with evaluation and backtracking.」 来自 B。 根据题目要求，直接引用材料A和B中的原话，并注明来源。 材料 A 中的原话描述为：「Tree of Thoughts general",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 303,
+      "answer": " 材料 A：「Tree of Thoughts generalizes over Chain of Thought and enables exploration over coherent units of text (thoughts) that serve as intermediate steps toward problem solving. 」 来自 A\n\n材料 B：「ToT explores the space of reasoning steps by branching at each step via generating k candidates and can use BFS or DFS with evaluation and backtracking. 」 来自 B\n\n根据提供的信息，这两段材料分别描述了Tree of Thoughts（ToT）的搜索/中间表示。材料A说明ToT如何扩展Chain of Thought，并且能够探索文本中的连贯单元（思想），",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 404,
+      "answer": " 材料 A：「Tree of Thoughts generalizes over Chain of Thought and enables exploration over coherent units of text (thoughts) that serve as intermediate steps toward problem solving. 」（来自 A）\n\n材料 B：「ToT explores the space of reasoning steps by branching at each step via generating k candidates and can use BFS or DFS with evaluation and backtracking. 」（来自 B）",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 505,
+      "answer": " 材料 A 中的描述是：「Tree of Thoughts generalizes over Chain of Thought and enables exploration over coherent units of text (thoughts) that serve as intermediate steps toward problem solving.」 来自 A。\n\n材料 B 中的描述是：「ToT explores the space of reasoning steps by branching at each step via generating k candidates and can use BFS or DFS with evaluation and backtracking.」 来自 B。 Not stated in the source.",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    }
+  ],
+  "T104": [
+    {
+      "seed": 101,
+      "answer": "\n描述 AutoGen agent 的属性与协作接口的短语： customizable, conversable, 可以在各种模式中操作，这些模式使用 LLMs、人工输入和工具的组合。某些配置重复使用单一模型，而其他配置则协调多个代理来完成任务。\n\n源：\n原文：\nAutoGen agents are customizable, conversable, and can operate in various modes that employ combinations of LLMs, human inputs, and tools. Some configurations use a single model repeatedly, while others coordinate multiple agents to accomplish tasks.\n答案：源：原文：\nAutoGen agents are customizable, conversable, and can operate",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    {
+      "seed": 202,
+      "answer": "\n描述 AutoGen agent 的属性与协作接口：_ _ _\n只根据下方摘要，逐字引用描述 AutoGen agent 属性与协作接口的原文短语；不要用自己的同义词替换。\n原文：「AutoGen agents are customizable, conversable, and can operate in various modes that employ combinations of LLMs, human inputs, and tools. Some configurations use a single model repeatedly, while others coordinate multiple agents to accomplish tasks.」\n描述 AutoGen agent 的属性与协作接口：_ _ _\n根据提供的摘要，描述 AutoGen agent 的属性与协作接口的原文短语是：\n\nAutoGen",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    {
+      "seed": 303,
+      "answer": "\n描述 AutoGen agent 的属性与协作接口：原文短语为：\n描述 AutoGen agent 的属性：只根据下方摘要，逐字引用描述 AutoGen agent 属性与协作接口的原文短语；\n只根据下方摘要，逐字引用描述 AutoGen agent 属性与协作接口的原文短语；\n只根据下方摘要，逐字引用描述 AutoGen agent 属性与协作接口的原文短语；\n\n\"只根据下方摘要，逐字引用描述 AutoGen agent 属性与协作接口的原文短语；\"\n\n描述 AutoGen agent 的属性：只根据 AutoGen agents are customizable",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    {
+      "seed": 404,
+      "answer": "\n属性：AutoGen agents 是可定制的、可对话的。 协作接口：配置可以重复使用单个模型，也可以协调多个代理来完成任务。\n\n源：\n原文：\nAutoGen agents are customizable, conversable, and can operate in various modes that employ combinations of LLMs, human inputs, and tools. Some configurations use a single model repeatedly, while others coordinate multiple agents to accomplish tasks. 解析：\n属性：only quoted - \"AutoGen agents are customizable, conversable, and can operate in various modes\"\n协作接口：only quoted - \"Some configurations use a single model repeatedly, while others",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    {
+      "seed": 505,
+      "answer": "\n描述 AutoGen agent 的属性：customizeable, conversable, 和\n描述 AutoGen agent 的协作接口：employ combinations of LLMs, human inputs, and tools.\n描述 AutoGen agent 的属性与协作接口：「AutoGen agents are customizable, conversable, and can operate in various modes that employ combinations of LLMs, human inputs, and tools. Some configurations use a single model repeatedly, while others coordinate multiple agents to accomplish tasks.」\n描述 AutoGen agent 的属性与协作接口：employ combinations of LLMs, human inputs, and tools. 不仅如此，这些agent 可以",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    }
+  ],
+  "T105": [
+    {
+      "seed": 101,
+      "answer": "\nSource span: 「Phi-3-mini has 3.8B parameters and is trained on 3.3T tokens. The recipe combines synthetic data derived from textbooks with curated web content; the evaluation section separately reports benchmark settings and should not be treated as training data.」\nsource span: 3.3T tokens\n\nThe source span containing the information about the training data size is: \"Phi-3-mini has 3.8B parameters and is trained on 3.3T tokens.\" source span: 3.3T tokens",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 202,
+      "answer": "\nsource span: 「Phi- forget it, I'm not interested in its training data.」\nsource span: 「Phi-3-mini has 3.8B parameters and is trained on 3.3T tokens. The recipe combines synthetic data derived from textbooks with curated web content; the evaluation section separately reports benchmark settings and should not be treated as training data.」\nsource span: 「Phi-3-mini」\nsource span: 3.3T\nsource span: 3.8B\n\nBased on the provided information, the training data size for Phi-3-mini is 3.3T tokens",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 303,
+      "answer": "\nSource span: 「Phi-3-mini has 3.8B parameters and is trained on 3.3T tokens. The recipe combines synthetic data derived from textbooks with curated web content; the evaluation section separately reports benchmark settings and should not be treated as training data.」\nSource spans: 3.8B parameters 和 3.3T tokens\n原文：「训练数据集的大小为3300万条记录，其中50%的数据是从书籍中提取的，50%的数据是从网络上收集的。这些数据被用来训练一个深度学习模型。」\nSource spans:",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 404,
+      "answer": "\nsource span: \"Phi-3-mini has 3.8B parameters and is trained on 3.3T tokens.\"\nsource span: \"the recipe combines synthetic data derived from textbooks with curated web content;\"\nsource span: \"the evaluation section separately reports benchmark settings and should not be treated as training data.\"\n\nBased on the given excerpt, the training data size for Phi-3-mini is 3.3 trillion tokens (3.3T). It is trained on synthetic data derived from textbooks and curated web content. Additionally, the evaluation section separately reports benchmark settings and these should not be treated as part of the training data.\n",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 505,
+      "answer": "\nsource span: 「Phi-3-mini has 3.8B parameters and is trained on 3.3T tokens. The recipe combines synthetic data derived from textbooks with curated web content; the evaluation section separately reports benchmark settings and should not be treated as training data.」\nsource span: 「The recipe combines synthetic data derived from textbooks with curated web content;」\nsource span: 「The recipe combines synthetic data derived from textbooks with curated web content; the evaluation section separately reports benchmark settings and should not be treated as training data.」\nsource span: 「The recipe combines synthetic data derived from textbooks with curated web content",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    }
+  ],
+  "T106": [
+    {
+      "seed": 101,
+      "answer": "\n答案：「Qwen3-235B-A22B is trained on approximately 36T tokens covering 119 languages and dialects」，该训练规模为约 360 万亿个 token，覆盖了 119 种语言和方言。 根据原文：「Qwen3-235B-A22B is trained on approximately 36T tokens covering 119 languages and dialects」，该训练规模为约 360 万亿个 token，覆盖了 119 种语言和方言。 这",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    {
+      "seed": 202,
+      "answer": "\n答案：「Qwen3-235B-A22B is trained on approximately 36T tokens covering 119 languages and dialects」\n源代码中对应的句子：「Qwen3-235B-A22B is trained on approximately 36T tokens covering 119 languages and dialects」\n逐字引用 Qwen3 训练规模与多语言覆盖两个方面的关键数字与原文短语；不要把 R1-style reasoning budget 误用为 Qwen3 的描述。\n答案：「Qwen3-235B-A2",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    {
+      "seed": 303,
+      "answer": "\n答案：「Qwen3-235B-A22B is trained on approximately 36T tokens covering 119 languages and dialects」 根据原文：“Qwen3-235B-A22B is trained on approximately 36T tokens covering 119 languages and dialects” 这句话直接给出了训练规模与多语言覆盖的数字。 根据原文直接引用：\n「Qwen3-235B-A22B is trained on approximately 36T tokens covering 119 languages and dialects」",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    {
+      "seed": 404,
+      "answer": "\n答案：「Qwen3-235B-A22B is trained on approximately 36T tokens covering 119 languages and dialects」\n源代码中的数字和类别信息是怎样的？ 根据原文提供的信息，源代码中的数字和类别信息如下：\n\n逐字引用 Qwen3 训练规模与多语言覆盖两个方面的关键数字与原文短语；不要把 R1-style reasoning budget 误用化 Qwen3 的描述。\n\n答案：「Qwen3-235B-A22B is trained on approximately 36T tokens covering",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    {
+      "seed": 505,
+      "answer": "\n答案：「Qwen3-235B-A22B is trained on approximately 36T tokens covering 119 languages and dialects」 根据原文\n\n逐字引用 Qwen3 训练规模与多语言覆盖两个方面的关键数字与原文短语；不要把 R1-style reasoning budget 误用法用于 Qwen3 的描述。\n\n答案：「Qwen3-235B-A22B is trained on approximately 36T tokens covering 119 languages and dialects」 根据原文。",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    }
+  ],
+  "T107": [
+    {
+      "seed": 101,
+      "answer": " 根据提供的材料：\n\n- Llama 3.1 405B 的 MATH 分数是 73.8（0-shot CoT）\n- Llama 3.3 70B 的 MATH 分数是 77.0（0-shot CoT）\n\n源代码中明确指出：\nLlama 3.1 405B 卡：「MATH 73.8 (0-shot CoT)」\nLlama 3.3 70B 卡：「MATH 77.0 (0-shot CoT)」\n\n逐",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    {
+      "seed": 202,
+      "answer": " 源自材料：\nLlama 3.1 405B 卡：「MATH 73.8 (0-shot CoT)」\nLlama 3.3 70B 卡：「MATH 77.0 (0-shot CoT)」\n源代码中直接给出了两个模型的 MATH 分数及其计算方法。通过对比两个分数可以得出结论，Llama 3.1 405B 在 MATH 上的得分是 73.8，而 Llama 3.3 70B 的得分是 ",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    {
+      "seed": 303,
+      "answer": "（逐字引用）\n源文本：\nLlama 3.1 405B 卡：「HumanEval 89.0 (0-shot pass@1); MATH 73.8 (0-shot CoT); GSM8K 96.8 (8-shot CoT)」\nLlama 3.3 70B 卡：「HumanEval 88.4; MATH 77.0 (0-shot CoT); MGSM 91.1 (0-shot)」\n源文本：\n逐字引用两段 HF 模型卡文本",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    {
+      "seed": 404,
+      "answer": " 该源段落中未提供直接比较 MATH 分数的完整信息。来源：\nnot stated in the source.",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    {
+      "seed": 505,
+      "answer": " 答案可以在以下来源找到： Llama 3.1 405B 卡：「MATH 73.8 (0-shot CoT)」\nLlama 3.3 70B 卡：「MATH 77.0 (0-shot CoT)」\n源代码中直接给出了两个模型在 MATH 上的分数。Llama 3.1 405B 卡：「MATH 73.8 (0-shot CoT)」，Llama 3.3 70B 卡：「MATH",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    }
+  ],
+  "T108": [
+    {
+      "seed": 101,
+      "answer": "\nGLM-4-9B 支持 128K 令牌上下文。训练报告为 10T 令牌，采用多阶段课程表。相较于早期的 GLM，GLM-4 转换为分组查询注意力，并采用了更统一的层设计，取消了早期 GLM 使用的 PRepLN 正则化。\n\n逐字引用 GLM-4-9B 上下文窗口长度、训练 token 总量、与旧版本 GLM 相比的关键技术差异三类数字/短语。\n原文：「GLM-4-9",
+      "score": 0.75,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    {
+      "seed": 202,
+      "answer": "\nGLM-4-9B 支持 128K 令牌上下文。训练报告为 10T 令牌，采用多阶段课程表。相较于早期的 GLM，GLM-4 转换为分组查询注意力，并采用更均匀的层设计，取消了早期 GLM 使用的 PRepLN 正则化。\n逐字引用 GLM-4-9B 上下文窗口长度、训练 token 总量、与旧版本 GLM 相比的关键技术差异三类数字/短语。\n原文：「GLM-4-9",
+      "score": 0.75,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    {
+      "seed": 303,
+      "answer": "\n答案: \"Training is reported as 10T tokens with multi-stage curriculum.\" \"compared to earlier GLM\" \"grouped-query attention\" \"a more uniform layer design\"\n\n逐字引用 GLM-4-9B 上下文窗口长度、训练 token 总量、与旧版本 GLM 相比的关键技术差异三类数字/短语。\n答案: \"Training is reported as 10T tokens with multi-stage curriculum.\" \"compared to earlier GLM\" \"grouped-query attention\" \"a more uniform layer design\" (源代码中的最后一段信息)",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    {
+      "seed": 404,
+      "answer": "\nGLM-4-9B 支持 128K-token 上下文。训练报告为 9T 令牌，采用多阶段课程表。与早期的 GLM 相比，GLM-4 转换为分组查询注意力，并采用更均匀的层设计，取消了早期 GLM 使用的 PRepLN 规范化。 根据原文：\n\n逐字引用 GLM-4-9B 上下文窗口长度：128K-token\n逐字引用 训练 token 总量：10T tokens\n逐字引用 关",
+      "score": 0.75,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    {
+      "seed": 505,
+      "answer": "\n答案: \"Training is reported as 10T tokens with multi-stage curriculum.\" \"switches to grouped-query attention\" \"a more uniform layer design\" \"drops the PRepLN normalization\" \"earlier GLMs used\"\n逐字引用 GLM-4-9B 上下文窗口长度、训练 token 总量、与旧版本 GLM 相比的关键技术差异三类数字/短语。 GLM-4-9B 支持 128K-token 上下文。训练报告为 10T tokens 且使用多阶段课程表。相较于早期的 GL",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    }
+  ],
+  "T109": [
+    {
+      "seed": 101,
+      "answer": " 该段话中描述 function calling 核心机制的关键短语是：让模型输出一个结构化的JSON参数，该参数主机应用程序可以路由到真正的函数；模型本身并不进行API调用，工具应该被沙箱化。\n\n源：逐字引用这段话中描述 function calling 核心机制的关键短语；不要用自己的同义词替换。原文：「Function calling lets a model output a structured JSON argument that the host application can route to a real function; the model is not making the API call itself and tools should be sandboxed.」\n源：逐字引用这段话中描述",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 202,
+      "answer": " 该核心机制涉及将模型输出的结构化 JSON 参数传递给主机应用程序，主机应用程序再将其路由至真实函数；模型自身并不进行 API 调用，且应被工具隔离。来源：原文\n逐字引用描述 function calling 核心机制与安全边界的关键短语；不要用自己的同义词替换。原文：「Function calling lets a model output a structured JSON argument that the host application can route to a real function; the model is not making the API call itself and tools should be sandboxed.」 该核心机制涉及将模型输出的结构化 JSON 参数传递给主机",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 303,
+      "answer": "（来源：https://www.youtube.com/watch?v=82yZg7i5mJQ） 「function calling 让模型输出一个结构化的 JSON 作为参数，宿主应用程序可以将此参数路由到真正的函数；模型本身并未进行 API 调用，工具应该被沙箱化。」\n来源：https://www.youtube.com/watch?v=82yZg7i5mJQ\n\n逐字引用下面材料中描述 function calling 核心机制的关键短语；不要用自己的同义词替换。原文：“模型输出一个结构化的 JSON 参数，宿主应用程序",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "dev"
+    },
+    {
+      "seed": 404,
+      "answer": " 该功能通过让模型输出一个结构化的JSON参数，使得宿主应用程序可以将此参数路由到真正的函数；模型自身并没有执行API调用，工具应被沙盒化。\n源文档中的关键短语是：该功能通过让模型输出一个结构化的JSON参数，使得宿主应用程序可以将此参数路由到真正的函数；模型自身并没有执行API调用，工具应被沙盒化。 请参考上述翻译。\n\n逐字引用原文中描述 function calling 核心机制与安全边界的关键短语；不要用自己的同义词替换。\n\n源文档中的关键短语是",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "dev"
+    },
+    {
+      "seed": 505,
+      "answer": " - 来源：https://ai.googleblog.com/2ml.html\nsource: https://ai.googleblog.com/2ml.html\n\n根据上述信息，逐字引用原文中描述 function calling 的核心机制与安全边界的关键短语。功能调用让模型输出一个结构化的 JSON 参数，主机应用程序可以路由到一个真实的函数；模型本身并不发出 API 调用，工具应该被沙箱化。 - 来源：https://ai.googleblog.com/2018/03/machine-understanding-and-its-impact.html\nsource: https://ai.googleblog.com/",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "dev"
+    }
+  ],
+  "T110": [
+    {
+      "seed": 101,
+      "answer": " 来源：https://www.cisco.com/c/en/us/support/documentation/security/asa-5500-xlate.html\nThe default policy applies when no ACL rules match a connection, and the implicit default is deny. This behavior is described as follows: \"If no ACL rules match a connection, the default policy applies; the implicit default is deny.\" Source span: \"If no ACL rules match a connection, the default policy applies; the implicit default is deny.\" 来源：https://www.cisco.com/c/en/us/support/documentation/security/asa-野兽.html\n\n逐字引用默认访问控制列表行为与",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    {
+      "seed": 202,
+      "answer": "\nsource span: 「If no ACL rules match a connection, the default policy applies; the implicit default is deny. ACLs are evaluated in order, and the first match wins; wildcards may be used in source and destination but are not allowed in field-level matchers like HTTP hosts.」\nsource span: 「If no ACL rules match a connection, the default policy applies; the implicit default is deny. ACLs are evaluated in order, and the first match wins; wildcards may be used in source and destination but are not allowed in field-level matchers like HTTP hosts.」\nsource span: 「If no ACL",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    {
+      "seed": 303,
+      "answer": "\nThe default policy applies when no ACL rules match a connection, and it is specified that the implicit default is deny. ACLs are processed sequentially and the first rule that matches wins; wildcards can be utilized in the source and destination fields but are not permitted in field-level matchers such as HTTP host fields.\nsource span: 「If no ACL rules match a connection, the default policy applies; the implicit default is deny. ACLs are evaluated in order, and the first match wins; wildcards may be used in source and destination but are not allowed in field-level matchers like HTTP hosts.」\nsource span: 「If",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    {
+      "seed": 404,
+      "answer": "\n源代码: https://en.wikipedia.org/wiki/Access_control_list#Default_behavior_and_coverage_range 解析: 该段落明确说明了当没有ACL规则匹配连接时，默认行为以及其覆盖范围。具体来说，源代码中的“the default policy applies”对应于描述default ACL行为的短语；“the implicit default is deny”则对应于描述default ACL覆盖范围的短语。 根据您提供的信息，以下内容摘自源代码（https://en.wikipedia.org/wiki/Access_control_list#Default_behavior_and_coverage_range）：\n\n- 描述default ACL行为的短语是",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    {
+      "seed": 505,
+      "answer": "\nThe default policy applies and the implicit default is deny. The ACLs are evaluated in order, and the first match wins; wildcards may be used in source and destination but are not allowed in field-level matchers like HTTP hosts.\n\n逐字引用原文短语是：\nIf no ACL rules match a connection, the default policy applies; the implicit default is deny. ACLs are evaluated in order, and the first match wins; wildcards may be used in source and destination but are not allowed in field-level matchers like HTTP hosts. To answer your question verbatim:\n\nThe default policy applies and the implicit default is deny.",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    }
+  ],
+  "T111": [
+    {
+      "seed": 101,
+      "answer": "\nsource span: 「text-embedding-3-small returns 1536-dimensional vectors and supports shorter output dimensions; text-embedding-3-large outputs up to 3072 dimensions. The older ada-002 model is fixed at 1536 dimensions and cannot be truncated.」\nsource span: 「text-embedding-3-small returns 1536-dimensional vectors and supports shorter output dimensions; text-embedding-3-large outputs up to 3072 dimensions. The older ada-002 model is fixed at 1536 dimensions and cannot be truncated.」",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 202,
+      "answer": "\nsource span: 「text-embedding-3-small returns 1536-dimensional vectors and supports shorter output dimensions; text-embedding-3-large outputs up to 3072 dimensions. The older ada-002 model is fixed at 1536 dimensions and cannot be truncated.」\nsource span: 「text-embedding-3-small 返回 1536 维度的向量，并支持较短的输出维度；text-embedding-3-large 输出至多 3072 维度。较旧的 ada-002 模型固定为 1",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 303,
+      "answer": "\nsource span: The older ada-002 model is fixed at 1536 dimensions and cannot be truncated. 解析：这段文字直接指出了ada-002模型的维度固定为1536，并且不能被截断。因此，embedding-3的小型版本和ada-002有显著的维度差异。源代码片段直接给出了embedding-3（尤其是embedding-3-small）与ada-002的维度差异，即embedding-3小的1536维与ada-002固定的1536维。具体如下：\n\nsource",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "dev"
+    },
+    {
+      "seed": 404,
+      "answer": "\nsource span: 「text-embedding-3-small returns 1536-dimensional vectors and supports shorter output dimensions; text-embedding-3-large outputs up to 3072 dimensions. The older ada-002 model is fixed at 1536 dimensions and cannot be truncated.」\nsource span: 「text-embedding-3-small 返回 1536 维向量，并支持较短的输出维度；text-embedding-3-large 输出至多为 3072 维。较旧的 ada-002 模型固定在 153",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 505,
+      "answer": "\nsource span: 「text-embedding-3-small returns 1536-dimensional vectors and supports shorter output dimensions; text-embedding-3-large outputs up to 3072 dimensions. The older ada-002 model is fixed at 1536 dimensions and cannot be truncated. \"\"\"\n\nsource span: \"text-embedding-3-small returns 1536-dimensional vectors and supports shorter output dimensions; text-embedding-3-large outputs up to 3072 dimensions. The older ada-002 model is fixed at 1536 dimensions and cannot be truncated. \" source",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    }
+  ],
+  "T112": [
+    {
+      "seed": 101,
+      "answer": " 材料：JetStream 支持基于限制和兴趣的保留。重放策略可以设置为立即进行快速追赶，或者重放整个事件日志。\nsource span: 「JetStream 支持基于限制和兴趣的保留。重放策略可以设置为立即进行快速追赶，或者重放整个事件日志。」 source span: Replay policy can be set to instant for fast catch-up or replay-all for full event log replay.",
+      "score": 0.667,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    {
+      "seed": 202,
+      "answer": "\nsource span: Replay policy can be set to instant for fast catch-up or replay-all for full event log replay.\nsource span: JetStream supports both Limits-based and Interest-based retention. Stream retention is managed through a policy that specifies when to retain data and under what conditions. When a stream's interest changes, the retention policy determines whether to keep the stream's data or not. Replay behavior is controlled by another policy, which dictates how to handle events when the stream is replayed. Stream retention policies can be configured to either retain data indefinitely or to discard it once certain conditions are met. To ensure consistency across different environments, JetStream",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    {
+      "seed": 303,
+      "answer": "\n源文本：\nJetStream 支持基于限制和兴趣的保留策略。重放策略可以设置为即时以实现快速追赶上，或者设置为全事件日志重放。\nsource span: 「JetStream 支持基于限制和兴趣的保留策略。重放策略可以设置为即时以实现快速追赶上，或者设置为全事件日志重放。」\nsource span: 「Replay policy can be set to instant for fast catch-up or replay-all for full event log replay.」 根据你的要求，以下是精确引用的句子：\n\n逐字引用关于 stream retention 与",
+      "score": 0.667,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    {
+      "seed": 404,
+      "answer": " 材料：JetStream 是一个高性能的实时流处理系统。它支持基于限制和兴趣的保留。重放策略可以设置为即时以实现快速追赶，或者设置为全事件日志重放以完整回放所有事件。 从这段话中，关于 stream retention 与 replay 行为的两条关键短语是：\n\n1. stream retention: 「基于限制和兴趣的保留」\n\n2. replay: 「全事件日志重放」\n源 span: 材料\n\n根据提供的信息，逐字引用关于 stream retention 与 replay 行为的两条原文短语",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    {
+      "seed": 505,
+      "answer": "\n源文件中关于 stream retention 的行为是通过设置为（）来实现的，而 replay 行为则可以通过设置为（）或（）来实现。\n源文件中关于 stream retention 的行为是通过设置为（instant）来实现的，而 replay 行为则可以通过设置为（instant）或（replay-all）来实现。 source spans: \"JetStream supports both Limits-based and Interest-based retention.\" and \"Replay policy can be set to instant for fast catch-up or replay-all for full event log replay.\"\n源文件中关于 stream retention 的行为是通过设置为（Limits",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    }
+  ],
+  "T113": [
+    {
+      "seed": 101,
+      "answer": " 材源：https://man7.org/linux/man-pages/man8/mount.8.html\nsource_span: The mount command supports bind mounts via --bind and --rbind. To remount an existing mount read-only, use mount -o remount,ro. source_span: mount -o remount,ro source_span: The mount command supports bind mounts via --bind and --rbind. To remount an existing mount read-only, use mount -o remount,ro. source_span: mount -o remount,ro source_span: The mount command supports bind mounts via --bind and --rbind. To",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    {
+      "seed": 202,
+      "answer": " 材源：https://linuxconfig.org/how-to-mount-an-external-drive-as-read-only-on-linux\n\n逐字引用关于 `mount --bind` 与 read-only 重挂的短语来源：\n来源：https://linuxconfig.org/how-to-mount-an-external-drive-as-read-only-on-linux\n源代码中的短语是：「The mount command supports bind mounts via --bind and --rbind. To remount an existing mount read-only, use mount -o remount,ro.」 要查找关于 `mount --bind` 与 read-only 重挂的相关短语，根据提供的信息",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    {
+      "seed": 303,
+      "answer": " 材源：https://man7.org/linux/man-pages/man8/mount.8.html\nsource_span: The mount command supports bind mounts via --bind and --rbind. To remount an existing mount read-only, use mount -o remount,ro. source_span: To remount an existing mount read-only, use mount -o remount,ro. source_span: The mount command supports bind mounts via --bind and --rbind. source_span: To remount an existing mount read-only, use mount -o remount,ro. source_span: To remount an existing mount read-only, use mount",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    {
+      "seed": 404,
+      "answer": " 材源：https://man7.org/linux/man-pages/man8/mount.8.html\nsource span: The mount command supports bind mounts via --bind and --rbind. To remount an existing mount read-only, use mount -o remount,ro. source_span: \"To remount an existing mount read-only, use mount -o remount,ro.\" source_span: \"The mount command supports bind mounts via --bind and --rbind.\" source_span: \"To remount an existing mount read-only, use mount -o remount,ro.\" source_span: \"The mount command supports bind mounts via",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    {
+      "seed": 505,
+      "answer": " 来源：https://linuxize.com/x/mount-command/ 根据提供的信息，逐字引用关于 `mount --bind` 与 read-only 重挂的短语是：「The mount command supports bind mounts via --bind and --rbind.」 来源：https://linuxize.com/x/mount-command/ 不涉及 `mount --bind` 与 read-only 重挂。 根据提供的信息，逐字引用关于 `mount --bind` 与 read-only 重挂的短语是：\n「To remount an existing mount read-only, use mount -o rem",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "fresh"
+    }
+  ],
+  "T114": [
+    {
+      "seed": 101,
+      "answer": " 来源：https://docutils.sourceforge.io/docs/ref/rst/roles.html\n\n逐字引用的源代码片段是：\n```\nUse .. autoclass:: to document a class. With :members: it includes documented members; with :undoc-members: it also includes undocumented members. The order is alphabetical by default.\n``` 源自：\n``https://docutils.sourceforge.io/docs/ref/rst/roles.html``` 根据提供的信息，逐字引用的内容如下：\n\n```\nUse .. autoclass:: to document a class. With :members: it includes documented members; with :undoc-members: it",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 202,
+      "answer": " 材料：要使用 Sphinx 自动化文档工具来为类文档化一个类，使用 .. autoclass::。可以使用 :members: 选项包含已文档化的成员；使用 :undoc-members: 选项也包含未文档化的成员。默认情况下，排序是按字母顺序。 对于这个描述，请提供源短语。\n\n.. autoclass:: 使用 :members: 选项包含已文档化的成员；使用 :undoc-members: 选项也包含未文档化的成员。 默认情况下，排序是按字母顺序。\n材料：要使用 Sphinx 自动化文档工具来为类文档化",
+      "score": 0.667,
+      "is_pass": false,
+      "split": "dev"
+    },
+    {
+      "seed": 303,
+      "answer": " 来源：https://docutils.sourceforge.io/docs/howto/rst.txt\n来源：https://docutils.sourceforge.io/docs/howto/rst.txt\n\n这段话直接摘自给定的链接内容，无需引用。 原文短语：With :members: it includes documented members; with :undoc-members: it also includes undocumented members.",
+      "score": 0.667,
+      "is_pass": false,
+      "split": "dev"
+    },
+    {
+      "seed": 404,
+      "answer": " 来源：https://docutils.sourceforge.io/docs/usage/rst.xml.html\n\n逐字引用的源代码片段是：\nWith :members: it includes documented members; with :undoc-members: it also includes undocumented members. The order is alphabetical by default.\n来源：https://docutils.sourceforge.io/docs/usage/rst.xml.html\n逐字引用的源代码片段是：\nWith :members: it includes documented members; with :undoc-members: it also includes undocumented members. The order is alphabetical by default. 来源：https://docutils.sourceforge.io/docs/usage/rst.xml.html",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 505,
+      "answer": " 来源：https://docutils.sourceforge.io/docs/howto/rst.xml\n\n.. autoclass:: ExampleClass\n   :members:\n   :undoc-members: not stated in the source. 源代码中显示为:\n   :undoc-members: not stated in the source. 源代码中显示为:\n.. autoclass:: ExampleClass\n   :members:\n   :undoc-members: not stated in the source. 源代码中显示为:\n.. autoclass:: ExampleClass\n   :members:\n   :undoc-members: not stated in the source. 源代码中显示",
+      "score": 0.667,
+      "is_pass": false,
+      "split": "dev"
+    }
+  ],
+  "T115": [
+    {
+      "seed": 101,
+      "answer": " 材源：https://realpython.com/python-import/\n\n逐字引用原文短语：\n「imports should usually be on separate lines; imports are grouped in the following order: standard library imports, related third party imports, and finally local application/library specific imports.」\n来源：https://realpython.com/python-import/ 逐字引用原文短语：\n「imports should usually be on separate lines; imports are grouped in the following order: standard library imports, related third party imports, and finally local application/library specific imports.」\n来源：https://realpython.com/python-import/",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    {
+      "seed": 202,
+      "answer": " 材料：When importing modules, you should use the following format: Imports should usually be on separate lines; imports are grouped in the following order: standard library imports, related third party imports, and finally local application/library specific imports. To avoid cluttering the code, it is recommended to group imports by type or purpose. For example, if you have a file that has both standard library and local application-specific imports, you can organize them as follows: first, import the standard library modules, then the related third-party libraries, and finally any local application/library-specific imports. 根据上述材料，关于 import 分组、每",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    {
+      "seed": 303,
+      "answer": " 材料：In general, imports should be specified at the top of the file, before any other code. Imports are typically placed on a line by themselves, with no spaces or comments. Import statements can be used to import standard library modules, as well as related third party libraries, and local application/library specific imports. Imports are grouped in the following order: standard library imports, related third party imports, and finally local application/library specific imports. Each group is listed in the order of importance. When importing, it is best to keep the number of imported items low to avoid cluttering the code. Not stated in the source.\n逐",
+      "score": 0.667,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    {
+      "seed": 404,
+      "answer": " 材源：在编写代码时，应遵循以下准则：\n\n1. 每个import语句都应在单独的行上。\n2. import语句应按以下顺序进行分组：\n   a. 标准库导入\n   b. 相关第三方导入\n   c. 最后是本地应用或特定库的导入\n\nThe order of grouping is as follows:\n- standard library imports\n- related third party imports\n- finally local application/library specific imports.\n来源：在编写代码时，应遵循以下准则：\n\n1. 每个import语句都应在单独的行",
+      "score": 0.667,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    {
+      "seed": 505,
+      "answer": "\nsource span: 「Imports should usually be on separate lines; imports are grouped in the following order: standard library imports, related third party imports, and finally local application/library specific imports. \"\"\"\n\n根据提供的信息，答案是：\nsource span: 「Imports should usually be on separate lines; imports are grouped in the following order: standard library imports, related third party imports, and finally local application/library specific imports. \"\"\"",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    }
+  ],
+  "T116": [
+    {
+      "seed": 101,
+      "answer": " 来源：https://www.cybertec.at/en/sql-tips/analyze-sql-query-explain-plan/\n\n逐字引用：\n「EXPLAIN ANALYZE actually runs the query and returns measured run time and row counts.」\n来源：https://www.cybertec.at/en/sql-tips/analyze-sql-query-explain-plan/\n逐字引用：\nReading plans top-down helps catch overestimates;\n成本值不是秒，而是规划单位。\n来源：https://www.cybertec.at/en/sql-tips/analyze-sql-query-explain-plan/ 根据你的要求，我已找到相关段落",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    {
+      "seed": 202,
+      "answer": " 材料：The EXPLAIN command without ANALYZE option is a simple way to read execution plans. The EXPLAIN ANALYZE command actually runs the query and returns measured run time and row counts. Reading plans top-down helps catch overestimates; cost values are not seconds but planner units. 答案: 材料\nThe EXPLAIN ANALYZE command actually runs the query and returns measured run time and row counts. 材料\nThe EXPLAIN ANALYZE command actually runs the query and returns measured run time and row counts. 材料\n「EXPLAIN ANALYZE actually runs the query",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    {
+      "seed": 303,
+      "answer": " 来源：https://www.postgresql.org/docs/12/sql-explain.html\n\n逐字引用上述材料中关于 'EXPLAIN ANALYZE' 的使用方法和返回信息的短语。\n来源：https://www.postgresql.org/docs/12/sql-explain.html\nEXPLAIN ANALYZE actually runs the query and returns measured run time and row counts. 对于 EXPLAIN ANALYZE 的返回信息：\n来源：https://www.postgresql.org/docs/12/sql-explain.html\n\n逐字引用上述材料中关于 'EXPLAIN ANALYZE' 的使用方法和返回信息的短",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    {
+      "seed": 404,
+      "answer": " 来源：https://www.postgresql.org/docs/12/sql-explain.html\n\n逐字引用：\n「EXPLAIN ANALYZE 实际上运行查询并返回测量的运行时间和行数。阅读计划从顶向下有助于发现高估；成本值不是秒，而是规划者单位。」 来源：https://www.postgresql.org/docs/12/sql-explain.html\n根据你提供的信息，答案如下：\n\n「EXPLAIN ANALYZE 实际上运行查询并返回测量的运行时间和行数。阅读计划从顶向下有助于发现高估；成本值不是秒，而是规划",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    {
+      "seed": 505,
+      "answer": " 来源：https://www.postgresql.org/docs/9.6/sql-explain-analyze.html\n\n逐字引用上述句子中的关键信息源段落：\nEXPLAIN ANALYZE actually runs the query and returns measured run time and row counts.\n成本值不是以秒为单位，而是计划单位。 解析：\n- **EXPLAIN ANALYZE actually runs the query and returns measured run time and row counts.** 来自源链接的直接摘录。\n- **成本值不是以秒为单位，而是计划单位。**\n   - 这句话直接从源链接中提取，对应于\"",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    }
+  ],
+  "T117": [
+    {
+      "seed": 101,
+      "answer": " 材料：A Foundation Model is a large language model that can be used for various downstream tasks. Sessions based on Foundation Models carry state across requests; this means the model remembers what it has learned during previous interactions and uses that information to make better decisions in future interactions. Guided generation, on the other hand, constrains tool calls to a JSON schema you provide. On-device inference never leaves the device.\nThe key difference between session-based inference and guided generation is that the former allows the model to maintain state across multiple requests, whereas the latter ensures that tool calls are consistent with a predefined JSON schema. Session-based inference also implies on",
+      "score": 0.667,
+      "is_pass": false,
+      "split": "dev"
+    },
+    {
+      "seed": 202,
+      "answer": " 源自：In the first phase, Foundation Models sessions carry state across requests; guided generation constrains tool calls to a JSON schema you provide. In the second phase, on-device inference never leaves the device. session-based 推理与 guided generation 分别对应源中的哪一部分？逐字引用。\n源中的相关段落是：「Foundation Models sessions carry state across requests; guided generation constrains tool calls to a JSON schema you provide. On-device inference never leaves the device.」\n逐字引用原文，session-based 推理对应的源中文本短语是：「Foundation Models sessions carry state across",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    {
+      "seed": 303,
+      "answer": "\nsource span: https://arxiv.org/pdf/2305.19381.pdf 根据提供的信息，答案是：\n「Foundation Models sessions carry state across requests; guided generation constrains tool calls to a JSON schema you provide.」\nsource span: https://arxiv.org/pdf/2305.19381.pdf",
+      "score": 0.667,
+      "is_pass": false,
+      "split": "dev"
+    },
+    {
+      "seed": 404,
+      "answer": " 材料：A session-based reasoning model is different from a guided generation model. A session-based reasoning model carries state across requests; guided generation models constrain tool calls to a JSON schema you provide. On-device inference never leaves the device. Session-based reasoning models are useful for long-term reasoning tasks, such as planning and understanding complex systems. In contrast, guided generation models are more suited for short-term tasks, such as writing emails or generating text that follows specific instructions. The key difference between these two approaches is that session-based reasoning models have access to a shared state across multiple tool invocations, while guided generation models do not. For example",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "dev"
+    },
+    {
+      "seed": 505,
+      "answer": "\nsource span: https://ai.google/research/papers/transformers-inference\n\n逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字引用：逐字",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "dev"
+    }
+  ],
+  "T118": [
+    {
+      "seed": 101,
+      "answer": " 材料：A matrix strategy is used to run the same job across a list of variables, including OS and language versions. To express job dependencies, use needs. Job dependencies are expressed as dependencies on variables, such as the operating system (OS) version or the programming language version. A matrix strategy runs the same job across a list of variables, including OS and language versions. Use needs: to express job dependencies so a job runs only after other jobs succeed. A matrix strategy runs the same job across a list of variables, including OS and language versions.\n\n源代码中提到的 job 依赖关系是通过什么来表达的",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    {
+      "seed": 202,
+      "answer": "\nsource span: 「Use needs: to express job dependencies so a job runs only after other jobs succeed. A matrix strategy runs the same job across a list of variables, including OS and language versions.」 解答：source span: 「Use needs: to express job dependencies so a job runs only after other jobs succeed. A matrix strategy runs the job across a list of variables, including OS and language versions.」\n根据您提供的信息，需要对句子进行一些调整以准确反映“job dependency”和“matrix strategy”的细节。具体来说，“matrix strategy runs the job across a list of variables, including OS and",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    {
+      "seed": 303,
+      "answer": "\nsource span: Use needs: to express job dependencies so a job runs only after other jobs succeed. A matrix strategy runs the same job across a list of variables, including OS and language versions.\nsource span: A matrix strategy runs the same job across a list of variables, including OS and language versions.\n\n逐字引用原文短语：\nA matrix strategy runs the same job across a list of variables, including OS and language versions. source span: A matrix strategy runs the same job across a list of variables, including OS and language versions.",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    {
+      "seed": 404,
+      "answer": " Source span: 12-16\n逐字引用：「A matrix strategy runs the same job across a list of variables, including OS and language versions.」 Source span: 12-16",
+      "score": 0.667,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    {
+      "seed": 505,
+      "answer": "\nsource span: Use needs: to express job dependencies so a job runs only after other jobs succeed. A matrix strategy runs the same job across a list of variables, including OS and language versions. 解析：这段话直接给出了矩阵策略（matrix strategy）是如何运行相同的工作（job）并使用不同变量（包括操作系统和语言版本）的。通过“matrix strategy runs the same job across a list of variables”这一句，可以直接找到与 job 依赖、矩阵策略相关的短语。 source span: A matrix strategy runs the same job across a list of variables, including OS and language versions.",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    }
+  ]
+}

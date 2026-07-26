@@ -1,0 +1,96 @@
+{
+  "round": 18,
+  "type": "CONTEXT_GROUNDING_RC2_REAL_GATE",
+  "model": "Qwen2.5-3B-Instruct",
+  "n_tasks": 6,
+  "K": 5,
+  "generation": "greedy max_new_tokens=256, same seed for both arms, candidate arm prepends grounding prefix",
+  "task_ids": [
+    "T103",
+    "T104",
+    "T105",
+    "T106",
+    "T107",
+    "T108"
+  ],
+  "task_prompts": {
+    "T103": "阅读两段材料，分别从材料中逐字引用 ToT 的搜索/中间表示描述，不能只做概括。\n材料 A：「Tree of Thoughts generalizes over Chain of Thought and enables exploration over coherent units of text (thoughts) that serve as intermediate steps toward problem solving.」\n材料 B：「ToT explores the space of reasoning steps by branching at each step via generating k candidates and can use BFS or DFS with evaluation and backtracking.」\n请给出两段原话引用并标注来自 A/B。",
+    "T104": "只根据下方摘要，逐字引用描述 AutoGen agent 属性与协作接口的原文短语；不要用自己的同义词替换。\n原文：「AutoGen agents are customizable, conversable, and can operate in various modes that employ combinations of LLMs, human inputs, and tools. Some configurations use a single model repeatedly, while others coordinate multiple agents to accomplish tasks.」",
+    "T105": "从以下摘要中逐字引用训练数据规模与数据来源两类信息；保留原文的数字、单位和限定词。\n原文：「Phi-3-mini has 3.8B parameters and is trained on 3.3T tokens. The recipe combines synthetic data derived from textbooks with curated web content; the evaluation section separately reports benchmark settings and should not be treated as training data.」",
+    "T106": "逐字引用 Qwen3 训练规模与多语言覆盖两个方面的关键数字与原文短语；不要把 R1-style reasoning budget 误用为 Qwen3 的描述。\n原文：「Qwen3-235B-A22B is trained on approximately 36T tokens covering 119 languages and dialects; the model supports a hybrid thinking mode controllable via /think and exposes a thinking budget parameter.」",
+    "T107": "逐字引用两段 HF 模型卡文本，精确比较 MATH 分数并给出胜者。\nLlama 3.1 405B 卡：「HumanEval 89.0 (0-shot pass@1); MATH 73.8 (0-shot CoT); GSM8K 96.8 (8-shot CoT)」\nLlama 3.3 70B 卡：「HumanEval 88.4; MATH 77.0 (0-shot CoT); MGSM 91.1 (0-shot)」\n问题：在 MATH 上哪个模型分数更高？高多少分？",
+    "T108": "逐字引用 GLM-4-9B 上下文窗口长度、训练 token 总量、与旧版本 GLM 相比的关键技术差异三类数字/短语。\n原文：「GLM-4-9B supports 128K-token context. Training is reported as 10T tokens with multi-stage curriculum. Compared to earlier GLM, GLM-4 switches to grouped-query attention and a more uniform layer design, dropping the PRepLN normalization that earlier GLMs used.」"
+  },
+  "candidate_prefix": "在回答之前，请先在源文本中**定位能直接支撑该问题答案的具体句子**，然后**逐字引用**该句或该短语（用引号标出），最后再给出综合表述。不要使用同义改写，不要省略关键数字或单位。",
+  "base_pass": 3,
+  "cand_pass": 4,
+  "discordant_base_pass_cand_fail": 0,
+  "discordant_base_fail_cand_pass": 1,
+  "mcnemar_p": 1.0,
+  "bootstrap_ci95_overall_delta": [
+    0.0,
+    0.542
+  ],
+  "delta_overall": 0.208,
+  "per_task_base_pass": {
+    "T103": true,
+    "T104": false,
+    "T105": false,
+    "T106": false,
+    "T107": true,
+    "T108": true
+  },
+  "per_task_cand_pass": {
+    "T103": true,
+    "T104": true,
+    "T105": false,
+    "T106": false,
+    "T107": true,
+    "T108": true
+  },
+  "per_split": {
+    "dev": {
+      "n": 2,
+      "base_pass": 1,
+      "cand_pass": 1,
+      "base_mean": 0.834,
+      "cand_mean": 0.834
+    },
+    "hidden": {
+      "n": 2,
+      "base_pass": 0,
+      "cand_pass": 1,
+      "base_mean": 0.125,
+      "cand_mean": 0.75
+    },
+    "fresh": {
+      "n": 2,
+      "base_pass": 2,
+      "cand_pass": 2,
+      "base_mean": 1.0,
+      "cand_mean": 1.0
+    }
+  },
+  "scores_base": {
+    "T103": 1.0,
+    "T104": 0.0,
+    "T105": 0.667,
+    "T106": 0.25,
+    "T107": 1.0,
+    "T108": 1.0
+  },
+  "scores_cand": {
+    "T103": 1.0,
+    "T104": 1.0,
+    "T105": 0.667,
+    "T106": 0.5,
+    "T107": 1.0,
+    "T108": 1.0
+  },
+  "promotion_rule": "PROMOTE requires base pass < cand pass AND McNemar p<0.05 AND CI95 lower bound > 0",
+  "decision": "HOLD",
+  "method_honesty": "Same model and same generation settings; only difference is the grounding prefix. K=1 here (single greedy generation per arm); a true K=5 with distinct seeds would require sampling at fixed temperature. Disclose as K=1 honest signal; PROMOTE remains uncertain without K>=5 sampling.",
+  "artifact_base": "F:\\test\\2026-07-24-08-21-57\\submissions_context_grounding_r18_base.json",
+  "artifact_cand": "F:\\test\\2026-07-24-08-21-57\\submissions_context_grounding_r18_cand.json",
+  "verified_hash": true
+}

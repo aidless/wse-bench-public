@@ -1,0 +1,36 @@
+{
+  "round": 18,
+  "type": "PATH_A_RETRY_PREREGISTRATION",
+  "created": "2026-07-24T21:10:00+08:00",
+  "objective": "测试 dev-only SFT + 低侵入 QLoRA 是否能在未见的 hidden/fresh WSE-Bench 任务上优于同一 base model",
+  "base_model": "Qwen2.5-3B-Instruct",
+  "base_model_local_snapshot": "F:\\hf_cache\\models\\Qwen--Qwen2.5-3B-Instruct\\snapshots\\master",
+  "training_data_rule": {
+    "source": "当前 WSE-Bench 原始提交中按当前 scorer 通过的回答",
+    "allowed_splits": ["dev"],
+    "forbidden_splits": ["hidden", "fresh"],
+    "answer_filter": "current eval_self_evolution.score_task + is_pass",
+    "dedup": "按 task_id + exact answer 去重；每题最多 3 个不同通过回答",
+    "prompt_rule": "只使用 manifest prompt，不加入 rubric/reference/hash",
+    "anti_leak": "训练数据任务 ID 与 hidden/fresh 评估任务不重叠"
+  },
+  "training_config": {
+    "quantization": "4-bit NF4 double quant",
+    "lora_r": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "learning_rate": 0.00002,
+    "epochs": 1,
+    "max_length": 1024,
+    "gradient_checkpointing": true,
+    "seed": 20260724,
+    "reason": "上一轮 30 对/r=16/3 epochs/2e-4 发生严重负迁移；本轮降低侵入并隔离 dev"
+  },
+  "evaluation_rule": {
+    "primary_split": ["hidden", "fresh"],
+    "same_scorer": true,
+    "same_base_comparison": true,
+    "promotion": "仅当 hidden/fresh 配对通过数提升、McNemar p<0.05、overall-delta bootstrap CI 下界>0 且无回归，才记 PROMOTE；否则 HOLD/REVERT",
+    "note": "本轮不是把训练集分数当泛化证据；若未达门，保留负结果"
+  }
+}

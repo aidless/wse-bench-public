@@ -1,0 +1,168 @@
+{
+  "round": 21,
+  "type": "CONTEXT_GROUNDING_RC_K10_REAL",
+  "model": "Qwen2.5-3B-Instruct",
+  "K": 10,
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    505,
+    606,
+    707,
+    808,
+    909,
+    1010
+  ],
+  "temperature": 0.7,
+  "n_tasks": 10,
+  "task_ids": [
+    "T103",
+    "T104",
+    "T105",
+    "T106",
+    "T107",
+    "T108",
+    "T109",
+    "T110",
+    "T111",
+    "T112"
+  ],
+  "candidate_prefix": "在回答之前，请先在源文本中**定位能直接支撑该问题答案的具体句子**，然后**逐字引用**该句或该短语（用引号标出），最后再给出综合表述。不要使用同义改写，不要省略关键数字或单位。",
+  "base_pass": 5,
+  "cand_pass": 5,
+  "per_seed_base_pass": [
+    4,
+    5,
+    5,
+    3,
+    5,
+    5,
+    3,
+    3,
+    4,
+    2
+  ],
+  "per_seed_cand_pass": [
+    7,
+    4,
+    5,
+    5,
+    5,
+    7,
+    5,
+    6,
+    6,
+    5
+  ],
+  "discordant_base_pass_cand_fail": 1,
+  "discordant_base_fail_cand_pass": 1,
+  "mcnemar_p": 1.0,
+  "bootstrap_ci95_overall_delta": [
+    0.067,
+    0.402
+  ],
+  "delta_overall": 0.223,
+  "per_task_base_pass": {
+    "T103": true,
+    "T104": true,
+    "T105": false,
+    "T106": false,
+    "T107": true,
+    "T108": true,
+    "T109": false,
+    "T110": false,
+    "T111": false,
+    "T112": true
+  },
+  "per_task_cand_pass": {
+    "T103": true,
+    "T104": true,
+    "T105": false,
+    "T106": false,
+    "T107": true,
+    "T108": true,
+    "T109": false,
+    "T110": true,
+    "T111": false,
+    "T112": false
+  },
+  "per_task_base_mean": {
+    "T103": 0.7,
+    "T104": 0.6,
+    "T105": 0.533,
+    "T106": 0.425,
+    "T107": 0.967,
+    "T108": 0.95,
+    "T109": 0.0,
+    "T110": 0.2,
+    "T111": 0.233,
+    "T112": 0.733
+  },
+  "per_task_cand_mean": {
+    "T103": 0.85,
+    "T104": 1.0,
+    "T105": 0.667,
+    "T106": 0.55,
+    "T107": 1.0,
+    "T108": 0.9,
+    "T109": 0.667,
+    "T110": 0.933,
+    "T111": 0.333,
+    "T112": 0.667
+  },
+  "per_split": {
+    "dev": {
+      "n": 4,
+      "base_pass": 1,
+      "cand_pass": 1,
+      "base_mean": 0.367,
+      "cand_mean": 0.629
+    },
+    "hidden": {
+      "n": 4,
+      "base_pass": 2,
+      "cand_pass": 2,
+      "base_mean": 0.49,
+      "cand_mean": 0.787
+    },
+    "fresh": {
+      "n": 2,
+      "base_pass": 2,
+      "cand_pass": 2,
+      "base_mean": 0.958,
+      "cand_mean": 0.95
+    }
+  },
+  "scores_base": {
+    "T103": 0.7,
+    "T104": 0.6,
+    "T105": 0.5334000000000001,
+    "T106": 0.425,
+    "T107": 0.9667,
+    "T108": 0.95,
+    "T109": 0.0,
+    "T110": 0.19990000000000002,
+    "T111": 0.23320000000000002,
+    "T112": 0.7333000000000001
+  },
+  "scores_cand": {
+    "T103": 0.85,
+    "T104": 1.0,
+    "T105": 0.667,
+    "T106": 0.55,
+    "T107": 1.0,
+    "T108": 0.9,
+    "T109": 0.6668000000000001,
+    "T110": 0.9333,
+    "T111": 0.33340000000000003,
+    "T112": 0.6666000000000001
+  },
+  "promotion_rule": "PROMOTE requires cand_pass > base_pass AND McNemar p<0.05 AND CI95 lower bound > 0",
+  "decision": "HOLD",
+  "method_honesty": "K=10 distinct seeds with do_sample=True (temperature=0.7, top_p=0.9) for both arms on the same base; per-task pass = majority of 10 (>=6/10).",
+  "artifact_base": "F:\\test\\2026-07-24-08-21-57\\submissions_context_grounding_r21_base_k10.json",
+  "artifact_cand": "F:\\test\\2026-07-24-08-21-57\\submissions_context_grounding_r21_cand_k10.json",
+  "verified_hash": true
+}

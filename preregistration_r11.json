@@ -1,0 +1,14 @@
+{
+  "round": 11,
+  "date": "2026-07-24",
+  "cohort": "2026Q3-struct",
+  "candidate": "schema_guard_v1",
+  "candidate_mechanism": "emit 前按 prompt 声明的 required 字段 / enum 选项 / max_words 上限 / 嵌套结构自校验 JSON，缺字段/错枚举/超长/拍平则修正后再输出；不读 rubric（模型不可见），只对齐 prompt 声明 schema。",
+  "hypothesis": "在结构化产出陷阱 cohort（A.max_words 超额 / B.缺失必填 / C.错枚举 / D.漏嵌套包装）上，baseline 直答因不在 emit 前按 prompt 声明 schema 自校验而系统性失分；schema_guard_v1 自校验可稳定修复这些缺陷，带来统计显著增益。",
+  "precheck_baseline_pass": "20/36 (0.556) on K=3 prescreen -> headroom confirmed",
+  "baseline_seeds": "fresh B1-B5, explicitly NOT reusing prescreen P1-P3 (防 selection-on-noise)",
+  "candidate_seeds": "fresh G1-G5",
+  "gate": "2-arm McNemar exact + bootstrap CI95, alpha=0.05 (single candidate, no Bonferroni)",
+  "decision_rule": "PROMOTE iff p<0.05 AND CI95_lower>0 AND cand_pass>base_pass; else HOLD",
+  "preregistered_before_results": true
+}

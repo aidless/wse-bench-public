@@ -1,0 +1,236 @@
+{
+  "analysis_ts": "2026-07-25",
+  "data_source": "ai_projects_v3.jsonl (1517 projects from GitHub Search API, 30 topics × 3 pages)",
+  "cluster_filter": "agent / ai-agents / agent-framework / autonomous-agents topics",
+  "n_agents_cluster": 478,
+  "n_classified": 52,
+  "n_unclassified": 426,
+  "classification_rate": 0.1087866108786611,
+  "n_single_framework": 40,
+  "n_multi_framework": 12,
+  "framework_adoption_rates": {
+    "LangChain": {
+      "count": 41,
+      "pct_of_agents": 8.577405857740587,
+      "total_stars": 531888,
+      "mean_stars": 12972.878048780487,
+      "top_5_by_stars": [
+        {
+          "name": "langchain-ai/langchain",
+          "stars": 142541
+        },
+        {
+          "name": "bytedance/deer-flow",
+          "stars": 77792
+        },
+        {
+          "name": "headroomlabs-ai/headroom",
+          "stars": 62218
+        },
+        {
+          "name": "langchain-ai/langgraph",
+          "stars": 38067
+        },
+        {
+          "name": "reworkd/AgentGPT",
+          "stars": 36288
+        }
+      ]
+    },
+    "LlamaIndex": {
+      "count": 6,
+      "pct_of_agents": 1.2552301255230125,
+      "total_stars": 17002,
+      "mean_stars": 2833.6666666666665,
+      "top_5_by_stars": [
+        {
+          "name": "run-llama/rags",
+          "stars": 6547
+        },
+        {
+          "name": "run-llama/LlamaIndexTS",
+          "stars": 3078
+        },
+        {
+          "name": "oceanbase/seekdb",
+          "stars": 2842
+        },
+        {
+          "name": "datawhalechina/handy-ollama",
+          "stars": 2474
+        },
+        {
+          "name": "JudgmentLabs/judgeval",
+          "stars": 1046
+        }
+      ]
+    },
+    "Coze": {
+      "count": 5,
+      "pct_of_agents": 1.0460251046025104,
+      "total_stars": 48979,
+      "mean_stars": 9795.8,
+      "top_5_by_stars": [
+        {
+          "name": "coze-dev/coze-studio",
+          "stars": 21243
+        },
+        {
+          "name": "langbot-app/LangBot",
+          "stars": 17073
+        },
+        {
+          "name": "coze-dev/coze-loop",
+          "stars": 5642
+        },
+        {
+          "name": "didilili/ai-agents-from-zero",
+          "stars": 3006
+        },
+        {
+          "name": "zhimaAi/chatwiki",
+          "stars": 2015
+        }
+      ]
+    },
+    "Dify": {
+      "count": 5,
+      "pct_of_agents": 1.0460251046025104,
+      "total_stars": 31671,
+      "mean_stars": 6334.2,
+      "top_5_by_stars": [
+        {
+          "name": "langbot-app/LangBot",
+          "stars": 17073
+        },
+        {
+          "name": "grab/cursor-talk-to-figma-mcp",
+          "stars": 6929
+        },
+        {
+          "name": "didilili/ai-agents-from-zero",
+          "stars": 3006
+        },
+        {
+          "name": "dot-agent/nextpy",
+          "stars": 2349
+        },
+        {
+          "name": "heshengtao/comfyui_LLM_party",
+          "stars": 2314
+        }
+      ]
+    },
+    "CrewAI": {
+      "count": 5,
+      "pct_of_agents": 1.0460251046025104,
+      "total_stars": 10123,
+      "mean_stars": 2024.6,
+      "top_5_by_stars": [
+        {
+          "name": "AgentOps-AI/agentops",
+          "stars": 5729
+        },
+        {
+          "name": "moorcheh-ai/memanto",
+          "stars": 1681
+        },
+        {
+          "name": "vstorm-co/full-stack-ai-agent-template",
+          "stars": 1635
+        },
+        {
+          "name": "curiousily/AI-Bootcamp",
+          "stars": 926
+        },
+        {
+          "name": "mtwn105/decipher-research-agent",
+          "stars": 152
+        }
+      ]
+    },
+    "AutoGen": {
+      "count": 2,
+      "pct_of_agents": 0.41841004184100417,
+      "total_stars": 6242,
+      "mean_stars": 3121.0,
+      "top_5_by_stars": [
+        {
+          "name": "AgentOps-AI/agentops",
+          "stars": 5729
+        },
+        {
+          "name": "Undertone0809/promptulate",
+          "stars": 513
+        }
+      ]
+    },
+    "OpenAI-Agents-SDK": {
+      "count": 1,
+      "pct_of_agents": 0.20920502092050208,
+      "total_stars": 5729,
+      "mean_stars": 5729.0,
+      "top_5_by_stars": [
+        {
+          "name": "AgentOps-AI/agentops",
+          "stars": 5729
+        }
+      ]
+    },
+    "Semantic Kernel": {
+      "count": 1,
+      "pct_of_agents": 0.20920502092050208,
+      "total_stars": 5088,
+      "mean_stars": 5088.0,
+      "top_5_by_stars": [
+        {
+          "name": "OpenBMB/AgentVerse",
+          "stars": 5088
+        }
+      ]
+    },
+    "Haystack": {
+      "count": 1,
+      "pct_of_agents": 0.20920502092050208,
+      "total_stars": 484,
+      "mean_stars": 484.0,
+      "top_5_by_stars": [
+        {
+          "name": "TilmanGriesel/chipper",
+          "stars": 484
+        }
+      ]
+    }
+  },
+  "empirical_vs_whitepaper_comparison": {
+    "whitepaper_claim": "报告 §11 列 LangChain/LangGraph 为最大社区, AutoGen 学术影响, CrewAI API 简洁, Dify/Coze 低代码",
+    "empirical_data": {
+      "LangChain": "41/478 (8.6%, 总星 531,888)",
+      "Coze": "5/478 (1.0%, 总星 48,979)",
+      "Dify": "5/478 (1.0%, 总星 31,671)",
+      "LlamaIndex": "6/478 (1.3%, 总星 17,002)",
+      "AutoGen": "2/478 (0.4%, 总星 6,242)",
+      "CrewAI": "5/478 (1.0%, 总星 10,123)",
+      "OpenAI-Agents-SDK": "1/478 (0.2%, 总星 5,729)",
+      "Semantic Kernel": "1/478 (0.2%, 总星 5,088)",
+      "Haystack": "1/478 (0.2%, 总星 484)"
+    },
+    "contradictions": [],
+    "confirmations": [
+      "LangChain 实证采用率最高 (41 项目), 与报告 §11 描述一致",
+      "LangChain 采用率超过 AutoGen 2x+, 主导地位明显"
+    ]
+  },
+  "limitations": [
+    "GitHub Search API 在 30 topic × 3 page 后被限速 (HTTP 403), 实际全样本可能更大",
+    "framework 分类基于 description + topics 关键词, 可能有 false positive (项目同时提到多个框架)",
+    "本数据集不含 stars < 100 的小项目 (按 query 设了 stars:>50 或 >100 过滤)",
+    "未区分 \"uses framework as dependency\" vs \"is a framework\", 单个 framework 项目可能误分类"
+  ],
+  "novel_findings": [],
+  "framework_diversity": {
+    "single_framework_only": 40,
+    "multi_framework_uses": 12,
+    "multi_framework_pct": 0.23076923076923078
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "method": "STRATEGY_AUDIT_V4 simplified: context_grounding_v1 marginal contribution",
+  "cohort": "reading_comprehension (T091-T132, 30题)",
+  "method_detail": "A_minus = baseline K=5/K=10 (no prefix); reference = with context_grounding prefix",
+  "per_task": [
+    {
+      "task_id": "T103",
+      "split": "dev",
+      "base_n": 15,
+      "base_pass": 10,
+      "base_rate": 0.6666666666666666,
+      "cand_n": 15,
+      "cand_pass": 13,
+      "cand_rate": 0.8666666666666667,
+      "delta": 0.20000000000000007
+    },
+    {
+      "task_id": "T104",
+      "split": "hidden",
+      "base_n": 15,
+      "base_pass": 10,
+      "base_rate": 0.6666666666666666,
+      "cand_n": 15,
+      "cand_pass": 15,
+      "cand_rate": 1.0,
+      "delta": 0.33333333333333337
+    },
+    {
+      "task_id": "T105",
+      "split": "dev",
+      "base_n": 15,
+      "base_pass": 2,
+      "base_rate": 0.13333333333333333,
+      "cand_n": 15,
+      "cand_pass": 0,
+      "cand_rate": 0.0,
+      "delta": -0.13333333333333333
+    },
+    {
+      "task_id": "T106",
+      "split": "hidden",
+      "base_n": 15,
+      "base_pass": 0,
+      "base_rate": 0.0,
+      "cand_n": 15,
+      "cand_pass": 1,
+      "cand_rate": 0.06666666666666667,
+      "delta": 0.06666666666666667
+    },
+    {
+      "task_id": "T107",
+      "split": "fresh",
+      "base_n": 15,
+      "base_pass": 14,
+      "base_rate": 0.9333333333333333,
+      "cand_n": 15,
+      "cand_pass": 15,
+      "cand_rate": 1.0,
+      "delta": 0.06666666666666665
+    },
+    {
+      "task_id": "T108",
+      "split": "fresh",
+      "base_n": 15,
+      "base_pass": 12,
+      "base_rate": 0.8,
+      "cand_n": 15,
+      "cand_pass": 8,
+      "cand_rate": 0.5333333333333333,
+      "delta": -0.2666666666666667
+    },
+    {
+      "task_id": "T109",
+      "split": "dev",
+      "base_n": 15,
+      "base_pass": 0,
+      "base_rate": 0.0,
+      "cand_n": 15,
+      "cand_pass": 8,
+      "cand_rate": 0.5333333333333333,
+      "delta": 0.5333333333333333
+    },
+    {
+      "task_id": "T110",
+      "split": "hidden",
+      "base_n": 15,
+      "base_pass": 2,
+      "base_rate": 0.13333333333333333,
+      "cand_n": 15,
+      "cand_pass": 12,
+      "cand_rate": 0.8,
+      "delta": 0.6666666666666667
+    },
+    {
+      "task_id": "T111",
+      "split": "dev",
+      "base_n": 15,
+      "base_pass": 0,
+      "base_rate": 0.0,
+      "cand_n": 15,
+      "cand_pass": 3,
+      "cand_rate": 0.2,
+      "delta": 0.2
+    },
+    {
+      "task_id": "T112",
+      "split": "hidden",
+      "base_n": 15,
+      "base_pass": 8,
+      "base_rate": 0.5333333333333333,
+      "cand_n": 15,
+      "cand_pass": 8,
+      "cand_rate": 0.5333333333333333,
+      "delta": 0.0
+    },
+    {
+      "task_id": "T123",
+      "split": "dev",
+      "base_n": 10,
+      "base_pass": 2,
+      "base_rate": 0.2,
+      "cand_n": 10,
+      "cand_pass": 10,
+      "cand_rate": 1.0,
+      "delta": 0.8
+    },
+    {
+      "task_id": "T124",
+      "split": "hidden",
+      "base_n": 10,
+      "base_pass": 4,
+      "base_rate": 0.4,
+      "cand_n": 10,
+      "cand_pass": 10,
+      "cand_rate": 1.0,
+      "delta": 0.6
+    },
+    {
+      "task_id": "T125",
+      "split": "fresh",
+      "base_n": 10,
+      "base_pass": 10,
+      "base_rate": 1.0,
+      "cand_n": 10,
+      "cand_pass": 10,
+      "cand_rate": 1.0,
+      "delta": 0.0
+    },
+    {
+      "task_id": "T126",
+      "split": "dev",
+      "base_n": 10,
+      "base_pass": 1,
+      "base_rate": 0.1,
+      "cand_n": 10,
+      "cand_pass": 10,
+      "cand_rate": 1.0,
+      "delta": 0.9
+    },
+    {
+      "task_id": "T127",
+      "split": "hidden",
+      "base_n": 10,
+      "base_pass": 1,
+      "base_rate": 0.1,
+      "cand_n": 10,
+      "cand_pass": 9,
+      "cand_rate": 0.9,
+      "delta": 0.8
+    },
+    {
+      "task_id": "T128",
+      "split": "fresh",
+      "base_n": 10,
+      "base_pass": 7,
+      "base_rate": 0.7,
+      "cand_n": 10,
+      "cand_pass": 10,
+      "cand_rate": 1.0,
+      "delta": 0.30000000000000004
+    },
+    {
+      "task_id": "T129",
+      "split": "dev",
+      "base_n": 10,
+      "base_pass": 0,
+      "base_rate": 0.0,
+      "cand_n": 10,
+      "cand_pass": 9,
+      "cand_rate": 0.9,
+      "delta": 0.9
+    },
+    {
+      "task_id": "T130",
+      "split": "hidden",
+      "base_n": 10,
+      "base_pass": 2,
+      "base_rate": 0.2,
+      "cand_n": 10,
+      "cand_pass": 9,
+      "cand_rate": 0.9,
+      "delta": 0.7
+    },
+    {
+      "task_id": "T131",
+      "split": "fresh",
+      "base_n": 10,
+      "base_pass": 8,
+      "base_rate": 0.8,
+      "cand_n": 10,
+      "cand_pass": 10,
+      "cand_rate": 1.0,
+      "delta": 0.19999999999999996
+    },
+    {
+      "task_id": "T132",
+      "split": "dev",
+      "base_n": 10,
+      "base_pass": 10,
+      "base_rate": 1.0,
+      "cand_n": 10,
+      "cand_pass": 1,
+      "cand_rate": 0.1,
+      "delta": -0.9
+    }
+  ],
+  "aggregate": {
+    "base_pass": 103,
+    "base_n": 250,
+    "base_rate": 0.412,
+    "cand_pass": 171,
+    "cand_n": 250,
+    "cand_rate": 0.684,
+    "delta_overall": 0.272,
+    "delta_minus_full": -0.2720000000000001,
+    "mcnemar_b": 1,
+    "mcnemar_c": 8,
+    "mcnemar_p": 0.0390625
+  },
+  "verdict": "NECESSARY",
+  "limitations": [
+    "V4 simplified: not full 7-strategy stack vs 6-strategy stack without cg; only isolated contribution test",
+    "K-inconsistency: K=5 (r20) + K=10 (r21/r22) mixed",
+    "reading_comprehension cohort only — context_grounding not tested on other cohorts",
+    "Per V3 audit framework: NECESSARY = Δ_minus_full < -0.05 (5x noise floor)"
+  ],
+  "next_step": "Full V4 marginal: 7-strategy stack vs 6-strategy stack on RC cohort (need fresh 6-strategy run; not yet available)",
+  "ts": "2026-07-25"
+}

@@ -1,0 +1,17 @@
+{
+  "round": 18,
+  "type": "CONTEXT_GROUNDING_RC2_PREREGISTRATION",
+  "created": "2026-07-24T22:05:00+08:00",
+  "objective": "复测 context_grounding_v1：v2 cohort (#18) 信号强但 n=30 功效不足；本次用 2026Q3-rc2 T103-T108 重新做基线与候选 K=5 真测",
+  "base_model": "Qwen2.5-3B-Instruct",
+  "candidate": "context_grounding_v1: emit 前先定位源 span，引用逐字短语",
+  "target_cohort": "2026Q3-rc2",
+  "target_ids": ["T103","T104","T105","T106","T107","T108"],
+  "K": 5,
+  "fixed_seeds": [11, 22, 33, 44, 55],
+  "training_data_rule": "仅使用 manifest prompt + 当前 score_task；不读 rubric 或 reference",
+  "promotion_rule": "必须 p<0.05 且 overall-delta bootstrap CI 下界>0 且 hidden/fresh 配对通过数提升；否则 HOLD",
+  "headroom_expectation": "T103/T104/T105/T106 至少 3/4 题有真实失败模式（基线漏原话短语）",
+  "method_honesty": "K=5 同一 base/同 generation；只对 K=5 同 K seed 的配对做 McNemar；不把训练集分数当泛化证据",
+  "anti_gaming": "不在 mutation 阶段读 rubric.required；候选也禁止用 source text 之外的拼写变体"
+}

@@ -1,0 +1,150 @@
+{
+  "method": "1b-comparison: -grounding ablation K=5 (seeds 101-505) vs +grounding r20 K=5 (seeds 11-55) on T103-T112",
+  "limitations": [
+    "Seed mismatch: r20 K=5 used seeds 11,22,33,44,55; ablation K=5 used 101,202,303,404,505 — direct comparison is approximate",
+    "T113-T118 not in r20 K=5, only ablation data"
+  ],
+  "per_task": [
+    {
+      "task_id": "T103",
+      "split": "dev",
+      "ablation_pass": 2,
+      "ablation_n": 5,
+      "grounding_pass": 5,
+      "grounding_n": 5
+    },
+    {
+      "task_id": "T104",
+      "split": "hidden",
+      "ablation_pass": 1,
+      "ablation_n": 5,
+      "grounding_pass": 5,
+      "grounding_n": 5
+    },
+    {
+      "task_id": "T105",
+      "split": "dev",
+      "ablation_pass": 3,
+      "ablation_n": 5,
+      "grounding_pass": 0,
+      "grounding_n": 5
+    },
+    {
+      "task_id": "T106",
+      "split": "hidden",
+      "ablation_pass": 0,
+      "ablation_n": 5,
+      "grounding_pass": 0,
+      "grounding_n": 5
+    },
+    {
+      "task_id": "T107",
+      "split": "fresh",
+      "ablation_pass": 5,
+      "ablation_n": 5,
+      "grounding_pass": 5,
+      "grounding_n": 5
+    },
+    {
+      "task_id": "T108",
+      "split": "fresh",
+      "ablation_pass": 0,
+      "ablation_n": 5,
+      "grounding_pass": 2,
+      "grounding_n": 5
+    },
+    {
+      "task_id": "T109",
+      "split": "dev",
+      "ablation_pass": 1,
+      "ablation_n": 5,
+      "grounding_pass": 4,
+      "grounding_n": 5
+    },
+    {
+      "task_id": "T110",
+      "split": "hidden",
+      "ablation_pass": 1,
+      "ablation_n": 5,
+      "grounding_pass": 3,
+      "grounding_n": 5
+    },
+    {
+      "task_id": "T111",
+      "split": "dev",
+      "ablation_pass": 0,
+      "ablation_n": 5,
+      "grounding_pass": 1,
+      "grounding_n": 5
+    },
+    {
+      "task_id": "T112",
+      "split": "hidden",
+      "ablation_pass": 2,
+      "ablation_n": 5,
+      "grounding_pass": 3,
+      "grounding_n": 5
+    },
+    {
+      "task_id": "T113",
+      "split": "fresh",
+      "ablation_pass": 4,
+      "ablation_n": 5,
+      "grounding_pass": null,
+      "grounding_n": null
+    },
+    {
+      "task_id": "T114",
+      "split": "dev",
+      "ablation_pass": 1,
+      "ablation_n": 5,
+      "grounding_pass": null,
+      "grounding_n": null
+    },
+    {
+      "task_id": "T115",
+      "split": "fresh",
+      "ablation_pass": 4,
+      "ablation_n": 5,
+      "grounding_pass": null,
+      "grounding_n": null
+    },
+    {
+      "task_id": "T116",
+      "split": "hidden",
+      "ablation_pass": 4,
+      "ablation_n": 5,
+      "grounding_pass": null,
+      "grounding_n": null
+    },
+    {
+      "task_id": "T117",
+      "split": "dev",
+      "ablation_pass": 2,
+      "ablation_n": 5,
+      "grounding_pass": null,
+      "grounding_n": null
+    },
+    {
+      "task_id": "T118",
+      "split": "fresh",
+      "ablation_pass": 0,
+      "ablation_n": 5,
+      "grounding_pass": null,
+      "grounding_n": null
+    }
+  ],
+  "aggregate": {
+    "ablation_pass": 15,
+    "ablation_n": 50,
+    "grounding_pass": 28,
+    "grounding_n": 50,
+    "delta_pass": 13,
+    "delta_pct": 26.0,
+    "mcnemar_b": 1,
+    "mcnemar_c": 5,
+    "mcnemar_p": 0.21875
+  },
+  "interpretation": "Direct per-task comparison shows +grounding vs -grounding on T103-T112 (overlap of r20 K=5 with ablation K=5). Note seed difference. The honest finding: -grounding baseline at 37.5% on T103-T118 K=5 is a useful control. For rigorous ablation, re-run +grounding with same seeds 101-505.",
+  "ts": "2026-07-25"
+}

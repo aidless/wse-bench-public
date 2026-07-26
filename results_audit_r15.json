@@ -1,0 +1,37 @@
+{
+  "selective_retrieval": {
+    "target_cohort_size": 23,
+    "minus_mean": 0.688,
+    "full_mean": 0.964,
+    "delta_minus_minus_full": -0.275,
+    "verdict": "NECESSARY"
+  },
+  "tool_arith": {
+    "target_cohort_size": 14,
+    "minus_mean": 0.214,
+    "full_mean": 1.0,
+    "delta_minus_minus_full": -0.786,
+    "verdict": "NECESSARY"
+  },
+  "schema_guard": {
+    "target_cohort_size": 12,
+    "minus_mean": 0.75,
+    "full_mean": 1.0,
+    "delta_minus_minus_full": -0.25,
+    "verdict": "NECESSARY"
+  },
+  "self_verify": {
+    "target_cohort_size": 12,
+    "minus_mean": 0.667,
+    "full_mean": 1.0,
+    "delta_minus_minus_full": -0.333,
+    "verdict": "NECESSARY"
+  },
+  "citation_check": {
+    "target_cohort_size": 6,
+    "minus_mean": 0.683,
+    "full_mean": 1.0,
+    "delta_minus_minus_full": -0.317,
+    "verdict": "NECESSARY"
+  }
+}

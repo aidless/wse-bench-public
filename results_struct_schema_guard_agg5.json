@@ -1,0 +1,27 @@
+{
+  "scores": {
+    "T061": 1.0,
+    "T062": 1.0,
+    "T063": 1.0,
+    "T064": 1.0,
+    "T065": 1.0,
+    "T066": 1.0,
+    "T067": 1.0,
+    "T068": 1.0,
+    "T069": 1.0,
+    "T070": 1.0,
+    "T071": 1.0,
+    "T072": 1.0
+  },
+  "split": {
+    "dev": 1.0,
+    "hidden": 1.0,
+    "fresh": 1.0
+  },
+  "overall": 1.0,
+  "verified": true,
+  "seeds": "2026Q3-struct schema_guard_v1 G1-G5",
+  "aggregation": "per-question median",
+  "manifest_tasks": 12,
+  "note": "轮11 structured_output cohort schema_guard_v1 K=5 逐题中位数聚合。"
+}

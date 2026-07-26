@@ -1,0 +1,367 @@
+{
+  "method": "Pillar A v3: 聚合 Qwen2.5-3B K=10 已有 raw submissions (T103-T132 30题, r20-r22 跨时段)",
+  "n_tasks": 20,
+  "per_task": {
+    "T103": {
+      "base": {
+        "n": 15,
+        "pass": 10,
+        "pass_rate": 0.6666666666666666,
+        "split": "dev",
+        "mean_score": 0.6666666666666666
+      },
+      "cand": {
+        "n": 15,
+        "pass": 13,
+        "pass_rate": 0.8666666666666667,
+        "split": "dev",
+        "mean_score": 0.9
+      }
+    },
+    "T104": {
+      "base": {
+        "n": 15,
+        "pass": 10,
+        "pass_rate": 0.6666666666666666,
+        "split": "hidden",
+        "mean_score": 0.6666666666666666
+      },
+      "cand": {
+        "n": 15,
+        "pass": 15,
+        "pass_rate": 1.0,
+        "split": "hidden",
+        "mean_score": 1.0
+      }
+    },
+    "T105": {
+      "base": {
+        "n": 15,
+        "pass": 2,
+        "pass_rate": 0.13333333333333333,
+        "split": "dev",
+        "mean_score": 0.489
+      },
+      "cand": {
+        "n": 15,
+        "pass": 0,
+        "pass_rate": 0.0,
+        "split": "dev",
+        "mean_score": 0.667
+      }
+    },
+    "T106": {
+      "base": {
+        "n": 15,
+        "pass": 0,
+        "pass_rate": 0.0,
+        "split": "hidden",
+        "mean_score": 0.48333333333333334
+      },
+      "cand": {
+        "n": 15,
+        "pass": 1,
+        "pass_rate": 0.06666666666666667,
+        "split": "hidden",
+        "mean_score": 0.5333333333333333
+      }
+    },
+    "T107": {
+      "base": {
+        "n": 15,
+        "pass": 14,
+        "pass_rate": 0.9333333333333333,
+        "split": "fresh",
+        "mean_score": 0.9778
+      },
+      "cand": {
+        "n": 15,
+        "pass": 15,
+        "pass_rate": 1.0,
+        "split": "fresh",
+        "mean_score": 1.0
+      }
+    },
+    "T108": {
+      "base": {
+        "n": 15,
+        "pass": 12,
+        "pass_rate": 0.8,
+        "split": "fresh",
+        "mean_score": 0.95
+      },
+      "cand": {
+        "n": 15,
+        "pass": 8,
+        "pass_rate": 0.5333333333333333,
+        "split": "fresh",
+        "mean_score": 0.85
+      }
+    },
+    "T109": {
+      "base": {
+        "n": 15,
+        "pass": 0,
+        "pass_rate": 0.0,
+        "split": "dev",
+        "mean_score": 0.0
+      },
+      "cand": {
+        "n": 15,
+        "pass": 8,
+        "pass_rate": 0.5333333333333333,
+        "split": "dev",
+        "mean_score": 0.7556666666666667
+      }
+    },
+    "T110": {
+      "base": {
+        "n": 15,
+        "pass": 2,
+        "pass_rate": 0.13333333333333333,
+        "split": "hidden",
+        "mean_score": 0.24433333333333335
+      },
+      "cand": {
+        "n": 15,
+        "pass": 12,
+        "pass_rate": 0.8,
+        "split": "hidden",
+        "mean_score": 0.8666
+      }
+    },
+    "T111": {
+      "base": {
+        "n": 15,
+        "pass": 0,
+        "pass_rate": 0.0,
+        "split": "dev",
+        "mean_score": 0.2220666666666667
+      },
+      "cand": {
+        "n": 15,
+        "pass": 3,
+        "pass_rate": 0.2,
+        "split": "dev",
+        "mean_score": 0.4000666666666667
+      }
+    },
+    "T112": {
+      "base": {
+        "n": 15,
+        "pass": 8,
+        "pass_rate": 0.5333333333333333,
+        "split": "hidden",
+        "mean_score": 0.6888000000000001
+      },
+      "cand": {
+        "n": 15,
+        "pass": 8,
+        "pass_rate": 0.5333333333333333,
+        "split": "hidden",
+        "mean_score": 0.7333333333333333
+      }
+    },
+    "T123": {
+      "base": {
+        "n": 10,
+        "pass": 2,
+        "pass_rate": 0.2,
+        "split": "dev",
+        "mean_score": 0.7336
+      },
+      "cand": {
+        "n": 10,
+        "pass": 10,
+        "pass_rate": 1.0,
+        "split": "dev",
+        "mean_score": 1.0
+      }
+    },
+    "T124": {
+      "base": {
+        "n": 10,
+        "pass": 4,
+        "pass_rate": 0.4,
+        "split": "hidden",
+        "mean_score": 0.4667
+      },
+      "cand": {
+        "n": 10,
+        "pass": 10,
+        "pass_rate": 1.0,
+        "split": "hidden",
+        "mean_score": 1.0
+      }
+    },
+    "T125": {
+      "base": {
+        "n": 10,
+        "pass": 10,
+        "pass_rate": 1.0,
+        "split": "fresh",
+        "mean_score": 1.0
+      },
+      "cand": {
+        "n": 10,
+        "pass": 10,
+        "pass_rate": 1.0,
+        "split": "fresh",
+        "mean_score": 1.0
+      }
+    },
+    "T126": {
+      "base": {
+        "n": 10,
+        "pass": 1,
+        "pass_rate": 0.1,
+        "split": "dev",
+        "mean_score": 0.1
+      },
+      "cand": {
+        "n": 10,
+        "pass": 10,
+        "pass_rate": 1.0,
+        "split": "dev",
+        "mean_score": 1.0
+      }
+    },
+    "T127": {
+      "base": {
+        "n": 10,
+        "pass": 1,
+        "pass_rate": 0.1,
+        "split": "hidden",
+        "mean_score": 0.15
+      },
+      "cand": {
+        "n": 10,
+        "pass": 9,
+        "pass_rate": 0.9,
+        "split": "hidden",
+        "mean_score": 0.95
+      }
+    },
+    "T128": {
+      "base": {
+        "n": 10,
+        "pass": 7,
+        "pass_rate": 0.7,
+        "split": "fresh",
+        "mean_score": 0.7
+      },
+      "cand": {
+        "n": 10,
+        "pass": 10,
+        "pass_rate": 1.0,
+        "split": "fresh",
+        "mean_score": 1.0
+      }
+    },
+    "T129": {
+      "base": {
+        "n": 10,
+        "pass": 0,
+        "pass_rate": 0.0,
+        "split": "dev",
+        "mean_score": 0.0
+      },
+      "cand": {
+        "n": 10,
+        "pass": 9,
+        "pass_rate": 0.9,
+        "split": "dev",
+        "mean_score": 0.9
+      }
+    },
+    "T130": {
+      "base": {
+        "n": 10,
+        "pass": 2,
+        "pass_rate": 0.2,
+        "split": "hidden",
+        "mean_score": 0.2
+      },
+      "cand": {
+        "n": 10,
+        "pass": 9,
+        "pass_rate": 0.9,
+        "split": "hidden",
+        "mean_score": 0.95
+      }
+    },
+    "T131": {
+      "base": {
+        "n": 10,
+        "pass": 8,
+        "pass_rate": 0.8,
+        "split": "fresh",
+        "mean_score": 0.9
+      },
+      "cand": {
+        "n": 10,
+        "pass": 10,
+        "pass_rate": 1.0,
+        "split": "fresh",
+        "mean_score": 1.0
+      }
+    },
+    "T132": {
+      "base": {
+        "n": 10,
+        "pass": 10,
+        "pass_rate": 1.0,
+        "split": "dev",
+        "mean_score": 1.0
+      },
+      "cand": {
+        "n": 10,
+        "pass": 1,
+        "pass_rate": 0.1,
+        "split": "dev",
+        "mean_score": 0.55
+      }
+    }
+  },
+  "summary_by_split": {
+    "base": {
+      "dev": {
+        "n_tasks": 8,
+        "pass": 25,
+        "n_seeds": 100
+      },
+      "hidden": {
+        "n_tasks": 7,
+        "pass": 27,
+        "n_seeds": 90
+      },
+      "fresh": {
+        "n_tasks": 5,
+        "pass": 51,
+        "n_seeds": 60
+      }
+    },
+    "cand": {
+      "dev": {
+        "n_tasks": 8,
+        "pass": 54,
+        "n_seeds": 100
+      },
+      "hidden": {
+        "n_tasks": 7,
+        "pass": 64,
+        "n_seeds": 90
+      },
+      "fresh": {
+        "n_tasks": 5,
+        "pass": 53,
+        "n_seeds": 60
+      }
+    }
+  },
+  "limitations": [
+    "仅 Qwen2.5-3B 一个 base model",
+    "T103-T122 含 r20 (K=5) + r21 (K=10) + r22 (RC4 K=10) 跨不同时段",
+    "K 不统一 (T103-T112 主要是 K=5 或 K=10; T123-T132 全部 K=10)"
+  ]
+}

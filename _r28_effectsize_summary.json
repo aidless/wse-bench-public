@@ -1,0 +1,80 @@
+{
+  "verified_33": {
+    "b": 14,
+    "c": 29,
+    "k": 43,
+    "N_total": 80,
+    "p": 0.03153949735315109,
+    "match_ledger": true
+  },
+  "effect_sizes": [
+    {
+      "name": "#33 R27 strict ablation (T103-T118, K=5 same-seed)",
+      "b": 14,
+      "c": 29,
+      "k": 43,
+      "p": 0.03153949735315109,
+      "g": -0.3488372093023256,
+      "orr": 2.0714285714285716,
+      "or_lo": 1.0599877999414329,
+      "or_hi": 4.242113512729946,
+      "d": 0.1875,
+      "dlo": 0.03218565141945193,
+      "dhi": 0.34281434858054805,
+      "clean": true
+    },
+    {
+      "name": "#32 RC_V4 strict McNemar (30-task RC cohort, K=5+10 mixed)",
+      "b": 1,
+      "c": 8,
+      "k": 9,
+      "p": 0.0390625,
+      "g": -0.7777777777777778,
+      "orr": 8.0,
+      "or_lo": 1.0725538300962103,
+      "or_hi": 354.98124627098167,
+      "d": 0.23333333333333334,
+      "dlo": 0.05600818732350368,
+      "dhi": 0.410658479343163,
+      "clean": false
+    }
+  ],
+  "power": {
+    "post_hoc_33": 0.5902,
+    "q_half_33": 0.5900372213593411,
+    "note_32": "indeterminate (K-inconsistent); needs same-K replication"
+  },
+  "v4_noise_floor": 0.05,
+  "v4_margins": [
+    {
+      "strategy": "selective_retrieval_v1",
+      "drop": 0.276,
+      "margin": 5.5
+    },
+    {
+      "strategy": "tool_arith_v1",
+      "drop": 0.786,
+      "margin": 15.7
+    },
+    {
+      "strategy": "schema_guard_v1",
+      "drop": 0.25,
+      "margin": 5.0
+    },
+    {
+      "strategy": "self_verify_v1",
+      "drop": 0.333,
+      "margin": 6.7
+    },
+    {
+      "strategy": "citation_check_v1",
+      "drop": 0.317,
+      "margin": 6.3
+    },
+    {
+      "strategy": "verifier_v1",
+      "drop": 0.933,
+      "margin": 18.7
+    }
+  ]
+}

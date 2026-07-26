@@ -1,0 +1,21 @@
+{
+  "scores": {
+    "T091": 1.0,
+    "T092": 1.0,
+    "T093": 1.0,
+    "T094": 0.333,
+    "T095": 1.0,
+    "T096": 1.0
+  },
+  "split": {
+    "dev": 0.666,
+    "hidden": 1.0,
+    "fresh": 1.0
+  },
+  "overall": 0.889,
+  "verified": true,
+  "seeds": "2026Q3-rc baseline B1-B5（全新 seed，不复用预检 P1-P3）",
+  "aggregation": "per-question median",
+  "manifest_tasks": 6,
+  "note": "轮16 reading_comprehension cohort 直答基线 K=5 逐题中位数聚合。"
+}

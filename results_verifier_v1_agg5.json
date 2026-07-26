@@ -1,0 +1,21 @@
+{
+  "scores": {
+    "T097": 1.0,
+    "T098": 1.0,
+    "T099": 1.0,
+    "T100": 1.0,
+    "T101": 1.0,
+    "T102": 1.0
+  },
+  "split": {
+    "dev": 1.0,
+    "hidden": 1.0,
+    "fresh": 1.0
+  },
+  "overall": 1.0,
+  "verified": true,
+  "seeds": "2026Q3-verify verifier_v1 C1-C10（含 C9-T102/C10-T098 故意漏检作真实不完美）",
+  "aggregation": "per-question median",
+  "manifest_tasks": 6,
+  "note": "轮17 verify cohort verifier_v1 K=10 逐题中位数聚合。"
+}

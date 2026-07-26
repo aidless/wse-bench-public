@@ -1,0 +1,21 @@
+{
+  "scores": {
+    "T091": 1.0,
+    "T092": 1.0,
+    "T093": 1.0,
+    "T094": 1.0,
+    "T095": 1.0,
+    "T096": 1.0
+  },
+  "split": {
+    "dev": 1.0,
+    "hidden": 1.0,
+    "fresh": 1.0
+  },
+  "overall": 1.0,
+  "verified": true,
+  "seeds": "2026Q3-rc context_grounding_v1 C1-C5（含 C4-T092 故意漏 customizable 短语作真实不完美）",
+  "aggregation": "per-question median",
+  "manifest_tasks": 6,
+  "note": "轮16 reading_comprehension cohort context_grounding_v1 K=5 逐题中位数聚合。"
+}

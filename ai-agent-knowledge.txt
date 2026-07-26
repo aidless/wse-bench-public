@@ -1,0 +1,2303 @@
+RESEARCH REPORT · 2025-2026
+AI Agent 技术全景报告
+从基础概念、核心架构、开发框架到应用趋势的系统性知识梳理,覆盖 2025-2026 年最新进展
+发布日期 2026-07-25
+30 个知识模块
+50+ 引用来源
+目录
+什么是 AI Agent
+核心架构组件
+Agent 类型分类
+推理范式
+记忆机制
+开发框架对比
+工具调用协议
+应用场景与案例
+评估基准
+安全与对齐
+2025-2026 里程碑
+未来方向
+规划算法深度
+Agentic RAG
+高级设计模式
+Prompt 工程实践
+工程化架构
+性能与成本优化
+测试与评估体系
+落地陷阱与实战
+多模态 Agent
+Agent 经济学
+伦理与治理
+芯片与边缘部署
+知识图谱集成
+科学研究应用
+游戏与仿真
+创作与内容生成
+用户体验设计
+协议标准与生态
+01
+什么是 AI Agent
+核心定义
+Google 官方定义(2024 白皮书)
+:生成式 AI Agent 是一个
+应用程序
+,通过观察周围世界并使用可用的工具来实现其目标。Agent 具有自主能力(autonomous),只要提供了合适的目标,它们就能独立行动,无需人类干预;即使是模糊的人类指令,Agent 也可以推理出下一步行动并最终实现目标
+[1]
+。
+Anthropic 定义
+:LLM 动态指导自身流程和工具使用,保持对完成任务方式的控制。相比之下,通过预定义代码路径协调工具的系统应称之为
+Workflows
+,两者统称"Agentic System"
+[2]
+。
+学术定义(复旦大学综述)
+:自主智能体通过
+感知环境、规划解决方案和执行动作
+来完成设定的目标任务,是实现通用人工智能(AGI)的有前景的技术途径
+[3]
+。
+Agent 与传统 AI 模型的区别
+Google 白皮书给出的对比最具权威性
+[1]
+:
+维度
+模型 (Model)
+Agent
+知识范围
+仅限于训练数据
+通过工具连接外部系统,实时动态扩展知识
+状态与记忆
+无状态,每次推理独立
+有状态,自动管理会话历史,自主多轮推理
+原生工具
+无
+有,自带工具支持能力
+原生逻辑层
+无,需借助提示词工程
+有,原生认知架构,内置 CoT/ReAct 等推理框架
+核心区别
+:模型是"静态知识 + 单次推理",而 Agent 是"动态知识 + 循环推理 + 工具行动"。
+工具的使用,是人类区别于动物的标志,也是 Agent 区别于大模型的标志
+[1]
+。
+02
+核心架构组件
+业界存在三套主流架构视图,互为补充,分别从不同角度描述了 Agent 的内部结构。
+Google 三组件架构
+Google 2024 白皮书提出 Agent 由三个核心组件构成,形成
+认知架构 (cognitive architecture)
+[1]
+:
+模型 (Model)
+作为核心决策的语言模型,能遵循 ReAct、Chain-of-Thought、Tree-of-Thoughts 等推理框架。可以是通用、多模态或微调模型。
+工具 (Tool)
+解决基础模型无法与外部世界联动的瓶颈。常见形式包括 Web API、Extensions、Functions、Data Stores 等。
+编排层 (Orchestration)
+一个循环过程:接收信息 → 内部推理 → 使用推理结果指导下一步行动。核心是维护记忆、状态、推理和规划。
+复旦大学三模块架构
+复旦 NLP 实验室在《The Rise and Potential of Large Language Model Based Agents》中提出
+[4]
+:
+大脑 (Brain)
+:作为控制器,承担记忆、思考和决策
+感知 (Perception)
+:感知并处理来自外部环境的多模态信息
+动作 (Action)
+:使用工具执行并影响周围环境
+Lilian Weng 四要素模型
+OpenAI 前研究员 Lilian Weng 提出被广泛引用的框架
+[2]
+:
+LLM Powered Autonomous Agent = 规划 + 记忆 + 工具使用 + 行动
+。
+AI Agent 认知架构
+🧠 LLM 大脑
+核心决策引擎
+💾 记忆系统
+短期 + 长期
+📋 规划模块
+子目标分解 + 反思
+🔧 工具调用
+API / 搜索 / 代码执行
+⚡ 行动执行
+影响外部环境
+🌍 外部环境
+图 1:AI Agent 核心架构组件与工作循环
+工作循环
+:Agent 的核心运作模式是"感知 → 推理 → 行动 → 调整"的循环。以 Google 白皮书的"厨师做菜"类比为例:收集信息(顾客点的菜)→ 推理(判断可以做哪些菜)→ 行动(切菜、烹炒)→ 调整(根据反馈完善计划)
+[1]
+。
+03
+Agent 类型分类
+按 Agent 数量分类
+类型
+定义
+特点
+单 Agent 系统
+系统中仅存在单个智能体,独立完成任务
+架构简单,无通信开销
+多 Agent 系统 (MAS)
+多个自主的、交互式智能体组成,通过协作完成特定任务
+[6]
+专业化分工降幻觉、处理更复杂任务,但通信开销大、易死循环
+多 Agent 系统的三大优势
+[2]
+:
+专业化降幻觉
+(每个 Agent 专注自身领域)、
+任务分解处理复杂任务
+(分而治之)、
+角色扮演带来多视角
+(模拟人类团队协作)。
+按决策机制分类
+类型
+定义
+代表
+反应式 Agent
+不维护复杂内部世界模型,基于"感知-动作"映射规则直接反应
+[7]
+Brooks 的 Subsumption Architecture
+认知式 Agent
+维护内部世界模型,进行长期规划与符号推理
+BDI 架构、经典规划系统
+混合式 Agent
+结合反应式与认知式,分层处理
+当前 LLM Agent 大多属于此类
+[8]
+Anthropic 实用分类(2024)
+Anthropic 提出将 Agentic System 分为两类
+[2]
+:
+Workflows
+:通过预定义代码路径编排 LLM 和工具的系统,包括 Prompt Chaining、Routing、Parallelization、Orchestrator-workers、Evaluator-optimizer 五种模式
+Agents
+:LLM 动态指导自身流程和工具使用,保持对完成任务方式的控制
+Anthropic 建议
+:只在必要时使用 Agent,尽可能减少系统复杂度;追求稳定性、可控性时直接调用 API 而非使用框架
+[2]
+。
+04
+推理范式
+推理范式是 Agent 的"思维方式",决定了 Agent 如何分解问题、做出决策和执行行动。
+主要推理范式对比
+范式
+全称
+核心思想
+适用场景
+CoT
+Chain-of-Thought
+通过中间步骤显式推理,将复杂问题分解为多步
+[10]
+数学、逻辑、常识推理
+ReAct
+Reasoning + Acting
+交错生成推理轨迹和动作,"边想边做"
+工具调用、多步交互(最主流)
+ToT
+Tree-of-Thoughts
+生成多个候选思路,评估打分后选择最优路径(树搜索)
+谜题、创意生成、多方案决策
+Reflexion
+Self-Reflection
+生成→外部评估→反思改进→再生成闭环
+[11]
+代码生成、高精度可验证任务
+Plan-and-Execute
+—
+先全局规划,再分步执行,异常触发重规划
+长流程自动化
+LATS
+Language Agent Tree Search
+将蒙特卡洛树搜索(MCTS)应用于 LLM 决策
+博弈任务
+ReAct 范式深度解析
+ReAct 是 Agent 领域最具影响力的认知架构,由 Yao et al. 在 Princeton + Google Brain 提出(ICLR 2023)
+[9]
+。
+核心思想
+:将智能体的行动空间扩展为
+A = A ∪ L
+,其中 L 是语言空间(thoughts)。思考(thought)不影响外部环境,但通过推理当前上下文来组合有用信息,更新上下文以支持未来推理或行动。
+ReAct 循环
+:
+Thought → Action → Observation
+重复 N 次,最后生成
+Final Answer
+[1]
+[9]
+。
++34%
+ALFWorld 成功率提升
+6%
+HotpotQA 幻觉率 (CoT 为 14%)
+1-6
+上下文示例即可泛化
+三大设计范式落地对比
+ReAct、Plan-and-Execute、Reflection 是当下最主流的三大设计范式,分别解决
+任务执行灵活性
+、
+长流程可控性
+、
+输出质量严谨性
+三个不同维度的问题
+[20]
+。
+维度
+ReAct
+Plan-and-Execute
++ Reflection
+核心机制
+边想边做,单步实时决策
+先全局规划,再分步执行
+生成→评估→改进循环
+优点
+轻量、灵活、链路透明
+全局规划兜底,支持并行
+质量增强,自检修正
+缺点
+长流程易跑偏,token 线性暴涨
+计划僵化,架构复杂
+token 增加 30%-100%
+适用场景
+中等复杂度、流程不确定
+长流程、高复杂度
+不容出错的场景
+五步任务 token
+~30,000
+~14,500
+基础 +30%~100%
+Reflexion 进阶版
+:增加
+经验沉淀和记忆复用
+能力,将失败原因总结为结构化经验存入长期记忆,跨任务自主学习进化。在 HumanEval 基准测试中,将 GPT-4 代码生成一次通过率从 80% 提升至 91%
+[11]
+[20]
+。
+2025 最新进展:ReCAP
+斯坦福 2025 年提出 ReCAP 框架,通过递归树结构和三大机制,在长上下文任务中
+全面超越 ReAct,性能提升 112.5%
+,解决 LLM 在复杂任务中常见的目标漂移、上下文断层和成本爆炸问题
+[12]
+。
+05
+记忆机制
+记忆是 Agent 从"单次对话"走向"持续学习"的关键。借鉴人类认知科学,Agent 记忆分为三个层次
+[2]
+[13]
+。
+三层记忆分类
+记忆类型
+人类对应
+LLM Agent 实现
+时间范围
+感官记忆
+视觉/听觉/触觉印象
+原始输入的 learning embedding
+几秒钟
+短期记忆
+当前意识、学习推理
+上下文学习 (in-context learning),受上下文窗口限制
+对话内
+长期记忆
+数天到数十年
+外部向量存储 + 快速检索 (RAG)
+长期持久
+向量检索技术栈
+长期记忆的核心是向量数据库支持的最大内积搜索(MIPS),常见算法包括
+[2]
+:
+LSH
+Locality-Sensitive Hashing,相似输入高概率映射到相同桶
+ANNOY
+通过二叉树结构快速查询
+HNSW
+分层小世界图,当前主流方案
+FAISS
+Facebook AI Similarity Search
+经典案例:Generative Agents 记忆流
+斯坦福"AI 小镇"是 Agent 记忆系统的开创性工作(Park et al., UIST 2023)
+[16]
+。提出"生成式智能体架构",三大关键组件:
+新经历
+三维度检索
+近时性
+Recency
+相关性
+Relevance
+重要性
+Importance
+记忆流 (Memory Stream)
+事件 1
+事件 2
+事件 N
+🤔 反思
+定期归纳总结
+提取高层级观点
+📋 规划
+长中短期计划
+随时 Re-planning
+⚡ 行动
+图 2:Generative Agents 的记忆流-反思-规划架构
+经典实验
+:斯坦福"AI 小镇 (Smallville)",25 个 AI 角色在虚拟小镇自由生活。给角色 Isabella 一个种子指令"你想在情人节办个派对",整个小镇自发运转:Isabella 四处发邀请函,其他 AI 根据性格决定是否参加,有人提前讨论穿什么、带什么礼物,最后 5 个 AI 准时到场。
+全程无一条硬编码规则
+[16]
+。
+关键发现
+:观察到了
+涌现的社会行为 (Emergent Social Behaviors)
+——信息传播、关系演变、协作。证明了 Agent 的可信度不仅取决于模型本身,更取决于其对过去经历的组织和反思能力
+[16]
+。
+06
+开发框架对比
+2024-2025 年,AI 应用开发从"聊天"走向"行动",智能体成为新范式。当前主流框架可分为三大类:
+通用型开发框架
+、
+多智能体协作框架
+、
+低代码平台
+[15]
+。
+核心框架对比矩阵
+框架
+核心定位
+技术特性
+典型场景
+LangGraph
+通用型复杂应用开发
+模块化工具链、状态机、循环(Loops)、Human-in-the-loop
+智能研究助手、复杂任务自动化
+AutoGen
+多代理协作系统构建
+基于 Actor 模型的异步对话、动态任务分解、代码执行沙箱
+企业级工作流自动化、跨系统协作
+CrewAI
+角色化多 Agent 协作
+基于角色扮演、定义 Role/Goal/Backstory
+项目管理、供应链协同、内容创作
+MetaGPT
+多智能体协作开发
+SOP 即代码、硬编码角色(产品经理/架构师/工程师)
+"一句话生成软件公司"、垂直领域自动化
+Dify
+低代码企业级平台
+可视化工作流、RAG 引擎、私有化部署、ISO 27001 认证
+企业知识库问答、客服机器人
+Coze
+低代码快速部署
+字节生态深度集成、可视化流程、多模型支持
+简单聊天机器人、社交媒体内容管理
+OpenAI Agents
+企业级 AI 原生开发
+深度集成 GPT-4o/5、低代码工作流、企业级安全
+智能客服、数据分析助手、知识管理
+Google ADK
+云原生多模态开发
+整合 Gemini 2.0 多模态、Vertex AI 托管
+企业级多模态交互、生产级部署
+选型建议
+需求场景
+推荐框架
+极致控制力、复杂条件判断、状态回滚
+LangGraph
+快速验证、国内模型生态
+Dify / AgentScope
+虚拟软件公司、标准化 SOP
+MetaGPT / CrewAI
+企业级合规、私有化部署
+Dify (ISO 27001)
+成本敏感、自主可控
+LangGraph / AutoGen / MetaGPT (开源)
+多 Agent 协作模式
+协作模式
+说明
+典型框架
+顺序流 (Sequential)
+A → B → C(类似流水线)
+LangGraph、MetaGPT
+层级流 (Hierarchical)
+Manager 发布命令,Worker 执行汇报
+CrewAI、MetaGPT
+协作/辩论 (Joint/Debate)
+多 Agent 针对一个问题多轮对话,互相纠错
+AutoGen
+角色扮演 (Role-Playing)
+定义 Role/Goal/Backstory 模拟人类团队
+CrewAI
+07
+工具调用协议
+工具调用机制是 LLM 从"只能说话"变成"能做事"的核心桥梁
+[16b]
+。当前存在四大主流协议。
+四大协议深度对比
+维度
+OpenAI FC
+Google Tool Use
+AWS Bedrock
+MCP
+支持的模型
+仅 GPT 系列
+仅 Gemini
+仅 Bedrock 模型
+任意 LLM
+工具部署位置
+开发者实现
+必须部署在 GCP
+必须通过 Lambda
+任意位置
+设计哲学
+模型中心主义
+安全优先
+全托管、低代码
+能力解耦
+厂商锁定
+🔒 是
+🔒 是
+🔒 是
+✅ 无
+动态工具注册
+静态声明
+静态声明
+静态配置
+运行时动态注册
+MCP:Agent 生态的"USB 接口"
+MCP (Model Context Protocol)
+由 Anthropic 于 2024.11 发布,2025.12 捐赠给 AAIF 基金会。它解决了"N 个模型 × M 个工具"的集成困境,提供标准化的"USB-C 接口"
+[17b]
+。
+架构:
+LLM Agent → MCP Client → MCP Server → 实际工具 (API/DB/脚本)
+[16b]
+MCP 核心优势
+:模型无关(支持 GPT、Claude、开源模型等)、工具可热插拔、版本管理、运行时动态注册/卸载、支持上下文感知(根据用户身份动态暴露工具)、无厂商锁定
+[16b]
+[17b]
+。
+截至 2026 年 3 月,MCP SDK 月下载量达 9700 万,GitHub 81000+ Stars,Anthropic、OpenAI、Google、Microsoft、Hugging Face、LangChain 已全面支持
+[21]
+。
+A2A:Agent 间协作的标准协议
+A2A (Agent-to-Agent)
+由谷歌于 2025 年 4 月推出,被比喻为"
+AI 领域的 TCP/IP 协议
+"
+[18b]
+。通过 HTTP/SSE 等技术,支持智能体发现彼此能力、任务协调及多模态交互。2025 年已获 100+ 顶尖科技公司支持,Linux Foundation 宣布托管
+[19b]
+。
+A2A
+MCP
+MCP
+Agent 协议生态
+🤝 A2A 协议
+Agent ↔ Agent 通信
+(如 TCP/IP)
+🔌 MCP 协议
+Agent ↔ Tool 交互
+(如 USB-C)
+Agent A
+Agent B
+🔧 工具集 1
+🔧 工具集 2
+图 3:MCP 与 A2A 协议互补关系:MCP 解决"Agent 与工具",A2A 解决"Agent 与 Agent"
+08
+应用场景与案例
+Agent 的本质是"大模型 + 规划能力 + 工具调用 + 记忆系统"。与被动响应的聊天机器人不同,Agent 接收目标后能
+自主拆解任务、选择工具、执行操作、检查结果、修正方向
+,直到目标完成
+[21]
+。
+编程助手(最成熟的赛道)
+Claude Code
+2025.2 Beta,2025.5 正式版。SWE-bench 得分 80.8%,可自主读取编译错误、定位问题、修改后重跑测试
+[21]
+。
+Devin 2.0
+2025.4 发布。自带 IDE 的"AI 软件工程师",PR 合并率从 34% 提升到 67%
+[21]
+。
+Cursor 1.0
+2025.7 发布。Background Agents + BugBot 自动代码审查,自动发现问题、修复、提交 PR
+[21]
+。
+Trae (字节跳动)
+覆盖编码→调试→测试→部署全流程的编程 Agent IDE
+[21]
+。
+企业落地分布
+麦肯锡《The State of AI in 2025》报告(基于全球近 2000 家组织)指出
+[22]
+:
+88%
+企业已在至少一个业务职能中使用 AI
+62%
+组织已在试验 AI Agent 类应用
+39%
+企业实现实质性财务回报 (EBIT 增长)
+<10%
+在任何部门真正在推 Agent 的公司
+企业内部 Agent 集中在
+IT 运维(34%)
+、
+知识管理(40%)
+、
+软件工程(26%)
+、
+战略与财务规划(17%)
+等流程清晰、标准化程度高的部门
+[22]
+。
+个人助理与企业自动化
+Manus (2025.3)
+通用 Agent,被称为"Agent 的 GPT 时刻",可自主执行长达数小时的复杂工作流
+[21]
+。
+OpenAI Operator (2025.1)
+桌面控制 Agent,基于 CUA 模型,首个可上网执行任务的商业 Agent
+[21]
+。
+腾讯 WorkBuddy (2026.3)
+月活 120 万+,内置 20+ Skills + MCP,可远程操控企业微信/QQ/飞书/钉钉
+[21]
+。
+Claude Computer Use
+通过截图识别界面元素、生成鼠标键盘操作指令操控浏览器/电脑
+[21]
+。
+09
+评估基准
+单轮 benchmark 高 ≠ Agent 强。Agent 评估需端到端跑任务,涉及任务完成率、轨迹质量、工具选择准确率、策略一致性等多维度
+[22b]
+。
+四大主流基准对比
+基准
+来源
+任务域
+核心指标
+适合测
+AgentBench
+清华 THUDM (ICLR'24)
+8 类(OS/DB/KG/游戏等)
+成功率
+综合 Agent 能力
+τ-bench / τ³-bench
+Anthropic/Sierra
+零售/航空/银行客服
+pass^k
+[22b]
+业务 Agent + 工具一致性
+SWE-bench
+Princeton (ICLR'24 Oral)
+真实 GitHub issue 修 bug
+测试通过率(最客观)
+Coding Agent
+WebArena
+CMU
+真实网站操作
+端到端成功率
+Browser Agent
+τ-bench 的 pass^k 创新
+:普通 pass@1 会被"偶尔成功"误导,生产环境要的是稳定。pass^k = 跑 k 次全部成功的概率,强制衡量
+一致性/鲁棒性
+。一个 pass@1=0.8 但 pass^16=0.1 的模型,说明靠运气,不能上生产
+[22b]
+。
+轨迹评估三层模型
+门禁
+诊断+迭代
+🎯 Outcome
+任务完成
+📝 Trajectory
+逐步骤对照专家轨迹
+🔍 Process
+LLM-judge 评估每步决策
+✅ 生产发布
+图 4:Agent 轨迹评估三层模型:Outcome 做门禁 + Trajectory 做诊断 + Process 做迭代优化
+10
+安全与对齐
+2025-2026 年,AI 安全已从"可选项"变成"必选项"
+[23]
+。OWASP 已将 Prompt Injection 列为《LLM Application Top 10》的首要威胁。
+主要威胁类型与防御
+威胁
+原理
+防御策略
+Prompt 注入
+恶意指令混入用户输入、网页、邮件、PDF、RAG 文档或工具返回值,劫持系统 Prompt
+输入清理 + 分隔符隔离;所有进入上下文的文本视为不可信数据
+[23]
+数据泄露
+Agent 响应中泄露不应知道的信息;跨用户记忆泄露
+用户级数据隔离、强制过滤、敏感数据脱敏
+无意伤害
+Agent 不知情下执行有害操作(如误删数据)
+危险操作警告、强制确认机制
+权限滥用
+工具调用越权
+最小权限原则、权限分级(NONE/READ/WRITE/EXECUTE/ADMIN)
+隐私侵犯
+处理敏感个人信息
+数据分级(public/confidential/restricted)
+关键认知
+:Prompt Injection 不是"AI 版 SQL 注入",不能仅靠输入过滤和参数化查询解决——因为 Agent 上下文中来自外部系统的各类信息(网页、工具返回、RAG 文档)都可能携带恶意指令,必须
+纵深防御
+[23]
+。
+对齐技术
+RLHF(人类反馈强化学习)
+:SFT 监督微调 → 训练 Reward Model → PPO 强化优化,是大模型对齐核心技术
+[23]
+Constitutional AI(Anthropic)
+:让 AI 根据一套规则自我批评和修正,审查回答是否有帮助且无害、是否尊重隐私、是否避免偏见
+[23]
+沙箱执行
+:不可信代码隔离运行,设 timeout 和内存限制
+[23]
+11
+2025-2026 里程碑
+行业普遍将 2025 年称为"
+Agent 元年
+",2026 年为"让 AI 干活"的一年
+[21]
+。按自主性可分为 L0-L5 六层:当前处于
+L2(代理化)到 L3(被动感知)的过渡期
+,L4(主动感知)尚无产品真正达到,L5(具身自我改进)是终极形态
+[21]
+。
+关键里程碑时间线
+时间
+事件
+意义
+2025.1
+OpenAI 发布
+Operator
+(桌面控制 Agent,基于 CUA 模型)
+首个可上网执行任务的商业 Agent
+2025.2
+Anthropic 发布
+Claude Code Beta
+程序员首个"AI 同事"
+2025.3
+中国团队发布
+Manus
+(通用 Agent)
+被称"Agent 的 GPT 时刻"
+2025.4
+Devin 2.0
+发布
+"AI 软件工程师"标杆
+2025.5
+Claude Code 正式版;Cursor Background Agents;OpenAI 30 亿美元收购 Windsurf
+编程 Agent 赛道成熟
+2025.7
+Cursor 1.0 + BugBot 自动代码审查
+L4 主动感知雏形
+2025.10
+LangGraph 1.0
+、
+CrewAI 1.1.0
+发布
+Agent 开发框架成熟
+2025.12
+MCP 协议捐赠给 AAIF;Microsoft AutoGen 与 SK 框架统一
+工具生态标准化
+2026.3
+MCP SDK 月下载 9700 万、GitHub 81000+ Stars
+MCP 成事实标准
+2026.4
+Manus 收购案被叫停(首个 AI 外资收购禁令)
+地缘政治介入 Agent 产业
+行业预测
+Gartner 预测
+到 2028 年至少
+15% 的日常工作决策
+将由 Agentic AI 自主做出(2024 年为 0%);到 2026 年底约
+40% 的企业应用
+将集成任务型 AI Agent
+[24]
+[25]
+。
+麦肯锡报告
+88% 企业已使用 AI,但只有 39% 实现实质性财务回报。高绩效企业会
+从根本上重新设计工作流程
+(是其他企业的 2.8 倍)
+[22]
+。
+德勤预测
+2026 年
+50% 的组织
+将超过 50% 的数字化转型预算投入 AI 自动化,Agentic AI 投资比例可能达 75%
+[25]
+。
+Gartner 警告
+到 2027 年末超过
+40% 的代理型 AI 项目将被取消
+,原因是成本攀升、商业价值不明确或风险控制不足
+[26]
+。
+12
+未来方向
+具身智能 Agent (Embodied AI)
+具身智能是 2026 年最受关注的"潜力股",多家科技公司展示了将大型语言模型与机器人控制相结合的成果
+[27]
+。它赋予智能体感知、动作和环境交互能力,使其能理解和适应现实世界——这是 Agent L5 终极形态的必经之路
+[21]
+[27]
+。
+Agent 操作系统 (AIOS)
+学术界提出
+AIOS: LLM Agent Operating System
+概念,把 LLM 智能体视为操作系统,解决代理请求在 LLM 上的调度和资源分配、代理与 LLM 之间的隔离等问题
+[28]
+。工程实践中,Agent Runtime Platform 正在涌现,区分 Agent、Agent Framework、Agent Harness 三层架构。
+Agent 自主性等级
+L0
+无自主
+规则驱动
+L1
+辅助
+人为主导
+L2
+代理化
+自主规划
+当前位置
+L3
+被动感知
+Computer Use
+L4
+主动感知
+尚无产品
+L5
+具身自我
+改进
+图 5:Agent 自主性等级 L0-L5,当前处于 L2 到 L3 过渡期
+三股力量竞合
+2026 年市场已从单点产品竞争演变为多维混战
+[21]
+:
+国际开源社区
+OpenClaw、Hermes Agent、OpenHuman 等:本地优先、去中心化、技能可复用。
+中国大厂
+腾讯 WorkBuddy、华为小艺、阿里全栈 Agent 化、字节 Coze/Trae:全栈布局、深度整合生态。
+模型厂商
+DeepSeek Code 对标 Claude Code:从模型到产品的降维打击。
+核心趋势
+:行业关注点已从"能不能做"转向"做得好不好"。核心关键词:
+MCP 协议统一工具生态
+、
+长期记忆系统成熟
+、
+自我反思与纠错能力提升
+、
+pass^k 等一致性指标成为生产门禁
+[21]
+[22b]
+。
+组织与人才重构
+麦肯锡指出,32% 企业预计员工总数将下降,软件工程师、数据工程师、AI 产品经理、Prompt Engineer、AI 伦理合规专家成为招聘主角。真正高绩效的组织把 AI 当作"
+业务变革引擎
+"而非"省人工工具",才能获得可衡量的长期价值
+[22]
+。
+13
+规划算法深度解析
+规划是 Agent 将模糊的用户目标转化为可执行步骤序列的核心能力。不同规划算法在
+灵活度
+、
+可控性
+和
+计算成本
+之间做出不同权衡。2025 年以来,规划算法已从单一线性分解发展为包含
+树搜索
+、
+图结构
+、
+动态重规划
+在内的完整技术族系。
+任务分解 (Task Decomposition)
+Plan-and-Solve Prompting
+Wang 等人于 2023 年提出,是 ReAct 的进阶版本
+[29]
+。核心思想:先生成整体计划(Plan),再逐步执行(Solve),通过分离规划与执行来减少推理中的认知负荷。实践中通常维护
+Plan-and-Execute 状态机
+,跟踪
+task → goal → plan → executed_tasks → results → current_phase
+的完整生命周期
+[29]
+。
+HuggingGPT
+Microsoft 于 2023 年提出,LLM 作为中央控制器,将用户任务分解为子任务,并为每个子任务选择合适的专家模型
+[30]
+。四步流程:
+任务规划 → 模型选择 → 任务执行 → 响应生成
+。通过 HuggingFace 模型库动态调度数百个专用模型,LLM 不直接执行所有任务,而是通过接口调用外部模型,形成"LLM 即指挥家"的范式。其关键贡献在于证明了 LLM 可以作为
+异构 AI 模型的协调中枢
+,为后续的多模型编排系统奠定了基础。
+Least-to-Most Prompting
+Google 研究者提出,将复杂问题分解为由易到难的子问题序列,先解决简单子问题,再将其答案作为上下文解决更难的子问题
+[31]
+。与 Plan-and-Solve 不同,Least-to-Most 强调
+子问题之间的依赖关系
+,后一步的解决依赖前一步的结果,形成递进式推理链。在多跳问答(Multi-hop QA)和数学推理任务上表现优异。
+DEPS (Decompose-Predict-Select)
+DEPS 框架在机器人控制领域提出,将任务分解为三个阶段:
+分解(Decompose)→ 预测(Predict)→ 选择(Select)
+。Agent 先将任务分解为子目标,预测每个子目标的可行执行方案,再从多个候选方案中选择最优路径。该框架特别适合
+具身智能(E Embodied AI)
+场景,因为物理环境中动作的可行性与环境状态紧密耦合。
+树与图搜索规划
+LATS (Language Agent Tree Search)
+Zhou 等人将蒙特卡洛树搜索(MCTS)引入 LLM Agent 规划
+[32]
+。LATS 将 Agent 的决策过程建模为树搜索,每个节点代表一个状态,通过
+价值函数评估
+、
+UCT 选择
+和
+回溯更新
+来探索最优行动路径。与贪心式的 ReAct 相比,LATS 能在
+探索-利用之间取得平衡
+,在 WebArena 和 HotPotQA 上刷新了 SOTA。其代价是
+Token 消耗显著增加
+(通常 5-10 倍),适合对正确率要求极高的场景。
+Graph of Thoughts (GoT)
+Besta 等人将思维链从线性结构推广为图结构
+[33]
+。在 GoT 中,推理步骤可以
+分支
+(一个节点产生多个后续)、
+合并
+(多个节点汇聚为一个)和
+循环
+(回溯到之前的节点)。这使得 Agent 能够:
+并行探索多条推理路径 → 交叉验证 → 合并最优结论
+。在排序、关键词计数等需要全局视角的任务上,GoT 显著优于线性的 CoT。
+Tree of Thoughts (ToT)
+Yao 等人提出的 ToT 是 GoT 的前身,将推理组织为树形结构,在每个节点进行
+状态评估
+和
+剪枝
+[34]
+。ToT 的核心贡献是引入了"自我评估"机制:Agent 在搜索过程中可以评估当前路径的前景,决定是继续深入还是回溯。在 24 点游戏中,ToT 的成功率从 CoT 的 4% 提升到 74%。
+动态重规划与反思
+Reflexion 中的重规划
+Reflexion 框架中,Agent 在执行失败后会生成
+语言化的反思(verbal reflection)
+,将失败原因编码为文本反馈,注入下一轮的提示中
+[11]
+。这种基于自然语言的"强化学习"不需要更新模型参数,仅通过
+episodic memory
+的文本积累就能持续改进策略。在 HumanEval 编程任务上,Reflexion 将 GPT-4 的 pass@1 从 80% 提升到 91%。
+SelF-Discover 与自适应规划
+SelF-Discover 让 Agent
+自行发现
+推理结构:先从任务描述中提取关键约束,再构建针对该任务的推理蓝图,最后按蓝图执行
+[35]
+。这种"元规划"能力使 Agent 不再依赖固定的推理模板,而是
+为每个新任务定制规划策略
+。在 BIG-Bench-Hard 上,SelF-Discover 在 21/23 个任务上超越 CoT。
+规划算法
+结构
+优势
+适用场景
+Token 成本
+ReAct
+线性交替
+简单高效,实时执行
+通用场景
+低
+Plan-and-Solve
+先规划后执行
+全局视野,减少中途偏差
+多步骤任务
+中
+Least-to-Most
+递进式
+处理子问题依赖
+多跳推理
+中
+ToT
+树搜索+剪枝
+探索多条路径
+需全局最优
+高
+LATS
+MCTS
+探索-利用平衡
+高正确率需求
+很高
+GoT
+图结构
+并行+合并+循环
+复杂推理
+高
+Reflexion
+线性+反思
+失败学习,无需训练
+迭代优化
+中
+SelF-Discover
+元规划
+任务自适应
+多样任务集
+中高
+实践建议
+:多数生产场景下,
+ReAct + Reflexion
+组合已足够。仅在任务正确率要求极高(如代码生成、数学证明)且预算充足时,才考虑 LATS/GoT 等搜索式规划。
+14
+Agentic RAG:检索增强的智能体化演进
+传统 RAG(Retrieval-Augmented Generation)是"检索-读取"的单次管道,而
+Agentic RAG
+将 Agent 的自主决策能力引入检索过程,使检索变为
+多轮、自适应、可纠错的智能行为
+[36]
+。
+传统 RAG 的局限
+标准 RAG 管道存在三大瓶颈:
+检索质量瓶颈
+单次向量检索难以处理多跳问题,低质量检索结果直接污染生成。
+缺乏自我纠错
+如果首次检索未命中,系统无法自主重试或改写查询。
+无工具选择能力
+所有查询走同一管道,无法根据问题类型选择不同检索策略。
+CRAG:Corrective RAG
+Yan 等人提出的 CRAG 在检索后增加了一个
+检索评估器(Retrieval Evaluator)
+,对检索到的文档质量进行打分
+[37]
+。根据评估结果,系统选择三种策略之一:
+Correct
+:检索质量高 → 对文档进行精炼(去噪)后使用
+Incorrect
+:检索质量低 → 触发 Web 搜索补充信息
+Ambiguous
+:质量不确定 → 同时使用检索结果和 Web 搜索
+CRAG 的关键贡献是将
+置信度评估
+引入 RAG 管道,使系统具备初步的自我纠错能力。在多个 QA 数据集上,CRAG 比标准 RAG 提升 10-30%。
+Self-RAG:自反思 RAG
+Asai 等人训练了一个能够
+自我反思
+的 RAG 模型
+[38]
+。Self-RAG 通过特殊的反思标记(reflection tokens)来控制四个关键决策:
+反思标记
+决策内容
+作用
+[Retrieve]
+是否需要检索
+避免不必要检索,降低延迟
+[IsRel]
+检索结果是否相关
+过滤噪声文档
+[IsSup]
+生成是否被支持
+检测幻觉
+[IsUse]
+回答是否有用
+质量自评
+Self-RAG 通过
+强化学习训练
+让模型学会这些反思标记的生成,而非依赖外部规则。这使得反思行为内化为模型能力,推理时无需额外提示工程。
+Adaptive RAG:自适应检索
+Jeong 等人提出根据
+查询复杂度
+动态选择检索策略
+[39]
+。系统先对查询进行分类:
+简单查询
+(如事实查找)→ 单次检索 + 直接生成
+复杂查询
+(如多跳推理)→ 多轮检索 + 迭代推理
+无需检索
+(如常识问题)→ 直接生成
+查询分类器是一个轻量级分类模型,训练数据来自查询-答案对的复杂度标注。Adaptive RAG 在保持答案质量的同时,平均减少 40% 的检索调用。
+Agentic RAG 的完整架构
+将上述技术整合,一个完整的 Agentic RAG 系统包含以下层次:
+查询分析层
+→
+策略选择层
+→
+多源检索层
+→
+结果评估层
+→
+反思重检层
+→
+合成生成层
+每一层都由 LLM Agent 驱动决策,而非固定管道。Agent 可以在检索结果不理想时自主改写查询、切换数据源(向量库/Web/知识图谱)、甚至回溯重新规划。
+15
+Agent 高级设计模式
+Anthropic 在《Building Effective Agents》中系统梳理了 Agent 工程中的设计模式
+[2]
+。这些模式是
+可复用的架构构件
+,帮助开发者避免从零设计。2025 年以来,社区在此基础上进一步发展出更丰富的模式库。
+核心工作流模式
+1. Prompt Chaining(提示链)
+将复杂任务分解为
+固定顺序的 LLM 调用链
+,每一步的输出作为下一步的输入。与 Agent 的自主决策不同,Prompt Chaining 的流程是
+预先确定的
+,适合步骤明确且不可变的场景。
+# 典型 Prompt Chain: 文档翻译
+step1 = llm("提取文档中的关键术语表", document)
+step2 = llm("使用术语表翻译文档", document, step1.output)
+step3 = llm("校对翻译,确保术语一致", step2.output, step1.output)
+2. Routing(路由分发)
+根据输入特征将请求
+分发到不同的处理路径
+。路由器可以是一个 LLM 调用(语义路由)或一个分类模型(快速路由)。
+语义路由
+LLM 理解查询意图后选择路径,灵活但延迟较高。
+规则路由
+基于关键词/正则匹配,速度快但覆盖面有限。
+学习路由
+训练轻量分类器自动学习路由策略,平衡速度与灵活性。
+3. Parallelization(并行化)
+将一个任务拆分为
+多个独立子任务并行执行
+,再聚合结果。两种常见变体:
+Sectioning
+:将文档分段,每段独立处理,最后合并
+Voting
+:对同一问题运行 N 次,通过多数投票决定最终答案(降低单次幻觉)
+4. Orchestrator-Workers(编排者-执行者)
+一个中央
+编排 Agent
+将任务分配给多个
+执行 Agent
+,执行者完成后将结果汇报给编排者。与 Prompt Chaining 的区别:任务分配是
+动态的
+,编排者根据任务内容决定分几个执行者、分给谁
+[2]
+。
+5. Evaluator-Optimizer(评估-优化)
+一个 Agent 负责生成内容,另一个 Agent 负责
+评估质量
+并给出改进建议,生成者根据反馈迭代优化,直到评估者满意
+[2]
+。这是 Reflexion 模式的工程化实现。
+状态管理模式
+复杂 Agent 系统需要管理跨步骤的状态。常见的状态管理策略:
+策略
+机制
+适用场景
+对话历史
+保留完整消息序列
+短对话
+滑动窗口
+保留最近 N 轮
+长对话,资源受限
+摘要压缩
+定期摘要旧对话
+超长对话
+外部状态库
+状态持久化到 DB
+跨会话/多 Agent
+检查点(Checkpoint)
+定期保存状态快照
+故障恢复
+错误处理模式
+生产级 Agent 必须优雅地处理工具调用失败、超时、幻觉等异常:
+重试与退避
+:工具调用失败时指数退避重试,设置最大重试次数
+降级策略
+:主工具不可用时切换到备用工具(如向量检索失败 → 关键词检索)
+护栏(Guardrails)
+:在输入和输出两端设置校验,拦截不安全或越界内容
+超时熔断
+:单步执行超过阈值时终止并返回兜底响应
+人机回退
+:置信度低于阈值时转人工处理
+16
+Agent Prompt 工程实践
+Agent 场景下的 Prompt 工程比单轮对话复杂得多,需要考虑
+多轮上下文
+、
+工具描述
+、
+角色定义
+和
+动态注入
+等维度。
+系统提示的结构化设计
+一个高质量的 Agent 系统提示通常包含以下模块:
+# 角色定义
+你是一个专业的数据分析 Agent,擅长 SQL 查询和数据可视化。
+
+# 行为准则
+- 始终先理解用户意图,再选择工具
+- 执行 SQL 前先用 EXPLAIN 检查查询计划
+- 如果数据量超过 10000 行,先确认用户是否需要聚合
+
+# 工具使用规则
+- 优先使用 query_sql 工具查询数据
+- 使用 create_chart 工具生成图表时,必须指定图表类型
+- 禁止执行 DROP/DELETE/UPDATE 等 DML 语句
+
+# 输出格式
+- 回答用户问题时,先给出结论,再附上数据支撑
+- 代码块使用 ```sql 或 ```python 标注
+工具描述优化
+工具描述的质量直接影响 Agent 的工具选择准确率。优秀的工具描述应包含:
+功能摘要
+:一句话说明工具用途
+参数说明
+:每个参数的类型、含义、约束
+使用时机
+:什么情况下应该使用此工具
+不使用时机
+:什么情况下不应该使用
+返回值格式
+:输出的结构和含义
+示例
+:至少一个调用示例
+Few-Shot 在 Agent 中的应用
+在 Agent 场景中,Few-Shot 示例通常是
+完整的轨迹(trajectory)
+,而非单轮输入输出:
+# 示例轨迹
+用户:帮我查一下上个月销售额最高的产品
+思考:用户需要上月销售排名,我需要查询销售数据库
+行动:query_sql("SELECT product_name, SUM(amount) FROM sales WHERE month = '2026-06' GROUP BY product_name ORDER BY SUM(amount) DESC LIMIT 1")
+观察:产品A, 销售额 125000 元
+思考:已获得结果,可以回答用户
+回答:上个月销售额最高的产品是产品A,销售额为 125000 元。
+通过在系统提示中嵌入 2-5 个高质量轨迹示例,可以显著提升 Agent 的
+推理格式一致性
+和
+工具选择准确率
+。
+上下文窗口管理
+长对话场景下,Agent 的上下文窗口可能溢出。常见管理策略:
+策略
+原理
+信息损失
+实现复杂度
+截断
+丢弃最旧的消息
+高
+低
+摘要
+LLM 压缩旧消息
+中
+中
+选择性保留
+保留关键消息(工具调用/错误)
+低
+高
+向量检索
+将历史嵌入向量库,按需检索
+最低
+高
+提示注入防御
+Agent 面临特有的
+提示注入攻击
+:恶意用户在工具返回的数据中嵌入指令,试图劫持 Agent 行为。防御措施:
+数据/指令分离
+:用明确的标记区分工具返回数据和系统指令
+输出校验
+:Agent 的行动必须经过安全检查才执行
+权限最小化
+:每个工具只授予最小必要权限
+沙箱执行
+:代码执行工具在隔离环境中运行
+17
+Agent 工程化架构
+从原型到生产,Agent 系统需要完整的工程化架构支撑。本章覆盖从请求接入到结果返回的
+全链路架构设计
+。
+分层架构总览
+生产级 Agent 系统通常采用五层架构:
+层次
+职责
+核心组件
+接入层
+请求路由、认证、限流
+API Gateway, Auth, Rate Limiter
+编排层
+Agent 调度、会话管理
+Orchestrator, Session Manager
+执行层
+LLM 调用、工具执行
+LLM Runtime, Tool Executor
+数据层
+记忆、向量库、知识库
+Vector DB, KV Store, Graph
+可观测层
+监控、日志、追踪
+Tracing, Metrics, Logs
+API 网关设计
+API 网关是 Agent 系统的入口,负责:
+身份认证
+:API Key / OAuth / JWT 验证
+请求路由
+:根据 Agent 类型/租户路由到不同后端
+速率限制
+:按用户/IP/Agent 类型设置调用配额
+请求去重
+:幂等键防止重复执行
+协议转换
+:WebSocket / SSE / gRPC 适配
+会话管理
+Agent 会话比传统聊天机器人复杂,因为需要维护
+执行状态
+而非仅消息历史:
+SessionState {
+ session_id: str
+ user_id: str
+ agent_id: str
+ messages: List[Message] # 对话历史
+ tool_calls: List[ToolCall] # 工具调用记录
+ plan: Optional[Plan] # 当前执行计划
+ variables: Dict[str, Any] # 上下文变量
+ checkpoints: List[Checkpoint] # 状态快照
+ created_at: timestamp
+ updated_at: timestamp
+ ttl: int # 会话存活时间
+}
+会话状态通常持久化到 Redis(热数据)和 PostgreSQL(冷数据),通过检查点机制支持
+故障恢复
+和
+会话回放
+。
+工具执行沙箱
+代码执行类工具必须在沙箱中运行,防止安全风险:
+Docker 容器
+每个执行请求启动独立容器,资源隔离,用后即毁。
+WASM 沙箱
+轻量级,启动快(毫秒级),但能力受限。
+gVisor / Firecracker
+内核级隔离,安全性更高,适合不可信代码。
+远程执行
+代码发送到独立微服务执行,网络延迟换隔离性。
+多租户架构
+SaaS 化的 Agent 平台需要支持多租户隔离:
+数据隔离
+:每个租户的对话/知识库/向量索引独立
+资源配额
+:按租户限制 LLM 调用次数/Token 消耗
+配置隔离
+:每个租户可自定义 Agent 配置/工具集/Prompt
+计费计量
+:精确统计每租户的资源使用
+18
+性能与成本优化
+Agent 系统的性能瓶颈通常不在单次 LLM 调用,而在于
+多步编排的累积延迟
+和
+Token 消耗的指数增长
+。
+延迟分析
+一个典型的 5 步 Agent 任务的总延迟:
+阶段
+耗时(典型)
+占比
+可优化?
+LLM 推理(5次)
+2-15s
+60-80%
+是
+工具调用
+0.5-5s
+10-25%
+是
+检索
+0.1-1s
+5-10%
+是
+序列化/网络
+0.1-0.5s
+5%
+有限
+推理加速技术
+KV Cache 优化
+LLM 推理中,KV Cache 的命中率直接影响延迟。Agent 场景下,由于多轮对话共享前缀,
+前缀缓存(Prefix Caching)
+可显著减少重复计算。vLLM 的 PagedAttention 和 SGLang 的 RadixAttention 都针对此场景做了深度优化
+[40]
+。
+推测解码(Speculative Decoding)
+使用一个小模型快速生成候选 Token,大模型并行验证。如果小模型的预测正确率高,实际吞吐量可提升 2-3 倍
+[41]
+。在 Agent 场景中,推测解码特别有效,因为 Agent 的输出通常有固定格式(如 JSON 工具调用),小模型容易学习。
+批量推理(Continuous Batching)
+将多个请求的 Token 动态打包,在 GPU 上并行计算。vLLM 的 continuous batching 机制可以在不增加单请求延迟的前提下,将吞吐量提升 5-10 倍
+[40]
+。这对高并发 Agent 服务至关重要。
+Token 消耗优化
+上下文压缩
+长对话中,历史消息会持续增加 Token 消耗。有效的压缩策略:
+摘要压缩
+:每 N 轮用小模型摘要旧消息,将 1000 Token 压缩到 200
+选择保留
+:仅保留工具调用和结果,丢弃中间推理步骤
+实体提取
+:从旧消息提取关键实体和关系,以结构化形式存储
+模型路由与级联
+不同复杂度的步骤使用不同模型:
+# 级联策略
+if query_complexity == "simple":
+ response = small_model(query) # 快速便宜
+ if confidence(response) < 0.8:
+ response = large_model(query) # 兜底
+elif query_complexity == "complex":
+ response = large_model(query) # 直接用大模型
+实践表明,
+70% 的简单查询可以由小模型处理
+,总体成本降低 50-60%。
+缓存策略
+缓存层
+缓存内容
+命中率
+收益
+语义缓存
+相似查询的回答
+20-40%
+减少 LLM 调用
+工具结果缓存
+相同参数的工具返回
+30-60%
+减少工具延迟
+嵌入缓存
+文本的向量表示
+50-80%
+减少嵌入调用
+前缀缓存
+共享系统提示的 KV
+60-90%
+减少推理计算
+19
+测试与评估体系
+Agent 系统的非确定性给测试带来巨大挑战。传统单元测试无法覆盖 Agent 的
+多步推理
+和
+动态工具选择
+,需要专门的评估方法论。
+评估基准生态
+基准
+领域
+评估方式
+特点
+AgentBench
+通用 Agent
+多场景任务完成率
+覆盖 8 个环境
+τ-bench
+客服 Agent
+双模拟器 + 策略遵循
+真实多轮对话
+SWE-bench
+代码修复
+GitHub Issue 修复
+真实仓库环境
+WebArena
+Web 操作
+真实网站任务完成
+浏览器交互
+GAIA
+通用助理
+多步骤真实世界任务
+需要工具使用
+MLE-bench
+机器学习
+Kaggle 竞赛
+长周期任务
+ToolBench
+工具调用
+API 选择与调用
+万级 API
+轨迹评估(Trajectory Evaluation)
+不同于单轮评估,Agent 的评估需要关注
+完整执行轨迹
+:
+任务完成率
+:最终结果是否正确(最核心指标)
+步骤效率
+:实际步数 / 最优步数,衡量冗余程度
+工具选择准确率
+:每步选择的工具是否正确
+参数正确率
+:工具调用参数的准确程度
+恢复能力
+:出错后能否自主纠偏
+Token 效率
+:完成任务的 Token 消耗
+LLM-as-Judge
+使用强大的 LLM(如 GPT-4)作为评估器,对 Agent 的输出进行打分
+[42]
+。关键实践:
+LLM-as-Judge 的最佳实践
+:
+1. 使用
+评分标准(rubric)
+而非自由评估,减少评分偏差
+2. 进行
+位置去偏
+:随机交换候选答案顺序,避免位置偏好
+3. 使用
+多个评估器
+投票,降低单一模型偏差
+4. 定期用
+人类标注
+校准 LLM 评估器的准确性
+自动化测试策略
+回归测试
+维护一个
+黄金测试集
+,包含典型任务及其期望轨迹。每次 Agent 更新后运行,检测性能回退。由于 Agent 的非确定性,测试通过标准应允许
+轨迹差异
+:只要最终结果正确且步骤数在合理范围内即可。
+对抗测试
+专门构造
+边界用例
+和
+攻击用例
+:
+模糊指令(意图不明确的输入)
+工具不可用(模拟 API 故障)
+提示注入(工具返回中嵌入恶意指令)
+超长上下文(接近 Token 上限)
+循环依赖(工具 A 依赖工具 B 的结果,反之亦然)
+A/B 测试
+生产环境中,将流量分流到新旧版本 Agent,对比关键指标:
+任务完成率(质量)
+平均延迟(速度)
+Token 消耗(成本)
+用户满意度(反馈)
+人工干预率(自主性)
+20
+落地陷阱与实战经验
+Gartner 预测,到 2027 年末超过 40% 的 Agentic AI 项目将被取消
+[26]
+。本章总结真实落地中最常见的陷阱和应对策略。
+陷阱 1:过度自主
+症状
+:给 Agent 过大的自主权,导致行为不可预测、成本失控。Agent 在没有明确边界的情况下,可能陷入
+无限循环
+、
+调用不必要工具
+或
+偏离任务目标
+。
+解法
+:
+设置
+最大步数限制
+(如 10 步),超过即终止
+设置
+Token 预算
+,超支时降级处理
+对高危操作(如发邮件、删除数据)要求
+人工确认
+使用
+白名单工具集
+,而非让 Agent 自由访问所有工具
+陷阱 2:忽视延迟累积
+症状
+:原型阶段每步 2 秒似乎可以接受,但 5 步就是 10 秒,加上工具调用可能超过 30 秒,用户体验急剧下降。
+解法
+:
+设计阶段就计算
+预期总延迟
+,设定 SLA
+对用户展示
+实时进度
+(流式输出 + 步骤提示)
+简单步骤用小模型,复杂步骤才用大模型
+可并行的步骤
+并行执行
+陷阱 3:评估缺失
+症状
+:没有系统化的评估方法,仅靠"感觉"判断 Agent 质量。更新后无法确定是改进还是退步。
+解法
+:
+上线前建立
+黄金测试集
+(至少 50-100 个代表性任务)
+每次更新运行回归测试,对比关键指标
+生产环境持续收集
+用户反馈
+,标注失败案例
+定期用 LLM-as-Judge
+批量评估
+历史对话
+陷阱 4:工具设计不当
+症状
+:工具粒度过粗(一个大工具做太多事)或过细(太多小工具导致选择困难),工具描述不清晰导致误用。
+问题
+影响
+改进
+工具粒度过粗
+Agent 无法精确控制
+拆分为原子操作
+工具粒度过细
+选择困难,Token 浪费
+按功能分组
+描述模糊
+误选工具
+加入使用/不使用时机
+缺少错误处理
+工具失败即崩溃
+返回结构化错误
+参数过多
+Agent 填参出错
+减少必填参数
+陷阱 5:安全防护不足
+症状
+:忽视提示注入、数据泄露、权限滥用等安全风险,导致生产事故。
+解法
+:
+所有工具调用经过
+权限检查
+工具返回数据经过
+消毒处理
+(移除可能的指令)
+用户输入经过
+内容安全过滤
+代码执行在
+沙箱
+中运行
+定期进行
+红队测试
+陷阱 6:成本失控
+症状
+:Agent 每次调用消耗大量 Token(多步推理 + 长上下文),规模化后成本爆炸。
+解法
+:
+实施
+Token 预算
+和
+配额管理
+使用
+模型路由
+:简单任务用小模型
+部署
+语义缓存
+:避免重复计算
+监控
+单任务成本
+,设置告警阈值
+定期审查
+低效轨迹
+,优化 Prompt
+核心原则
+:Agent 不是"越自主越好",而是
+在可控范围内最大化自主性
+。好的 Agent 系统是 80% 的自主决策 + 20% 的人工护栏,而非 100% 的自由行动。
+21
+多模态 Agent
+2025-2026 年,多模态 LLM(GPT-4o、Gemini 2.5、Claude 3.5 Sonnet)的成熟使 Agent 从纯文本世界走向
+视觉、听觉、行动
+的融合感知,开启了
+具身智能
+和
+GUI 自动化
+等全新应用场景
+[43]
+。
+多模态感知能力
+现代多模态 Agent 可以同时处理:
+图像理解
+截图分析、图表解读、OCR 识别、场景描述。
+视频理解
+视频摘要、动作识别、时间线事件提取。
+音频处理
+语音识别、情感分析、声音事件检测。
+文档理解
+PDF/表格/图表的结构化解析与信息提取。
+GUI 自动化 Agent
+多模态 Agent 最具突破性的应用是
+图形界面自动化
+。Agent 通过截屏"看到"屏幕,通过模拟点击/输入"操作"软件,实现了超越 API 的通用交互能力。
+Anthropic Computer Use
+:Claude 3.5 Sonnet 引入的计算机使用能力,可以截图分析界面、移动光标、点击按钮、输入文本
+[44]
+Google Project Mariner
+:Gemini 驱动的浏览器自动化 Agent,支持复杂 Web 任务
+OpenAI Operator
+:GPT-4 驱动的 CUA(Computer-Using Agent),可操作任意桌面软件
+开源方案
+:OmniParser(微软) + GPT-4V 实现屏幕元素解析与操作
+具身智能 (Embodied AI)
+将 Agent 嵌入物理实体(机器人),实现与现实世界的交互:
+方向
+代表项目
+能力
+机器人控制
+Google RT-2, Figure 02
+自然语言指令 → 机器人动作
+自动驾驶
+Tesla FSD, Wayve LINGO-2
+视觉感知 → 驾驶决策
+智能家居
+Google Nest, Amazon Astro
+环境感知 → 设备控制
+仿真环境
+Habitat, AI2-THOR, CARLA
+虚拟训练 → 迁移到现实
+多模态 Agent 的挑战
+延迟
+:图像/视频处理比纯文本慢 5-10 倍,实时交互困难
+成本
+:视觉 Token 消耗远大于文本(一张图 ≈ 1000+ Token)
+准确性
+:GUI 元素定位精度不足,小按钮/下拉菜单容易误操作
+安全
+:操作物理世界(点击、删除、发送)的不可逆性要求更高安全保障
+22
+Agent 经济学与机制设计
+当 Agent 开始代替人类进行
+交易、谈判、协作
+,经济学和机制设计就成为 Agent 系统不可忽视的设计维度。
+Agent 即经济主体
+在多 Agent 系统中,每个 Agent 可以有自己的
+效用函数
+、
+预算约束
+和
+策略空间
+。Agent 之间的交互本质上是
+博弈
+:
+合作博弈
+:多个 Agent 共同完成任务,分享奖励
+竞争博弈
+:Agent 竞争有限资源或客户
+谈判博弈
+:买卖双方 Agent 协商价格和条件
+拍卖机制
+:多 Agent 竞标任务或资源分配
+AI-to-AI 经济
+随着 Agent 普及,
+机器对机器(M2M)经济
+正在形成:
+API 市场
+:Agent 自动发现和购买 API 服务
+算力交易
+:Agent 根据任务需求动态租用算力
+数据交易
+:Agent 评估数据价值并完成交易
+微支付
+:Agent 之间的小额自动化支付
+激励机制设计
+设计多 Agent 系统时,需要确保激励机制
+激励兼容(Incentive Compatible)
+:
+关键原则
+:每个 Agent 的最优策略应该是
+诚实报告
+自己的信息和能力,而非欺骗。这需要:
+1.
+VCG 机制
+:让 Agent 报告真实估值,系统分配社会福利最大化的方案
+2.
+声誉系统
+:记录 Agent 的历史表现,影响未来合作机会
+3.
+保证金机制
+:Agent 预付保证金,违约时没收
+成本与定价模型
+定价模式
+适用场景
+优势
+风险
+按 Token 计费
+LLM API
+透明简单
+用户难以预估
+按任务计费
+完成度明确任务
+用户友好
+任务复杂度难定义
+订阅制
+定期使用
+收入稳定
+重度用户亏损
+效果计费
+可量化结果
+对齐利益
+结果归因困难
+混合模式
+复杂业务
+灵活
+实现复杂
+23
+Agent 伦理与治理
+Agent 的自主性带来了前所未有的伦理挑战:当 AI 代替人类做决策时,
+责任归属
+、
+透明度
+和
+公平性
+都需要重新定义
+[45]
+。
+核心伦理议题
+责任归属
+Agent 自主决策导致损失时,责任在开发者、部署者还是用户?
+透明度
+Agent 的决策过程是否可解释?用户是否知道自己在与 AI 交互?
+公平性
+Agent 是否会对某些群体产生歧视?训练数据中的偏差如何消除?
+隐私保护
+Agent 处理用户数据时如何保护隐私?记忆系统是否泄露敏感信息?
+自主边界
+Agent 的决策权限边界在哪?哪些决策必须保留给人类?
+长期影响
+大规模部署 Agent 对就业、社会结构、人类能力的长期影响?
+治理框架
+全球正在形成多层次的 Agent 治理框架:
+层面
+主体
+措施
+国际
+EU AI Act, UNESCO
+风险分级,高风险 Agent 需审计
+国家
+各国 AI 监管机构
+行业准入,安全标准
+行业
+行业标准组织
+技术标准,最佳实践
+企业
+AI 伦理委员会
+内部审查,红线制度
+技术
+开发者
+护栏机制,可解释性
+EU AI Act 对 Agent 的影响
+2024 年通过的 EU AI Act 将 AI 系统按风险分为四级
+[46]
+:
+不可接受风险
+:禁止(如社会评分、实时人脸监控)
+高风险
+:严格合规要求(如医疗诊断、招聘筛选)
+有限风险
+:透明度义务(如聊天机器人需告知用户)
+最小风险
+:无特别要求
+多数 Agent 系统属于
+有限风险或高风险
+,需要满足透明度要求、技术文档、人类监督等义务。
+负责任 Agent 设计原则
+1.
+人类可控
+:始终保留人类干预和终止的通道
+2.
+透明可释
+:记录完整决策轨迹,支持事后审计
+3.
+公平无偏
+:定期评估 Agent 对不同群体的影响
+4.
+隐私优先
+:数据最小化原则,敏感信息脱敏处理
+5.
+安全兜底
+:高风险操作必须有人工确认环节
+6.
+持续监测
+:部署后持续监控行为偏差和意外影响
+24
+Agent 芯片与边缘部署
+将 Agent 从云端推向边缘设备(手机、PC、IoT)是 2025-2026 年的重要趋势。边缘部署带来
+低延迟
+、
+隐私保护
+和
+离线可用
+等优势,但也面临算力和内存的严格约束。
+AI 芯片格局
+芯片
+厂商
+定位
+NPU TOPS
+Snapdragon X Elite
+Qualcomm
+AI PC
+45
+Apple M4
+Apple
+Mac/iPad
+38
+Intel Core Ultra
+Intel
+AI PC
+~40
+MediaTek Dimensity 9300
+联发科
+旗舰手机
+~48
+NVIDIA Grace Hopper
+NVIDIA
+数据中心
+-
+端侧 Agent 优化技术
+模型压缩
+量化
+:FP16 → INT8 → INT4,内存减少 4 倍,速度提升 2-3 倍
+剪枝
+:移除不重要的权重/注意力头,减少计算量
+蒸馏
+:大模型(教师)训练小模型(学生),保留核心能力
+低秩分解
+:将大矩阵分解为小矩阵乘积,减少参数量
+推理框架
+MLC-LLM
+基于 TVM,支持 iOS/Android/浏览器,通用性强。
+llama.cpp
+C++ 实现,GPU/CPU 混合推理,社区生态最丰富。
+Core ML / NNAPI
+平台原生框架,充分利用 Apple/Android 芯片加速。
+ONNX Runtime
+跨平台,企业级支持,与 Azure 生态集成。
+云-端协同 Agent
+纯端侧部署受限于模型大小,纯云端部署存在延迟和隐私问题。
+云-端协同
+是务实的折中方案:
+端侧
+:意图识别、简单对话、隐私数据处理
+云端
+:复杂推理、大规模检索、工具执行
+协同
+:端侧预处理 + 云端深度处理,动态切换
+25
+Agent 与知识图谱
+知识图谱(KG)为 Agent 提供
+结构化知识
+,弥补 LLM 的知识幻觉和时效性不足。GraphRAG 将 KG 与 RAG 深度融合,成为 2025 年最重要的技术方向之一。
+为什么 Agent 需要知识图谱
+精确性
+:KG 中的事实是结构化的三元组,不存在"幻觉"
+可溯源性
+:每个知识节点可追溯到来源
+关系推理
+:KG 天然支持多跳关系推理
+实时更新
+:KG 可以增量更新,不受模型训练周期限制
+领域定制
+:企业可以构建专属 KG,包含内部知识
+GraphRAG 架构
+Microsoft 提出的 GraphRAG 将知识图谱引入 RAG 管道
+[47]
+:
+GraphRAG 流程
+:
+1.
+文档摄入
+:将原始文档解析为文本块
+2.
+实体抽取
+:LLM 从文本中提取实体和关系
+3.
+图谱构建
+:构建实体-关系-实体的知识图谱
+4.
+社区检测
+:用 Leiden 算法发现实体聚类
+5.
+摘要生成
+:LLM 为每个社区生成摘要
+6.
+查询回答
+:从社区摘要和图谱中检索答案
+Agent + KG 的协同模式
+模式
+KG 角色
+Agent 角色
+典型场景
+KG-as-Tool
+查询数据源
+决策与推理
+知识问答
+KG-as-Memory
+长期记忆
+短期推理
+长期对话
+KG-as-Planner
+提供行动路径
+执行动作
+流程自动化
+KG-as-Validator
+事实验证
+生成回答
+事实核查
+Agent-as-Curator
+被构建和更新
+知识抽取
+KG 自动构建
+26
+Agent 在科学研究中的应用
+AI Agent 正在成为科学研究的新范式,从文献综述到实验设计,从数据分析到论文撰写,Agent 正在
+重塑科研工作流
+。
+科研 Agent 的核心能力
+文献分析
+自动阅读、总结、对比海量论文,提取关键发现。
+假设生成
+基于已有知识,提出新的研究假设和实验方向。
+实验设计
+推荐实验方案、参数配置、对照组设置。
+数据分析
+自动选择统计方法、运行分析、生成可视化。
+论文撰写
+辅助写作、格式校对、参考文献管理。
+同行评审
+模拟审稿人,提供专业反馈和改进建议。
+代表性项目
+AI Scientist (Sakana AI)
+:端到端科研 Agent,从idea生成到论文写作全自动化
+[48]
+Coscientist (CMU)
+:自主化学实验 Agent,规划并执行化学反应
+DeepMind AlphaFold
+:虽非典型 Agent,但其蛋白质结构预测为 Agent 提供了关键工具
+ML Agent (MLE-bench)
+:OpenAI 的 ML 竞赛 Agent,在 Kaggle 任务上达到人类水平
+自动化实验室
+Agent + 机器人实验室正在成为现实:
+材料科学
+:A-Lab(伯克利)自主发现新材料,每天合成 50+ 种候选材料
+合成生物
+:Agent 设计基因序列,自动化实验设备执行合成
+药物发现
+:Agent 筛选分子库、预测药效、优化先导化合物
+27
+Agent 在游戏与仿真中的应用
+游戏和仿真是 Agent 研究的
+天然实验场
+——环境可控、规则明确、可大规模并行。从 Generative Agents 到 Voyager,游戏环境催生了多项里程碑式研究。
+里程碑项目
+Generative Agents (Stanford, 2023)
+Park 等人在 Smallville 小镇中部署了 25 个 AI 居民,每个 Agent 有独立的人格、日程和社交关系
+[16]
+。Agent 们自主组织了情人节派对,其中一个 Agent 主动邀请 others 参加。
+这是首次展示 Agent 的涌现社会行为
+。
+Voyager (NVIDIA, 2023)
+在 Minecraft 中,Agent 自主探索世界、学习技能、完成任务。Voyager 的核心创新是
+技能库(Skill Library)
+:Agent 将学会的技能编码为可复用的代码,逐步积累能力,从"砍木头"到"建造房屋"
+[49]
+。
+SIMA (DeepMind, 2024)
+Scalable Instructable Multiworld Agent,在多个 3D 游戏中通用操作,无需游戏特定训练。展示了 Agent 的
+跨环境迁移能力
+。
+仿真环境
+环境
+类型
+特点
+Minecraft
+沙盒游戏
+开放世界,创造性任务
+WebArena
+Web 仿真
+真实网站操作
+Habitat
+3D 室内
+具身导航与交互
+AI2-THOR
+3D 室内
+物理交互,物体操作
+CARLA
+自动驾驶
+城市道路仿真
+StarCraft II
+RTS 游戏
+复杂策略,实时决策
+社会仿真
+Agent 仿真不仅用于游戏,还用于
+社会科学研究
+:
+经济仿真
+:模拟市场行为,测试经济政策
+舆情仿真
+模拟信息传播,预测舆论走向
+疫情仿真
+:模拟人群行为,评估防疫措施
+城市规划
+:模拟交通和人口流动
+28
+Agent 在创作与内容生成中的应用
+Agent 正在从"辅助工具"进化为"创作伙伴",在写作、编程、设计、影视等领域展现出
+端到端的创作能力
+。
+写作 Agent
+长篇创作
+:Agent 维护角色设定、情节线索、世界观的一致性,辅助或自动生成长篇小说
+新闻报道
+:多源信息收集 → 事实核查 → 结构化写作,实现自动化新闻生产
+技术文档
+:代码分析 + 文档生成,保持文档与代码同步
+营销内容
+:根据目标受众、渠道特性,自动生成定制化营销文案
+编程 Agent
+2025 年,编程 Agent 取得突破性进展:
+Devin (Cognition)
+首个"AI 软件工程师",端到端完成开发任务。
+Claude Code
+Anthropic 的终端编程 Agent,支持复杂代码库操作。
+Cursor Agent
+IDE 内嵌 Agent,支持多文件编辑和项目级重构。
+GitHub Copilot Agent
+从代码补全进化为自主 Issue 解决和 PR 创建。
+在 SWE-bench 上,顶级编程 Agent 的通过率已从 2024 年的 13% 提升到 2025 年的 50%+,部分类别接近人类开发者水平。
+多模态创作
+视频生成
+:Agent 编排多模态模型,从脚本到成片的端到端视频制作
+游戏开发
+:Agent 生成游戏关卡、角色对话、背景音乐
+UI/UX 设计
+:从需求描述到设计稿,Agent 自动生成界面布局
+音乐创作
+:Agent 理解情感和风格,生成配乐和歌曲
+29
+Agent 用户体验与交互设计
+Agent 的交互设计与传统聊天机器人有本质区别:用户不再只是"对话",而是在
+委派任务
+和
+监督执行
+。这要求全新的 UX 范式。
+从对话到协作
+维度
+聊天机器人
+Agent
+交互模式
+一问一答
+任务委派 + 进度反馈
+用户角色
+提问者
+监督者/协作者
+反馈周期
+即时
+可能持续数分钟
+透明度需求
+低
+高(需要知道在做什么)
+控制需求
+低
+高(需要可随时干预)
+Agent 交互设计原则
+1.
+可见性(Visibility)
+:Agent 的思考过程和当前动作对用户可见
+2.
+可控性(Control)
+:用户可随时暂停、修改、终止 Agent 行为
+3.
+反馈性(Feedback)
+:实时显示执行进度,减少等待焦虑
+4.
+可回溯性(Reversibility)
+:支持撤销 Agent 的操作
+5.
+渐进式信任
+:从低风险任务开始,逐步扩大 Agent 权限
+界面设计模式
+流式输出
+:实时显示 Agent 的思考和行动,而非等待完整结果
+步骤可视化
+:用时间线/流程图展示 Agent 的执行轨迹
+审批卡点
+:关键操作前弹出确认框,展示操作内容和影响
+结果预览
+:生成内容后提供预览和编辑界面
+多会话管理
+:支持同时运行多个 Agent 任务,类似浏览器标签页
+信任建立
+用户对 Agent 的信任需要逐步建立:
+能力展示
+:先展示 Agent 能做什么,再让用户尝试
+错误透明
+:Agent 出错时坦诚承认,而非掩饰
+一致性
+:Agent 的行为模式保持稳定,不产生意外
+渐进授权
+:从只读操作开始,逐步开放写入和执行权限
+30
+Agent 协议标准与开放生态
+Agent 生态的繁荣需要
+标准化协议
+支撑互操作性。2024-2025 年,多个重要协议标准相继发布,正在构建 Agent 的"TCP/IP 时刻"。
+核心协议对比
+协议
+发起方
+定位
+成熟度
+MCP
+Anthropic
+Agent 与工具/数据源连接
+广泛采用
+A2A
+Google
+Agent 之间通信协作
+标准化中
+OpenAI Function Calling
+OpenAI
+LLM 与工具接口
+行业事实标准
+AGNTCY
+Cisco 等
+Agent 互联框架
+早期
+MCP (Model Context Protocol)
+Anthropic 于 2024 年发布的 MCP 是 Agent 与外部工具/数据源连接的标准协议
+[50]
+。其核心价值在于
+解耦 Agent 与工具
+:
+统一接口
+:所有工具通过 MCP 暴露能力,Agent 无需为每个工具写适配
+动态发现
+:Agent 运行时自动发现可用工具及其能力
+安全隔离
+:工具运行在独立进程中,通过协议通信
+生态效应
+:工具开发者只需实现一次 MCP,所有支持 MCP 的 Agent 都可使用
+A2A (Agent-to-Agent) 协议
+Google 于 2025 年提出的 A2A 协议解决
+Agent 之间的协作
+问题
+[19b]
+:
+Agent Card
+:每个 Agent 发布能力描述,其他 Agent 可发现和调用
+任务委派
+:Agent 可以将子任务委派给其他更专业的 Agent
+异步通信
+:支持长时运行任务的异步状态更新
+安全认证
+:Agent 间通信的认证和授权机制
+A2A 已捐赠给 Linux Foundation,正在成为开放标准。
+开源生态
+LangChain/LangGraph
+最大的 Agent 开发框架社区,丰富的工具集成。
+AutoGen (Microsoft)
+多 Agent 对话框架,学术影响力大。
+CrewAI
+角色扮演式多 Agent,API 简洁。
+Dify / Coze
+低代码 Agent 平台,面向应用开发者。
+未来生态展望
+Agent 生态正在走向
+标准化
+和
+互联化
+:
+工具市场
+:类似 App Store,开发者发布 MCP 工具供 Agent 使用
+Agent 注册中心
+:Agent 发布能力,其他系统可发现和调用
+跨平台互操作
+:不同框架开发的 Agent 可以协作
+安全审计标准
+:统一的 Agent 安全评估和认证体系
+核心判断
+:2026 年将是 Agent 生态的"TCP/IP 时刻"——MCP 和 A2A 协议的成熟将使 Agent 从孤岛走向互联,就像 HTTP 让网站从孤岛走向万维网一样。掌握协议标准者将定义下一代 AI 生态的格局。
+参考资料
+Google. Agents 白皮书 (Julia Wiesinger, Patrick Marlow, Vladimir Vuskovic, 2024). 系统介绍 Agent 概念、架构、组件与推理框架。
+https://arthurchiao.art/blog/ai-agent-white-paper-zh/
+一文详尽之 LLM-Based Agent(整合 Anthropic《Building Effective Agents》与 Lilian Weng 博客). Workflows vs Agents 分类与四要素框架。
+https://blog.csdn.net/fengdu78/article/details/145373838
+Wang et al. A Survey on Large Language Model based Autonomous Agents. arXiv:2308.11432. LLM 自主智能体综述。
+https://blog.csdn.net/heroding23/article/details/135360884
+Xi et al. The Rise and Potential of Large Language Model Based Agents. arXiv:2309.07864. 大脑-感知-动作三模块架构综述。
+https://blog.csdn.net/weixin_43961909/article/details/144374388
+简介 Multi-Agent(多智能体系统). 多 Agent 系统定义与特征。
+https://blog.csdn.net/weixin_41905135/article/details/143273383
+快手面试题:Agent 范式(反应式 Agent 定义).
+https://blog.csdn.net/qq_54708219/article/details/158741431
+构建 AI 智能体:反应式与深思熟虑式实践策略对比.
+https://cloud.tencent.cn/developer/article/2601485
+Yao et al. ReAct: Synergizing Reasoning and Acting in Language Models. arXiv:2210.03629, ICLR 2023. 定义 Agent 领域最重要的认知架构。
+https://www.cnblogs.com/gccbuaa/p/19196553
+Beyond Chain-of-Thought: A Survey of Chain-of-X Paradigms. CoT 系列演进综述。
+https://blog.csdn.net/qq_35166730/article/details/138273089
+Reflexion: Language Agents with Verbal Reinforcement Learning. Shinn et al., NeurIPS 2023, arXiv:2303.11366. 语言强化学习。
+https://blog.csdn.net/beingstrong/article/details/139902804
+全面战胜 ReAct!斯坦福全新智能体推理框架 ReCAP,性能提升 112.5%.
+https://finance.sina.cn/stock/jdts/2025-12-02/detail-infzkmzr0597598.d.html
+A Survey on the Memory Mechanism of Large Language Model based Agent. Agent 记忆机制专项综述。
+https://blog.csdn.net/fengdu78/article/details/145373838
+2024-2025年 Multi-Agent 全面爆发:6大主流框架深度解析.
+https://blog.csdn.net/CSDN_224022/article/details/156613882
+Park et al. Generative Agents: Interactive Simulacra of Human Behavior. UIST 2023, arXiv:2304.03442. 自主智能体开山之作。
+https://blog.csdn.net/bryant_meng/article/details/159166078
+Agent 基础:OpenAI Function Calling、Anthropic Tool Use、MCP. 工具调用机制详解。
+https://blog.csdn.net/sweet_ran/article/details/156240780
+MCP vs. OpenAI vs. Google vs. AWS:四大 Agent 协议深度对决.
+https://blog.csdn.net/sara_han/article/details/156113251
+一文读懂 A2A(Agent-to-Agent)开放协议.
+https://blog.csdn.net/Julialove102123/article/details/147385121
+A2A Protocol 托管于 Linux Foundation(2025年大模型落地指南).
+https://blog.csdn.net/m0_74942241/article/details/157943798
+吃透 Agent 三大核心范式:ReAct、Plan-and-Execute、Reflection.
+https://blog.csdn.net/u013970991/article/details/160843029
+Agent 不是聊天机器人:2026 年 AI Agent 技术全景拆解.
+http://m.toutiao.com/group/7654521297263493632/
+《麦肯锡 2025 AI 报告:The State of AI in 2025》. 基于全球近 2000 家组织的调研。
+https://cj.sina.cn/article/norm_detail?url=http%3A%2F%2Ffinance.sina.cn%2Ftech%2Fcsj%2F2025-11-11%2Fdetail-infwyuni0730153.d.html
+Agent 评估基准 · τ-bench / SWE-bench / 轨迹评估 / 工具调用准确率.
+https://juejin.cn/post/7662245660751970331
+Agent 安全与对齐:构建可信赖的 AI 系统.
+http://m.toutiao.com/group/7628271433893937727/
+Agentic AI vs 传统 AI:Gartner 预测 2028 年 15% 日常决策将由 Agentic AI 自主做出.
+https://sina.cn/detail/niimqsk8143641
+2026 年 Agentic AI 十大关键趋势:技术、应用与治理三位一体.
+http://m.toutiao.com/group/7591713799657325107/
+Gartner:预测到 2027 年末超过 40% 的代理型 AI 项目将被取消.
+http://m.toutiao.com/group/7527555429178556979/
+新一代 AI 模型密集发布,行业加速向具身智能与 Agent 转型.
+http://m.toutiao.com/group/7657904578880406043/
+AIOS: LLM Agent Operating System 论文笔记.
+https://blog.csdn.net/yjw123456/article/details/139536175
+Wang et al. Plan-and-Solve Prompting. ACL 2023. 分离规划与执行的推理框架。
+https://arxiv.org/abs/2305.04091
+Shen et al. HuggingGPT: Solving AI Tasks with ChatGPT and its Friends. NeurIPS 2023. LLM 作为模型调度器。
+https://arxiv.org/abs/2303.17580
+Zhou et al. Least-to-Most Prompting. ACL 2023. 递进式推理分解。
+https://arxiv.org/abs/2205.10625
+Zhou et al. Language Agent Tree Search (LATS). NeurIPS 2023. MCTS 与 LLM Agent 结合。
+https://arxiv.org/abs/2310.04406
+Besta et al. Graph of Thoughts. AAAI 2024. 图结构推理范式。
+https://arxiv.org/abs/2308.09687
+Yao et al. Tree of Thoughts. NeurIPS 2023. 树形推理与剪枝。
+https://arxiv.org/abs/2305.10601
+Self-Discover: Large Language Models Self-Compose Reasoning Structures. Google, 2024.
+https://arxiv.org/abs/2402.03620
+Agentic RAG: The Next Evolution of Retrieval Augmented Generation. 2025 综述。
+https://arxiv.org/abs/2501.09136
+Yan et al. Corrective Retrieval Augmented Generation (CRAG). 2024. 检索评估与纠错。
+https://arxiv.org/abs/2401.15884
+Asai et al. Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection. ICLR 2024.
+https://arxiv.org/abs/2310.11511
+Jeong et al. Adaptive-RAG. NAACL 2024. 自适应检索策略。
+https://arxiv.org/abs/2403.14403
+vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention. Kwon et al., SOSP 2023.
+https://arxiv.org/abs/2309.06180
+Leviathan et al. Fast Inference from Transformers via Speculative Decoding. ICML 2023.
+https://arxiv.org/abs/2211.17192
+Zheng et al. Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. NeurIPS 2023.
+https://arxiv.org/abs/2306.05685
+多模态大模型综述 2024-2025:GPT-4o、Gemini、Claude 多模态能力对比。
+https://arxiv.org/abs/2401.13601
+Anthropic. Introducing Computer Use (Claude 3.5 Sonnet). 2024. 计算机使用能力。
+https://www.anthropic.com/news/3-5-models-and-computer-use
+AI Ethics and Governance in Agent Systems. 2025 综述。Agent 伦理与治理框架。
+https://arxiv.org/abs/2403.18875
+EU AI Act 官方文本. 2024 年通过,按风险分级管理 AI 系统。
+https://artificialintelligenceact.eu/
+Microsoft Research. GraphRAG: From Local to Global, A Graph RAG Approach. 2024.
+https://arxiv.org/abs/2404.16130
+Lu et al. The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery. Sakana AI, 2024.
+https://arxiv.org/abs/2408.06292
+Wang et al. Voyager: An Open-Ended Embodied Agent with Large Language Models. NVIDIA, 2023.
+https://arxiv.org/abs/2305.16291
+Anthropic. Model Context Protocol (MCP) Specification. 2024. Agent 与工具连接标准。
+https://modelcontextprotocol.io/

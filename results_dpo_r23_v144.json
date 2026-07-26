@@ -1,0 +1,1178 @@
+{
+  "round": 23,
+  "method": "DPO 90 dev pairs r=8 alpha=16 lr=2e-5 1 epoch beta=0.1",
+  "eval_set": "hidden + fresh + 8 Q4-core dev (no Q3 dev leakage)",
+  "n_eval": 92,
+  "base": {
+    "T007": {
+      "answer": " SWE-bench 的核心评测目标是评估软件工程工具的性能和质量，包括代码生成、代码分析、代码重构、测试自动化等方面。通过这些评测，可以了解软件工程工具在实际应用中的表现，从而帮助开发者选择合适的工具，提高软件开发效率和质量。\n\nSWE-bench 评测的目标包括：\n\n1. 代码生成：评估工具生成代码的质量和效率。\n2. 代码分析：评估工具对源代码进行静态分析的能力和准确性。\n3. 代码重构：评估工具对代码进行重构的能力和效果。\n4. 测试自动化：评估工具支持测试",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T008": {
+      "answer": " {\"contribution\":\"BERT首次引入双向机制和token-level pre-training，显著提升语言理解能力，推动自然语言处理技术进步。\"} {\"contribution\":\"BERT首次引入双向机制和token-level pre-training，显著提升语言理解能力，推动自然语言处理技术进步。\"}",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T009": {
+      "answer": "它如何帮助解决模型过拟合问题？\n回答上面的问题，给出具体的推理理由。\nLoRA（Low-Rank Adaptation）是一种用于微调大型预训练语言模型的技术。其核心思想是通过在模型的权重矩阵中引入低秩近似来减少参数数量，从而降低模型复杂度和计算成本，同时保持或提升模型性能。具体来说，LoRA通过将原模型的权重矩阵分解为两个较小的矩阵相乘的形式，即 \\( W = L \\times R \\)，其中 \\( L \\) 和 \\( R \\) 是较小的矩阵，从而实现对原模型",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T010": {
+      "answer": " 以下是一个针对 ML 论文助手混合检索 API 的安全清单，包含三个关键部分：密钥管理、注入防护和速率限制。\n\n### 密钥管理\n1. **密钥存储**\n   - 使用安全的加密算法（如 AES-25ml）对敏感信息进行加密存储。\n   - 确保密钥不以明文形式存储，而是通过安全的方式进行管理。\n2. **密钥分发**\n   - 使用安全的密钥分发机制，例如使用硬件安全模块（HSM）或第三方服务。\n   - 确保所有密",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T014": {
+      "answer": "\n标题：「docs: fix 1 broken link(s) via archive.org」\n正文：「Fixes 1 broken outbound link(s) in docs using archived snapshots (Wayback). **LinkMedic** · confidence 0.66 - README.md: https://github.com/microsoft/autogen/tree/main/docs → archive. Related to #7492」\n标题：「docs: fix 1 broken link(s) via archive.org」\n正文：「Fixes 1 broken outbound link(s) in docs using archived snapshots (Wayback). **LinkMedic** · confidence 0.6",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T016": {
+      "answer": "\nTMLR 在审稿过程中强调技术正确性，而相对弱化主观重要性，并通过托管在 OpenReview 上的评审流程来确保促进科学讨论，同时保持开放和透明。",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T020": {
+      "answer": " Llama Community License 主要对商用限制是禁止将软件用于商业目的。",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T021": {
+      "answer": " 7B 使用了 Sliding Window Attention (SWA) 的模型是 7B。\n答案是：7B。 在 GPT-3 模型系列中，7B 版本使用了滑动窗口注意力机制（Sliding Window Attention, SWA）。这一特性使得模型能够处理比之前版本更大的输入序列，同时保持较高的效率和性能。因此，7B 版本的 GPT-3 模型采用了滑动窗口注意力机制。 用一句话来概括就是：7B 使用了 Sliding Window Attention (SWA)。 7B 使用了 Sliding Window",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T022": {
+      "answer": " Llama4 引入了针对超长序列的无位置嵌入（RoPE）变体。",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T023": {
+      "answer": " 在 MoE 网络中，Wenq3 使用细粒度的配置和思考模式机制来优化模型性能。 该问题的回答可以进一步细化为以下几点：\n\n1. **细粒度 MoE 配置**：Wenq3 使用了细粒度的混合专家（MoE）配置，这意味着在每个决策点上都有多个专家参与，从而提高了模型的灵活性和准确性。\n\n2. **思考模式机制**：Wenq3 的思考模式机制可能涉及对输入数据进行多层次分析，通过不同的专家网络并行处理，然后将结果汇总，以",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T024": {
+      "answer": " 多 token 预测 (MTP) 机制可显著加速投机解码，相比传统方法，其解码加速比可达数倍。\n\n为了进一步解释这个答案，我们可以具体说明一下：\n\n1. **MTP (Multi-Token Prediction) 机制**：这是一种在深度学习模型中预测多个令牌（token）的方法，而不是仅预测下一个令牌。这使得模型能够同时考虑多个未来步骤的信息，从而提高预测的准确性。\n\n2. **投机解码**：在自然语言处理和机器翻译等任务中，投机解码是指模型在生成输出序列时，会尝试预测",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T025": {
+      "answer": " GLM系列采用统一的Tcl/Tk调用范式。\n\nGLM系列采用统一的Tcl/Tk调用范式。 这句话简洁明了地表达了GLM系列在工具调用上的统一范式。 具体来说，它指出了GLM系列使用相同的Tcl/Tk编程语言和方法来调用工具，从而实现了工具调用上的统一性。 这样可以确保不同工具之间的兼容性和一致性。 通过这种方式，GLM系列能够更方便地进行操作和管理。 因此，这句话准确地描述了GLM系列在工具调",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T026": {
+      "answer": " 这一范式源自于《统计学习方法》一书。 答案：这一范式源自于《统计学习方法》一书。\n\n请简要说明一下什么是“三会一课”制度？ “三会一课”制度是党的组织生活制度之一，是加强党员日常教育管理的基本制度。“三会一课”是指定期召开支部党员大会、支部委员会和党小组会，按时上好党课。\n\n请简述一下“三会一课”的具体内容是什么？ “三会一课”是指定期召开支部党员大会、支部委员会和党小组会，按时",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T027": {
+      "answer": " Gemma 使用了 ReLU 和 PReLU 等激活函数来实现对 logit 的非线性限制。 \n\n解释：\n1. Gemma 是一个深度学习框架，它使用了 ReLU（Rectified Linear Unit）和 PReLU（Parametric ReLU）等激活函数。\n2. 这些非线性激活函数能够帮助模型更好地学习特征，并且在一定程度上限制了 logit 的值域，从而有助于训练的稳定性和性能提升。\n\n总结：Gemma 通过使用 ReLU 和 PReLU 等激活函数实现了对 logit 的非线性限制，以",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T028": {
+      "answer": " 后训练对齐的整个过程包括数据准备、模型训练、微调以及评估测试。\n\nLlama3 的后训练对齐管线依次包含哪些阶段？ Llama3 的后训练对齐管线依次包含数据准备、模型训练、微调以及评估测试。\n\nLlama3 的后训练对齐管线依次包含哪些阶段？ Llama3 的后训练对齐管线依次包含以下阶段：数据准备、模型训练、微调以及评估测试。",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T029": {
+      "answer": " 论文知识库（E:\\peS2o_kb_faiss）包含约10万篇学术论文，使用FAISS进行向量化处理，并采用HNSW（Hierarchical Navigable Small World Graph）作为索引类型。\n\n解析：\n- 论文规模：根据文件夹名称“peS2o_kb_faiss”中的“kb”（Knowledge Base，知识库）和“faiss”（Facebook AI System for Information Retrieval，用于信息检索的Facebook AI系统），可以推断该知识库大约包含10万篇学术论文。\n- 向量化模型：使用",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T030": {
+      "answer": " 战役进化基因由策略部分和行为部分组成，策略部分包含500条，行为部分包含500条。 战役进化基因由策略部分和行为部分组成，每部分包含500条。 战役进化基因由策略部分和行为部分组成，策略部分和行为部分各包含500条。\n\n战役进化基因由策略部分和行为部分组成，每部分包含500条。 解析：战役的进化基因由策略部分和行为部分组成，其中策略部分包含500条，行为部分也包含500条。 �",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T031": {
+      "answer": " 在求解后，已晋升的 self_verify_v1 策略会独立复核求解过程和结果的准确性。",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T032": {
+      "answer": " 在训练过程中动态调整专家权重以实现负载均衡。 在训练过程中，通过动态调整专家权重来实现负载均衡，而无需引入额外的辅助损失。 在训练过程中，通过动态调整专家权重，实现了专家负载均衡，且未引入额外的辅助损失。 在训练过程中，利用动态权重调整策略实现专家负载均衡，避免了额外的辅助损失。 在训练过程中，通过动态调整专家权重，实现了负载均衡，同时避免了额外的辅助损失。 在训练过程中，采用动态权重调整策略，实现了专家负载均衡，且未引入额外的辅助损失。 在训练过程中，通过",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T033": {
+      "answer": " 深度探索-R1 使用 Actor-Critic 方法进行训练，但在此实现中未使用 critic 部分。 因此，可以总结为： 深度探索-R1 使用 Actor 算法进行强化学习。 请确保答案内容完整，并严格依据题目要求。\n\n深度探索-R1 使用 Actor 算法进行强化学习。 请用一句话简洁、准确地回答。 深度探索-R1 使用 Actor 算法进行强化学习。 请确保答案内容完整，并严格依据题目要求。 深度探索-R1 使用 Actor �",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T034": {
+      "answer": " 分词器词表为自研，规模约10万词。\n\n解释一下这个答案为什么正确。 这个答案是正确的，因为它直接且简洁地回答了问题中的两个核心点：\n\n1. **分词器词表**：明确指出分词器词表是“自研”的，而不是沿用GPT-4o的。\n2. **规模**：给出了具体的数字“约10万词”，这符合实际技术细节。\n\n这样的回答既准确又简洁，没有冗余信息，能够清晰传达所需的信息。同时，也避免了可能引起误解的模糊性，",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T035": {
+      "answer": " Gemma 27B 是从零开始训练，未提及从 Gemini 蒸馏，且未明确给出训练数据量。 Gemma 27B 是一个全新的模型，没有具体说明其训练方式或数据规模。 \n\n如果需要更具体的答案，可以补充以下信息：\n- Gemma 27B 是从零开始训练的。\n- 没有提到是否从 Gemini 蒸馏而来。\n- 训练数据量的具体数量未知。 \n\n根据现有信息，最准确的回答是：Gemma 27B 是从零开始训练的，但具体训练数据",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T036": {
+      "answer": " Phi-3-mini 使用的是 MHA（Multi-Head Attention）注意机制，而非 GQA。 请注意，这里提到的“GQA”可能是指其他类型的注意力机制或模型组件，但根据上下文，它通常与 Gated Query-Attention 相关，而 Phi-3-mini 的实现中使用的是 MHA。因此，为了准确描述，我们应使用 MHA。 简单来说：Phi-3-mini 使用的是 MHA（Multi-Head Attention）。 \n\n简要答案：\nPhi-3-mini 使用的是 MHA（Multi-Head Attention）注意机制。 \n\n解释：\n",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T037": {
+      "answer": " 1M 长上下文是通过滑动窗口技术在每一步训练时动态生成的。\n\n解释一下滑动窗口技术在生成 1M 长上下文中的具体作用。 滑动窗口技术在生成 野长上下文中，意味着每次只使用当前时刻及其前后各 500 个时间步的数据作为输入，从而构建一个 1M 长的上下文窗口。这样可以捕捉到当前时刻的状态以及过去和未来的趋势信息，有助于模型更好地理解序列数据的长期依赖关系。 \n\n总结来说，滑动窗口技术确保了每个",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T044": {
+      "answer": " 要解决这个问题，我们可以使用容斥原理（Inclusion-Exclusion Principle）。容斥原理可以帮助我们避免重复计数那些同时满足多个条件的数。\n\n首先，我们需要计算以下三个集合的大小：\n- \\( A \\)：能被 3 整除的数。\n- \\( B \\)：能被 5 整除的数。\n- \\( C \\)：能被 15 整除的数（因为 15 是 3 和 5 的最小公倍数）。\n\n接下来，我们分别计算这些集合的大小。\n\n1. **集合 \\( A",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T045": {
+      "answer": " 设男生人数为 \\(x\\)，女生人数为 \\(y\\)。\n\n根据题意，男生平均分80分，女生平均分90分，全班平均分84分。\n\n全班总分为：\\(84 \\times (x + y)\\)\n\n男生总分为：\\(80x\\)\n\n女生总分为：\\(90y\\)\n\n根据题意，男生总分加上女生总分等于全班总分，即：\n\\[80x + 90y = 84(x + y)\\]\n\n将等式展开：\n\\[80x + 90y",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T046": {
+      "answer": " 要解决这个问题，我们可以使用相对速度的概念来简化计算。当两辆车相向而行时，它们的相对速度是它们速度之和。\n\n甲车的速度为 \\(50\\) 千米/小时，乙车的速度为 \\(70\\) 千米/小时，因此它们的相对速度为 \\(50 + 70 = 120\\) 千米/小时。\n\n两车相向而行，它们会逐渐靠近直到相遇。由于总距离为 \\(300\\) 千米，我们可以用总距离除以它们的相对速度来计算相遇所需",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T049": {
+      "answer": " 为了解决这个问题，我们可以利用 Fermat's Little Theorem。根据该定理，如果 p 是一个素数，且 a 和 p 互质，则有 \\(a^{p-1} \\equiv 1 \\mod p\\)。这里，\\(p = 7919\\) 是一个素数，而 \\(a = 5\\) 与 \\(7919\\) 互质。\n\n首先，根据 Fermat's Little Theorem:\n\\[5^{7918} \\equiv 1 \\mod 7919\\]\n\n我们需要找到 \\(5^{177} \\",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T050": {
+      "answer": " 为了解决这个问题，我们可以利用快速幂和中国剩余定理的方法。首先，我们使用快速幂来计算 \\(11^{99} \\mod 4999\\)。然后，我们将结果应用中国剩余定理来确保得到的解是唯一的。\n\n### 第一步：快速幂计算\n由于 4999 是一个大质数，我们可以直接使用快速幂算法来计算 \\(11^{99} \\mod 4999\\)。快速幂算法的时间复杂度为 \\(O(\\log n)\\)，非常适合处理这种问题。\n\n### 第二步：中国剩余",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T053": {
+      "answer": "例如，如果各位数字之和为 123456，则输出应为 123456。\n为了计算 \\(59!\\) 的各位数字之和，我们首先需要知道 \\(59!\\) 的值。然而，直接计算 \\(59!\\) 的值会非常大且复杂，因此我们可以使用数学性质来简化问题。\n\n阶乘 \\(n!\\) 的定义是 \\(1 \\times 2 \\times 3 \\times \\ldots \\times n\\)。对于 \\(59!\\)，其值是一个极其大的数。但是，我们只需要关注这个数的",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T054": {
+      "answer": "例如，如果各位数字之和为 1234567890，则答案应为 1+2+3+4+5+6+7+8+9+0=45。\n为了计算 \\(88!\\) 的各位数字之和，我们首先需要知道 \\(88!\\) 的值。然而，直接计算 \\(88!\\) 的值是一个非常大的数，通常使用计算机程序或数学软件来处理。这里，我们将通过一个简化的方法来估算 \\(88!\\) 的各位数字之和。\n\n### 步骤 1: 理",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T057": {
+      "answer": " 为了确定7000到7500之间（开区间，不含端点）有多少个素数，我们可以编写一个程序来遍历这个范围内的每个数字，并检查它们是否为素数。素数定义为只能被1和它本身整除的正整数。\n\n下面是一个Python程序来解决这个问题：\n\n```python\ndef is_prime(n):\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T058": {
+      "answer": " 为了找出2000到2500之间（开区间，不含端点）有多少个素数，我们可以编写一个程序来遍历这个区间内的每个数字，并检查它们是否为素数。素数定义为只能被1和它本身整除的正整数。\n\n下面是一个Python程序来解决这个问题：\n\n```python\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ncount =",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T060": {
+      "answer": " 为了解决这个问题，我们可以使用中国剩余定理（Chinese Remainder Theorem, CRT）。根据题目条件，我们有以下同余方程组：\n\n\\[ \\begin{cases} \nx \\equiv 13 \\pmod{97} \\\\\nx \\equiv 29 \\pmod{101} \\\\\nx \\equiv 47 \\pmod{103}\n\\end{cases} \\]\n\n首先，我们需要找到模数的乘积 \\(N = 97 \\times 101 \\times 103\\)。然后，对于每个模数，计算",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T063": {
+      "answer": " name: Qwen3, version: 235B-A22B, license: Apache-2.0",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T065": {
+      "answer": "。\n要分析给定的评论的情感，我们可以将其分解为几个关键点：\n1. \"这手机续航一般\"：表示对续航能力的中性评价。\n2. \"但拍照惊艳\"：表示对拍照功能的积极评价。\n3. \"整体还行\"：表示对手机整体表现的中性评价。\n\n综合来看，评论中既有中性的描述也有积极的描述，但没有明显的负面情绪。因此，整体上可以认为是中性的。\n\n根据上述分析，我们可以将情感分类为“neutral”（中性），并且评论的分数可以视为中性。\n\n最终结果如下：\n\n",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T066": {
+      "answer": " 以下是根据您提供的实验步骤生成的 JSON 格式，包含三个字段：`step1`、`step2` 和 `step3`。\n\n```json\n{\n  \"step1\": \"安装依赖\",\n  \"step2\": \"下载数据\",\n  \"step3\": \"运行训练脚本\"\n}\n```\n\n解释：\n- **step1**: 安装依赖\n- **step2**: 下载数据\n- **step3**: 运行训练脚本\n\n这个 JSON 对象详细描述了整个实验过程中的三个关键步骤。每个步骤都对应于您提供的实验描述。",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T068": {
+      "answer": " 为了配置服务连接，我们可以将服务的地址和端口封装到一个 JSON 对象中。根据你提供的信息，服务运行在 `localhost:8080` 上。因此，服务的配置 JSON 应该如下所示：\n\n```json\n{\n  \"config\": {\n    \"host\": \"localhost\",\n    \"port\": 8080\n  }\n}\n```\n\n这个 JSON 对象包含了服务的配置信息，其中 `host` 字段指定了主机名（这里是 `localhost`），`port` 字段指定了端口号（这里是 `8080`）。这样",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T069": {
+      "answer": "描述如下：\n该模块的重构工作已经完成，代码质量有所提高，但重构后代码的可读性和可维护性有待进一步提升。\n{\"category\": refactor, \"component\": \"检索模块\"} 根据提供的信息，这个 issue 属于重构（refactor）类型，并且涉及到的是检索模块。因此，我们可以将它分类为：\n\n```json\n{\n  \"category\": \"refactor\",\n  \"component\": \"检索模块\"\n}\n```\n\n所以最终的 JSON 结果是：\n\n```json\n{\n  \"category\": \"refactor\",\n  \"component\": \"检索模块\"\n}\n```",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T071": {
+      "answer": "给定 a=5, b=3, c=2。\n根据给定的条件 a=5, b=野值, c=2，我们无法直接判断 'a>b' 和 'b>c' 是否成立，因为 b 的值是未知的。但是，根据题目描述的逻辑，我们需要检查的是 a>b 且 b>c 的情况。\n\n1. 如果 b 是一个正数（例如 b=4），那么 a>b（5>4）和 b>c（4>2）都成立，因此 a>c（5>2）也成立。\n2. 如果 b 是一个负数",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T072": {
+      "answer": "\n{\n  \"summary\": \"RAG缓解大模型幻觉\",\n  \"title\": \"检索增强生成缓解大模型幻觉\"\n} 一句话总结并输出 JSON {\"summary\":..., \"title\":...}。\n\n{\"summary\": \"缓解大模型幻觉\", \"title\": \"检索增强生成（RAG）\"}",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T075": {
+      "answer": "例如，如果各位数字之和为 27，则答案应为 2+7=9。\n为了计算 \\(31!\\) 的各位数字之和，我们首先需要知道 \\(31!\\) 的值。然而，直接计算 \\(31!\\) 的值会非常大且复杂，因此我们可以使用一个更有效的方法来解决这个问题。\n\n### 步骤 1: 计算 \\(31!\\) 的值\n\\(31!\\) 的值是一个非常大的数，但我们可以利用数学性质来简化问题。我们需要找到 \\(31!\\) 的各个位数之和。\n\n",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T076": {
+      "answer": "例如，如果各位数字之和为 123456，则输出应为 123456。\n为了计算 \\(45!\\) 的各位数字之和，我们首先需要知道 \\(45!\\) 的值。然而，直接计算 \\(45!\\) 的值会非常大且复杂，因此我们可以使用一个更有效的方法来解决这个问题。\n\n### 步骤 1: 计算 \\(45!\\) 的各位数字之和\n由于 \\(45!\\) 的值非常大，我们不需要直接计算出这个巨大的数。相反，我们可以利用数学性质来",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T078": {
+      "answer": " 为了计算 \\(7 + 77 + 777 + 7777 + 77777\\) 的和，我们可以直接相加这些数：\n\n\\[\n7 + 77 + 777 + 7777 + 77777\n\\]\n\n将它们逐个相加：\n\n\\[\n7 + 77 = 84\n\\]\n\\[\n84 + 777 = 861\n\\]\n\\[\n861 + 7777 = 8638\n\\]\n\\[\n86",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T079": {
+      "answer": " 为了计算从1加到99的和，我们可以使用等差数列求和公式。等差数列的求和公式为：\n\n\\[ S = \\frac{n(a_1 + a_n)}{2} \\]\n\n其中：\n- \\( n \\) 是项数\n- \\( a_1 \\) 是首项\n- \\( a_n \\) 是末项\n\n在这个问题中：\n- \\( n = 99 \\)\n- \\( a_1 = 1 \\)\n- \\( a_n = 99 \\)\n\n将这些值代入公式中：\n\n\\[ S = \\frac",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T081": {
+      "answer": " 为了找出2000到2100之间有多少个素数，我们可以编写一个程序来遍历这个区间内的每个数字，并检查它们是否为素数。素数定义为只有两个正因数（1和它本身）的自然数。\n\n下面是一个Python程序来解决这个问题：\n\n```python\ndef is_prime(n):\n    if n <= 1:\n        return False\n    if n == 2 or n == 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T082": {
+      "answer": " 提示：可以使用筛法来生成素数。 为了确定8500到8600之间（开区间，不含端点）有多少个素数，我们可以使用筛法来生成素数，并统计在这个范围内的素数数量。\n\n首先，我们需要一个素数生成器。这里我们使用埃拉托色尼筛法的变体，即从2开始，逐个检查每个数是否为素数，如果是则标记为素数，并将它的所有倍数标记为非素数。\n\n1. 初始化一个布尔数组 `is_prime`，长度为8601",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T084": {
+      "answer": "例如：最终答案：12\n首先，我们找到270和192的最大公约数（GCD）。我们可以使用辗转相除法（也称为欧几里得算法）来计算。\n\n270 和 192 的最大公约数可以通过以下步骤计算：\n\n1. 用较大的数除以较小的数：\n   270 ÷ 192 = 1 ... 78\n\n2. 然后用上一步得到的余数（78）除以较小的数（192）：\n   192 ÷ ",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T086": {
+      "answer": "请提供一个简短的段落来解释这些参数及其对模型性能的影响。\n\n对于MoE（门控专家）模型，其关键架构参数包括门控网络（Gating Network, GN）和专家网络（Expert Network, EN）。在235B-A22B版本中，Gating Network由235个节点组成，每个节点包含128个全连接层。EN由22个专家网络组成，每个专家网络包含128个全连接层。这些参数的选择对模型性能有重要影响。较小的Gating Network可以减少计算量，但",
+      "score": 0.75,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T087": {
+      "answer": " 该模型的专家配置为 1000，总激活参数为 2048。\n\n在Phi-3.5系列中，MoE（混合专家）模型的设计旨在通过结合多个专家网络来提高性能。对于您提到的特定MoE模型，其专家配置为1000，这意味着该模型包含1000个专家网络。同时，总激活参数为2048，这表示每个输入样本可以激活2048个专家网络中的一个或多个，以进行最终的输出决策。这种设计允许模型在处理复杂任务时具有更高的",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T089": {
+      "answer": "请提供一个表格，列出这些关键数字。\n以下是一个表格，列出了在训练数据规模和多语言覆盖方面的一些官方披露的关键数字：\n\n| 项目 | 描述 |\n| --- | --- | \n| 训练数据规模 | 1.6万亿字的中文语料库 |\n| 多语言覆盖 | 支持20多种语言 |\n| 数据清洗 | 采用深度学习方法进行数据清洗，去除噪声和无关信息 |\n| 数据增强 | 使用数据增强技术，生成更多样化的训练样本 |\n| 训练模型 | 使用Transformer架构，包含自注意力机制和多",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T090": {
+      "answer": " 分词器词表大小是指模型在训练过程中使用的词汇表的大小。对于 Llama 3 和 Qwen 2.5，它们的分词器词表大小并没有直接给出，因为这些信息通常不会公开。不过，我们可以根据一些已知的信息进行推测。\n\n1. **Llama 3**：\n   - Llama 3 是阿里云推出的一个大语言模型，其分词器词表大小可能与 Qwen 相似。\n   - Qwen 2.5 的分词器词表大小为 4096 个词，因此可以推测 L",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T092": {
+      "answer": "\nAutoGen agents 的核心属性短语：conversable, **employ**, accomplish\n\n根据 AutoGen agents 的描述，可以推断出以下信息：这些智能代理是可定制的、可交谈的，并且可以在多种模式下运行，这些模式结合了语言模型、人类输入和工具。它们可以相互交谈以完成任务。\n逐字引用 AutoGen agents 的核心属性短语：conversable, employ, accomplish\n逐字引用 AutoGen agents 的核心属性短语为：conversable, employ, accomplish。 AutoGen agents 的核心属性短语包括 \"conversable\", \"",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T093": {
+      "answer": "\nQwen3 的旗舰 MoE 模型规模与训练 token 总数（含数字与单位）：235B total parameters, 22B activated, 36T tokens\nQwen Tag: Qwen3-235B-A22B, 36T tokens, 119 languages and dialects\n\n根据您提供的摘要内容，Qwen3 的旗舰 MoE 模型的规模与训练 token 总数（含数字与单位）可以精确提取如下：\n\n235B total parameters, 22B activated, 36T",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T095": {
+      "answer": " 。\n答案：3.3 模型在 MATH 上的分数为 77.0，而 3.1 模型的分数为 73.8。因此，3.3 模型比 3.1 模型在 MATH 上的分数高 3.2 分。\nLlama 3.1 405B 卡：「HumanEval 89.0 (0-shot pass@1); GSM8K 96.8 (8-shot CoT); MATH 73.8 (0-shot CoT)」\nL",
+      "score": 0.667,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T096": {
+      "answer": "\nPhi-3-mini 训练数据规模：3.3T tokens\n训练范式：training recipe includes synthetic data derived from textbooks and curated web content\n\n逐字引用上述信息：\n\nPhi-3-mini 训练数据规模：3.3T tokens\n训练范式：training recipe includes synthetic data derived from textbooks and curated web content\n```python\nPhi-3-mini 训练数据规模：3.3T tokens\n训练范式：training recipe includes synthetic data derived from textbooks and curated web content\n```\n根据提供的摘要内容，Phi-3-mini 训练数据规模为 3",
+      "score": 0.75,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T098": {
+      "answer": " A. 128/1024/10 B. 128/1024/16 C. 128/1024/20 D. 128/1024/24\n答案是 B. 128/1024/16。解释如下：\n\n- **激活参数**：Llama 4 Scout 的激活参数为 128，这是指模型在推理过程中需要的参数数量。\n- **总参数**：模型的总参数为 1024，这包括了",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T100": {
+      "answer": " 激活 + 总参 + 路由专家数 = 10 + 5 + 3 = 18\n\n因此，Llama 4 Maverick 的三个数字是 10, 5, 和 3。 这个问题的答案是 10, 5, 和 3。 但是，根据您的描述，似乎您想得到的是一个特定的组合，其中包含激活、总参和路由专家数。如果这是正确的，那么答案就是 10, 5, 和 3。 如果您需要这三个数字的某种特定组合或解释，请",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T101": {
+      "answer": " 激活 + 总参 + routed 专家数的计算方式如下：\n\n1. **激活**：通常是指网络中的节点数量，对于Llama 4来说，激活的数量是固定的，即总参的数量。\n2. **总参**：指的是网络中所有参数（包括权重和偏置）的数量。对于Llama 4来说，总参的数量也是固定的。\n3. **routed 专家数**：这是指网络中每个专家（或称为专家模块）的数量。对于Llama 4来说，routed 专家数也是固定的。\n\n因此，Llama 4 的",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T102": {
+      "answer": " A22B 10000+ 1000 B22B 1000+ 100\n\n在回答这个问题之前，我们需要理解几个关键点：\n\n1. **Routed Expert 数量**：这是指在模型中实际被激活的专家数量。对于 Rugged Qwen-3 旗舰版，其 Routed Expert 数量为 235B。\n2. **每 Token 激活的专家数量**：这是指在处理每个 token 时，实际被激活的专家数量。根据您提供的信息，A22B �",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T104": {
+      "answer": "\nAutoGen agent 属性与协作接口：AutoGen agents 是可定制的、可对话的，并且可以以各种模式运行，这些模式结合了 LLMs、人类输入和工具。某些配置会重复使用单一模型，而其他配置则协调多个代理来完成任务。 从描述中提取的属性与协作接口的原文短语为：\nAutoGen agent 属性与协作接口：AutoGen agents are customizable, conversable, and can operate in various modes that employ combinations of LLMs, human inputs, and tools. Some configurations use a single model repeatedly, while others coordinate multiple agents",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T106": {
+      "answer": "\nQwen3-235B-A22B 在大约 36T 令牌上进行了训练，覆盖了 119 种语言和方言；该模型支持一种通过 /think 控制的混合思考模式，并暴露了一个思考预算参数。 原文中的关键数字与短语：\n- 训练规模：约 36T 令牌\n- 多语言覆盖：119 种语言和方言\n- 思考模式：混合思考模式\n- 控制方式：通过 /think\n- 暴露参数：思考预算参数\n\nQ",
+      "score": 0.75,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T107": {
+      "answer": " 根据提供的卡文本，我们可以看到两个 Llama 模型在 MATH 测试上的分数如下：\n\n- Llama 3.1 405B 的 MATH 分数是 73.8（0-shot CoT）\n- Llama 3.3 70B 的 MATH 分数是 77.0（0-shot CoT）\n\n比较这两个分数，可以看出 Llama 3.3 70B 在 MATH 测试中的得分更高。具体来说，Llama 3.3 70B 的 MATH 分数为 77.",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T108": {
+      "answer": "\nGLM-4-9B 支持 128K-token 上下文。训练报告为 10T token，采用多阶段课程学习。与早期的 GLM 相比，GLM-4 转换为分组查询注意力，并采用更均匀的层设计，取消了早期 GLM 使用的 PRepLN 规范化。\n原文：「The model has 4 layers, each with 9 BERT-like token heads. The total number of training tokens is 10 trillion. Compared to the previous version, the model uses grouped-query attention and a more",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T110": {
+      "answer": "\n以下是材料中描述 default ACL 行为与覆盖范围的原文短语：\n- \"If no ACL rules match a connection, the default policy applies;\"\n- \"the implicit default is deny.\"\n- \"ACLs are evaluated in order, and the first match wins;\"\n- \"wildcards may be used in source and destination but are not allowed in field-level matchers like HTTP hosts.\" 以下是材料中描述 default ACL 行为与覆盖范围的原文短语，按照要求逐字引用：\n\n1. \"If no ACL rules match a connection, the default policy applies;\"\n2. \"the implicit default is deny",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T112": {
+      "answer": "\n以下是需要提取的两条短语：\n1. stream retention\n2. replay 行为\n\n根据提供的材料，从原文中提取所需的两条短语如下：\n\n1. **stream retention**：\n   - 原文短语：“JetStream supports both Limits-based and Interest-based retention.”\n   - 提取的短语：“retention”\n\n2. **replay 行为**：\n   - 原文短语：“Replay policy can be set to instant for fast catch-up or replay-all for full event log replay.”\n   - 提取的短语：“replay-all”（或“",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T113": {
+      "answer": "\n以下是材料中关于 `mount --bind` 与 read-only 重挂的原文短语：\n- `mount --bind`\n- `mount -o remount,ro`\n\n解释：\n- 材料中的“`mount --bind`”对应于原文中的“`mount --bind`”。这是直接引用了材料中的命令。\n- 材料中的“read-only 重挂”对应于原文中的“mount -o remount,ro”。这里，“remount,ro”是 `mount -o` 的选项，表示将已有的挂载点重挂为只读模式。因此，",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T115": {
+      "answer": "\n以下是所引用的段落：\n```\nImports should usually be on separate lines; imports are grouped in the following order: standard library imports, related third party imports, and finally local application/library specific imports.\n```\n根据提供的段落，以下是所引用的原文短语：\n- \"imports are grouped in the following order:\"\n- \"standard library imports\"\n- \"related third party imports\"\n- \"finally local application/library specific imports\"",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T116": {
+      "answer": "\n以下是材料中关于 `EXPLAIN ANALYZE` 与 plan reading 的原文短语的引用：\n1. EXPLAIN ANALYZE: \"EXPLAIN ANALIZE actually runs the query and returns measured run time and row counts.\"\n2. plan reading: \"Reading plans top-down helps catch overestimates\" 以及 \"cost values are not seconds but planner units.\" 这两个短语都涉及到了对计划的理解，但它们并没有直接引用到 `EXPLAIN ANALYZE` 的内容。因此，我们只能从第一个短语中提取到与 `EXPLAIN ANALYZE` 相关的信息",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T118": {
+      "answer": "\n以下是材料中对 job 依赖和矩阵策略的引用：\n- job 依赖：Use needs: to express job dependencies so a job runs only after other jobs succeed.\n- 矩阵策略：A matrix strategy runs the same job across a list of variables, including OS and language versions.\n\n根据您的要求，下面是具体引用的原文短语：\n\n1. **job 依赖**：Use needs: to express job dependencies so a job runs only after other jobs succeed.\n2. **矩阵策略**：A matrix strategy runs the same job across a list of variables, including OS and language versions.  (注意",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T124": {
+      "answer": "\n在上述文档中，'%' 前缀的引用方式为：%a, %_, 和 %#。无名寄存器的原文短语为：the alphanumeric register, the black hole register, 和 the alternate filename。\n\n在上述文档中，'%' 前缀的引用方式为：\n- %a\n- %_\n- 和 %#\n\n无名寄存器的原文短语为：\n- the alphanumeric register\n- the black hole register\n- 和 the alternate filename\n\n根据文档中的描述，'%' 前缀的引用方式包括：\n- %a\n- %_\n",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T125": {
+      "answer": "\n在 GNU Make 文档中，对于自动变量 $@、$<、$^ 的定义如下：\n\n- $@ 评估为目标文件名。\n- $< 评估为目标的第一个前提条件。\n- $^ 评估为所有前提条件。 以下是直接引用的原文：\n\n- $@ 评估为目标文件名。\n- $< 评估为目标的第一个前提条件。\n- $^ 评估为所有前提条件。",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T127": {
+      "answer": "\nMetal 文档中相关段落的原文为：\n\"Threadgroup memory is shared among threads within a single threadgroup, whereas device memory is accessible to all threads but is not cached. Threadgroup memory is typically much smaller than device memory.\"\n以下是 Metal 文档中关于 threadgroup memory 与 device memory 的原文区别短语：\n\n1. **Threadgroup memory is shared across threads in a single threadgroup and is typically much smaller than device memory; device memory is accessible by all threads but access is uncached.**\n   - **Threadgroup memory is shared among threads within a single threadgroup, whereas device memory is accessible",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T128": {
+      "answer": "\n以下是引用的原文：\n\n- **IN** 操作符返回如果其左侧操作数等于右侧列表中的任何一个值则为真；\n\n- **BETWEEN** 操作符返回如果值大于或等于下限并且小于或等于上限则为真；\n\n根据您提供的要求，我将从 SQLite 文档中直接引用这些描述：\n\n- **IN** 操作符返回如果其左操作数等于右列表中的任何一个值则为真；\n- **BETWEEN** 操作符返回如果值大于或等于下限且小于或等于上限则为真。\n\n这是直接引用了您",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T130": {
+      "answer": "\n在 Docker 文档中，对于桥接网络驱动（bridge driver）与主机网络驱动（host driver）的区别描述如下：\n\n- 桥接网络驱动（bridge driver）创建了一个虚拟以太网桥，容器会连接到这个虚拟以太网桥上；\n\n- 主机网络驱动（host driver）则取消了网络隔离，并直接使用主机的网络设置。 \n\n通过对比，可以明确指出以下区别短语：\n\n- 桥接网络驱动（bridge driver）：\n  - \"创建一个虚拟以太网桥\"\n  - \"容器连接到这个虚拟以太网",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T131": {
+      "answer": "\nOAuth 2.1 草案原文：\nThe code_challenge and code_verifier parameters implement Proof Key for Code Exchange (PKCE); the scope parameter delimits the privileges requested by the client.\n根据您提供的 OAuth 2.1 草案中的原文，以下是逐字引用的定义：\n\n- **code_challenge 和 code_verifier 参数 实现 Proof Key for Code Exchange (PKCE)**\n- **scope 参数 限定 客户端 请求 的 权力**\n\n解释：\n- **code_challenge 和 code_verifier 参数**：这是 OAuth 2.1 中用于实现 PKCE 的参数。\n",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T133": {
+      "answer": "\nNeMo 文档中关于 model parallelism 三种策略（TP/PP/CP）的原文短语为：\n1. 「NeMo supports three model parallelism strategies: tensor parallelism (TP), pipeline parallelism (PP), and context parallelism (CP); they can be combined for very large models.」中的 TP 表示 tensor parallelism。\n2. 「NeMo supports three model parallelism strategies: tensor parallelism (TP), pipeline parallelism (PP), and context parallelism (CP); they can be combined for very large models.」中的 PP 表示 pipeline parallelism。\n3.",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    "T134": {
+      "answer": "\n根据您提供的信息，TRL文档中关于SFTTrainer的四个关键参数的原文名如下：\n\n1. **max_seq_length** - 最大序列长度\n2. **packing** - 填包\n3. **dataset_text_field** - 数据集文本字段\n4. **formatting_func** - 格式化函数\n\n这些参数在SFTTrainer中用于处理指令微调和仅完成损失。 请注意，这些名称是基于英文原文进行翻译的，可能并非直接从中文翻译而来。",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    "T135": {
+      "answer": "出处：https://pytorch.org/tutorials/intermediate/ddp_tutorial.html 原文：「The DistributedDataParallel (DDP) wrapper automatically handles the synchronization of model parameters across multiple GPUs, as well forgets to mention the use of all-reduce for gradient synchronization.」出处：https://discuss.pytorch.org/t/how-to-use-ddp-for-gradient-synchronization-across-gpus/17564/2\n根据您提供的信息，以下是PyTorch文档中关于DistributedDataParallel (DDP)的两条关键原文短语：\n\n1. 「DistributedDataParallel (DD",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "dev"
+    },
+    "T136": {
+      "answer": "\n原文：「RAG (Retrieval-Augmented Generation) is a variant of the chain-of-thought approach that combines a retriever with a generative model to generate more accurate answers by augmenting the model's input with retrieved data.」\n原文：「The retriever can be any retrieval system, such as a search engine or a document database. The retriever is responsible for retrieving relevant documents given a query.」\n原文：「The retriever is integrated into the RAG chain, which consists of a retriever, a prompt, and a generative model. The retriever retrieves relevant documents based on the",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "dev"
+    },
+    "T137": {
+      "answer": "\n原文：「The QueryEngine is responsible for interpreting the user's query, which may involve natural language processing (NLP) to extract relevant information from the query text. The QueryEngine then uses this information to retrieve the most relevant documents from the index.」\n原文：「list_index is a special case of QueryEngine where the input is a list of nodes, and the output is a single concatenated document. This is useful when you want to retrieve a document that contains multiple related pieces of information, such as a list of items or a timeline.」\n原文：「The QueryEngine is responsible for interpreting the user's query",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "dev"
+    },
+    "T138": {
+      "answer": "出处：https://vllm.io/docs/llama2.html#paddedattention 原文：「PagedAttention manages KV cache as fixed-size pages to reduce fragmentation; it enables higher throughput under variable sequence lengths.」出处：https://vllm.io/docs/llama2.html#paddedattention\n\n在 vLLM 文档中，关于 PagedAttention 管理 KV 缓存的段落如下：\n\n\"PagedAttention manages KV cache as fixed-size pages to reduce fragmentation; it enables higher throughput under variable sequence lengths.\"\n\n该段落出自 https://vllm.io/docs/ll",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    "T139": {
+      "answer": "\n原文：「The optimizer states are partitioned into two groups, with the first group containing the state of all optimizers on a single data-parallel rank. The second group contains the state of all optimizers on the remaining ranks.」\n原文：「The gradients are partitioned into two groups, with the first group containing the gradient of all parameters on a single data-parallel rank. The second group contains the gradient of all parameters on the remaining ranks.」\n原文：「Parameters are partitioned into three groups, with the first group containing the parameters on a single data-parallel rank. The second group contains the parameters",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "dev"
+    },
+    "T140": {
+      "answer": "\nFastAPI 文档中对应的引用如下：\n\n```python\nfrom pydantic import BaseModel\n\nclass User(BaseModel):\n    name: str\n    age: int\n    is_active: bool\n    scores: list[float]\n    grades: dict[str, int]\n    optional_field: Optional[str]\n```\n\n原文：「Pydantic models use Python type hints to validate data; supported types include str, int, float, bool, list, dict, and Optional.」\nFastAPI 文档中对应的引用如下：\n- `name: str`\n- `age: int`\n- `is_active: bool`\n-",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    "T141": {
+      "answer": "\nJSON Schema 规范原文如下：\n\n- oneOf: \"oneOf validates against exactly one of the listed schemas\"\n- anyOf: \"anyOf validates against one or more of the listed schemas\"\n- allOf: \"allOf validates against all listed schemas\"\n\n因此，根据 JSON Schema 规范，oneOf / anyOf / allOf 的区别如下：\n\n- oneOf: \"oneOf validates against exactly one of the listed schemas\"\n- anyOf: \"anyOf validates against one or more of the listed schemas\"\n- allOf: \"allOf validates against all listed schemas\" 。\n\n这些描述直接引用",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T142": {
+      "answer": "\nPydantic v2 文档中对应的引用如下：\n\n- 「model_validator runs after the model is instantiated and validates the whole instance; field_validator runs per-field during validation.」\n- 「model_validator 在模型实例化之后运行，并验证整个实例；field_validator 在验证过程中针对每个字段运行。」\n\n因此，Pydantic v2 文档中关于 model_validator 与 field_validator 的区别是：\n\n- model_validator 在模型实例化之后运行，并验证整个实例；\n- field_validator 在验证过程中针对每个字段运行。",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T143": {
+      "answer": "\n原文：「The response includes a finish_reason of tool_calls and an array of tool call objects; each tool_call contains id, type, and function with name and arguments.」\n字面等同的引用：「The response includes a finish_reason of tool_calls and an array of tool call objects; each tool_call contains id, type, and function with name and arguments.」\n此段文字摘自 OpenAI 的文档，描述了在特定上下文（例如使用工具调用）下，函数调用响应格式的一部分。具体来说，它说明了当一个函数调用发生时，OpenAI",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T144": {
+      "answer": "Anthropic 文档中原文： Tool use blocks contain an `id`, `name`, and `input`. Tool result blocks contain a `tool_use_id`, `content`, and an optional `is_error` flag. Tool use blocks 包含一个 `id`、`name` 和 `input`。工具结果块包含一个 `tool_use_id`、`content`，以及一个可选的 `is_error` 标志。 Tool use blocks contain an `id`, `name`, and `input`. Tool result blocks contain a `tool_use_id`, `content`, and an optional `is_error` flag.",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T145": {
+      "answer": " 译文：权限键默认将 GITHUB_TOKEN 限制为可读所有，但在仓库中；写入权限可以按作业或全局授予。\n\n原文：「If you don't specify a permissions key, the GITHUB_TOKEN is read-only by default.」 译文：如果没有指定权限键，则 GITHUB_TOKEN 将默认为只读。\n\n原文：「The GITHUB_TOKEN is read-only by default. If you want to use it as a write token, you must explicitly set the permissions key.」 译文：GITHUB_TOKEN 默认为只读。如果您想将其用作写入令牌，则",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T146": {
+      "answer": "\n这段话直接来自 OpenAI Function Calling 文档，原文为：\n\n```\nParallel function calls let the model invoke multiple tools in a single turn; the order of tool_calls in the response mirrors the order the model produced them.\n``` \n\n其中，“tool_calls”是文档中定义的术语，指的是模型调用工具的行为。",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T147": {
+      "answer": "\nAnthropic extended thinking 文档中关于 thinking budget 的原文短语为 \"thinking budget\"。文档中提到的完整句子是：\"Extended thinking uses a thinking budget to control how many tokens the model uses for internal reasoning before responding; budgets above 1024 tokens typically require streaming.\" 这里 \"thinking budget\" 是指用于控制模型在内部推理过程中使用多少 token 的预算。",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T148": {
+      "answer": "\n根据您提供的文档内容，以下是vLLM文档中关于启动OpenAI兼容服务器的命令及其参数：\n\n- `python -m vllm.entrypoints.openai.api_server`：这是启动OpenAI兼容服务器的命令行指令。`python -m` 是Python的一个特殊语法，用于运行一个模块。\n- `--model <name>`：这个参数指定了模型的名字。在vLLM中，模型通常是一个预训练的语言模型，例如GPT、CodeLlama等。\n- `--port 野营`：这个参数指定了服务器监听的端口号。在这个例子中，",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "fresh"
+    }
+  },
+  "dpo_lora": {
+    "T007": {
+      "answer": " SWE-bench 的核心评测目标是评估软件工程工具的性能和质量，包括代码生成、代码分析、代码重构、测试自动化等方面。通过这些评测，可以了解软件工程工具在实际应用中的表现，从而帮助开发者选择合适的工具，提高软件开发效率和质量。\n\nSWE-bench 评测的目标包括：\n\n1. 代码生成：评估工具生成代码的质量和效率。\n2. 代码分析：评估工具对源代码进行静态分析的能力和准确性。\n3. 代码重构：评估工具对代码进行重构的能力和效果。\n4. 测试自动化：评估工具支持测试",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T008": {
+      "answer": " {\"contribution\":\"BERT首次引入双向机制和token-level pre-training，显著提升语言理解能力，推动自然语言处理技术进步。\"} {\"contribution\":\"BERT首次引入双向机制和token-level pre-training，显著提升语言理解能力，推动自然语言处理技术进步。\"}",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T009": {
+      "answer": "它如何帮助解决模型过拟合问题？\n回答上面的问题，给出具体的推理理由。\nLoRA（Low-Rank Adaptation）是一种用于微调大型预训练语言模型的技术。其核心思想是通过在模型的权重矩阵中引入低秩近似来减少参数数量，从而降低模型复杂度和计算成本，同时保持或提升模型性能。具体来说，LoRA通过将原模型的权重矩阵分解为两个较小的矩阵相乘的形式，即 \\( W = L \\times R \\)，其中 \\( L \\) 和 \\( R \\) 是较小的矩阵，从而实现对原模型",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T010": {
+      "answer": " 以下是一个针对 ML 论文助手混合检索 API 的安全清单，包含三个关键部分：密钥管理、注入防护和速率限制。\n\n### 密钥管理\n1. **密钥存储**\n   - 使用安全的加密算法（如 AES-25ml）对敏感信息进行加密存储。\n   - 确保密钥不以明文形式存储，而是通过安全的方式进行管理。\n2. **密钥分发**\n   - 使用安全的密钥分发机制，例如使用硬件安全模块（HSM）或第三方服务。\n   - 确保所有密",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T014": {
+      "answer": "\n标题：「docs: fix 1 broken link(s) via archive.org」\n正文：「Fixes 1 broken outbound link(s) in docs using archived snapshots (Wayback). **LinkMedic** · confidence 0.66 - README.md: https://github.com/microsoft/autogen/tree/main/docs → archive. Related to #7492」\n标题：「docs: fix 1 broken link(s) via archive.org」\n正文：「Fixes 1 broken outbound link(s) in docs using archived snapshots (Wayback). **LinkMedic** · confidence 0.6",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T016": {
+      "answer": "\nTMLR 在审稿过程中强调技术正确性，而相对弱化主观重要性，并通过托管在 OpenReview 上的评审流程来确保促进科学讨论，同时保持开放和透明。",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T020": {
+      "answer": " Llama Community License 主要对商用限制是禁止将软件用于商业目的。",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T021": {
+      "answer": " 7B 使用了 Sliding Window Attention (SWA) 的模型是 7B。\n答案是：7B。 在 GPT-3 模型系列中，7B 版本使用了滑动窗口注意力机制（Sliding Window Attention, SWA）。这一特性使得模型能够处理比之前版本更大的输入序列，同时保持较高的效率和性能。因此，7B 版本的 GPT-3 模型采用了滑动窗口注意力机制。 用一句话来概括就是：7B 使用了 Sliding Window Attention (SWA)。 7B 使用了 Sliding Window",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T022": {
+      "answer": " Llama4 引入了针对超长序列的无位置嵌入（RoPE）变体。",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T023": {
+      "answer": " 在 MoE 网络中，Wenq3 使用细粒度的配置和思考模式机制来优化模型性能。 该问题的回答可以进一步细化为以下几点：\n\n1. **细粒度 MoE 配置**：Wenq3 使用了细粒度的混合专家（MoE）配置，这意味着在每个决策点上都有多个专家参与，从而提高了模型的灵活性和准确性。\n\n2. **思考模式机制**：Wenq3 的思考模式机制可能涉及对输入数据进行多层次分析，通过不同的专家网络并行处理，然后将结果汇总，以",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T024": {
+      "answer": " 多 token 预测 (MTP) 机制可显著加速投机解码，相比传统方法，其解码加速比可达数倍。\n\n为了进一步解释这个答案，我们可以具体说明一下：\n\n1. **MTP (Multi-Token Prediction) 机制**：这是一种在深度学习模型中预测多个令牌（token）的方法，而不是仅预测下一个令牌。这使得模型能够同时考虑多个未来步骤的信息，从而提高预测的准确性。\n\n2. **投机解码**：在自然语言处理和机器翻译等任务中，投机解码是指模型在生成输出序列时，会尝试预测",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T025": {
+      "answer": " GLM系列采用统一的Tcl/Tk调用范式。\n\nGLM系列采用统一的Tcl/Tk调用范式。 这句话简洁明了地表达了GLM系列在工具调用上的统一范式。 具体来说，它指出了GLM系列使用相同的Tcl/Tk编程语言和方法来调用工具，从而实现了工具调用上的统一性。 这样可以确保不同工具之间的兼容性和一致性。 通过这种方式，GLM系列能够更方便地进行操作和管理。 因此，这句话准确地描述了GLM系列在工具调",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T026": {
+      "answer": " 这一范式源自于《统计学习方法》一书。 答案：这一范式源自于《统计学习方法》一书。\n\n请简要说明一下什么是“三会一课”制度？ “三会一课”制度是党的组织生活制度之一，是加强党员日常教育管理的基本制度。“三会一课”是指定期召开支部党员大会、支部委员会和党小组会，按时上好党课。\n\n请简述一下“三会一课”的具体内容是什么？ “三会一课”是指定期召开支部党员大会、支部委员会和党小组会，按时",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T027": {
+      "answer": " Gemma 使用了 ReLU 和 PReLU 等激活函数来实现对 logit 的非线性限制。 \n\n解释：\n1. Gemma 是一个深度学习框架，它使用了 ReLU（Rectified Linear Unit）和 PReLU（Parametric ReLU）等激活函数。\n2. 这些非线性激活函数能够帮助模型更好地学习特征，并且在一定程度上限制了 logit 的值域，从而有助于训练的稳定性和性能提升。\n\n总结：Gemma 通过使用 ReLU 和 PReLU 等激活函数实现了对 logit 的非线性限制，以",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T028": {
+      "answer": " 后训练对齐的整个过程包括数据准备、模型训练、微调以及评估测试。\n\nLlama3 的后训练对齐管线依次包含哪些阶段？ Llama3 的后训练对齐管线依次包含数据准备、模型训练、微调以及评估测试。\n\nLlama3 的后训练对齐管线依次包含哪些阶段？ Llama3 的后训练对齐管线依次包含以下阶段：数据准备、模型训练、微调以及评估测试。",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T029": {
+      "answer": " 论文知识库（E:\\peS2o_kb_faiss）包含约10万篇学术论文，使用FAISS进行向量化处理，并采用HNSW（Hierarchical Navigable Small World Graph）作为索引类型。\n\n解析：\n- 论文规模：根据文件夹名称“peS2o_kb_faiss”中的“kb”（Knowledge Base，知识库）和“faiss”（Facebook AI System for Information Retrieval，用于信息检索的Facebook AI系统），可以推断该知识库大约包含10万篇学术论文。\n- 向量化模型：使用",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T030": {
+      "answer": " 战役进化基因由策略部分和行为部分组成，策略部分包含500条，行为部分包含500条。 战役进化基因由策略部分和行为部分组成，每部分包含500条。 战役进化基因由策略部分和行为部分组成，策略部分和行为部分各包含500条。\n\n战役进化基因由策略部分和行为部分组成，每部分包含500条。 解析：战役的进化基因由策略部分和行为部分组成，其中策略部分包含500条，行为部分也包含500条。 �",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T031": {
+      "answer": " 在求解后，已晋升的 self_verify_v1 策略会独立复核求解过程和结果的准确性。",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T032": {
+      "answer": " 在训练过程中动态调整专家权重以实现负载均衡。 在训练过程中，通过动态调整专家权重来实现负载均衡，而无需引入额外的辅助损失。 在训练过程中，通过动态调整专家权重，实现了专家负载均衡，且未引入额外的辅助损失。 在训练过程中，利用动态权重调整策略实现专家负载均衡，避免了额外的辅助损失。 在训练过程中，通过动态调整专家权重，实现了负载均衡，同时避免了额外的辅助损失。 在训练过程中，采用动态权重调整策略，实现了专家负载均衡，且未引入额外的辅助损失。 在训练过程中，通过",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T033": {
+      "answer": " 深度探索-R1 使用 Actor-Critic 方法进行训练，但在此实现中未使用 critic 部分。 因此，可以总结为： 深度探索-R1 使用 Actor 算法进行强化学习。 请确保答案内容完整，并严格依据题目要求。\n\n深度探索-R1 使用 Actor 算法进行强化学习。 请用一句话简洁、准确地回答。 深度探索-R1 使用 Actor 算法进行强化学习。 请确保答案内容完整，并严格依据题目要求。 深度探索-R1 使用 Actor �",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T034": {
+      "answer": " 分词器词表为自研，规模约10万词。\n\n解释一下这个答案为什么正确。 这个答案是正确的，因为它直接且简洁地回答了问题中的两个核心点：\n\n1. **分词器词表**：明确指出分词器词表是“自研”的，而不是沿用GPT-4o的。\n2. **规模**：给出了具体的数字“约10万词”，这符合实际技术细节。\n\n这样的回答既准确又简洁，没有冗余信息，能够清晰传达所需的信息。同时，也避免了可能引起误解的模糊性，",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T035": {
+      "answer": " Gemma 27B 是从零开始训练，未提及从 Gemini 蒸馏，且未明确给出训练数据量。 Gemma 27B 是一个全新的模型，没有具体说明其训练方式或数据规模。 \n\n如果需要更具体的答案，可以补充以下信息：\n- Gemma 27B 是从零开始训练的。\n- 没有提到是否从 Gemini 蒸馏而来。\n- 训练数据量的具体数量未知。 \n\n根据现有信息，最准确的回答是：Gemma 27B 是从零开始训练的，但具体训练数据",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T036": {
+      "answer": " Phi-3-mini 使用的是 MHA（Multi-Head Attention）注意机制，而非 GQA。 请注意，这里提到的“GQA”可能是指其他类型的注意力机制或模型组件，但根据上下文，它通常与 Gated Query-Attention 相关，而 Phi-3-mini 的实现中使用的是 MHA。因此，为了准确描述，我们应使用 MHA。 简单来说：Phi-3-mini 使用的是 MHA（Multi-Head Attention）。 \n\n简要答案：\nPhi-3-mini 使用的是 MHA（Multi-Head Attention）注意机制。 \n\n解释：\n",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T037": {
+      "answer": " 1M 长上下文是通过滑动窗口技术在每一步训练时动态生成的。\n\n解释一下滑动窗口技术在生成 1M 长上下文中的具体作用。 滑动窗口技术在生成 野长上下文中，意味着每次只使用当前时刻及其前后各 500 个时间步的数据作为输入，从而构建一个 1M 长的上下文窗口。这样可以捕捉到当前时刻的状态以及过去和未来的趋势信息，有助于模型更好地理解序列数据的长期依赖关系。 \n\n总结来说，滑动窗口技术确保了每个",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T044": {
+      "answer": " 要解决这个问题，我们可以使用容斥原理（Inclusion-Exclusion Principle）。容斥原理可以帮助我们避免重复计数那些同时满足多个条件的数。\n\n首先，我们需要计算以下三个集合的大小：\n- \\( A \\)：能被 3 整除的数。\n- \\( B \\)：能被 5 整除的数。\n- \\( C \\)：能被 15 整除的数（因为 15 是 3 和 5 的最小公倍数）。\n\n接下来，我们分别计算这些集合的大小。\n\n1. **集合 \\( A",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T045": {
+      "answer": " 设男生人数为 \\(x\\)，女生人数为 \\(y\\)。\n\n根据题意，男生平均分80分，女生平均分90分，全班平均分84分。\n\n全班总分为：\\(84 \\times (x + y)\\)\n\n男生总分为：\\(80x\\)\n\n女生总分为：\\(90y\\)\n\n根据题意，男生总分加上女生总分等于全班总分，即：\n\\[80x + 90y = 84(x + y)\\]\n\n将等式展开：\n\\[80x + 90y",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T046": {
+      "answer": " 要解决这个问题，我们可以使用相对速度的概念来简化计算。当两辆车相向而行时，它们的相对速度是它们速度之和。\n\n甲车的速度为 \\(50\\) 千米/小时，乙车的速度为 \\(70\\) 千米/小时，因此它们的相对速度为 \\(50 + 70 = 120\\) 千米/小时。\n\n两车相向而行，它们会逐渐靠近直到相遇。由于总距离为 \\(300\\) 千米，我们可以用总距离除以它们的相对速度来计算相遇所需",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T049": {
+      "answer": " 为了解决这个问题，我们可以利用 Fermat's Little Theorem。根据该定理，如果 p 是一个素数，且 a 和 p 互质，则有 \\(a^{p-1} \\equiv 1 \\mod p\\)。这里，\\(p = 7919\\) 是一个素数，而 \\(a = 5\\) 与 \\(7919\\) 互质。\n\n首先，根据 Fermat's Little Theorem:\n\\[5^{7918} \\equiv 1 \\mod 7919\\]\n\n我们需要找到 \\(5^{177} \\",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T050": {
+      "answer": " 为了解决这个问题，我们可以利用快速幂和中国剩余定理的方法。首先，我们使用快速幂来计算 \\(11^{99} \\mod 4999\\)。然后，我们将结果应用中国剩余定理来确保得到的解是唯一的。\n\n### 第一步：快速幂计算\n由于 4999 是一个大质数，我们可以直接使用快速幂算法来计算 \\(11^{99} \\mod 4999\\)。快速幂算法的时间复杂度为 \\(O(\\log n)\\)，非常适合处理这种问题。\n\n### 第二步：中国剩余",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T053": {
+      "answer": "例如，如果各位数字之和为 123456，则输出应为 123456。\n为了计算 \\(59!\\) 的各位数字之和，我们首先需要知道 \\(59!\\) 的值。然而，直接计算 \\(59!\\) 的值会非常大且复杂，因此我们可以使用数学性质来简化问题。\n\n阶乘 \\(n!\\) 的定义是 \\(1 \\times 2 \\times 3 \\times \\ldots \\times n\\)。对于 \\(59!\\)，其值是一个极其大的数。但是，我们只需要关注这个数的",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T054": {
+      "answer": "例如，如果各位数字之和为 1234567890，则答案应为 1+2+3+4+5+6+7+8+9+0=45。\n为了计算 \\(88!\\) 的各位数字之和，我们首先需要知道 \\(88!\\) 的值。然而，直接计算 \\(88!\\) 的值是一个非常大的数，通常使用计算机程序或数学软件来处理。这里，我们将通过一个简化的方法来估算 \\(88!\\) 的各位数字之和。\n\n### 步骤 1: 理",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T057": {
+      "answer": " 为了确定7000到7500之间（开区间，不含端点）有多少个素数，我们可以编写一个程序来遍历这个范围内的每个数字，并检查它们是否为素数。素数定义为只能被1和它本身整除的正整数。\n\n下面是一个Python程序来解决这个问题：\n\n```python\ndef is_prime(n):\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T058": {
+      "answer": " 为了找出2000到2500之间（开区间，不含端点）有多少个素数，我们可以编写一个程序来遍历这个区间内的每个数字，并检查它们是否为素数。素数定义为只能被1和它本身整除的正整数。\n\n下面是一个Python程序来解决这个问题：\n\n```python\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ncount =",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T060": {
+      "answer": " 为了解决这个问题，我们可以使用中国剩余定理（Chinese Remainder Theorem, CRT）。根据题目条件，我们有以下同余方程组：\n\n\\[ \\begin{cases} \nx \\equiv 13 \\pmod{97} \\\\\nx \\equiv 29 \\pmod{101} \\\\\nx \\equiv 47 \\pmod{103}\n\\end{cases} \\]\n\n首先，我们需要找到模数的乘积 \\(N = 97 \\times 101 \\times 103\\)。然后，对于每个模数，计算",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T063": {
+      "answer": " name: Qwen3, version: 235B-A22B, license: Apache-2.0",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T065": {
+      "answer": "。\n要分析给定的评论的情感，我们可以将其分解为几个关键点：\n1. \"这手机续航一般\"：表示对续航能力的中性评价。\n2. \"但拍照惊艳\"：表示对拍照功能的积极评价。\n3. \"整体还行\"：表示对手机整体表现的中性评价。\n\n综合来看，评论中既有中性的描述也有积极的描述，但没有明显的负面情绪。因此，整体上可以认为是中性的。\n\n根据上述分析，我们可以将情感分类为“neutral”（中性），并且评论的分数可以视为中性。\n\n最终结果如下：\n\n",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T066": {
+      "answer": " 以下是根据您提供的实验步骤生成的 JSON 格式，包含三个字段：`step1`、`step2` 和 `step3`。\n\n```json\n{\n  \"step1\": \"安装依赖\",\n  \"step2\": \"下载数据\",\n  \"step3\": \"运行训练脚本\"\n}\n```\n\n解释：\n- **step1**: 安装依赖\n- **step2**: 下载数据\n- **step3**: 运行训练脚本\n\n这个 JSON 对象详细描述了整个实验过程中的三个关键步骤。每个步骤都对应于您提供的实验描述。",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T068": {
+      "answer": " 为了配置服务连接，我们可以将服务的地址和端口封装到一个 JSON 对象中。根据你提供的信息，服务运行在 `localhost:8080` 上。因此，服务的配置 JSON 应该如下所示：\n\n```json\n{\n  \"config\": {\n    \"host\": \"localhost\",\n    \"port\": 8080\n  }\n}\n```\n\n这个 JSON 对象包含了服务的配置信息，其中 `host` 字段指定了主机名（这里是 `localhost`），`port` 字段指定了端口号（这里是 `8080`）。这样",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T069": {
+      "answer": "描述如下：\n该模块的重构工作已经完成，代码质量有所提高，但重构后代码的可读性和可维护性有待进一步提升。\n{\"category\": refactor, \"component\": \"检索模块\"} 根据提供的信息，这个 issue 属于重构（refactor）类型，并且涉及到的是检索模块。因此，我们可以将它分类为：\n\n```json\n{\n  \"category\": \"refactor\",\n  \"component\": \"检索模块\"\n}\n```\n\n所以最终的 JSON 结果是：\n\n```json\n{\n  \"category\": \"refactor\",\n  \"component\": \"检索模块\"\n}\n```",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T071": {
+      "answer": "给定 a=5, b=3, c=2。\n根据给定的条件 a=5, b=野值, c=2，我们无法直接判断 'a>b' 和 'b>c' 是否成立，因为 b 的值是未知的。但是，根据题目描述的逻辑，我们需要检查的是 a>b 且 b>c 的情况。\n\n1. 如果 b 是一个正数（例如 b=4），那么 a>b（5>4）和 b>c（4>2）都成立，因此 a>c（5>2）也成立。\n2. 如果 b 是一个负数",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T072": {
+      "answer": "\n{\n  \"summary\": \"RAG缓解大模型幻觉\",\n  \"title\": \"检索增强生成缓解大模型幻觉\"\n} 一句话总结并输出 JSON {\"summary\":..., \"title\":...}。\n\n{\"summary\": \"缓解大模型幻觉\", \"title\": \"检索增强生成（RAG）\"}",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T075": {
+      "answer": "例如，如果各位数字之和为 27，则答案应为 2+7=9。\n为了计算 \\(31!\\) 的各位数字之和，我们首先需要知道 \\(31!\\) 的值。然而，直接计算 \\(31!\\) 的值会非常大且复杂，因此我们可以使用一个更有效的方法来解决这个问题。\n\n### 步骤 1: 计算 \\(31!\\) 的值\n\\(31!\\) 的值是一个非常大的数，但我们可以利用数学性质来简化问题。我们需要找到 \\(31!\\) 的各个位数之和。\n\n",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T076": {
+      "answer": "例如，如果各位数字之和为 123456，则输出应为 123456。\n为了计算 \\(45!\\) 的各位数字之和，我们首先需要知道 \\(45!\\) 的值。然而，直接计算 \\(45!\\) 的值会非常大且复杂，因此我们可以使用一个更有效的方法来解决这个问题。\n\n### 步骤 1: 计算 \\(45!\\) 的各位数字之和\n由于 \\(45!\\) 的值非常大，我们不需要直接计算出这个巨大的数。相反，我们可以利用数学性质来",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T078": {
+      "answer": " 为了计算 \\(7 + 77 + 777 + 7777 + 77777\\) 的和，我们可以直接相加这些数：\n\n\\[\n7 + 77 + 777 + 7777 + 77777\n\\]\n\n将它们逐个相加：\n\n\\[\n7 + 77 = 84\n\\]\n\\[\n84 + 777 = 861\n\\]\n\\[\n861 + 7777 = 8638\n\\]\n\\[\n86",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T079": {
+      "answer": " 为了计算从1加到99的和，我们可以使用等差数列求和公式。等差数列的求和公式为：\n\n\\[ S = \\frac{n(a_1 + a_n)}{2} \\]\n\n其中：\n- \\( n \\) 是项数\n- \\( a_1 \\) 是首项\n- \\( a_n \\) 是末项\n\n在这个问题中：\n- \\( n = 99 \\)\n- \\( a_1 = 1 \\)\n- \\( a_n = 99 \\)\n\n将这些值代入公式中：\n\n\\[ S = \\frac",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T081": {
+      "answer": " 为了找出2000到2100之间有多少个素数，我们可以编写一个程序来遍历这个区间内的每个数字，并检查它们是否为素数。素数定义为只有两个正因数（1和它本身）的自然数。\n\n下面是一个Python程序来解决这个问题：\n\n```python\ndef is_prime(n):\n    if n <= 1:\n        return False\n    if n == 2 or n == 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T082": {
+      "answer": " 提示：可以使用筛法来生成素数。 为了确定8500到8600之间（开区间，不含端点）有多少个素数，我们可以使用筛法来生成素数，并统计在这个范围内的素数数量。\n\n首先，我们需要一个素数生成器。这里我们使用埃拉托色尼筛法的变体，即从2开始，逐个检查每个数是否为素数，如果是则标记为素数，并将它的所有倍数标记为非素数。\n\n1. 初始化一个布尔数组 `is_prime`，长度为8601",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T084": {
+      "answer": "例如：最终答案：12\n首先，我们找到270和192的最大公约数（GCD）。我们可以使用辗转相除法（也称为欧几里得算法）来计算。\n\n270 和 192 的最大公约数可以通过以下步骤计算：\n\n1. 用较大的数除以较小的数：\n   270 ÷ 192 = 1 ... 78\n\n2. 然后用上一步得到的余数（78）除以较小的数（192）：\n   192 ÷ ",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T086": {
+      "answer": "请提供一个简短的段落来解释这些参数及其对模型性能的影响。\n\n对于MoE（门控专家）模型，其关键架构参数包括门控网络（Gating Network, GN）和专家网络（Expert Network, EN）。在235B-A22B版本中，Gating Network由235个节点组成，每个节点包含128个全连接层。EN由22个专家网络组成，每个专家网络包含128个全连接层。这些参数的选择对模型性能有重要影响。较小的Gating Network可以减少计算量，但",
+      "score": 0.75,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T087": {
+      "answer": " 该模型的专家配置为 1000，总激活参数为 2048。\n\n在Phi-3.5系列中，MoE（混合专家）模型的设计旨在通过结合多个专家网络来提高性能。对于您提到的特定MoE模型，其专家配置为1000，这意味着该模型包含1000个专家网络。同时，总激活参数为2048，这表示每个输入样本可以激活2048个专家网络中的一个或多个，以进行最终的输出决策。这种设计允许模型在处理复杂任务时具有更高的",
+      "score": 0.333,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T089": {
+      "answer": "请提供一个表格，列出这些关键数字。\n以下是一个表格，列出了在训练数据规模和多语言覆盖方面的一些官方披露的关键数字：\n\n| 项目 | 描述 |\n| --- | --- | \n| 训练数据规模 | 1.6万亿字的中文语料库 |\n| 多语言覆盖 | 支持20多种语言 |\n| 数据清洗 | 采用深度学习方法进行数据清洗，去除噪声和无关信息 |\n| 数据增强 | 使用数据增强技术，生成更多样化的训练样本 |\n| 训练模型 | 使用Transformer架构，包含自注意力机制和多",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T090": {
+      "answer": " 分词器词表大小是指模型在训练过程中使用的词汇表的大小。对于 Llama 3 和 Qwen 2.5，它们的分词器词表大小并没有直接给出，因为这些信息通常不会公开。不过，我们可以根据一些已知的信息进行推测。\n\n1. **Llama 3**：\n   - Llama 3 是阿里云推出的一个大语言模型，其分词器词表大小可能与 Qwen 相似。\n   - Qwen 2.5 的分词器词表大小为 4096 个词，因此可以推测 L",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T092": {
+      "answer": "\nAutoGen agents 的核心属性短语：conversable, **employ**, accomplish\n\n根据 AutoGen agents 的描述，可以推断出以下信息：这些智能代理是可定制的、可交谈的，并且可以在多种模式下运行，这些模式结合了语言模型、人类输入和工具。它们可以相互交谈以完成任务。\n逐字引用 AutoGen agents 的核心属性短语：conversable, employ, accomplish\n逐字引用 AutoGen agents 的核心属性短语为：conversable, employ, accomplish。 AutoGen agents 的核心属性短语包括 \"conversable\", \"",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T093": {
+      "answer": "\nQwen3 的旗舰 MoE 模型规模与训练 token 总数（含数字与单位）：235B total parameters, 22B activated, 36T tokens\nQwen Tag: Qwen3-235B-A22B, 36T tokens, 119 languages and dialects\n\n根据您提供的摘要内容，Qwen3 的旗舰 MoE 模型的规模与训练 token 总数（含数字与单位）可以精确提取如下：\n\n235B total parameters, 22B activated, 36T",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T095": {
+      "answer": " 。\n答案：3.3 模型在 MATH 上的分数为 77.0，而 3.1 模型的分数为 73.8。因此，3.3 模型比 3.1 模型在 MATH 上的分数高 3.2 分。\nLlama 3.1 405B 卡：「HumanEval 89.0 (0-shot pass@1); GSM8K 96.8 (8-shot CoT); MATH 73.8 (0-shot CoT)」\nL",
+      "score": 0.667,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T096": {
+      "answer": "\nPhi-3-mini 训练数据规模：3.3T tokens\n训练范式：training recipe includes synthetic data derived from textbooks and curated web content\n\n逐字引用上述信息：\n\nPhi-3-mini 训练数据规模：3.3T tokens\n训练范式：training recipe includes synthetic data derived from textbooks and curated web content\n```python\nPhi-3-mini 训练数据规模：3.3T tokens\n训练范式：training recipe includes synthetic data derived from textbooks and curated web content\n```\n根据提供的摘要内容，Phi-3-mini 训练数据规模为 3",
+      "score": 0.75,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T098": {
+      "answer": " A. 128/1024/10 B. 128/1024/16 C. 128/1024/20 D. 128/1024/24\n答案是 B. 128/1024/16。解释如下：\n\n- **激活参数**：Llama 4 Scout 的激活参数为 128，这是指模型在推理过程中需要的参数数量。\n- **总参数**：模型的总参数为 1024，这包括了",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T100": {
+      "answer": " 激活 + 总参 + 路由专家数 = 10 + 5 + 3 = 18\n\n因此，Llama 4 Maverick 的三个数字是 10, 5, 和 3。 这个问题的答案是 10, 5, 和 3。 但是，根据您的描述，似乎您想得到的是一个特定的组合，其中包含激活、总参和路由专家数。如果这是正确的，那么答案就是 10, 5, 和 3。 如果您需要这三个数字的某种特定组合或解释，请",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T101": {
+      "answer": " 激活 + 总参 + routed 专家数的计算方式如下：\n\n1. **激活**：通常是指网络中的节点数量，对于Llama 4来说，激活的数量是固定的，即总参的数量。\n2. **总参**：指的是网络中所有参数（包括权重和偏置）的数量。对于Llama 4来说，总参的数量也是固定的。\n3. **routed 专家数**：这是指网络中每个专家（或称为专家模块）的数量。对于Llama 4来说，routed 专家数也是固定的。\n\n因此，Llama 4 的",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T102": {
+      "answer": " A22B 10000+ 1000 B22B 1000+ 100\n\n在回答这个问题之前，我们需要理解几个关键点：\n\n1. **Routed Expert 数量**：这是指在模型中实际被激活的专家数量。对于 Rugged Qwen-3 旗舰版，其 Routed Expert 数量为 235B。\n2. **每 Token 激活的专家数量**：这是指在处理每个 token 时，实际被激活的专家数量。根据您提供的信息，A22B �",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T104": {
+      "answer": "\nAutoGen agent 属性与协作接口：AutoGen agents 是可定制的、可对话的，并且可以以各种模式运行，这些模式结合了 LLMs、人类输入和工具。某些配置会重复使用单一模型，而其他配置则协调多个代理来完成任务。 从描述中提取的属性与协作接口的原文短语为：\nAutoGen agent 属性与协作接口：AutoGen agents are customizable, conversable, and can operate in various modes that employ combinations of LLMs, human inputs, and tools. Some configurations use a single model repeatedly, while others coordinate multiple agents",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T106": {
+      "answer": "\nQwen3-235B-A22B 在大约 36T 令牌上进行了训练，覆盖了 119 种语言和方言；该模型支持一种通过 /think 控制的混合思考模式，并暴露了一个思考预算参数。 原文中的关键数字与短语：\n- 训练规模：约 36T 令牌\n- 多语言覆盖：119 种语言和方言\n- 思考模式：混合思考模式\n- 控制方式：通过 /think\n- 暴露参数：思考预算参数\n\nQ",
+      "score": 0.75,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T107": {
+      "answer": " 根据提供的卡文本，我们可以看到两个 Llama 模型在 MATH 测试上的分数如下：\n\n- Llama 3.1 405B 的 MATH 分数是 73.8（0-shot CoT）\n- Llama 3.3 70B 的 MATH 分数是 77.0（0-shot CoT）\n\n比较这两个分数，可以看出 Llama 3.3 70B 在 MATH 测试中的得分更高。具体来说，Llama 3.3 70B 的 MATH 分数为 77.",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T108": {
+      "answer": "\nGLM-4-9B 支持 128K-token 上下文。训练报告为 10T token，采用多阶段课程学习。与早期的 GLM 相比，GLM-4 转换为分组查询注意力，并采用更均匀的层设计，取消了早期 GLM 使用的 PRepLN 规范化。\n原文：「The model has 4 layers, each with 9 BERT-like token heads. The total number of training tokens is 10 trillion. Compared to the previous version, the model uses grouped-query attention and a more",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T110": {
+      "answer": "\n以下是材料中描述 default ACL 行为与覆盖范围的原文短语：\n- \"If no ACL rules match a connection, the default policy applies;\"\n- \"the implicit default is deny.\"\n- \"ACLs are evaluated in order, and the first match wins;\"\n- \"wildcards may be used in source and destination but are not allowed in field-level matchers like HTTP hosts.\" 以下是材料中描述 default ACL 行为与覆盖范围的原文短语，按照要求逐字引用：\n\n1. \"If no ACL rules match a connection, the default policy applies;\"\n2. \"the implicit default is deny",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T112": {
+      "answer": "\n以下是需要提取的两条短语：\n1. stream retention\n2. replay 行为\n\n根据提供的材料，从原文中提取所需的两条短语如下：\n\n1. **stream retention**：\n   - 原文短语：“JetStream supports both Limits-based and Interest-based retention.”\n   - 提取的短语：“retention”\n\n2. **replay 行为**：\n   - 原文短语：“Replay policy can be set to instant for fast catch-up or replay-all for full event log replay.”\n   - 提取的短语：“replay-all”（或“",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T113": {
+      "answer": "\n以下是材料中关于 `mount --bind` 与 read-only 重挂的原文短语：\n- `mount --bind`\n- `mount -o remount,ro`\n\n解释：\n- 材料中的“`mount --bind`”对应于原文中的“`mount --bind`”。这是直接引用了材料中的命令。\n- 材料中的“read-only 重挂”对应于原文中的“mount -o remount,ro”。这里，“remount,ro”是 `mount -o` 的选项，表示将已有的挂载点重挂为只读模式。因此，",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T115": {
+      "answer": "\n以下是所引用的段落：\n```\nImports should usually be on separate lines; imports are grouped in the following order: standard library imports, related third party imports, and finally local application/library specific imports.\n```\n根据提供的段落，以下是所引用的原文短语：\n- \"imports are grouped in the following order:\"\n- \"standard library imports\"\n- \"related third party imports\"\n- \"finally local application/library specific imports\"",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T116": {
+      "answer": "\n以下是材料中关于 `EXPLAIN ANALYZE` 与 plan reading 的原文短语的引用：\n1. EXPLAIN ANALYZE: \"EXPLAIN ANALIZE actually runs the query and returns measured run time and row counts.\"\n2. plan reading: \"Reading plans top-down helps catch overestimates\" 以及 \"cost values are not seconds but planner units.\" 这两个短语都涉及到了对计划的理解，但它们并没有直接引用到 `EXPLAIN ANALYZE` 的内容。因此，我们只能从第一个短语中提取到与 `EXPLAIN ANALYZE` 相关的信息",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T118": {
+      "answer": "\n以下是材料中对 job 依赖和矩阵策略的引用：\n- job 依赖：Use needs: to express job dependencies so a job runs only after other jobs succeed.\n- 矩阵策略：A matrix strategy runs the same job across a list of variables, including OS and language versions.\n\n根据您的要求，下面是具体引用的原文短语：\n\n1. **job 依赖**：Use needs: to express job dependencies so a job runs only after other jobs succeed.\n2. **矩阵策略**：A matrix strategy runs the same job across a list of variables, including OS and language versions.  (注意",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T124": {
+      "answer": "\n在上述文档中，'%' 前缀的引用方式为：%a, %_, 和 %#。无名寄存器的原文短语为：the alphanumeric register, the black hole register, 和 the alternate filename。\n\n在上述文档中，'%' 前缀的引用方式为：\n- %a\n- %_\n- 和 %#\n\n无名寄存器的原文短语为：\n- the alphanumeric register\n- the black hole register\n- 和 the alternate filename\n\n根据文档中的描述，'%' 前缀的引用方式包括：\n- %a\n- %_\n",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T125": {
+      "answer": "\n在 GNU Make 文档中，对于自动变量 $@、$<、$^ 的定义如下：\n\n- $@ 评估为目标文件名。\n- $< 评估为目标的第一个前提条件。\n- $^ 评估为所有前提条件。 以下是直接引用的原文：\n\n- $@ 评估为目标文件名。\n- $< 评估为目标的第一个前提条件。\n- $^ 评估为所有前提条件。",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T127": {
+      "answer": "\nMetal 文档中相关段落的原文为：\n\"Threadgroup memory is shared among threads within a single threadgroup, whereas device memory is accessible to all threads but is not cached. Threadgroup memory is typically much smaller than device memory.\"\n以下是 Metal 文档中关于 threadgroup memory 与 device memory 的原文区别短语：\n\n1. **Threadgroup memory is shared across threads in a single threadgroup and is typically much smaller than device memory; device memory is accessible by all threads but access is uncached.**\n   - **Threadgroup memory is shared among threads within a single threadgroup, whereas device memory is accessible",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T128": {
+      "answer": "\n以下是引用的原文：\n\n- **IN** 操作符返回如果其左侧操作数等于右侧列表中的任何一个值则为真；\n\n- **BETWEEN** 操作符返回如果值大于或等于下限并且小于或等于上限则为真；\n\n根据您提供的要求，我将从 SQLite 文档中直接引用这些描述：\n\n- **IN** 操作符返回如果其左操作数等于右列表中的任何一个值则为真；\n- **BETWEEN** 操作符返回如果值大于或等于下限且小于或等于上限则为真。\n\n这是直接引用了您",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "fresh"
+    },
+    "T130": {
+      "answer": "\n在 Docker 文档中，对于桥接网络驱动（bridge driver）与主机网络驱动（host driver）的区别描述如下：\n\n- 桥接网络驱动（bridge driver）创建了一个虚拟以太网桥，容器会连接到这个虚拟以太网桥上；\n\n- 主机网络驱动（host driver）则取消了网络隔离，并直接使用主机的网络设置。 \n\n通过对比，可以明确指出以下区别短语：\n\n- 桥接网络驱动（bridge driver）：\n  - \"创建一个虚拟以太网桥\"\n  - \"容器连接到这个虚拟以太网",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T131": {
+      "answer": "\nOAuth 2.1 草案原文：\nThe code_challenge and code_verifier parameters implement Proof Key for Code Exchange (PKCE); the scope parameter delimits the privileges requested by the client.\n根据您提供的 OAuth 2.1 草案中的原文，以下是逐字引用的定义：\n\n- **code_challenge 和 code_verifier 参数 实现 Proof Key for Code Exchange (PKCE)**\n- **scope 参数 限定 客户端 请求 的 权力**\n\n解释：\n- **code_challenge 和 code_verifier 参数**：这是 OAuth 2.1 中用于实现 PKCE 的参数。\n",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T133": {
+      "answer": "\nNeMo 文档中关于 model parallelism 三种策略（TP/PP/CP）的原文短语为：\n1. 「NeMo supports three model parallelism strategies: tensor parallelism (TP), pipeline parallelism (PP), and context parallelism (CP); they can be combined for very large models.」中的 TP 表示 tensor parallelism。\n2. 「NeMo supports three model parallelism strategies: tensor parallelism (TP), pipeline parallelism (PP), and context parallelism (CP); they can be combined for very large models.」中的 PP 表示 pipeline parallelism。\n3.",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    "T134": {
+      "answer": "\n根据您提供的信息，TRL文档中关于SFTTrainer的四个关键参数的原文名如下：\n\n1. **max_seq_length** - 最大序列长度\n2. **packing** - 填包\n3. **dataset_text_field** - 数据集文本字段\n4. **formatting_func** - 格式化函数\n\n这些参数在SFTTrainer中用于处理指令微调和仅完成损失。 请注意，这些名称是基于英文原文进行翻译的，可能并非直接从中文翻译而来。",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    "T135": {
+      "answer": "出处：https://pytorch.org/tutorials/intermediate/ddp_tutorial.html 原文：「The DistributedDataParallel (DDP) wrapper automatically handles the synchronization of model parameters across multiple GPUs, as well forgets to mention the use of all-reduce for gradient synchronization.」出处：https://discuss.pytorch.org/t/how-to-use-ddp-for-gradient-synchronization-across-gpus/17564/2\n根据您提供的信息，以下是PyTorch文档中关于DistributedDataParallel (DDP)的两条关键原文短语：\n\n1. 「DistributedDataParallel (DD",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "dev"
+    },
+    "T136": {
+      "answer": "\n原文：「RAG (Retrieval-Augmented Generation) is a variant of the chain-of-thought approach that combines a retriever with a generative model to generate more accurate answers by augmenting the model's input with retrieved data.」\n原文：「The retriever can be any retrieval system, such as a search engine or a document database. The retriever is responsible for retrieving relevant documents given a query.」\n原文：「The retriever is integrated into the RAG chain, which consists of a retriever, a prompt, and a generative model. The retriever retrieves relevant documents based on the",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "dev"
+    },
+    "T137": {
+      "answer": "\n原文：「The QueryEngine is responsible for interpreting the user's query, which may involve natural language processing (NLP) to extract relevant information from the query text. The QueryEngine then uses this information to retrieve the most relevant documents from the index.」\n原文：「list_index is a special case of QueryEngine where the input is a list of nodes, and the output is a single concatenated document. This is useful when you want to retrieve a document that contains multiple related pieces of information, such as a list of items or a timeline.」\n原文：「The QueryEngine is responsible for interpreting the user's query",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "dev"
+    },
+    "T138": {
+      "answer": "出处：https://vllm.io/docs/llama2.html#paddedattention 原文：「PagedAttention manages KV cache as fixed-size pages to reduce fragmentation; it enables higher throughput under variable sequence lengths.」出处：https://vllm.io/docs/llama2.html#paddedattention\n\n在 vLLM 文档中，关于 PagedAttention 管理 KV 缓存的段落如下：\n\n\"PagedAttention manages KV cache as fixed-size pages to reduce fragmentation; it enables higher throughput under variable sequence lengths.\"\n\n该段落出自 https://vllm.io/docs/ll",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    "T139": {
+      "answer": "\n原文：「The optimizer states are partitioned into two groups, with the first group containing the state of all optimizers on a single data-parallel rank. The second group contains the state of all optimizers on the remaining ranks.」\n原文：「The gradients are partitioned into two groups, with the first group containing the gradient of all parameters on a single data-parallel rank. The second group contains the gradient of all parameters on the remaining ranks.」\n原文：「Parameters are partitioned into three groups, with the first group containing the parameters on a single data-parallel rank. The second group contains the parameters",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "dev"
+    },
+    "T140": {
+      "answer": "\nFastAPI 文档中对应的引用如下：\n\n```python\nfrom pydantic import BaseModel\n\nclass User(BaseModel):\n    name: str\n    age: int\n    is_active: bool\n    scores: list[float]\n    grades: dict[str, int]\n    optional_field: Optional[str]\n```\n\n原文：「Pydantic models use Python type hints to validate data; supported types include str, int, float, bool, list, dict, and Optional.」\nFastAPI 文档中对应的引用如下：\n- `name: str`\n- `age: int`\n- `is_active: bool`\n-",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "dev"
+    },
+    "T141": {
+      "answer": "\nJSON Schema 规范原文如下：\n\n- oneOf: \"oneOf validates against exactly one of the listed schemas\"\n- anyOf: \"anyOf validates against one or more of the listed schemas\"\n- allOf: \"allOf validates against all listed schemas\"\n\n因此，根据 JSON Schema 规范，oneOf / anyOf / allOf 的区别如下：\n\n- oneOf: \"oneOf validates against exactly one of the listed schemas\"\n- anyOf: \"anyOf validates against one or more of the listed schemas\"\n- allOf: \"allOf validates against all listed schemas\" 。\n\n这些描述直接引用",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T142": {
+      "answer": "\nPydantic v2 文档中对应的引用如下：\n\n- 「model_validator runs after the model is instantiated and validates the whole instance; field_validator runs per-field during validation.」\n- 「model_validator 在模型实例化之后运行，并验证整个实例；field_validator 在验证过程中针对每个字段运行。」\n\n因此，Pydantic v2 文档中关于 model_validator 与 field_validator 的区别是：\n\n- model_validator 在模型实例化之后运行，并验证整个实例；\n- field_validator 在验证过程中针对每个字段运行。",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T143": {
+      "answer": "\n原文：「The response includes a finish_reason of tool_calls and an array of tool call objects; each tool_call contains id, type, and function with name and arguments.」\n字面等同的引用：「The response includes a finish_reason of tool_calls and an array of tool call objects; each tool_call contains id, type, and function with name and arguments.」\n此段文字摘自 OpenAI 的文档，描述了在特定上下文（例如使用工具调用）下，函数调用响应格式的一部分。具体来说，它说明了当一个函数调用发生时，OpenAI",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "hidden"
+    },
+    "T144": {
+      "answer": "Anthropic 文档中原文： Tool use blocks contain an `id`, `name`, and `input`. Tool result blocks contain a `tool_use_id`, `content`, and an optional `is_error` flag. Tool use blocks 包含一个 `id`、`name` 和 `input`。工具结果块包含一个 `tool_use_id`、`content`，以及一个可选的 `is_error` 标志。 Tool use blocks contain an `id`, `name`, and `input`. Tool result blocks contain a `tool_use_id`, `content`, and an optional `is_error` flag.",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T145": {
+      "answer": " 译文：权限键默认将 GITHUB_TOKEN 限制为可读所有，但在仓库中；写入权限可以按作业或全局授予。\n\n原文：「If you don't specify a permissions key, the GITHUB_TOKEN is read-only by default.」 译文：如果没有指定权限键，则 GITHUB_TOKEN 将默认为只读。\n\n原文：「The GITHUB_TOKEN is read-only by default. If you want to use it as a write token, you must explicitly set the permissions key.」 译文：GITHUB_TOKEN 默认为只读。如果您想将其用作写入令牌，则",
+      "score": 0.0,
+      "is_pass": false,
+      "split": "hidden"
+    },
+    "T146": {
+      "answer": "\n这段话直接来自 OpenAI Function Calling 文档，原文为：\n\n```\nParallel function calls let the model invoke multiple tools in a single turn; the order of tool_calls in the response mirrors the order the model produced them.\n``` \n\n其中，“tool_calls”是文档中定义的术语，指的是模型调用工具的行为。",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T147": {
+      "answer": "\nAnthropic extended thinking 文档中关于 thinking budget 的原文短语为 \"thinking budget\"。文档中提到的完整句子是：\"Extended thinking uses a thinking budget to control how many tokens the model uses for internal reasoning before responding; budgets above 1024 tokens typically require streaming.\" 这里 \"thinking budget\" 是指用于控制模型在内部推理过程中使用多少 token 的预算。",
+      "score": 1.0,
+      "is_pass": true,
+      "split": "fresh"
+    },
+    "T148": {
+      "answer": "\n根据您提供的文档内容，以下是vLLM文档中关于启动OpenAI兼容服务器的命令及其参数：\n\n- `python -m vllm.entrypoints.openai.api_server`：这是启动OpenAI兼容服务器的命令行指令。`python -m` 是Python的一个特殊语法，用于运行一个模块。\n- `--model <name>`：这个参数指定了模型的名字。在vLLM中，模型通常是一个预训练的语言模型，例如GPT、CodeLlama等。\n- `--port 野营`：这个参数指定了服务器监听的端口号。在这个例子中，",
+      "score": 0.5,
+      "is_pass": false,
+      "split": "fresh"
+    }
+  },
+  "summary": {
+    "base": {
+      "label": "base",
+      "n": 92,
+      "pass": 24,
+      "pass_rate": 0.2608695652173913,
+      "by_split": {
+        "hidden": {
+          "n": 51,
+          "pass": 11,
+          "sum_score": 16.499000000000002,
+          "mean_score": 0.3235098039215687,
+          "pass_rate": 0.21568627450980393
+        },
+        "fresh": {
+          "n": 33,
+          "pass": 9,
+          "sum_score": 13.748000000000001,
+          "mean_score": 0.41660606060606065,
+          "pass_rate": 0.2727272727272727
+        },
+        "dev": {
+          "n": 8,
+          "pass": 4,
+          "sum_score": 4.0,
+          "mean_score": 0.5,
+          "pass_rate": 0.5
+        }
+      }
+    },
+    "dpo_lora": {
+      "label": "dpo_lora",
+      "n": 92,
+      "pass": 24,
+      "pass_rate": 0.2608695652173913,
+      "by_split": {
+        "hidden": {
+          "n": 51,
+          "pass": 11,
+          "sum_score": 16.499000000000002,
+          "mean_score": 0.3235098039215687,
+          "pass_rate": 0.21568627450980393
+        },
+        "fresh": {
+          "n": 33,
+          "pass": 9,
+          "sum_score": 13.748000000000001,
+          "mean_score": 0.41660606060606065,
+          "pass_rate": 0.2727272727272727
+        },
+        "dev": {
+          "n": 8,
+          "pass": 4,
+          "sum_score": 4.0,
+          "mean_score": 0.5,
+          "pass_rate": 0.5
+        }
+      }
+    }
+  },
+  "mcnemar_b_pass_l_fail": 0,
+  "mcnemar_l_pass_b_fail": 0,
+  "mcnemar_p": 1.0,
+  "ts": "2026-07-25T13:42:15"
+}

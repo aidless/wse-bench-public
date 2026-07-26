@@ -1,0 +1,52 @@
+{
+  "manifest_n": 156,
+  "static_leaked": [
+    "T036",
+    "T039"
+  ],
+  "files": [
+    {
+      "file": "results_baseline_real.json",
+      "n_scored": 31,
+      "n_manifest": 156,
+      "n_not_covered": 125,
+      "leaked_ids": [],
+      "leaked_avg": null,
+      "legit_extract_n": 20,
+      "impossible_probe": {
+        "T029": 1.0,
+        "T030": 1.0,
+        "T031": 1.0
+      },
+      "impossible_avg": 1.0,
+      "overall_raw": 0.918,
+      "overall_clean": 0.9178387096774193
+    },
+    {
+      "file": "results_r27_strict_grounding_k5.json",
+      "n_scored": 16,
+      "n_manifest": 156,
+      "n_not_covered": 140,
+      "leaked_ids": [],
+      "leaked_avg": null,
+      "legit_extract_n": 16,
+      "impossible_probe": {},
+      "impossible_avg": null,
+      "overall_raw": 0.7573125,
+      "overall_clean": 0.7573125
+    },
+    {
+      "file": "results_ablation_30q_k5.json",
+      "n_scored": 16,
+      "n_manifest": 156,
+      "n_not_covered": 140,
+      "leaked_ids": [],
+      "leaked_avg": null,
+      "legit_extract_n": 16,
+      "impossible_probe": {},
+      "impossible_avg": null,
+      "overall_raw": 0.6416625,
+      "overall_clean": 0.6416625
+    }
+  ]
+}

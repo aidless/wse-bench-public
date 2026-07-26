@@ -1,0 +1,29 @@
+{
+  "version": "v90-5strat-sft-v1",
+  "created": "2026-07-24",
+  "round": 16,
+  "n_pairs": 30,
+  "n_total_candidate_seeds": 146,
+  "n_excluded": 74,
+  "by_axis": {
+    "structured_output": 12,
+    "reasoning": 12,
+    "fact_recall": 6
+  },
+  "source_files": [
+    "submissions_hard_15seeds.json",
+    "submissions_struct_10seeds.json",
+    "submissions_sv_10seeds.json",
+    "submissions_fact_10seeds.json"
+  ],
+  "strategies": [
+    "selective_retrieval_v1",
+    "tool_arith_v1",
+    "schema_guard_v1",
+    "self_verify_v1",
+    "citation_check_v1"
+  ],
+  "filter": "is_pass(answer) == True, dedup by (task_id, source_strategy)",
+  "jsonl_path": "sft_v90_5strat.jsonl",
+  "note": "路径 A 启动数据：从 5 策略 K=5 真跑 candidate 答中抽取 production-quality 答案作为 SFT 目标。蒸馏 5 策略栈到一个端到端小模型。"
+}

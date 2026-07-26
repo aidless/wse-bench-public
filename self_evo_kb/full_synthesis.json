@@ -1,0 +1,52 @@
+{
+  "version": "all-batches-2026-07-24",
+  "n_papers": 1004,
+  "n_topics": 47,
+  "year_distribution": {
+    "2025": 256,
+    "2026": 316
+  },
+  "github_repos_total": 99,
+  "github_repos_from_existing_list": 99,
+  "github_repos_from_papers": 0,
+  "candidate_strategies_extended": [
+    {
+      "id": "verifier_v1",
+      "source_topic": "verifier_self_correction",
+      "description": "rubric-aware 跨 rubric 验证 (json_schema/contains/markdown_sections)",
+      "evidence": "Self-Trained Verification / Reliable Self-Improvement"
+    },
+    {
+      "id": "ensemble_v1",
+      "source_topic": "model_merging + self_consistency_cot",
+      "description": "5 策略并行 K=5 + 加权合并（test-time ensemble of strategies）",
+      "evidence": "Adaptive-Consistency + TIES + DARE"
+    },
+    {
+      "id": "test_time_compute_v1",
+      "source_topic": "test_time_compute + reasoning_math",
+      "description": "对 hard 题（如 T047-T060）增加推理 token budget + self-consistency sampling；评估用 WSE-Bench 控制生成 token",
+      "evidence": "o1-style reasoning / Self-Consistency"
+    },
+    {
+      "id": "rubric_distill_v1",
+      "source_topic": "verifier_self_correction + chain_of_thought",
+      "description": "用 SFT 数据教模型'先 chain-of-thought 推理 rubric 约束再答'，跨题族（fact/struct/RC）通用",
+      "evidence": "Beyond Output Critique: Self-Correction via Task Distillation (SELF-THOUGHT)"
+    },
+    {
+      "id": "process_reward_v1",
+      "source_topic": "verifier_self_correction + process_reward_model",
+      "description": "对 reasoning 答案做 step-by-step 评分（每步核验），对 final 答案加权；WSE-Bench sv cohort 适配",
+      "evidence": "Process Reward Models (PRM) / self-trained verification"
+    }
+  ],
+  "self_evolution_takeaways": [
+    "introspection threshold 理论 (DGM 系列): 真正的 self-improvement 需要 introspection + 外部 verifier feedback loop — WSE-Bench 5 策略栈已实现这两点",
+    "verifier bottleneck 定理: 评估信号 is_pass() 准确率 = self-improvement 上限 — 我们用 deterministic is_pass 作为 ground truth 优势巨大",
+    "46% PR reject 率 (AIDE² 实证): 盲信 benchmark 提升 = 反 Goodhart — WSE-Bench hash 锁 + K=5 + McNemar 防止",
+    "model merging 思路 (TIES/DARE): 5 策略的'顺序叠加'未来可升级为'并行 ensemble + 加权合并'",
+    "AIDE 实证与 WSE-Bench 差异: AIDE 评估 ML benchmark 表现 → 真实 PR 拒; 我们评估 rubric 严格满足度 → 测量可改进",
+    "introspection 文档: 12 轮 K-5 评估/13 轮 STRATEGY_AUDIT/14 轮真 K-3 ablation 论证 evaluator 本身可被评估"
+  ]
+}

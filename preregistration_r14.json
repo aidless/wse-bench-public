@@ -1,0 +1,37 @@
+{
+  "round": 14,
+  "cohort": "2026Q3-fact",
+  "candidate_id": "citation_check_v1",
+  "target_axis": "fact_recall",
+  "pre_registered_at": "2026-07-24T17:50 round-14",
+  "pre_registration_basis": {
+    "headroom_K3_baseline_pass": 7,
+    "headroom_K3_total": 18,
+    "headroom_K3_overall": 0.389,
+    "failure_mode_buckets": {
+      "Llama4_Scout_总参估错(T085)": "0/3 命中（70B 误估，应 109B）",
+      "Qwen3-235B_层数缺(T086)": "0/3 命中（漏 94 层）",
+      "Phi-3.5-MoE_激活参估错(T087)": "1/3 命中（误估 7B 应 6.6B）",
+      "Llama4_Scout_训练token估错(T088)": "0/3 命中（误估 22T/30T 应 40T）",
+      "Qwen3_token/语言数模糊(T089)": "0/3 命中（误估 30T/100+ 应 36T/119）",
+      "词表_精确数字缺失(T090)": "0/3 命中（128000 应 128256 / 150000 应 151,643）"
+    },
+    "predicted_gain_axis": "citation_check 的'低置信触发检索'机制可稳定命中（公开但模糊事实）——这是 selective_retrieval 不覆盖的子域（后者只对私有/本地/新鲜事实触发）",
+    "expected_effect_size": "中等偏强（headroom 0.389，预期 baseline 7/18 → candidate 14-17/18 区间；Δ≈+0.4-0.6）"
+  },
+  "main_experiment_design": {
+    "K": 5,
+    "baseline_seed_policy": "全新 B1-B5，不复用 P1-P3 预检 seed（防 selection-on-noise）",
+    "candidate_seed_policy": "C1-C5 施加 citation_check_v1（高把握直答；低置信时触发 kb_retriever/本地 SQL/联网核验→用精确数字替换模糊参数记忆）",
+    "blinding": "基线/候选均闭卷（无 answer-key/无 rubric 读）",
+    "statistical_gate": "McNemar 精确检验 + bootstrap 95% CI（estimand=全部配对观测 overall-delta，v11 教训）",
+    "alpha": 0.05,
+    "bonferroni": "双臂单比较无需校正"
+  },
+  "anti_gaming_notes": [
+    "T085/T086/T088/T089/T090 baseline 0/3 命中（强 headroom），T087 1/3（弱 headroom）——T087 仍参与主实验 K=5 看真实效应",
+    "rubric 与 prompt 一致（contains 关键词逐字命中），候选不可读 rubric",
+    "失败模式驱动预注册，禁止事后编策略",
+    "citation_check_v1 与 selective_retrieval_v1 的边界：前者按'置信度阈值'触发，后者按'领域（私有/本地/新鲜）'触发——本次实验验证前者补后者盲区"
+  ]
+}

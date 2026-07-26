@@ -1,0 +1,14 @@
+{
+  "observed": 0.1875,
+  "boot_ci": [
+    0.0,
+    0.375
+  ],
+  "boot_se": 0.09533987032421169,
+  "boot_onesided_p": 0.02895,
+  "boot_t_ci": [
+    0.0,
+    0.375
+  ],
+  "prereg_rule_pass": false
+}

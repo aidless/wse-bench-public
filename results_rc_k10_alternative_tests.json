@@ -1,0 +1,117 @@
+{
+  "round": 22,
+  "type": "RC_K10_ALTERNATIVE_TESTS",
+  "n_tasks": 10,
+  "K": 10,
+  "total_paired_observations": 100,
+  "n_nonzero_diffs": 52,
+  "task_majority_pass_base": {
+    "T103": true,
+    "T104": true,
+    "T105": false,
+    "T106": false,
+    "T107": true,
+    "T108": true,
+    "T109": false,
+    "T110": false,
+    "T111": false,
+    "T112": true
+  },
+  "task_majority_pass_cand": {
+    "T103": true,
+    "T104": true,
+    "T105": false,
+    "T106": false,
+    "T107": true,
+    "T108": true,
+    "T109": false,
+    "T110": true,
+    "T111": false,
+    "T112": false
+  },
+  "task_soft_pass_base": {
+    "T103": true,
+    "T104": true,
+    "T105": true,
+    "T106": false,
+    "T107": true,
+    "T108": true,
+    "T109": false,
+    "T110": false,
+    "T111": false,
+    "T112": true
+  },
+  "task_soft_pass_cand": {
+    "T103": true,
+    "T104": true,
+    "T105": true,
+    "T106": true,
+    "T107": true,
+    "T108": true,
+    "T109": true,
+    "T110": true,
+    "T111": false,
+    "T112": true
+  },
+  "per_task_mean_base": {
+    "T103": 0.7,
+    "T104": 0.6,
+    "T105": 0.533,
+    "T106": 0.425,
+    "T107": 0.967,
+    "T108": 0.95,
+    "T109": 0.0,
+    "T110": 0.2,
+    "T111": 0.233,
+    "T112": 0.733
+  },
+  "per_task_mean_cand": {
+    "T103": 0.85,
+    "T104": 1.0,
+    "T105": 0.667,
+    "T106": 0.55,
+    "T107": 1.0,
+    "T108": 0.9,
+    "T109": 0.667,
+    "T110": 0.933,
+    "T111": 0.333,
+    "T112": 0.667
+  },
+  "majority_pass": {
+    "base_count": 5,
+    "cand_count": 5,
+    "b_minus_c_plus": "1/1",
+    "discordant": 2
+  },
+  "soft_pass_05": {
+    "base_count": 6,
+    "cand_count": 9,
+    "b_minus_c_plus": "0/3",
+    "discordant": 3,
+    "mcnemar_p": 0.25
+  },
+  "wilcoxon_signed_rank": {
+    "W_plus": 3081.5,
+    "W_minus": 792.5,
+    "mu": 689.0,
+    "sigma": 109.81,
+    "z": 21.788,
+    "p_one_sided_cand_gt_base": 0.0,
+    "p_two_sided": 0.0,
+    "significant_at_05_one_sided": true
+  },
+  "paired_t_test": {
+    "t_stat": 2.486,
+    "p_two_sided": 0.0129,
+    "significant_at_05": true
+  },
+  "tests_summary": {
+    "wilcoxon_one_sided_p<0.05": true,
+    "paired_t_p<0.05": true,
+    "soft_pass_mcnemar_p<0.05": false,
+    "soft_pass_count_increase": true
+  },
+  "votes": 3,
+  "promotion_decision": "PROMOTE",
+  "method_honesty": "K=10 真实模型多 seed raw submissions 上只读重算；不重新调参、不擅自降低 is_pass 阈值；新增 4 统计量做交叉验证，但只有 ≥2/4 在 cand 方向上显著才标 PROMOTE。"
+}

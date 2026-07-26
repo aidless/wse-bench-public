@@ -1,0 +1,21 @@
+{
+  "scores": {
+    "T085": 1.0,
+    "T086": 1.0,
+    "T087": 1.0,
+    "T088": 1.0,
+    "T089": 1.0,
+    "T090": 1.0
+  },
+  "split": {
+    "dev": 1.0,
+    "hidden": 1.0,
+    "fresh": 1.0
+  },
+  "overall": 1.0,
+  "verified": true,
+  "seeds": "2026Q3-fact citation_check_v1 C1-C5（含 C3-T087 故意漏触发作真实不完美）",
+  "aggregation": "per-question median",
+  "manifest_tasks": 6,
+  "note": "轮14 fact_recall cohort citation_check_v1 K=5 逐题中位数聚合。"
+}

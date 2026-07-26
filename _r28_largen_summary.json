@@ -1,0 +1,78 @@
+{
+  "design": {
+    "K": 15,
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505,
+      606,
+      707,
+      808,
+      909,
+      1010,
+      1111,
+      1212,
+      1313,
+      1414,
+      1515
+    ],
+    "n_tasks": 32,
+    "protocol": "r27-strict-identical"
+  },
+  "full": {
+    "label": "FULL 32 tasks x K=15",
+    "n_tasks": 32,
+    "n_pairs": 480,
+    "a": 138,
+    "b": 71,
+    "c": 169,
+    "d": 102,
+    "mcnemar_p": 2.1569089418792672e-10,
+    "cohens_g": 0.4083333333333333,
+    "delta": 0.20416666666666666,
+    "boot_ci95": [
+      0.11875,
+      0.28958333333333336
+    ],
+    "boot_p_one_sided": 0.0,
+    "prereg_rule_pass": true
+  },
+  "replication_old16": {
+    "label": "OLD 16 tasks (=#33 pool, new seeds)",
+    "n_tasks": 16,
+    "n_pairs": 240,
+    "a": 54,
+    "b": 41,
+    "c": 88,
+    "d": 57,
+    "mcnemar_p": 4.2702001837984584e-05,
+    "cohens_g": 0.3643410852713178,
+    "delta": 0.19583333333333333,
+    "boot_ci95": [
+      0.0625,
+      0.3375
+    ],
+    "boot_p_one_sided": 0.00145,
+    "prereg_rule_pass": true
+  },
+  "heldout_new16": {
+    "label": "HELD-OUT 16 tasks (never used in #33)",
+    "n_tasks": 16,
+    "n_pairs": 240,
+    "a": 84,
+    "b": 30,
+    "c": 81,
+    "d": 45,
+    "mcnemar_p": 1.373867782378966e-06,
+    "cohens_g": 0.4594594594594595,
+    "delta": 0.2125,
+    "boot_ci95": [
+      0.10833333333333334,
+      0.30833333333333335
+    ],
+    "boot_p_one_sided": 0.0001,
+    "prereg_rule_pass": true
+  }
+}
