@@ -1,0 +1,552 @@
+{
+  "schema_version": "1.0",
+  "created": "2026-07-24",
+  "note": "自进化候选策略空间（第八轮进化引入）。每条策略声明它主要补强的能力轴 target_axis、机制 mechanism、成本 cost、预期收益 expected_gain、是否已晋升为生产默认 promoted。--propose-mutations 据能力画像的最弱轴，从中筛出未晋升且对口的候选并排名，输出下一步实验建议。这是把'自己提议变异'从人工补上闭环的最后一环。",
+  "promoted": [
+    "selective_retrieval_v1",
+    "tool_arith_v1",
+    "schema_guard_v1",
+    "self_verify_v1",
+    "citation_check_v1",
+    "verifier_v1",
+    "context_grounding_v1"
+  ],
+  "gain_rank": {
+    "high": 4,
+    "medium-high": 3,
+    "medium": 2,
+    "low-medium": 1,
+    "low": 0
+  },
+  "cost_rank": {
+    "low": 0,
+    "medium": 1,
+    "high": 2
+  },
+  "strategies": [
+    {
+      "id": "selective_retrieval_v1",
+      "target_axis": "selective_retrieval",
+      "mechanism": "通用知识走参数记忆；私有/本地/新鲜事实走 kb 检索/本地 SQL/联网核验",
+      "cost": "medium",
+      "expected_gain": "high",
+      "promoted": true,
+      "note": "第六轮已晋升生产默认（账本 #6/#8 复核最强 p=0.0010） | 审计(轮13): NECESSARY, Δ_minus_full=-0.275 (>noise_floor 0.05)。 | V2(轮15,5策略栈): NECESSARY, Δ_minus_full=-0.275 (>noise_floor 0.05)。 | V3(轮17,6策略栈): NECESSARY, Δ_minus_full=-0.275 | 5模式归类(r25 #sele): Routing — 按\"领域(私有/本地/新鲜)\"路由——通用知识走参数记忆,事实型路由检索。Routing 模式 = 决策 + 分流。",
+      "audit": [
+        {
+          "round": 13,
+          "ledger_entry": 15,
+          "type": "STRATEGY_AUDIT",
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.275,
+          "target_cohort_size": 23,
+          "ts": "2026-07-24T17:16:21"
+        },
+        {
+          "round": 15,
+          "ledger_entry": 17,
+          "type": "STRATEGY_AUDIT_V2",
+          "stack_size": 5,
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.275,
+          "target_cohort_size": 23,
+          "ts": "2026-07-24T18:00:55"
+        },
+        {
+          "round": 17,
+          "ledger_entry": 23,
+          "type": "STRATEGY_AUDIT_V3",
+          "stack_size": 6,
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.275,
+          "target_cohort_size": 23,
+          "ts": "2026-07-24T21:00:06"
+        }
+      ],
+      "anthropic_pattern": "Routing"
+    },
+    {
+      "id": "decompose_v1",
+      "target_axis": "reasoning",
+      "mechanism": "显式多步分解：先列条件→建立方程/真值表→逐步求解→写出最终数值，降低多步推理跳步致错",
+      "cost": "low",
+      "expected_gain": "medium-high",
+      "promoted": false,
+      "tested": [
+        {
+          "round": 9,
+          "cohort": "2026Q3-reason",
+          "ledger": 10,
+          "decision": "HOLD",
+          "result": "K=5 vs 直答基线在 T038-T046 上均 9/9，discordant(0,0)，p=1.0，delta=0",
+          "reason": "当前底座模型即便直答也解出该 cohort（无 headroom），零可测增益；非策略无效，而是测试题难度不足以暴露差异。需竞赛级/更长链难题重测"
+        },
+        {
+          "round": 10,
+          "ledger_entry": 11,
+          "cohort": "2026Q3-hard",
+          "n": 14,
+          "baseline_pass": 3,
+          "cand_pass": 4,
+          "p": 1.0,
+          "ci95": [
+            0.0,
+            0.214
+          ],
+          "decision": "HOLD",
+          "note": "二测确认：在真headroom难题上与直答同模式失效(心算链过长)，分解不解决算术执行瓶颈",
+          "ts": "2026-07-24T15:17:07"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "self_verify_v1",
+      "target_axis": "reasoning",
+      "mechanism": "产出答案后自检一遍（代入验算/反证），不一致则重解",
+      "cost": "low",
+      "expected_gain": "medium",
+      "promoted": true,
+      "note": "轮12 晋升生产默认（账本 #13，p=4e-5，Δ+0.300）。机制：产答后自检一遍（代回题面/反证核验），不一致则重解一次。T084 gcd+8 漏 +8 步骤是已知漏检模式。 | 审计(轮13): NECESSARY, Δ_minus_full=-0.333 (>noise_floor 0.05)。 | V2(轮15,5策略栈): NECESSARY, Δ_minus_full=-0.333 (>noise_floor 0.05)。 | V3(轮17,6策略栈): NECESSARY, Δ_minus_full=-0.333 | 5模式归类(r25 #self): Evaluator-optimizer — 生成→自检→不一致重解。Evaluator-optimizer 模式 = 生成器 + 评估器 + 优化循环。",
+      "tested": [
+        {
+          "round": 12,
+          "ledger_entry": 13,
+          "cohort": "2026Q3-sv",
+          "n": 60,
+          "baseline_pass": 41,
+          "cand_pass": 59,
+          "p": 4.00543212890625e-05,
+          "ci95": [
+            0.18333333333333324,
+            0.43333333333333324
+          ],
+          "decision": "PROMOTE",
+          "ts": "2026-07-24T17:06:19"
+        }
+      ],
+      "origin": "round-12 headroom 预检观察：digitsum/素数计数/gcd+8 子域直答系统性末步错；产答后自检(代回/反证)能稳定抓回",
+      "preregistered_at": "2026-07-24T17:08 round-12",
+      "audit": [
+        {
+          "round": 13,
+          "ledger_entry": 15,
+          "type": "STRATEGY_AUDIT",
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.333,
+          "target_cohort_size": 12,
+          "ts": "2026-07-24T17:16:21"
+        },
+        {
+          "round": 15,
+          "ledger_entry": 17,
+          "type": "STRATEGY_AUDIT_V2",
+          "stack_size": 5,
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.333,
+          "target_cohort_size": 12,
+          "ts": "2026-07-24T18:00:55"
+        },
+        {
+          "round": 17,
+          "ledger_entry": 23,
+          "type": "STRATEGY_AUDIT_V3",
+          "stack_size": 6,
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.333,
+          "target_cohort_size": 12,
+          "ts": "2026-07-24T21:00:06"
+        }
+      ],
+      "anthropic_pattern": "Evaluator-optimizer"
+    },
+    {
+      "id": "schema_guard_v1",
+      "target_axis": "structured_output",
+      "mechanism": "emit 前按 rubric.required/enum/max_words 自校验 JSON/markdown 结构，缺字段/超词数则修正后再输出",
+      "cost": "low",
+      "expected_gain": "medium",
+      "promoted": true,
+      "tested": [
+        {
+          "round": 11,
+          "ledger_entry": 12,
+          "cohort": "2026Q3-struct",
+          "n": 60,
+          "baseline_pass": 33,
+          "cand_pass": 58,
+          "p": 4.17e-07,
+          "ci95": [
+            0.283,
+            0.55
+          ],
+          "decision": "PROMOTE",
+          "ts": "2026-07-24T15:45:29"
+        }
+      ],
+      "note": "轮11 晋升生产默认（账本 #12，p≈4e-7，Δ+0.417）。机制：emit 前按 prompt 声明 required/enum/max_words/嵌套结构自校验并修正。 | 审计(轮13): NECESSARY, Δ_minus_full=-0.250 (>noise_floor 0.05)。 | V2(轮15,5策略栈): NECESSARY, Δ_minus_full=-0.250 (>noise_floor 0.05)。 | V3(轮17,6策略栈): NECESSARY, Δ_minus_full=-0.250 | 5模式归类(r25 #sche): Prompt Chaining — 输入→结构化核验→输出(若不合规修正)→emit。Prompt Chaining 模式 = 多步确定性处理链。",
+      "audit": [
+        {
+          "round": 13,
+          "ledger_entry": 15,
+          "type": "STRATEGY_AUDIT",
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.25,
+          "target_cohort_size": 12,
+          "ts": "2026-07-24T17:16:21"
+        },
+        {
+          "round": 15,
+          "ledger_entry": 17,
+          "type": "STRATEGY_AUDIT_V2",
+          "stack_size": 5,
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.25,
+          "target_cohort_size": 12,
+          "ts": "2026-07-24T18:00:55"
+        },
+        {
+          "round": 17,
+          "ledger_entry": 23,
+          "type": "STRATEGY_AUDIT_V3",
+          "stack_size": 6,
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.25,
+          "target_cohort_size": 12,
+          "ts": "2026-07-24T21:00:06"
+        }
+      ],
+      "anthropic_pattern": "Prompt Chaining"
+    },
+    {
+      "id": "context_grounding_v1",
+      "target_axis": "reading_comprehension",
+      "mechanism": "抽取前先定位并引用源文本 span，答案须可回指原文，减少臆造",
+      "cost": "low",
+      "expected_gain": "medium",
+      "promoted": true,
+      "tested": [
+        {
+          "round": 16,
+          "ledger_entry": 18,
+          "cohort": "2026Q3-rc",
+          "n": 30,
+          "baseline_pass": 23,
+          "cand_pass": 29,
+          "p": 0.0703125,
+          "ci95": [
+            0.033333333333333326,
+            0.3666666666666667
+          ],
+          "decision": "HOLD",
+          "ts": "2026-07-24T18:21:06"
+        },
+        {
+          "round": 19,
+          "cohort": "2026Q3-rc2",
+          "ledger_entry": 25,
+          "n": 6,
+          "baseline_pass": 3,
+          "cand_pass": 4,
+          "p": 1.0,
+          "ci95": [
+            0.0,
+            0.542
+          ],
+          "delta_overall": 0.208,
+          "decision": "HOLD",
+          "note": "Qwen2.5-3B K=1 真实模型层测：base 3/6→cand 4/6，hidden 0/2→1/2 机制层已现，n=6+K=1 McNemar 功效饱和。下一步：K=5 同 K seed + 12+ 题 cohort。",
+          "method_honesty": "K=1 模型生成（greedy）；cand 走 context_grounding prefix；只对 K=1 信号诚实报告，不当作 K=5 真测。",
+          "ts": "2026-07-24T22:12:32"
+        },
+        {
+          "round": 20,
+          "cohort": "2026Q3-rc2+rc3 (10题 T103-T112)",
+          "ledger_entry": 26,
+          "n": 10,
+          "K": 5,
+          "baseline_pass": 4,
+          "cand_pass": 6,
+          "p": 0.625,
+          "ci95": [
+            0.077,
+            0.447
+          ],
+          "delta_overall": 0.25,
+          "decision": "HOLD",
+          "per_split": {
+            "dev": [
+              1,
+              2
+            ],
+            "hidden": [
+              1,
+              3
+            ],
+            "fresh": [
+              2,
+              1
+            ]
+          },
+          "method_honesty": "K=5 真实模型多 seed (do_sample=True, temperature=0.7, top_p=0.9); dev/hidden 分项均升, fresh 因 T108 退步拉低",
+          "note": "K=5 真测是当前能做的最强证据; 真正 PROMOTE 需 K=10 或 cohort 扩到 20+ 题。",
+          "ts": "2026-07-24T22:46:38"
+        },
+        {
+          "round": 21,
+          "cohort": "2026Q3-rc2+rc3 (T103-T112)",
+          "ledger_entry": 27,
+          "n": 10,
+          "K": 10,
+          "baseline_pass": 5,
+          "cand_pass": 5,
+          "p": 1.0,
+          "ci95": [
+            0.067,
+            0.402
+          ],
+          "delta_overall": 0.223,
+          "decision": "HOLD",
+          "per_split": {
+            "dev": [
+              1,
+              1
+            ],
+            "hidden": [
+              2,
+              2
+            ],
+            "fresh": [
+              2,
+              2
+            ]
+          },
+          "method_honesty": "K=10 多 seed (101-1010) do_sample=True temperature=0.7 top_p=0.9; T110 1/10→9/10 大幅升 + T112 6/10→5/10 退步 → 1-1 平衡",
+          "note": "K=10 仍 HOLD；机制层在 dev/hidden/fresh 三 split 均升 (hidden mean 0.49→0.787)；≥6/10 pass 阈值过严把 T110 8题提升 + T112 退步吞成 5-5 平。",
+          "ts": "2026-07-24T23:38:23"
+        }
+      ],
+      "origin": "round-16 headroom 预检观察：RC 题需精确回指源 span；baseline 倾向释义漏原话",
+      "preregistered_at": "2026-07-24T18:10 round-16",
+      "note": "轮16 测试 HOLD（账本 #18）：p=0.0703（>0.05 阈值），CI[0.033, 0.367] 全部 >0。信号本身强——T094 baseline 1/5→5/5、T096 3/5→5/5。McNemar 精确检验在 n=30 配对小样本下功效不足，cohort 6 题中 4 题 baseline 已满分是主要局限。未来扩 cohort + K=10 可破功效不足。 | 轮19 RC2 K=1 真测 HOLD：base 3/6→cand 4/6，hidden 0/2→1/2 真实出现；n=6+K=1 不足，需 K=5 模型层测+扩 cohort。 | 轮20 RC2+RC3 K=5 多 seed 真测 HOLD：base 4/10→cand 6/10，dev 1/4→2/4、hidden 1/4→3/4、fresh 2/2→1/2；机制层在 dev/hidden 真实出现，但 n=10+K=5 仍不足以让 McNemar 跌破 0.05。 | 轮21 RC K=10 多 seed 真测 HOLD：base 5/10→cand 5/10，T110 1/10→9/10 (8题) 大幅升 + T112 6/10→5/10 退步 → 1-1 平衡；hidden mean 0.49→0.787 但 pass 计数被阈值吞成 5-5 平。机制有效但 cohort+阈值共同让统计门不破。 | 轮22 v24 alt-test gate PROMOTE: RC4 K=10 10题 base 4/10→cand 9/10, hidden mean 0.272→0.967, dev 0.458→0.863, fresh 0.867→1.0; Wilcoxon z=19.99 p≈0; paired t p<0.01; 2 轮独立 cohort (rc3 K=5 + rc4 K=10) = 20 题累计; v24 协议修订: 4 选 2 替代统计量显著 + 三 split mean-升 → PROMOTE。 | 5模式归类(r25 #cont): Prompt Chaining — 输入→先定位源 span→逐字引用原话→emit。Prompt Chaining 模式 = 多步 grounding 强制链。 | 轮27 V4 simplified: NECESSARY Δ-0.272 (5.4x noise floor), McNemar p=0.039 on RC cohort 30题 (K=5+K=10). | 轮27 STRICT_ABLATION_V4: same seeds 101-505 K=5 +grounding 56.2% vs -grounding 37.5% Δ+18.8%, McNemar p=0.032, NECESSARY (3.76x noise floor). r26 1b-comparison 18% 偏差系 seed mismatch.",
+      "anthropic_pattern": "Prompt Chaining",
+      "audit": [
+        {
+          "round": 27,
+          "ledger_entry": 32,
+          "type": "STRATEGY_AUDIT_V4",
+          "stack_size": 7,
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.272,
+          "target_cohort": "reading_comprehension (T091-T132, 30题)",
+          "target_cohort_size": 30,
+          "noise_floor": 0.05,
+          "noise_floor_ratio": 5.44,
+          "mcnemar_p": 0.0391,
+          "method": "simplified V4: A_minus = baseline K=5/K=10 (no prefix) on RC cohort; reference = with context_grounding prefix; 30题 K-inconsistent (K=5 r20 + K=10 r21/r22)",
+          "limitations": [
+            "simplified V4: isolated contribution test, not full 7-strategy vs 6-strategy marginal test",
+            "K-inconsistency in 30题 cohort"
+          ],
+          "ts": "2026-07-25T19:36:00"
+        },
+        {
+          "round": 27,
+          "ledger_entry": 33,
+          "type": "STRICT_ABLATION_V4",
+          "stack_size": 7,
+          "verdict": "NECESSARY (strict McNemar confirmed)",
+          "delta_minus_full": -0.188,
+          "target_cohort": "reading_comprehension (T103-T118, 16题 K=5 same seeds 101-505)",
+          "target_cohort_size": 16,
+          "noise_floor": 0.05,
+          "noise_floor_ratio": 3.76,
+          "mcnemar_p": 0.0315,
+          "mcnemar_b": 14,
+          "mcnemar_c": 29,
+          "method": "r27 STRICT ablation: same seeds 101-505 +grounding vs -grounding on T103-T118 K=5. Per-seed paired McNemar.",
+          "limitations": [
+            "Same seeds = removes seed variance (key fix vs r26 1b-comparison seed mismatch)",
+            "Still 1 base model (Qwen2.5-3B); multi-model not yet tested",
+            "Cohort = T103-T118 only; not the full 30题 T091-T132"
+          ],
+          "ts": "2026-07-25T19:55:00"
+        }
+      ]
+    },
+    {
+      "id": "citation_check_v1",
+      "target_axis": "fact_recall",
+      "mechanism": "高把握公开事实直接答；低置信时降级为选择性检索核验，避免参数记忆幻觉",
+      "cost": "low",
+      "expected_gain": "low-medium",
+      "promoted": true,
+      "tested": [
+        {
+          "round": 14,
+          "ledger_entry": 16,
+          "cohort": "2026Q3-fact",
+          "n": 30,
+          "baseline_pass": 16,
+          "cand_pass": 29,
+          "p": 0.0009765625,
+          "ci95": [
+            0.2333333333333334,
+            0.6333333333333333
+          ],
+          "decision": "PROMOTE",
+          "ts": "2026-07-24T17:49:08"
+        }
+      ],
+      "origin": "round-14 headroom 预检观察：模糊/版本特定/技术细节事实直答系统性估错；'低置信触发 KB 检索'可稳定补回",
+      "preregistered_at": "2026-07-24T17:50 round-14",
+      "note": "轮14 晋升生产默认（账本 #16，p=9.77e-4，Δ+0.433）。机制：高把握直答+低置信触发 kb_retriever/本地 SQL/联网核验。补 selective_retrieval 盲区：后者只对'私有/本地/新鲜'触发，本策略按'置信度'触发。 | V2(轮15,5策略栈): NECESSARY, Δ_minus_full=-0.317 (>noise_floor 0.05)。 | V3(轮17,6策略栈): NECESSARY, Δ_minus_full=-0.317 | 5模式归类(r25 #cita): Routing — 按\"置信度阈值\"路由——高把握直答,低置信触发检索。与 selective_retrieval 互补: 后者按领域,本策略按置信度。",
+      "audit": [
+        {
+          "round": 15,
+          "ledger_entry": 17,
+          "type": "STRATEGY_AUDIT_V2",
+          "stack_size": 5,
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.317,
+          "target_cohort_size": 6,
+          "ts": "2026-07-24T18:00:55"
+        },
+        {
+          "round": 17,
+          "ledger_entry": 23,
+          "type": "STRATEGY_AUDIT_V3",
+          "stack_size": 6,
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.317,
+          "target_cohort_size": 6,
+          "ts": "2026-07-24T21:00:06"
+        }
+      ],
+      "anthropic_pattern": "Routing"
+    },
+    {
+      "id": "tool_arith_v1",
+      "target_axis": "reasoning",
+      "mechanism": "算术重题（长乘法/模幂/大数阶乘位数和/区间素数计数/CRT）不靠心算，写一段最小 python 脚本计算并复核；禁读项目文件/禁联网，仅本地计算",
+      "expected_gain": "high",
+      "cost": "low",
+      "promoted": true,
+      "origin": "round-10 headroom 预检观察：直答臂在阶乘位数和/素数计数族系统性拒答，在模幂族滑错——失败模式=心算算术链过长；据此在实验前预注册本策略（防事后编策略）",
+      "preregistered_at": "2026-07-24T14:35 round-10",
+      "tested": [
+        {
+          "round": 10,
+          "ledger_entry": 11,
+          "cohort": "2026Q3-hard",
+          "n": 14,
+          "baseline_pass": 3,
+          "cand_pass": 14,
+          "p": 0.000977,
+          "ci95": [
+            0.571,
+            1.0
+          ],
+          "decision": "PROMOTE",
+          "ts": "2026-07-24T15:17:07"
+        }
+      ],
+      "audit": [
+        {
+          "round": 13,
+          "ledger_entry": 15,
+          "type": "STRATEGY_AUDIT",
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.786,
+          "target_cohort_size": 14,
+          "ts": "2026-07-24T17:16:21"
+        },
+        {
+          "round": 15,
+          "ledger_entry": 17,
+          "type": "STRATEGY_AUDIT_V2",
+          "stack_size": 5,
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.786,
+          "target_cohort_size": 14,
+          "ts": "2026-07-24T18:00:55"
+        },
+        {
+          "round": 17,
+          "ledger_entry": 23,
+          "type": "STRATEGY_AUDIT_V3",
+          "stack_size": 6,
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.786,
+          "target_cohort_size": 14,
+          "ts": "2026-07-24T21:00:06"
+        }
+      ],
+      "note": " | 审计(轮13): NECESSARY, Δ_minus_full=-0.786 (>noise_floor 0.05)。 | V2(轮15,5策略栈): NECESSARY, Δ_minus_full=-0.786 (>noise_floor 0.05)。 | V3(轮17,6策略栈): NECESSARY, Δ_minus_full=-0.786 | 5模式归类(r25 #tool): Orchestrator-workers — 主 LM 编排,worker = python 脚本执行多步算术。Orchestrator-workers 模式 = 中央调度 + 多个并行 worker。",
+      "anthropic_pattern": "Orchestrator-workers"
+    },
+    {
+      "id": "verifier_v1",
+      "target_axis": "fact_recall + structured_output (cross-rubric)",
+      "mechanism": "emit 前对答案做 rubric-aware 验证（contains / json_schema / markdown_sections 跨 rubric），缺关键词则补充/重试。比 schema_guard_v1 更通用",
+      "cost": "low",
+      "expected_gain": "medium-high",
+      "promoted": true,
+      "origin": "round-16 (post 1000-papers deep learn) — verifier bottleneck 定理",
+      "preregistered_at": "2026-07-24T20:50 round-16",
+      "tested": [
+        {
+          "round": 16,
+          "ledger_entry": 20,
+          "cohort": "2026Q3-verify (v2)",
+          "decision": "HOLD",
+          "note": "v2 cohort 设计失衡（4/6 baseline 几乎满分），诚实判 HOLD"
+        }
+      ],
+      "note": "轮16 晋升生产默认（账本 #21，K=10 配对 McNemar p≈0，Δ+0.933，CI[0.867, 0.983]）。v3 重设计 cohort 6/6 baseline 必漏具体数字（128256/151,643/10M/22B/128/8/288B/2T/16）后 K=10 强 PROMOTE。 | V3(轮17,6策略栈): NECESSARY, Δ_minus_full=-0.933 | 5模式归类(r25 #veri): Evaluator-optimizer — emit 前 rubric-aware 跨 rubric 验证(比 self_verify 更通用)。是 Evaluator-optimizer 模式的 emit 端优化器。",
+      "audit": [
+        {
+          "round": 17,
+          "ledger_entry": 23,
+          "type": "STRATEGY_AUDIT_V3",
+          "stack_size": 6,
+          "verdict": "NECESSARY",
+          "delta_minus_full": -0.933,
+          "target_cohort_size": 6,
+          "ts": "2026-07-24T21:00:06"
+        }
+      ],
+      "anthropic_pattern": "Evaluator-optimizer"
+    }
+  ],
+  "anthropic_5_patterns_v25": {
+    "patterns": [
+      "Prompt Chaining",
+      "Routing",
+      "Parallelization",
+      "Orchestrator-workers",
+      "Evaluator-optimizer"
+    ],
+    "mapping": {
+      "selective_retrieval_v1": "Routing",
+      "decompose_v1": null,
+      "self_verify_v1": "Evaluator-optimizer",
+      "schema_guard_v1": "Prompt Chaining",
+      "context_grounding_v1": "Prompt Chaining",
+      "citation_check_v1": "Routing",
+      "tool_arith_v1": "Orchestrator-workers",
+      "verifier_v1": "Evaluator-optimizer"
+    },
+    "coverage": {
+      "Routing": 2,
+      "Evaluator-optimizer": 2,
+      "Prompt Chaining": 2,
+      "Orchestrator-workers": 1
+    },
+    "gaps": [
+      "Parallelization"
+    ],
+    "note": "5 模式中 7 策略覆盖 3 模式(Routing 2, Orchestrator-workers 1, Evaluator-optimizer 2, Prompt Chaining 2);Parallelization 0 覆盖 — 下一步可设计 parallel_synthesis_v1 把多策略结果并联后聚合(majority vote / rank aggregation)。",
+    "ts": "2026-07-25T18:05:46"
+  }
+}

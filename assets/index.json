@@ -1,0 +1,831 @@
+{
+  "generated": "2026-07-24",
+  "source_md": "github-top100-for-you.md",
+  "github_projects": [
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "openai/evals",
+      "url": "https://github.com/openai/evals",
+      "stars": 18995,
+      "desc": "OpenAI 官方评估框架与开放基准注册表"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "open-compass/opencompass",
+      "url": "https://github.com/open-compass/opencompass",
+      "stars": 7231,
+      "desc": "百模型·百数据集统一评估平台（你的偏置评估底座）"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "open-compass/VLMEvalKit",
+      "url": "https://github.com/open-compass/VLMEvalKit",
+      "stars": 4298,
+      "desc": "多模态模型评估工具包"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "THUDM/AgentBench",
+      "url": "https://github.com/THUDM/AgentBench",
+      "stars": 3597,
+      "desc": "LLM 作为智能体的综合基准（ICLR'24）"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "modelscope/evalscope",
+      "url": "https://github.com/modelscope/evalscope",
+      "stars": 3127,
+      "desc": "大模型高效评估与性能基准（兼实验追踪）"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "FreedomIntelligence/LLMZoo",
+      "url": "https://github.com/FreedomIntelligence/LLMZoo",
+      "stars": 2939,
+      "desc": "LLM 数据/模型/评估基准集合"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "beir-cellar/beir",
+      "url": "https://github.com/beir-cellar/beir",
+      "stars": 2250,
+      "desc": "信息检索异构基准（RAG 评测基础）"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "Xnhyacinth/Awesome-LLM-Long-Context-Modeling",
+      "url": "https://github.com/Xnhyacinth/Awesome-LLM-Long-Context-Modeling",
+      "stars": 2146,
+      "desc": "长上下文建模必读论文/博客"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "Barca0412/Introduction-to-Quantitative-Finance",
+      "url": "https://github.com/Barca0412/Introduction-to-Quantitative-Finance",
+      "stars": 1577,
+      "desc": "AI+金融量化（含 LLM/Agent/benchmark）"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "evalplus/evalplus",
+      "url": "https://github.com/evalplus/evalplus",
+      "stars": 1783,
+      "desc": "LLM 生成代码的严谨评估（NeurIPS'23）"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "MLGroupJLU/LLM-eval-survey",
+      "url": "https://github.com/MLGroupJLU/LLM-eval-survey",
+      "stars": 1609,
+      "desc": "LLM 评估综述官方页"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "OpenGenerativeAI/llm-colosseum",
+      "url": "https://github.com/OpenGenerativeAI/llm-colosseum",
+      "stars": 1482,
+      "desc": "趣味对抗式 LLM 评估"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "pinchbench/skill",
+      "url": "https://github.com/pinchbench/skill",
+      "stars": 1296,
+      "desc": "OpenClaw 编程智能体基准（PinchBench）"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "ScalingIntelligence/KernelBench",
+      "url": "https://github.com/ScalingIntelligence/KernelBench",
+      "stars": 1153,
+      "desc": "LLM 写 GPU kernel 基准"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "carlini/yet-another-applied-llm-benchmark",
+      "url": "https://github.com/carlini/yet-another-applied-llm-benchmark",
+      "stars": 1063,
+      "desc": "应用型 LLM 基准（安全视角）"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "suyoumo/ClawProBench",
+      "url": "https://github.com/suyoumo/ClawProBench",
+      "stars": 817,
+      "desc": "智能体实时基准（确定性评分 + 重复试验可靠性）"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "The-FinAI/PIXIU",
+      "url": "https://github.com/The-FinAI/PIXIU",
+      "stars": 878,
+      "desc": "金融 LLM 评估基准"
+    },
+    {
+      "category": "A. LLM 评估与基准（偏置 / 校准 / 方法论）",
+      "name": "MME-Benchmarks/Video-MME",
+      "url": "https://github.com/MME-Benchmarks/Video-MME",
+      "stars": 787,
+      "desc": "视频多模态评估（CVPR'25）"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "FoundationAgents/MetaGPT",
+      "url": "https://github.com/FoundationAgents/MetaGPT",
+      "stars": 69491,
+      "desc": "多智能体「软件公司」框架"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "crewAIInc/crewAI",
+      "url": "https://github.com/crewAIInc/crewAI",
+      "stars": 56036,
+      "desc": "角色扮演协作多智能体"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "openai/openai-agents-python",
+      "url": "https://github.com/openai/openai-agents-python",
+      "stars": 28123,
+      "desc": "OpenAI 轻量多智能体工作流框架"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "deepset-ai/haystack",
+      "url": "https://github.com/deepset-ai/haystack",
+      "stars": 25991,
+      "desc": "生产级 LLM 编排（检索/Agent/RAG）"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "humanlayer/12-factor-agents",
+      "url": "https://github.com/humanlayer/12-factor-agents",
+      "stars": 24717,
+      "desc": "生产级 LLM 软件 12 因素原则（治理参考）"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "openai/swarm",
+      "url": "https://github.com/openai/swarm",
+      "stars": 21857,
+      "desc": "OpenAI 轻量多智能体编排（教学）"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "microsoft/agent-framework",
+      "url": "https://github.com/microsoft/agent-framework",
+      "stars": 12345,
+      "desc": "微软多智能体编排框架（Python/.NET）"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "raga-ai-hub/RagaAI-Catalyst",
+      "url": "https://github.com/raga-ai-hub/RagaAI-Catalyst",
+      "stars": 16140,
+      "desc": "智能体观测/监控/评估"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "MervinPraison/PraisonAI",
+      "url": "https://github.com/MervinPraison/PraisonAI",
+      "stars": 8509,
+      "desc": "低代码多智能体工作力"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "omnigent-ai/omnigent",
+      "url": "https://github.com/omnigent-ai/omnigent",
+      "stars": 7684,
+      "desc": "元 harness + 策略/沙箱（agent-governance）"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "kyegomez/swarms",
+      "url": "https://github.com/kyegomez/swarms",
+      "stars": 6979,
+      "desc": "企业级多智能体编排"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "InternLM/MindSearch",
+      "url": "https://github.com/InternLM/MindSearch",
+      "stars": 6897,
+      "desc": "多智能体网页搜索引擎"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "open-multi-agent/open-multi-agent",
+      "url": "https://github.com/open-multi-agent/open-multi-agent",
+      "stars": 6646,
+      "desc": "动态工作流编排（TS）"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "SolaceLabs/solace-agent-mesh",
+      "url": "https://github.com/SolaceLabs/solace-agent-mesh",
+      "stars": 4968,
+      "desc": "事件驱动多智能体编排（A2A/MCP）"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "VRSEN/agency-swarm",
+      "url": "https://github.com/VRSEN/agency-swarm",
+      "stars": 4495,
+      "desc": "可靠多智能体编排"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "LazyAGI/LazyLLM",
+      "url": "https://github.com/LazyAGI/LazyLLM",
+      "stars": 3855,
+      "desc": "最简多智能体应用构建"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "agentuniverse-ai/agentUniverse",
+      "url": "https://github.com/agentuniverse-ai/agentUniverse",
+      "stars": 2308,
+      "desc": "多智能体应用框架"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "trypromptly/LLMStack",
+      "url": "https://github.com/trypromptly/LLMStack",
+      "stars": 2307,
+      "desc": "无代码多智能体"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "Kocoro-lab/Shannon",
+      "url": "https://github.com/Kocoro-lab/Shannon",
+      "stars": 2134,
+      "desc": "生产级多智能体编排（Go）"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "trpc-group/trpc-agent-go",
+      "url": "https://github.com/trpc-group/trpc-agent-go",
+      "stars": 1584,
+      "desc": "Go 生产级 agent（A2A/AG-UI/MCP/评估/可观测）"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "ZHangZHengEric/Sage",
+      "url": "https://github.com/ZHangZHengEric/Sage",
+      "stars": 1219,
+      "desc": "复杂任务多智能体"
+    },
+    {
+      "category": "B. 多智能体框架（编排 / 治理）",
+      "name": "wanxingai/LightAgent",
+      "url": "https://github.com/wanxingai/LightAgent",
+      "stars": 1184,
+      "desc": "轻量 OpenAI 兼容 agent（含 guardrails）"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "TauricResearch/TradingAgents",
+      "url": "https://github.com/TauricResearch/TradingAgents",
+      "stars": 94309,
+      "desc": "多智能体金融交易框架"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "CherryHQ/cherry-studio",
+      "url": "https://github.com/CherryHQ/cherry-studio",
+      "stars": 48921,
+      "desc": "AI 生产力工作室（智能体/300+ 助手）"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "reworkd/AgentGPT",
+      "url": "https://github.com/reworkd/AgentGPT",
+      "stars": 36286,
+      "desc": "浏览器内部署自主智能体"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "khoj-ai/khoj",
+      "url": "https://github.com/khoj-ai/khoj",
+      "stars": 35953,
+      "desc": "自托管 AI 第二大脑（研究/智能体）"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "assafelovic/gpt-researcher",
+      "url": "https://github.com/assafelovic/gpt-researcher",
+      "stars": 28591,
+      "desc": "自主深度研究智能体"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "Fosowl/agenticSeek",
+      "url": "https://github.com/Fosowl/agenticSeek",
+      "stars": 26678,
+      "desc": "全本地 Manus 式自主智能体"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "Tencent/WeKnora",
+      "url": "https://github.com/Tencent/WeKnora",
+      "stars": 18806,
+      "desc": "腾讯 LLM 知识平台（RAG+推理 agent+Wiki）"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "TransformerOptimus/SuperAGI",
+      "url": "https://github.com/TransformerOptimus/SuperAGI",
+      "stars": 17635,
+      "desc": "开发者优先自主智能体框架"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "wanshuiyin/Auto-claude-code-research-in-sleep",
+      "url": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep",
+      "stars": 13776,
+      "desc": "自主 ML 研究技能（评审循环/实验自动化）"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "0x4m4/hexstrike-ai",
+      "url": "https://github.com/0x4m4/hexstrike-ai",
+      "stars": 10458,
+      "desc": "自主网络安全 agent（MCP, 150+ 工具）"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "OpenBMB/XAgent",
+      "url": "https://github.com/OpenBMB/XAgent",
+      "stars": 8524,
+      "desc": "复杂任务自主 LLM 智能体"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "osaurus-ai/osaurus",
+      "url": "https://github.com/osaurus-ai/osaurus",
+      "stars": 7295,
+      "desc": "macOS 原生 agent harness（持久记忆/加密身份）"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "BlockRunAI/ClawRouter",
+      "url": "https://github.com/BlockRunAI/ClawRouter",
+      "stars": 6669,
+      "desc": "agent-native LLM 路由（成本优化/x402 支付）"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "aiwaves-cn/agents",
+      "url": "https://github.com/aiwaves-cn/agents",
+      "stars": 5955,
+      "desc": "数据驱动自进化自主语言智能体"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "kodu-ai/claude-coder",
+      "url": "https://github.com/kodu-ai/claude-coder",
+      "stars": 5256,
+      "desc": "IDE 内自主编程 agent"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "campfirein/byterover-cli",
+      "url": "https://github.com/campfirein/byterover-cli",
+      "stars": 4925,
+      "desc": "自主编程 agent 的可移植记忆层"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "PurpleAILAB/Decepticon",
+      "url": "https://github.com/PurpleAILAB/Decepticon",
+      "stars": 4891,
+      "desc": "红队自主黑客 agent"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "ruc-datalab/DeepAnalyze",
+      "url": "https://github.com/ruc-datalab/DeepAnalyze",
+      "stars": 4391,
+      "desc": "自主数据分析科学家 agent"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "gptme/gptme",
+      "url": "https://github.com/gptme/gptme",
+      "stars": 4369,
+      "desc": "终端内持久自主 agent"
+    },
+    {
+      "category": "C. 自主智能体 / Agent 应用",
+      "name": "MemMachine/MemMachine",
+      "url": "https://github.com/MemMachine/MemMachine",
+      "stars": 3341,
+      "desc": "通用 agent 记忆层"
+    },
+    {
+      "category": "D. 知识图谱 / GraphRAG / RAG",
+      "name": "Graphify-Labs/graphify",
+      "url": "https://github.com/Graphify-Labs/graphify",
+      "stars": 94605,
+      "desc": "代码库转查询知识图谱（无向量库，AST 解析）"
+    },
+    {
+      "category": "D. 知识图谱 / GraphRAG / RAG",
+      "name": "pingcap/autoflow",
+      "url": "https://github.com/pingcap/autoflow",
+      "stars": 2959,
+      "desc": "GraphRAG 对话知识库（TiDB 向量）"
+    },
+    {
+      "category": "D. 知识图谱 / GraphRAG / RAG",
+      "name": "Azure-Samples/graphrag-accelerator",
+      "url": "https://github.com/Azure-Samples/graphrag-accelerator",
+      "stars": 2411,
+      "desc": "Azure 一键 GraphRAG"
+    },
+    {
+      "category": "D. 知识图谱 / GraphRAG / RAG",
+      "name": "1517005260/graph-rag-agent",
+      "url": "https://github.com/1517005260/graph-rag-agent",
+      "stars": 2287,
+      "desc": "融合 GraphRAG/LightRAG/Neo4j（含评估框架，贴合你的 ML论文助手）"
+    },
+    {
+      "category": "D. 知识图谱 / GraphRAG / RAG",
+      "name": "raphaelmansuy/edgequake",
+      "url": "https://github.com/raphaelmansuy/edgequake",
+      "stars": 2048,
+      "desc": "Rust 高性能 GraphRAG（LightRAG 启发）"
+    },
+    {
+      "category": "D. 知识图谱 / GraphRAG / RAG",
+      "name": "desplega-ai/agent-swarm",
+      "url": "https://github.com/desplega-ai/agent-swarm",
+      "stars": 639,
+      "desc": "「你的公司智能体操作系统」（agentic OS）"
+    },
+    {
+      "category": "D. 知识图谱 / GraphRAG / RAG",
+      "name": "codefuse-ai/CodeFuse-muAgent",
+      "url": "https://github.com/codefuse-ai/CodeFuse-muAgent",
+      "stars": 774,
+      "desc": "知识图谱引擎驱动 agent 框架"
+    },
+    {
+      "category": "D. 知识图谱 / GraphRAG / RAG",
+      "name": "LHRLAB/HyperGraphRAG",
+      "url": "https://github.com/LHRLAB/HyperGraphRAG",
+      "stars": 431,
+      "desc": "超图结构 RAG（NeurIPS'25）"
+    },
+    {
+      "category": "D. 知识图谱 / GraphRAG / RAG",
+      "name": "bibinprathap/VeritasGraph",
+      "url": "https://github.com/bibinprathap/VeritasGraph",
+      "stars": 303,
+      "desc": "知识图谱&GraphRAG（多跳推理/可验证归因）"
+    },
+    {
+      "category": "D. 知识图谱 / GraphRAG / RAG",
+      "name": "OriginTrail/dkg-engine",
+      "url": "https://github.com/OriginTrail/dkg-engine",
+      "stars": 234,
+      "desc": "去中心化知识图谱网络节点"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "hiyouga/LlamaFactory",
+      "url": "https://github.com/hiyouga/LlamaFactory",
+      "stars": 73472,
+      "desc": "100+ LLM/VLM 统一高效微调（ACL'24）"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "huggingface/peft",
+      "url": "https://github.com/huggingface/peft",
+      "stars": 21442,
+      "desc": "参数高效微调 SOTA 库"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "predibase/lorax",
+      "url": "https://github.com/predibase/lorax",
+      "stars": 3820,
+      "desc": "多 LoRA 推理服务（千级微调模型）"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "aiming-lab/MetaClaw",
+      "url": "https://github.com/aiming-lab/MetaClaw",
+      "stars": 3472,
+      "desc": "agent 持续学习/进化（微调/RL）"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "ashishpatel26/LLM-Finetuning",
+      "url": "https://github.com/ashishpatel26/LLM-Finetuning",
+      "stars": 2965,
+      "desc": "PEFT 微调合集"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "stochasticai/xTuring",
+      "url": "https://github.com/stochasticai/xTuring",
+      "stars": 2670,
+      "desc": "个性化开源 LLM（预处理到微调）"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "ARahim3/mlx-tune",
+      "url": "https://github.com/ARahim3/mlx-tune",
+      "stars": 1368,
+      "desc": "Apple Silicon 上微调（MLX）"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "SakanaAI/text-to-lora",
+      "url": "https://github.com/SakanaAI/text-to-lora",
+      "stars": 1294,
+      "desc": "超网络按文本描述适配 LLM"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "datawhalechina/base-llm",
+      "url": "https://github.com/datawhalechina/base-llm",
+      "stars": 916,
+      "desc": "从 NLP 到 LLM 全栈教程（中文）"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "georgian-io/LLM-Finetuning-Toolkit",
+      "url": "https://github.com/georgian-io/LLM-Finetuning-Toolkit",
+      "stars": 872,
+      "desc": "微调/消融/单测工具包"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "dvgodoy/FineTuningLLMs",
+      "url": "https://github.com/dvgodoy/FineTuningLLMs",
+      "stars": 852,
+      "desc": "微调实战书配套代码"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "DaoyuanLi2816/can-i-finetune-this",
+      "url": "https://github.com/DaoyuanLi2816/can-i-finetune-this",
+      "stars": 791,
+      "desc": "**估算本地 GPU 能否微调（对你的 RTX 3060 6GB 直接有用）**"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "AutoArk/TinyEngram",
+      "url": "https://github.com/AutoArk/TinyEngram",
+      "stars": 735,
+      "desc": "Engram 架构研究（Qwen/SD）"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "arielnlee/Platypus",
+      "url": "https://github.com/arielnlee/Platypus",
+      "stars": 625,
+      "desc": "LoRA 微调 Platypus 系列"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "Leeroo-AI/mergoo",
+      "url": "https://github.com/Leeroo-AI/mergoo",
+      "stars": 518,
+      "desc": "多 LLM 专家合并与训练"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "Joyce94/LLM-RLHF-Tuning",
+      "url": "https://github.com/Joyce94/LLM-RLHF-Tuning",
+      "stars": 453,
+      "desc": "PEFT 全流程（SFT+RM+PPO+DPO+LoRA）"
+    },
+    {
+      "category": "E. 参数高效微调 / LoRA / 小模型",
+      "name": "wpydcr/LLM-Kit",
+      "url": "https://github.com/wpydcr/LLM-Kit",
+      "stars": 552,
+      "desc": "LLM 全流程 WebUI（含 LoRA/全参微调/知识库）"
+    },
+    {
+      "category": "F. 文献管理 / 论文工具",
+      "name": "hans/obsidian-citation-plugin",
+      "url": "https://github.com/hans/obsidian-citation-plugin",
+      "stars": 1333,
+      "desc": "Obsidian 学术引用插件（你的文献笔记流）"
+    },
+    {
+      "category": "F. 文献管理 / 论文工具",
+      "name": "vict0rsch/PaperMemory",
+      "url": "https://github.com/vict0rsch/PaperMemory",
+      "stars": 573,
+      "desc": "浏览器文献管理器（ArXiv/OpenReview 自动识别+代码发现）"
+    },
+    {
+      "category": "F. 文献管理 / 论文工具",
+      "name": "ResearchHelper/research-helper",
+      "url": "https://github.com/ResearchHelper/research-helper",
+      "stars": 205,
+      "desc": "参考管理器（PDF 标注/Excalidraw 笔记）"
+    },
+    {
+      "category": "G. 实验追踪 / MLOps",
+      "name": "aimhubio/aim",
+      "url": "https://github.com/aimhubio/aim",
+      "stars": 6201,
+      "desc": "易用且强大的开源实验追踪器"
+    },
+    {
+      "category": "G. 实验追踪 / MLOps",
+      "name": "determined-ai/determined",
+      "url": "https://github.com/determined-ai/determined",
+      "stars": 3224,
+      "desc": "分布式训练/超参搜索/实验追踪平台"
+    },
+    {
+      "category": "G. 实验追踪 / MLOps",
+      "name": "neptune-ai/neptune-client",
+      "url": "https://github.com/neptune-ai/neptune-client",
+      "stars": 623,
+      "desc": "基础模型训练实验追踪器"
+    },
+    {
+      "category": "G. 实验追踪 / MLOps",
+      "name": "modelscope/evalscope",
+      "url": "https://github.com/modelscope/evalscope",
+      "stars": 3127,
+      "desc": "评估兼性能基准（见 A 类，实验侧复用）"
+    },
+    {
+      "category": "H. 前端 / SaaS / 产品（OPC 可用）",
+      "name": "ixartz/SaaS-Boilerplate",
+      "url": "https://github.com/ixartz/SaaS-Boilerplate",
+      "stars": 7305,
+      "desc": "Next.js+Tailwind+Shadcn 全栈 SaaS 脚手架（OPC 起手）"
+    },
+    {
+      "category": "H. 前端 / SaaS / 产品（OPC 可用）",
+      "name": "medusajs/nextjs-starter-medusa",
+      "url": "https://github.com/medusajs/nextjs-starter-medusa",
+      "stars": 2793,
+      "desc": "Next.js 电商前端 starter"
+    },
+    {
+      "category": "H. 前端 / SaaS / 产品（OPC 可用）",
+      "name": "BCG-X-Official/agentkit",
+      "url": "https://github.com/BCG-X-Official/agentkit",
+      "stars": 1947,
+      "desc": "Next.js+FastAPI+LangChain 约束智能体 starter"
+    },
+    {
+      "category": "H. 前端 / SaaS / 产品（OPC 可用）",
+      "name": "NiGhTTraX/ts-monorepo",
+      "url": "https://github.com/NiGhTTraX/ts-monorepo",
+      "stars": 1626,
+      "desc": "TypeScript monorepo 模板（ReviewerSim/ML论文助手复用）"
+    },
+    {
+      "category": "H. 前端 / SaaS / 产品（OPC 可用）",
+      "name": "reliverse/relivator",
+      "url": "https://github.com/reliverse/relivator",
+      "stars": 1558,
+      "desc": "Next.js 15/React 19 电商模板（better-auth/polar）"
+    },
+    {
+      "category": "H. 前端 / SaaS / 产品（OPC 可用）",
+      "name": "Skolaczk/next-starter",
+      "url": "https://github.com/Skolaczk/next-starter",
+      "stars": 995,
+      "desc": "Next.js 起步模板（TS/Tailwind/Stripe/测试）"
+    }
+  ],
+  "skills_index": [
+    {
+      "intent": "文献调研/对比表/综述",
+      "skill": "light-literature-search",
+      "when": "调研某方向文献或出方法/数据集/结论对比表"
+    },
+    {
+      "intent": "论文多节写作/编排",
+      "skill": "paper-orchestration",
+      "when": "多节草稿编排、全文结构"
+    },
+    {
+      "intent": "TMLR 投稿前自检",
+      "skill": "tmlr-author-anonymization + tmlr-auditable-self-evaluation + tmlr-theory-status-labeling",
+      "when": "投稿/修订/rebuttal 前"
+    },
+    {
+      "intent": "实验代码/API/密钥安全审查",
+      "skill": "security-review",
+      "when": "MCP/检索/接入层/密钥面"
+    },
+    {
+      "intent": "任务收尾兜底",
+      "skill": "light-self-review",
+      "when": "交付前查漏"
+    },
+    {
+      "intent": "前端/界面/可视化",
+      "skill": "frontend-design / light-frontend-design / ui-ux-pro-max",
+      "when": "生产级界面、深色主题、数据密度"
+    },
+    {
+      "intent": "文档/PPT/路演",
+      "skill": "docx / tencent-pptx",
+      "when": "对外材料"
+    },
+    {
+      "intent": "简历",
+      "skill": "tailored-resume-generator",
+      "when": "仅简历边界"
+    },
+    {
+      "intent": "审稿类请求",
+      "skill": "review-orchestrator",
+      "when": "统一跑全 6 个审稿 skill"
+    },
+    {
+      "intent": "GitHub 仓库管理",
+      "skill": "github connector",
+      "when": "建 PR/看 commit/跑 CI/建 issue"
+    },
+    {
+      "intent": "知识库沉淀",
+      "skill": "乐享知识库 connector",
+      "when": "文献笔记/OPC 方法论沉淀"
+    },
+    {
+      "intent": "大文件归档",
+      "skill": "百度网盘 connector",
+      "when": "异地归档（MCP 仅子集能力）"
+    },
+    {
+      "intent": "自进化/优化工作流",
+      "skill": "workbuddy-self-evolution",
+      "when": "让 WB 更好用/沉淀经验"
+    }
+  ],
+  "workflows": [
+    {
+      "project": "ReviewerSim",
+      "skills": [
+        "frontend-design",
+        "ui-ux-pro-max",
+        "security-review",
+        "light-self-review",
+        "tencent-pptx"
+      ],
+      "automations": [
+        "周一依赖审查",
+        "周五CHANGELOG"
+      ],
+      "connectors": [
+        "github",
+        "百度网盘"
+      ]
+    },
+    {
+      "project": "ML论文助手",
+      "skills": [
+        "light-literature-search",
+        "paper-orchestration",
+        "security-review",
+        "frontend-design"
+      ],
+      "automations": [
+        "每日arXiv追踪",
+        "周日后端稳态检查"
+      ],
+      "connectors": [
+        "github",
+        "乐享"
+      ]
+    },
+    {
+      "project": "OPC一人公司",
+      "skills": [
+        "light-literature-search",
+        "tencent-pptx",
+        "docx"
+      ],
+      "automations": [
+        "季度经营复盘",
+        "周日周报"
+      ],
+      "connectors": [
+        "乐享",
+        "百度网盘"
+      ]
+    }
+  ],
+  "stats": {
+    "github_total": 100,
+    "skills_total": 13,
+    "workflows_total": 3
+  }
+}

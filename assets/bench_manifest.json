@@ -1,0 +1,3307 @@
+{
+  "name": "WSE-Bench (WorkBuddy Self-Evolution Benchmark)",
+  "schema_version": "1.0",
+  "created": "2026-07-24",
+  "evaluation_policy": {
+    "external_public": true,
+    "hidden_test_set": true,
+    "fresh_test_set": true,
+    "retest_on_promotion": "before_and_after",
+    "provenance_lock": {
+      "fields": [
+        "source",
+        "version",
+        "hash"
+      ],
+      "enforce": true
+    },
+    "multi_objective_gate": {
+      "objectives": [
+        "dev",
+        "hidden",
+        "fresh",
+        "safety",
+        "cost",
+        "latency"
+      ],
+      "promote_if": "hidden>=baseline-0.001 AND fresh>=baseline-0.001 AND safety_violations==0 AND candidate_pass>baseline_pass",
+      "revert_if": "hidden<-0.001 OR fresh<-0.001 OR safety_violations!=0 OR candidate_pass<=baseline_pass",
+      "statistical_gate": "PROMOTE requires per-question pass improvement AND McNemar exact p<0.05 AND bootstrap CI95 lower bound of overall-delta > 0; else HOLD (improvement not significant).",
+      "weights": {
+        "dev": 0.4,
+        "hidden": 0.35,
+        "fresh": 0.25
+      }
+    },
+    "license_policy": {
+      "allow": [
+        "MIT",
+        "Apache 2.0",
+        "Modified MIT",
+        "BSD",
+        "BSD-3-Clause",
+        "CC-BY-4.0"
+      ],
+      "block": [
+        "Llama Community License",
+        "Gemma Terms",
+        "GLM-4 License",
+        "Mistral MRL/MNPL",
+        "yi-license"
+      ],
+      "default": "deny_unknown",
+      "note": "候选模型 license 命中 block 或未知时，即使性能更高也 BLOCK，不晋升生产版本；商用前须核对 LICENSE 原文。"
+    },
+    "anti_gaming": "mutation 阶段禁止读取 hidden/fresh 任务；评分前校验 hash，失配即中止评估；无源文本的知识题题面已封口（不泄漏答案关键词），required 仅存于 rubric。",
+    "rotation_policy": {
+      "enable": true,
+      "granularity": "quarterly",
+      "window_quarters": 4,
+      "rule": "每季度新增一个 cohort（一批 hidden/fresh 题）；评估默认使用全部 cohort_status=active 的题；超过 window_quarters 个季度的旧 cohort 转 archived（仍锁定但不计入晋升门），防止长期过拟合到固定题面。",
+      "active_cohorts": [
+        "2026Q3-core",
+        "2026Q3-ext",
+        "2026Q3-reason",
+        "2026Q3-hard",
+        "2026Q3-struct",
+        "2026Q3-sv",
+        "2026Q3-fact",
+        "2026Q3-rc",
+        "2026Q3-verify",
+        "2026Q3-rc2",
+        "2026Q3-rc3",
+        "2026Q3-rc4",
+        "2026Q4-core",
+        "2026Q4-protocol"
+      ],
+      "archived_cohorts": [
+        "2026Q3-core"
+      ]
+    },
+    "capability_taxonomy": {
+      "enable": true,
+      "axes": [
+        "fact_recall",
+        "selective_retrieval",
+        "reasoning",
+        "structured_output",
+        "reading_comprehension"
+      ],
+      "rule": "每题打 capability 轴；评估除 overall 外产出各轴能力向量（--capability-report）；自进化据最弱轴自提议针对性变异（--propose-mutations），从窄进化走向通用进化。",
+      "purpose": "把单一标量 overall 拆成多维能力画像，使进化可定向补强弱轴而非只优化易得分项。"
+    },
+    "n_tasks_total": 156,
+    "splits": {
+      "dev": 66,
+      "hidden": 54,
+      "fresh": 36
+    },
+    "capabilities": [
+      "fact_recall",
+      "protocol_a2a",
+      "protocol_agntcy",
+      "protocol_mcp",
+      "reading_comprehension",
+      "reasoning",
+      "selective_retrieval",
+      "structured_output"
+    ]
+  },
+  "splits": {
+    "dev": 52,
+    "hidden": 46,
+    "fresh": 30
+  },
+  "capabilities": {
+    "fact_recall": 17,
+    "reasoning": 36,
+    "structured_output": 16,
+    "reading_comprehension": 36,
+    "selective_retrieval": 23
+  },
+  "tasks": [
+    {
+      "id": "T001",
+      "split": "dev",
+      "source": "THUDM/AgentBench, arXiv:2308.03688",
+      "version": "arXiv-2308.03688",
+      "prompt": "AgentBench 的全称、提出团队与发表 venue 是什么？",
+      "rubric": {
+        "type": "fact",
+        "key_points": [
+          [
+            "AgentBench"
+          ],
+          [
+            "THUDM",
+            "清华",
+            "Tsinghua"
+          ],
+          [
+            "ICLR 2024",
+            "ICLR2024",
+            "ICLR"
+          ]
+        ]
+      },
+      "reference": "AgentBench，由 THUDM（清华）提出，发表于 ICLR 2024，是一个将 LLM 作为智能体的综合基准。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "fact_recall",
+      "hash": "b5b1ade28c1e77117811809c0dd1e5b5c03438f2023f6b810a467f3dc1f7e36c"
+    },
+    {
+      "id": "T002",
+      "split": "dev",
+      "source": "openai/human-eval (GitHub)",
+      "version": "human-eval-v1",
+      "prompt": "HumanEval 基准包含多少个 Python 编程问题？由谁发布？",
+      "rubric": {
+        "type": "fact",
+        "key_points": [
+          [
+            "164"
+          ],
+          [
+            "Python"
+          ],
+          [
+            "OpenAI"
+          ]
+        ]
+      },
+      "reference": "HumanEval 包含 164 个手写 Python 编程问题，由 OpenAI 发布。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "fact_recall",
+      "hash": "aa8e821c601ea0912cf80f1d732fb4456ebdbe620009bda9aaae066d5bce2a29"
+    },
+    {
+      "id": "T003",
+      "split": "dev",
+      "source": "TMLR theory-status labeling convention",
+      "version": "tmlr-theory-v1",
+      "prompt": "将以下 claim 分类为 proven / conjecture / empirical-only / self-rebutted，并输出 JSON {\"label\":..., \"reason\":...}：'Our decoder-only model achieves 2.3% higher accuracy than the baseline on MMLU.'",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "label",
+          "reason"
+        ],
+        "enum": {
+          "label": [
+            "proven",
+            "conjecture",
+            "empirical-only",
+            "self-rebutted"
+          ]
+        }
+      },
+      "reference": {
+        "label": "empirical-only",
+        "reason": "报告的是实测结果，非证明结论。"
+      },
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "reasoning",
+      "hash": "28a39e39d5d362d46ae057e4835d2a6e9e51e1238b3b604bffc72daa4247d3c9"
+    },
+    {
+      "id": "T004",
+      "split": "dev",
+      "source": "ReviewerSim MCP 接入层（项目内真实组件）",
+      "version": "reviewersim-2026",
+      "prompt": "为 ReviewerSim 的 MCP 接入层产出安全审查清单，必须含 H2 小节：A2A 权限、密钥管理、注入防护。",
+      "rubric": {
+        "type": "markdown_sections",
+        "required": [
+          "A2A 权限",
+          "密钥管理",
+          "注入防护"
+        ]
+      },
+      "reference": "## A2A 权限\n...\n## 密钥管理\n...\n## 注入防护\n...",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "structured_output",
+      "hash": "a9e562d9d8cb656b99282c0dd72764683c24a4dbe4a549aefb22e64cb8b9555c"
+    },
+    {
+      "id": "T005",
+      "split": "dev",
+      "source": "OpenAI GPT-4 technical report, 2023",
+      "version": "gpt4-2023",
+      "prompt": "GPT-4 的发布方与模型类型是什么？",
+      "rubric": {
+        "type": "fact",
+        "key_points": [
+          [
+            "GPT-4",
+            "GPT4"
+          ],
+          [
+            "OpenAI"
+          ],
+          [
+            "多模态",
+            "multimodal",
+            "multi-modal"
+          ]
+        ]
+      },
+      "reference": "GPT-4 由 OpenAI 发布，是多模态大语言模型（接受图像+文本输入，输出文本）。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "fact_recall",
+      "hash": "a5118b2a5bd939fbcdd08fe5135fe1bda54d103bb2f3cdddbfcb1c2c0b119bf0"
+    },
+    {
+      "id": "T006",
+      "split": "dev",
+      "source": "Vaswani et al., NeurIPS 2017, arXiv:1706.03762",
+      "version": "transformer-2017",
+      "prompt": "用不超过 40 词概括以下论文的核心贡献并输出 JSON {\"contribution\":...}：'Attention Is All You Need' 提出完全基于注意力机制的序列转换模型，摒弃循环与卷积。",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "contribution"
+        ],
+        "max_words": 40
+      },
+      "reference": {
+        "contribution": "提出 Transformer，一种完全基于自注意力机制、摒弃循环与卷积的序列转换模型。"
+      },
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "structured_output",
+      "hash": "d519eec196aa04d9e322bb49a0fcb248408244d1faa21b223921f2069bde4d17"
+    },
+    {
+      "id": "T007",
+      "split": "hidden",
+      "source": "princeton-nlp/SWE-bench, ICLR 2024, arXiv:2310.06770",
+      "version": "swebench-2024",
+      "prompt": "SWE-bench 的核心评测目标是什么？",
+      "rubric": {
+        "type": "fact",
+        "key_points": [
+          [
+            "SWE-bench",
+            "SWEbench",
+            "SWE bench"
+          ],
+          [
+            "GitHub",
+            "仓库",
+            "repository",
+            "repo"
+          ],
+          [
+            "issue",
+            "问题"
+          ],
+          [
+            "单元测试",
+            "unit test",
+            "测试",
+            "补丁",
+            "patch"
+          ]
+        ]
+      },
+      "reference": "SWE-bench 评测 LLM 是否能解决真实 GitHub 仓库中的 Python 问题（issue），通过执行单元测试验证补丁。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "fact_recall",
+      "hash": "3a29996801f16411ca5e1242dfd4f543fffb73c4c27c76123c0715cf74df8afa"
+    },
+    {
+      "id": "T008",
+      "split": "hidden",
+      "source": "Devlin et al., NAACL 2019, arXiv:1810.04805",
+      "version": "bert-2019",
+      "prompt": "用不超过 40 词概括 BERT 的核心贡献并输出 JSON {\"contribution\":...}。",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "contribution"
+        ],
+        "max_words": 40
+      },
+      "reference": {
+        "contribution": "提出 BERT，基于双向 Transformer 编码器的预训练语言模型，用掩码语言模型与下一句预测任务学习上下文表示。"
+      },
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "structured_output",
+      "hash": "ef202f4c0495c5214fa62d376273a6c45f29d8677854c06ceac085971fbd2615"
+    },
+    {
+      "id": "T009",
+      "split": "hidden",
+      "source": "Hu et al., ICLR 2022, arXiv:2106.09685 (LoRA)",
+      "version": "lora-2022",
+      "prompt": "LoRA 的核心思想是什么？",
+      "rubric": {
+        "type": "fact",
+        "key_points": [
+          [
+            "LoRA"
+          ],
+          [
+            "低秩",
+            "low-rank",
+            "low rank"
+          ],
+          [
+            "微调",
+            "fine-tun",
+            "PEFT",
+            "参数高效"
+          ]
+        ]
+      },
+      "reference": "LoRA 通过低秩矩阵分解对预训练权重做参数高效微调，只训练注入的低秩增量，大幅降低训练显存与参数量。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "fact_recall",
+      "hash": "66b1d0233d0d9f8a2e5b79c8ce05c703cf5eb34597d130751d6b457a122f20e4"
+    },
+    {
+      "id": "T010",
+      "split": "hidden",
+      "source": "ML 论文助手混合检索 API（项目内真实组件）",
+      "version": "ml-paper-agent",
+      "prompt": "为 ML 论文助手的混合检索 API 产出安全清单，必须含 H2 小节：密钥管理、注入防护、速率限制。",
+      "rubric": {
+        "type": "markdown_sections",
+        "required": [
+          "密钥管理",
+          "注入防护",
+          "速率限制"
+        ]
+      },
+      "reference": "## 密钥管理\n...\n## 注入防护\n...\n## 速率限制\n...",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "structured_output",
+      "hash": "1d55b00d98e65bf215c94bd734906eba0a247de77d3d1d1b4213fb66cfcebcc4"
+    },
+    {
+      "id": "T011",
+      "split": "dev",
+      "source": "Wu et al., AutoGen, arXiv:2308.08155v2 (arxiv API fetched 2026-07-24)",
+      "version": "arxiv-2308.08155v2",
+      "prompt": "从以下 AutoGen 论文摘要中抽取关键信息并输出 JSON {framework, abstraction, domain}：\nframework=框架名称；abstraction=描述 agent 可对话/可定制特性的关键词；domain=摘要列出的任一应用领域。\n摘要原文：「AutoGen is an open-source framework that allows developers to build LLM applications via multiple agents that can converse with each other to accomplish tasks. AutoGen agents are customizable, conversable, and can operate in various modes that employ combinations of LLMs, human inputs, and tools. ... Empirical studies demonstrate the effectiveness of the framework in many example applications, with domains ranging from mathematics, coding, question answering, operations research, online decision-making, entertainment, etc.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "AutoGen",
+          "conversable",
+          "mathematics"
+        ]
+      },
+      "reference": "AutoGen is an open-source framework; its agents are conversable and customizable; empirical studies span domains including mathematics, coding, question answering, etc.",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "reading_comprehension",
+      "hash": "fe879cb3e8db21d263f4248e257518729ff9335ac17b1d2fbeb1c315ccd4c8b5"
+    },
+    {
+      "id": "T012",
+      "split": "dev",
+      "source": "Yao et al., Tree of Thoughts, arXiv:2305.10601v2 (arxiv API fetched 2026-07-24)",
+      "version": "arxiv-2305.10601v2",
+      "prompt": "从以下 Tree of Thoughts 摘要中抽取并输出 JSON {framework, generalizes_from, cot_rate, tot_rate}：\nframework=框架名称；generalizes_from=它泛化自哪种已有 prompting 方法；cot_rate / tot_rate=Game of 24 任务上 CoT 与 ToT 的 GPT-4 成功率（含百分号）。\n摘要原文：「... we introduce a new framework for language model inference, Tree of Thoughts (ToT), which generalizes over the popular Chain of Thought approach to prompting language models ... For instance, in Game of 24, while GPT-4 with chain-of-thought prompting only solved 4% of tasks, our method achieved a success rate of 74%.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Tree of Thoughts",
+          "Chain of Thought",
+          "4%",
+          "74%"
+        ]
+      },
+      "reference": "Tree of Thoughts (ToT) generalizes Chain of Thought; in Game of 24, GPT-4 with chain-of-thought solved only 4% while ToT achieved 74%.",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "reading_comprehension",
+      "hash": "1b63b2ef7a29d4f1a207346b4df5242487e6d79166929abf74b1186ccee3f011"
+    },
+    {
+      "id": "T013",
+      "split": "dev",
+      "source": "microsoft/autogen issue #7987 (GitHub API fetched 2026-07-24)",
+      "version": "autogen-issue-7987",
+      "prompt": "以下是 microsoft/autogen 仓库真实 issue #7987。请输出 JSON {category, component, evidence}：\ncategory ∈ {Bug, Feature, Documentation, Refactor}；component=受影响核心模块；evidence=issue 正文中出现的原文片段（逐字，不得改写）。\n标题：「[BUG] fix deadlock when cancelling in-flight tool calls (#7956)」\n正文：「Fixes #7956. **Root cause**: When a cancellation token is cancelled during a tool call, ... propagates out of ... and into ..., which - lacking ... - re-raises immediately. The ... sentinel ... never executes, causing the consumer loop to block forever. **Changes**: 1. catch ... alongside ... in both ... and ..., formatting the cancellation as a regular error. 2. use ... and move the sentinel into a block, guaranteeing the consumer loop terminates even when a child task raises.」",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "category",
+          "component",
+          "evidence"
+        ],
+        "enum": {
+          "category": [
+            "Bug",
+            "Feature",
+            "Documentation",
+            "Refactor"
+          ]
+        }
+      },
+      "reference": {
+        "category": "Bug",
+        "component": "tool-call cancellation",
+        "evidence": "cancelling in-flight tool calls"
+      },
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "reading_comprehension",
+      "hash": "cc6d5010f2d06520e44b845aa1a38c74e9d62679d77b828979de3522ddc2d0aa"
+    },
+    {
+      "id": "T014",
+      "split": "hidden",
+      "source": "microsoft/autogen issue #7989 (GitHub API fetched 2026-07-24)",
+      "version": "autogen-issue-7989",
+      "prompt": "以下是 microsoft/autogen 仓库真实 issue #7989。请抽取该 issue 修复的对象并输出一句话，必须覆盖：broken、link、docs、Wayback 四个事实。\n标题：「docs: fix 1 broken link(s) via archive.org」\n正文：「Fixes 1 broken outbound link(s) in docs using archived snapshots (Wayback). **LinkMedic** · confidence 0.66 - README.md: https://twitter.com/pyautogen… → archive. Related to #7492」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "broken",
+          "link",
+          "docs",
+          "Wayback"
+        ]
+      },
+      "reference": "This docs issue fixes a broken outbound link in docs using Wayback archived snapshots.",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "reading_comprehension",
+      "hash": "eadf0b5ee17067d59084832f6cd7f6d1166d127002f0a95abb7f4d245600c299"
+    },
+    {
+      "id": "T015",
+      "split": "dev",
+      "source": "TMLR Author Guide (jmlr.org/tmlr/author-guide.html, fetched 2026-07-24)",
+      "version": "tmlr-author-guide-2026",
+      "prompt": "根据 TMLR 作者指南，作者被鼓励上传什么材料以提升可复现性？补充材料（supplementary material）的格式与大小上限是什么？输出一句话，必须覆盖：data、code、100MB、PDF、ZIP 五个事实。\n依据原文：「We encourage authors to, whenever possible, upload materials that improve reproducibility. Specifically, it is suggested that authors submit supplementary material including data or code towards this end. ... Authors may submit up to 100MB of supplementary material, such data, source code or illustrative videos; all supplementary materials must be in PDF or ZIP format.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "data",
+          "code",
+          "100MB",
+          "PDF",
+          "ZIP"
+        ]
+      },
+      "reference": "Authors should submit data or code as supplementary material to improve reproducibility; up to 100MB in PDF or ZIP format.",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "af96960a9dce956ab8f123313b538982d4f00dd021784a52fdd52a24b1f365c3"
+    },
+    {
+      "id": "T016",
+      "split": "hidden",
+      "source": "TMLR overview (jmlr.org/tmlr, fetched 2026-07-24)",
+      "version": "tmlr-overview-2026",
+      "prompt": "根据 TMLR 官方说明，TMLR 在审稿中强调什么、相对弱化什么？其评审流程托管在哪个平台？输出一句话，必须覆盖：technical correctness、subjective significance、OpenReview 三个事实。\n依据原文：「TMLR emphasizes technical correctness over subjective significance, to ensure that we facilitate scientific discourse ... TMLR maximizes openness and transparency by hosting the review process on OpenReview.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "technical correctness",
+          "subjective significance",
+          "OpenReview"
+        ]
+      },
+      "reference": "TMLR emphasizes technical correctness over subjective significance and hosts its review process on OpenReview.",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "8174ada886d0bc8514cf806be017c2d8b2d0324270f0e7a0a7ca08267d818484"
+    },
+    {
+      "id": "T017",
+      "split": "dev",
+      "source": "LLM 家族 KB · deepseek_deepdive.md（F:\\test\\2026-07-24-08-36-33\\kb\\, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "哪个模型家族首次提出 Multi-head Latent Attention (MLA) 作为 KV 缓存压缩机制？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "MLA",
+          "DeepSeek"
+        ]
+      },
+      "reference": "DeepSeek 提出 MLA（Multi-head Latent Attention）以压缩 KV 缓存。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "0c63f335806aac3f737b63a663556d54d2678c057788b26ef3d75177bfedd538"
+    },
+    {
+      "id": "T018",
+      "split": "dev",
+      "source": "LLM 家族 KB · qwen.md（F:\\test\\2026-07-24-08-36-33\\kb\\, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "Qwen3 系列使用的开源协议是什么？是否对商用友好？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Apache 2.0",
+          "Qwen3"
+        ]
+      },
+      "reference": "Qwen3 采用 Apache 2.0 协议，商用友好。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "b7ed098be553d67ca7c266e7382d62adcafa51be125bfb78036ed9b21011d8a5"
+    },
+    {
+      "id": "T019",
+      "split": "dev",
+      "source": "LLM 家族 KB · deepseek.md / phi.md（F:\\test\\2026-07-24-08-36-33\\kb\\, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "在主流大模型家族中，哪些采用 MIT 协议（最宽松）？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "DeepSeek",
+          "Phi",
+          "MIT"
+        ]
+      },
+      "reference": "DeepSeek 与 Phi 均采用 MIT 协议，是最宽松的开源协议。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "5e60d62a4e255ad8d777cc3a65daccd7de83157e56347dd4618de1c4d8f777fa"
+    },
+    {
+      "id": "T020",
+      "split": "hidden",
+      "source": "LLM 家族 KB · llama.md（F:\\test\\2026-07-24-08-36-33\\kb\\, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "Llama Community License 对商用的主要限制是什么？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Llama",
+          "MAU"
+        ]
+      },
+      "reference": "Llama Community License 设 MAU 门槛（约 7 亿）等商用限制。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "5e86ba4c710429f991c60dd7984765eb7eb65d8ff3bfe50127c5256bfc21d428"
+    },
+    {
+      "id": "T021",
+      "split": "hidden",
+      "source": "LLM 家族 KB · mistral_deepdive.md（F:\\test\\2026-07-24-08-36-33\\kb\\, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "哪个家族在 7B 密集模型中使用 Sliding Window Attention (SWA)？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "SWA",
+          "Mistral"
+        ]
+      },
+      "reference": "Mistral 7B 使用 SWA（Sliding Window Attention）。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "331e9b5b80a7ec291c713cccf52f6987235c1792638a50e82ef0f7da06964d9e"
+    },
+    {
+      "id": "T022",
+      "split": "fresh",
+      "source": "LLM 家族 KB · llama_deepdive.md（F:\\test\\2026-07-24-08-36-33\\kb\\, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "Llama4 为支持超长上下文引入了哪种无需绝对位置嵌入的 RoPE 变体？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Llama4",
+          "iRoPE"
+        ]
+      },
+      "reference": "Llama4 引入 iRoPE（无绝对位置嵌入的长上下文 RoPE 变体）。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "af9d1d6a25d24f5b67c05fddd2f09b867c057ef0f2c5e951590ea6057f02e9a2"
+    },
+    {
+      "id": "T023",
+      "split": "fresh",
+      "source": "LLM 家族 KB · qwen.md / qwen_deepdive.md（F:\\test\\2026-07-24-08-36-33\\kb\\, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "Qwen3 的细粒度 MoE 配置示例及其思考模式机制是什么？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Qwen3",
+          "235B-A22B",
+          "/think"
+        ]
+      },
+      "reference": "Qwen3 采用细粒度 MoE（如 235B-A22B 激活 22B）并支持混合思考模式（/think）。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "ff4e930926fec43bf00cf7a85045df7651fa3e72a057015ded54f6c68d684192"
+    },
+    {
+      "id": "T024",
+      "split": "fresh",
+      "source": "LLM 家族 KB · deepseek_deepdive.md（F:\\test\\2026-07-24-08-36-33\\kb\\, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "DeepSeek 的多 token 预测（MTP）机制带来的投机解码加速比约为多少？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "DeepSeek",
+          "MTP",
+          "1.8×"
+        ]
+      },
+      "reference": "DeepSeek 的 MTP（多 token 预测）通过投机解码带来约 1.8× 加速。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "5e7e36ec7851803c28e3531d30c78e268096d8cc7a2e7eb740f2859559acad1e"
+    },
+    {
+      "id": "T025",
+      "split": "fresh",
+      "source": "LLM 家族 KB · glm.md / glm_deepdive.md（F:\\test\\2026-07-24-08-36-33\\kb\\, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "GLM 系列在工具调用上的统一范式叫什么？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "GLM",
+          "All Tools"
+        ]
+      },
+      "reference": "GLM 采用 All Tools 单模型统一函数调用/代码/检索范式。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "30c7727cf28b8920dbe802657ffad8053612db3bb1bdf88004d6821a121d5053"
+    },
+    {
+      "id": "T026",
+      "split": "fresh",
+      "source": "LLM 家族 KB · phi.md / phi_deepdive.md（F:\\test\\2026-07-24-08-36-33\\kb\\, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "Phi 系列训练数据的核心范式源自什么？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Phi",
+          "textbook"
+        ]
+      },
+      "reference": "Phi 系列采用合成数据范式（textbooks→phi-4 data recipe）。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "0240beed8689cc8cc9ff1e1102999caec6536a84109f3da0dbba282a4cec88a3"
+    },
+    {
+      "id": "T027",
+      "split": "fresh",
+      "source": "LLM 家族 KB · gemma.md / gemma_deepdive.md（F:\\test\\2026-07-24-08-36-33\\kb\\, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "Gemma 架构中用于稳定训练/限制 logit 的非线性技巧有哪些？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Gemma",
+          "logit soft-capping",
+          "QK-norm"
+        ]
+      },
+      "reference": "Gemma 使用 logit soft-capping 与 QK-norm 等非线性技巧稳定训练。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "822893a3f7b37d96343b51a72e102152b111486dbeb59abfa8dd29446ad09819"
+    },
+    {
+      "id": "T028",
+      "split": "fresh",
+      "source": "LLM 家族 KB · llama.md / llama_deepdive.md（F:\\test\\2026-07-24-08-36-33\\kb\\, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "Llama3 的后训练对齐管线依次包含哪些阶段？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Llama3",
+          "拒绝采样 SFT",
+          "DPO"
+        ]
+      },
+      "reference": "Llama3 对齐管线为拒绝采样 SFT → DPO。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "aecc51fb6dfa030b3cff912b23beb28ca35958362ee2b16c53da35d589d1dd78"
+    },
+    {
+      "id": "T029",
+      "split": "fresh",
+      "source": "peS2o 知识库实测（F:\\test\\2026-07-24-08-21-57\\peS2o-self-evo-digest.md §一, 2026-07-24）",
+      "version": "pes2o-kb",
+      "prompt": "peS2o 论文知识库（E:\\peS2o_kb_faiss）的论文规模、向量化模型与索引类型分别是什么？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "541,733",
+          "all-MiniLM-L6-v2",
+          "FAISS"
+        ]
+      },
+      "reference": "peS2o 含 541,733 篇论文（papers 表实时 SELECT COUNT(*) 核验，2026-07-24），用 all-MiniLM-L6-v2 向量化，FAISS 索引。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "957573704c6d6c133e4533f9379ec98224711b1d3ddcee54f766e412a45210ca"
+    },
+    {
+      "id": "T030",
+      "split": "fresh",
+      "source": "self-evolving-agent 代码实测（peS2o-self-evo-digest.md §三.2, 2026-07-24）",
+      "version": "self-evolving-agent",
+      "prompt": "self-evolving-agent 的 1000 轮 campaign 进化基因由哪两部分组成、各多少条？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "CLAUSES",
+          "10",
+          "PREFIXES"
+        ]
+      },
+      "reference": "self-evolving-agent 进化基因=CLAUSES（10 条推理条款）+PREFIXES（3 种角色前缀）。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "d7e5dde8207b91a413c58aa88c5219da1350db2bef420be90fc17004555eabe9"
+    },
+    {
+      "id": "T031",
+      "split": "fresh",
+      "source": "self-evolving-agent active.json 实测（peS2o-self-evo-digest.md §二, 2026-07-24）",
+      "version": "self-evolving-agent",
+      "prompt": "self-evolving-agent 已晋升的 self_verify_v1 策略在求解后独立复核哪些维度？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "self_verify_v1",
+          "复核算术",
+          "日期"
+        ]
+      },
+      "reference": "self_verify_v1 先求解再独立复核算术/日期/排序/单位/选项映射。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "selective_retrieval",
+      "hash": "7f05e4500c168f0a93c1a9799c19940cb5c831fe7cc362a7f84fa3c7b46836c5"
+    },
+    {
+      "id": "T032",
+      "split": "hidden",
+      "source": "LLM 家族 KB · deepseek_deepdive.md（llm-kb-digest.md §3, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "DeepSeekMoE 用什么策略实现专家负载均衡（不引入额外辅助损失）？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "DeepSeek",
+          "无辅助损失"
+        ]
+      },
+      "reference": "DeepSeekMoE 采用无辅助损失负载均衡（noaux_tc），避免辅助损失损害性能。",
+      "cohort": "2026Q3-ext",
+      "cohort_status": "active",
+      "capability": "selective_retrieval",
+      "hash": "9ae1e86fcfeaec9a00018cbcbf298dbe248bab2a1e1086cac602a3212236bac3"
+    },
+    {
+      "id": "T033",
+      "split": "hidden",
+      "source": "LLM 家族 KB · deepseek_deepdive.md（llm-kb-digest.md §3, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "DeepSeek-R1 采用哪种无 critic 的强化学习算法？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "DeepSeek",
+          "GRPO"
+        ]
+      },
+      "reference": "DeepSeek-R1 使用 GRPO（组相对策略优化，无 critic）做纯 RL 训练。",
+      "cohort": "2026Q3-ext",
+      "cohort_status": "active",
+      "capability": "selective_retrieval",
+      "hash": "cf778f216bb95798ca499596f27ef142ddab9541149f9758e0c9d8a5849743cd"
+    },
+    {
+      "id": "T034",
+      "split": "hidden",
+      "source": "LLM 家族 KB · qwen.md（llm-kb-digest.md §5.4, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "Qwen2.5 的分词器词表是沿用 GPT-4o 的还是自研的？规模多少？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Qwen",
+          "151,643"
+        ]
+      },
+      "reference": "Qwen2.5 使用自研字节级 BPE 词表（151,643），非 GPT-4o 词表。",
+      "cohort": "2026Q3-ext",
+      "cohort_status": "active",
+      "capability": "selective_retrieval",
+      "hash": "fcbd2f60301cf67654b58764343a8ce632507c2b0eb8b2c6a06ff3b3d0bf1e32"
+    },
+    {
+      "id": "T035",
+      "split": "hidden",
+      "source": "LLM 家族 KB · gemma.md（llm-kb-digest.md §5.4, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "Gemma 27B 是从零训练还是从 Gemini 蒸馏？训练数据量多少？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Gemma",
+          "from-scratch",
+          "13T"
+        ]
+      },
+      "reference": "Gemma 27B 为 from-scratch 训练（13T token），蒸馏仅用于 2B/9B。",
+      "cohort": "2026Q3-ext",
+      "cohort_status": "active",
+      "capability": "selective_retrieval",
+      "hash": "c1be1c442e313462653588101b5905bfb6581b186356677d1a2d2277fb82d590"
+    },
+    {
+      "id": "T036",
+      "split": "hidden",
+      "source": "LLM 家族 KB · phi.md（llm-kb-digest.md §5.4, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "Phi-3-mini 使用的是 GQA 还是 MHA 注意力？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Phi-3-mini",
+          "MHA"
+        ]
+      },
+      "reference": "Phi-3-mini 为 MHA（num_key_value_heads=32），GQA 仅见于 Phi-3-small 与 Phi-4-mini。",
+      "cohort": "2026Q3-ext",
+      "cohort_status": "active",
+      "capability": "selective_retrieval",
+      "hash": "af5c1148478284843265ee7c65a9f71913276d7050e0eb8cf89daa7f38835ffa"
+    },
+    {
+      "id": "T037",
+      "split": "hidden",
+      "source": "LLM 家族 KB · glm_deepdive.md（llm-kb-digest.md §3, 2026-07-24）",
+      "version": "llm-kb-family",
+      "prompt": "GLM 的 1M 长上下文主要通过什么手段实现？ 请用一句话简洁、准确地回答。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "GLM",
+          "1M",
+          "位置编码外推"
+        ]
+      },
+      "reference": "GLM 的 1M 上下文=位置编码外推+分阶段长上下文训练。",
+      "cohort": "2026Q3-ext",
+      "cohort_status": "active",
+      "capability": "selective_retrieval",
+      "hash": "e9cad444b82b5e53826550f541158fde37000515e274f6d15ff4be0dc09430cc"
+    },
+    {
+      "id": "T038",
+      "split": "dev",
+      "source": "确定性算术推理（合成，可手算复核）",
+      "version": "reason-2026Q3-v1",
+      "prompt": "一列火车以 60 km/h 行驶 2.5 小时，再以 90 km/h 行驶 1 小时。求全程平均速度（km/h，保留一位小数）。请给出计算过程并在末尾写出数值答案。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "68.6"
+        ]
+      },
+      "reference": "总路程 60*2.5+90*1=240 km，总时间 3.5 h，平均速度 240/3.5≈68.6 km/h。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "reasoning",
+      "hash": "b941e73ee52f77b1497df9e07cc30f769bbb20430a27935c504ef437de2408a9"
+    },
+    {
+      "id": "T039",
+      "split": "dev",
+      "source": "确定性逻辑推演（合成，真值表可复核）",
+      "version": "reason-2026Q3-v1",
+      "prompt": "甲乙丙三人中恰有一人说真话。甲说：'乙说谎'；乙说：'丙说谎'；丙说：'甲和乙都说谎'。请推理谁说真话，并说明理由。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "乙"
+        ]
+      },
+      "reference": "唯一自洽解为乙说真话：若乙真→丙假（丙称'甲乙都说谎'为假，成立），甲假（甲称'乙说谎'与乙真矛盾）。其余假设均导出矛盾。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "reasoning",
+      "hash": "91ecefb5093c57d543323674846c5137845b57387f857457e32dc25f2338e6cb"
+    },
+    {
+      "id": "T040",
+      "split": "dev",
+      "source": "确定性工作率推理（合成，可手算复核）",
+      "version": "reason-2026Q3-v1",
+      "prompt": "一项工作，甲单独做 6 天完成，乙单独做 12 天完成。两人合作需要多少天完成？请给出计算过程并写出天数。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "4"
+        ]
+      },
+      "reference": "甲每天 1/6，乙每天 1/12，合作每天 1/6+1/12=1/4，需 4 天。",
+      "cohort": "2026Q3-core",
+      "cohort_status": "archived",
+      "capability": "reasoning",
+      "hash": "2f361222f5f562e0b91c435be0d524719458d757ca0cadd442161d112b981c80"
+    },
+    {
+      "id": "T041",
+      "split": "dev",
+      "source": "确定性日期推理（合成，可日历复核）",
+      "version": "reason-hard-2026Q3-v1",
+      "prompt": "已知 2024 年 1 月 1 日是星期一（2024 年是闰年，2 月有 29 天）。请推算 2024 年 3 月 1 日是星期几？请给出推算过程并写出星期几。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "星期五"
+        ]
+      },
+      "reference": "1/1→3/1 相隔 31(一月)+29(二月)=60 天；60 mod 7 = 4；星期一+4 天=星期五。",
+      "cohort": "2026Q3-reason",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "8e9900f4aed3e1eedaa1f7da68cf9ace6713012c41885be29a96a0cfb2427129"
+    },
+    {
+      "id": "T042",
+      "split": "dev",
+      "source": "确定性复合百分比推理（合成，可手算复核）",
+      "version": "reason-hard-2026Q3-v1",
+      "prompt": "一件商品原价 200 元，先涨价 10%，再在涨价后的价格基础上继续涨价 15%，最后按此价打 8 折出售。求最终售价（元）。请给出分步计算并写出数值。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "202.4"
+        ]
+      },
+      "reference": "200×1.1=220；220×1.15=253；253×0.8=202.4 元。",
+      "cohort": "2026Q3-reason",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "49e27cd461a0ad31a5f33af9e3a4a8ddae44d5f9e3d50b9119feed5057d3b14c"
+    },
+    {
+      "id": "T043",
+      "split": "dev",
+      "source": "确定性年龄代数推理（合成，可手算复核）",
+      "version": "reason-hard-2026Q3-v1",
+      "prompt": "父亲今年的年龄是儿子的 4 倍，12 年后父亲的年龄是儿子的 2 倍。求父亲今年几岁？请给出方程与求解过程并写出数值。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "24"
+        ]
+      },
+      "reference": "设儿子 x 岁，父亲 4x；4x+12=2(x+12) ⇒ 2x=12 ⇒ x=6，父亲今年 4×6=24 岁。",
+      "cohort": "2026Q3-reason",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "1e871139908d9b8e333951492374dee4bc2723a78460f150607d41b45ac97177"
+    },
+    {
+      "id": "T044",
+      "split": "hidden",
+      "source": "确定性容斥计数推理（合成，可手算复核）",
+      "version": "reason-hard-2026Q3-v1",
+      "prompt": "在 1 到 100 的整数中，既不能被 3 整除也不能被 5 整除的数有多少个？请给出计算过程并写出个数。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "53"
+        ]
+      },
+      "reference": "被 3 整除 33 个，被 5 整除 20 个，被 15 整除 6 个；被 3 或 5 整除=33+20-6=47；不满足者=100-47=53 个。",
+      "cohort": "2026Q3-reason",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "b6558454bd431ec9f6b3128bd0790211a1f81d7e7e5b1e2172b132c481bf2a05"
+    },
+    {
+      "id": "T045",
+      "split": "hidden",
+      "source": "确定性加权平均推理（合成，可手算复核）",
+      "version": "reason-hard-2026Q3-v1",
+      "prompt": "某班男生平均分 80 分，女生平均分 90 分，全班平均分 84 分。求男生人数是女生人数的多少倍？请给出推导过程并写出倍数。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "1.5"
+        ]
+      },
+      "reference": "设男 m 女 w：80m+90w=84(m+w) ⇒ 6w=4m ⇒ m/w=1.5，男生是女生的 1.5 倍。",
+      "cohort": "2026Q3-reason",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "a6de2c76a98d0c2cf122a14fe60140be0f9f90319809cd4496d84e0391a8ed5d"
+    },
+    {
+      "id": "T046",
+      "split": "hidden",
+      "source": "确定性相遇行程推理（合成，可手算复核）",
+      "version": "reason-hard-2026Q3-v1",
+      "prompt": "两地相距 300 千米，甲车从 A 地以 50 千米/小时出发，同时乙车从 B 地以 70 千米/小时相向而行。求两车相遇时甲车行驶了多少千米？请给出计算过程并写出数值。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "125"
+        ]
+      },
+      "reference": "相向合速度 50+70=120 km/h；相遇用时 300/120=2.5 h；甲行 50×2.5=125 km。",
+      "cohort": "2026Q3-reason",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "3028642970b951607458661a142150805d26f8abc27dfd7754d6f3ad250be853"
+    },
+    {
+      "id": "T047",
+      "split": "dev",
+      "source": "python: pow(3,200,9973) → 3136（可复跑）",
+      "version": "hard-2026Q3-v1",
+      "prompt": "计算 3^200 mod 9973（9973 是素数）。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：3136"
+        ]
+      },
+      "reference": "反复平方取模。python 复跑 pow(3,200,9973)=3136。",
+      "cohort": "2026Q3-hard",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "61fcd1c752e392a6fbc4ed11b91052f0fbf80bb7ea7d9d54a197bd1b47bf6291"
+    },
+    {
+      "id": "T048",
+      "split": "dev",
+      "source": "python: pow(7,131,8191) → 5409（可复跑）",
+      "version": "hard-2026Q3-v1",
+      "prompt": "计算 7^131 mod 8191（8191 是素数）。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：5409"
+        ]
+      },
+      "reference": "python 复跑 pow(7,131,8191)=5409。",
+      "cohort": "2026Q3-hard",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "65e12a299656d071510ba2d14fc060717e7f533a87eb0c59eaef42185d2e755f"
+    },
+    {
+      "id": "T049",
+      "split": "hidden",
+      "source": "python: pow(5,177,7919) → 5471（可复跑）",
+      "version": "hard-2026Q3-v1",
+      "prompt": "计算 5^177 mod 7919（7919 是素数）。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：5471"
+        ]
+      },
+      "reference": "python 复跑 pow(5,177,7919)=5471。",
+      "cohort": "2026Q3-hard",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "ec6fee641be7a32fd164561274520c4e7f760e0a6c2664038c964a5028d7c635"
+    },
+    {
+      "id": "T050",
+      "split": "hidden",
+      "source": "python: pow(11,99,4999) → 1408（可复跑）",
+      "version": "hard-2026Q3-v1",
+      "prompt": "计算 11^99 mod 4999（4999 是素数）。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：1408"
+        ]
+      },
+      "reference": "python 复跑 pow(11,99,4999)=1408。",
+      "cohort": "2026Q3-hard",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "67034e7848b33b7d6f53b3c9c1c1d84b0f801348bb3b3c9e6ef11e6cfce87ad7"
+    },
+    {
+      "id": "T051",
+      "split": "dev",
+      "source": "python: digitsum(77!) → 432（可复跑）",
+      "version": "hard-2026Q3-v1",
+      "prompt": "求 77!（77 的阶乘）的十进制表示中各位数字之和。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：432"
+        ]
+      },
+      "reference": "python 复跑 sum(int(d) for d in str(math.factorial(77)))=432。",
+      "cohort": "2026Q3-hard",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "7cafb01102a9c26e1ab742e3ffc99a8d58bde43d4baca7f3d9d0971a55f826ae"
+    },
+    {
+      "id": "T052",
+      "split": "dev",
+      "source": "python: digitsum(66!) → 351（可复跑）",
+      "version": "hard-2026Q3-v1",
+      "prompt": "求 66!（66 的阶乘）的十进制表示中各位数字之和。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：351"
+        ]
+      },
+      "reference": "python 复跑 digitsum(66!)=351。",
+      "cohort": "2026Q3-hard",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "cbe1d35e21670fd1a2318c1064e7718f9f698b0b122dd80e7b36cf960cbbb574"
+    },
+    {
+      "id": "T053",
+      "split": "hidden",
+      "source": "python: digitsum(59!) → 324（可复跑）",
+      "version": "hard-2026Q3-v1",
+      "prompt": "求 59!（59 的阶乘）的十进制表示中各位数字之和。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：324"
+        ]
+      },
+      "reference": "python 复跑 digitsum(59!)=324。",
+      "cohort": "2026Q3-hard",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "c31345ae737b7c358f8f573a9941248a2cb578483f64619f78f06d9e175766e3"
+    },
+    {
+      "id": "T054",
+      "split": "hidden",
+      "source": "python: digitsum(88!) → 531（可复跑）",
+      "version": "hard-2026Q3-v1",
+      "prompt": "求 88!（88 的阶乘）的十进制表示中各位数字之和。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：531"
+        ]
+      },
+      "reference": "python 复跑 digitsum(88!)=531。",
+      "cohort": "2026Q3-hard",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "eb524330cfe27dcbbdd758398edc6df28aea57973539c90efad145efb239ac4a"
+    },
+    {
+      "id": "T055",
+      "split": "dev",
+      "source": "python: 素数计数(5001..5599) → 69（可复跑）",
+      "version": "hard-2026Q3-v1",
+      "prompt": "5000 到 5600 之间（开区间，不含端点）有多少个素数？请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：69"
+        ]
+      },
+      "reference": "python 复跑 sum(1 for x in range(5001,5600) if isprime(x))=69。",
+      "cohort": "2026Q3-hard",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "3d499a895d52dcfcc3f033eab1e78e6a820feaf27f17dde401880f93e05c0ced"
+    },
+    {
+      "id": "T056",
+      "split": "dev",
+      "source": "python: 素数计数(3001..3599) → 73（可复跑）",
+      "version": "hard-2026Q3-v1",
+      "prompt": "3000 到 3600 之间（开区间，不含端点）有多少个素数？请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：73"
+        ]
+      },
+      "reference": "python 复跑 =73。",
+      "cohort": "2026Q3-hard",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "3177720195bd76996e656ecc93785360db5b9d8a9568540d9b7e0c9d2e9c9f55"
+    },
+    {
+      "id": "T057",
+      "split": "hidden",
+      "source": "python: 素数计数(7001..7499) → 50（可复跑）",
+      "version": "hard-2026Q3-v1",
+      "prompt": "7000 到 7500 之间（开区间，不含端点）有多少个素数？请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：50"
+        ]
+      },
+      "reference": "python 复跑 =50。",
+      "cohort": "2026Q3-hard",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "459f1999412ae14858d64960a6f75d862673dd785733475baed895aa68c37473"
+    },
+    {
+      "id": "T058",
+      "split": "hidden",
+      "source": "python: 素数计数(2001..2499) → 64（可复跑）",
+      "version": "hard-2026Q3-v1",
+      "prompt": "2000 到 2500 之间（开区间，不含端点）有多少个素数？请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：64"
+        ]
+      },
+      "reference": "python 复跑 =64。",
+      "cohort": "2026Q3-hard",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "1925aa9692767f2cf549ff89cd457f894e8c302019cbbe8866a193797364f951"
+    },
+    {
+      "id": "T059",
+      "split": "dev",
+      "source": "python: 迭代 F(120) mod 10000 → 1840（可复跑；F(1)=F(2)=1）",
+      "version": "hard-2026Q3-v1",
+      "prompt": "斐波那契数列 F(1)=1, F(2)=1, F(n)=F(n-1)+F(n-2)。求 F(120) 除以 10000 的余数。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：1840"
+        ]
+      },
+      "reference": "F(120)=5358359254990966640871840，mod 10000=1840。python 迭代可复跑。",
+      "cohort": "2026Q3-hard",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "a875a9c27154c6c0196a4b8559adb3fd51445c44d1881f72299ff70eed0de11a"
+    },
+    {
+      "id": "T060",
+      "split": "hidden",
+      "source": "python: 穷举 CRT x≡13(97),29(101),47(103) → 175971（可复跑）",
+      "version": "hard-2026Q3-v1",
+      "prompt": "求最小正整数 x，满足：x 除以 97 余 13，x 除以 101 余 29，x 除以 103 余 47。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：175971"
+        ]
+      },
+      "reference": "CRT 唯一解 mod 97*101*103=1009091；最小正整数 175971。python 穷举可复跑。",
+      "cohort": "2026Q3-hard",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "6734f6aec76a6998723bef7aeb59a6ae40322834bd7109882ff960fe00cf6879"
+    },
+    {
+      "id": "T061",
+      "split": "dev",
+      "source": "合成 · Transformer 架构概括（结构化产出陷阱 A：max_words）",
+      "version": "struct-2026Q3-v1",
+      "prompt": "用一句话概括下面这段话的核心，输出 JSON {\"summary\":..., \"title\":...}。summary 不超过 25 字。\n原文：「Transformer 完全基于注意力机制，摒弃了循环与卷积结构，在机器翻译等序列任务上显著优于 RNN，并成为后续大语言模型的统一骨干。」",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "summary",
+          "title"
+        ],
+        "max_words": 12
+      },
+      "reference": {
+        "summary": "Transformer纯注意力骨干",
+        "title": "Transformer架构"
+      },
+      "cohort": "2026Q3-struct",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "5650d631f601c1f6b86d9a79a4fd3ef13ae0a7bc4bab301b1207f05b2fa7c4c0"
+    },
+    {
+      "id": "T062",
+      "split": "dev",
+      "source": "合成 · 用户反馈根因分析（结构化产出陷阱 D：漏嵌套包装）",
+      "version": "struct-2026Q3-v1",
+      "prompt": "分析以下用户反馈的根因与影响，输出 JSON {\"analysis\": {\"cause\":..., \"effect\":...}}（必须包成 analysis 对象，不要拍平为平铺键）。\n反馈：「每次取消飞行中的工具调用时消费者循环永久阻塞，根因是取消令牌在子任务抛出异常时未被捕获。」",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "analysis"
+        ]
+      },
+      "reference": {
+        "analysis": {
+          "cause": "取消令牌在子任务抛异常时未被捕获",
+          "effect": "消费者循环永久阻塞"
+        }
+      },
+      "cohort": "2026Q3-struct",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "f1260997fd27ed8f7a4a804c2619af1690d8bdc0e1c42cc7c70494f10f143d52"
+    },
+    {
+      "id": "T063",
+      "split": "fresh",
+      "source": "合成 · 模型元信息（结构化产出陷阱 B：缺失必填）",
+      "version": "struct-2026Q3-v1",
+      "prompt": "请输出模型元信息 JSON，必须包含三个字段：name、version、license。\n模型：Qwen3，版本 235B-A22B，采用 Apache 2.0 协议。",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "name",
+          "version",
+          "license"
+        ]
+      },
+      "reference": {
+        "name": "Qwen3",
+        "version": "235B-A22B",
+        "license": "Apache 2.0"
+      },
+      "cohort": "2026Q3-struct",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "c3e40500e0d2395a37e971b3f3bc42847fae976fd6ff00274e92add16fa3253e"
+    },
+    {
+      "id": "T064",
+      "split": "dev",
+      "source": "合成 · TMLR theory-status 分类（结构化产出陷阱 C：错枚举）",
+      "version": "struct-2026Q3-v1",
+      "prompt": "将以下 claim 分类并输出 JSON {\"label\":..., \"reason\":...}。label 只能取 proven / conjecture / empirical-only / self-rebutted 之一。'Our method reaches 95% accuracy on the test set.'",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "label",
+          "reason"
+        ],
+        "enum": {
+          "label": [
+            "proven",
+            "conjecture",
+            "empirical-only",
+            "self-rebutted"
+          ]
+        }
+      },
+      "reference": {
+        "label": "empirical-only",
+        "reason": "报告的是实测准确率，非证明结论。"
+      },
+      "cohort": "2026Q3-struct",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "f370bc1db231a5195a7d87a7f726fda338d55df25d75a49f05518787cb478409"
+    },
+    {
+      "id": "T065",
+      "split": "hidden",
+      "source": "合成 · 混合评论情感判定（结构化产出陷阱 C：错枚举）",
+      "version": "struct-2026Q3-v1",
+      "prompt": "判断以下评论情感并输出 JSON {\"sentiment\":..., \"score\":...}。sentiment 只能取 positive / negative / neutral 之一。评论='这手机续航一般但拍照惊艳，整体还行。'",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "sentiment",
+          "score"
+        ],
+        "enum": {
+          "sentiment": [
+            "positive",
+            "negative",
+            "neutral"
+          ]
+        }
+      },
+      "reference": {
+        "sentiment": "neutral",
+        "score": 0.5
+      },
+      "cohort": "2026Q3-struct",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "474c7248ff154d1e16bcb0bab2a5f3cab9af22408e194e836e134069bcd7f003"
+    },
+    {
+      "id": "T066",
+      "split": "hidden",
+      "source": "合成 · 实验复现步骤（结构化产出陷阱 B：缺失必填）",
+      "version": "struct-2026Q3-v1",
+      "prompt": "给出复现该实验的三步，输出 JSON，必须包含三个字段：step1、step2、step3。\n实验：安装依赖、下载数据、运行训练脚本。",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "step1",
+          "step2",
+          "step3"
+        ]
+      },
+      "reference": {
+        "step1": "安装依赖",
+        "step2": "下载数据",
+        "step3": "运行训练脚本"
+      },
+      "cohort": "2026Q3-struct",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "2be42945490b2d9f5ffd99b265e7d6f35ec2984900314ed44b70c3824b628fbd"
+    },
+    {
+      "id": "T067",
+      "split": "dev",
+      "source": "合成 · PEFT 概括（结构化产出陷阱 A：max_words）",
+      "version": "struct-2026Q3-v1",
+      "prompt": "用一句话概括并输出 JSON {\"summary\":..., \"keywords\":...}。summary 不超过 25 字。\n原文：「参数高效微调（PEFT）通过只训练注入的少量参数来适配大模型，大幅降低显存与算力需求，使消费级显卡也能微调大模型。」",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "summary",
+          "keywords"
+        ],
+        "max_words": 12
+      },
+      "reference": {
+        "summary": "PEFT只训少量参数降显存",
+        "keywords": [
+          "PEFT",
+          "参数高效微调"
+        ]
+      },
+      "cohort": "2026Q3-struct",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "6afb79498673b72a7722dac79d2a16a768ecdee7f9031b1a1538bcb79aa87097"
+    },
+    {
+      "id": "T068",
+      "split": "hidden",
+      "source": "合成 · 服务连接配置（结构化产出陷阱 D：漏嵌套包装）",
+      "version": "struct-2026Q3-v1",
+      "prompt": "给出服务连接配置，输出 JSON {\"config\": {\"host\":..., \"port\":...}}（必须包成 config 对象，不要拍平为平铺键）。\n服务运行于 localhost:8080。",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "config"
+        ]
+      },
+      "reference": {
+        "config": {
+          "host": "localhost",
+          "port": 8080
+        }
+      },
+      "cohort": "2026Q3-struct",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "bae80bb4bc468ffe0f0da31ac543cf1f08e0d6f19d823e96896f14bee987bd8f"
+    },
+    {
+      "id": "T069",
+      "split": "fresh",
+      "source": "合成 · issue 重构分类（结构化产出陷阱 C：错枚举）",
+      "version": "struct-2026Q3-v1",
+      "prompt": "对以下 issue 分类并输出 JSON {\"category\":..., \"component\":...}。category 只能取 bug / feature / docs / refactor 之一。标题『重构检索模块以提升可维护性』",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "category",
+          "component"
+        ],
+        "enum": {
+          "category": [
+            "bug",
+            "feature",
+            "docs",
+            "refactor"
+          ]
+        }
+      },
+      "reference": {
+        "category": "refactor",
+        "component": "检索模块"
+      },
+      "cohort": "2026Q3-struct",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "f129f2b86ded9346135e97a40f77e64dde005d19d216de1c2dfd8903e8b25bd7"
+    },
+    {
+      "id": "T070",
+      "split": "dev",
+      "source": "合成 · 三维坐标（结构化产出陷阱 B：缺失必填）",
+      "version": "struct-2026Q3-v1",
+      "prompt": "输出坐标 JSON，必须包含四个字段：x、y、z、label。\n点 P 位于 (3, 4, 5)，标记为原点附近。",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "x",
+          "y",
+          "z",
+          "label"
+        ]
+      },
+      "reference": {
+        "x": 3,
+        "y": 4,
+        "z": 5,
+        "label": "原点附近"
+      },
+      "cohort": "2026Q3-struct",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "db53fe42ae012f29129f62419107e21b625ed612eff3a3380f4e4e07e06e2a74"
+    },
+    {
+      "id": "T071",
+      "split": "hidden",
+      "source": "合成 · 不等式传递性判定（结构化产出陷阱 C：错枚举）",
+      "version": "struct-2026Q3-v1",
+      "prompt": "判定以下假设是否通过并输出 JSON {\"verdict\":..., \"detail\":...}。verdict 只能取 pass / fail 之一。假设『若 a>b 且 b>c 则 a>c』。",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "verdict",
+          "detail"
+        ],
+        "enum": {
+          "verdict": [
+            "pass",
+            "fail"
+          ]
+        }
+      },
+      "reference": {
+        "verdict": "pass",
+        "detail": "不等式传递性成立"
+      },
+      "cohort": "2026Q3-struct",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "ef0177c09697e9dfadbcbaf4075680e9af1e4f0c9eec2cbdab239f9d6a920f9e"
+    },
+    {
+      "id": "T072",
+      "split": "fresh",
+      "source": "合成 · RAG 概括（结构化产出陷阱 A+B：max_words+缺失必填）",
+      "version": "struct-2026Q3-v1",
+      "prompt": "用一句话总结并输出 JSON {\"summary\":..., \"title\":...}。summary 不超过 22 字。\n原文：「检索增强生成（RAG）通过先检索相关文档再生成答案，显著缓解大模型幻觉，已成为知识密集型应用的主流架构。」",
+      "rubric": {
+        "type": "json_schema",
+        "required": [
+          "summary",
+          "title"
+        ],
+        "max_words": 11
+      },
+      "reference": {
+        "summary": "RAG先检索后生成缓解幻觉",
+        "title": "检索增强生成"
+      },
+      "cohort": "2026Q3-struct",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "30de90e84dd1e5727b268e32c7ee6ff034ddedd916e1bd2a47baa92db31e922e"
+    },
+    {
+      "id": "T073",
+      "split": "dev",
+      "source": "python: digitsum(23!) = 99（可复跑）",
+      "version": "sv-2026Q3-v1",
+      "prompt": "求 23!（23 的阶乘）的十进制表示中各位数字之和。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：99"
+        ]
+      },
+      "reference": "python 复跑 sum(int(d) for d in str(math.factorial(23)))=99。",
+      "cohort": "2026Q3-sv",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "995c93d6ed0a8104983798111a62cbfbf4ebd63fc3ef01ea0daf6b85a4b1d561"
+    },
+    {
+      "id": "T074",
+      "split": "dev",
+      "source": "python: digitsum(28!) = 90（可复跑）",
+      "version": "sv-2026Q3-v1",
+      "prompt": "求 28!（28 的阶乘）的十进制表示中各位数字之和。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：90"
+        ]
+      },
+      "reference": "python 复跑 digitsum(28!)=90。",
+      "cohort": "2026Q3-sv",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "eaed58ca43ba2e59b75c92f648122f50e76f33359099e4f8a720d45cefde3b62"
+    },
+    {
+      "id": "T075",
+      "split": "hidden",
+      "source": "python: digitsum(31!) = 135（可复跑）",
+      "version": "sv-2026Q3-v1",
+      "prompt": "求 31!（31 的阶乘）的十进制表示中各位数字之和。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：135"
+        ]
+      },
+      "reference": "python 复跑 digitsum(31!)=135。",
+      "cohort": "2026Q3-sv",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "007a39f595104c48ce83ce9f2d6d8e6a18b6a0c2a194118e65b16fabe61eb487"
+    },
+    {
+      "id": "T076",
+      "split": "fresh",
+      "source": "python: digitsum(45!) = 207（可复跑）",
+      "version": "sv-2026Q3-v1",
+      "prompt": "求 45!（45 的阶乘）的十进制表示中各位数字之和。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：207"
+        ]
+      },
+      "reference": "python 复跑 digitsum(45!)=207。",
+      "cohort": "2026Q3-sv",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "06ac459de324faf57c039c56f7a844d46ff0c1b8a62b91ebd12ed2b7b2659638"
+    },
+    {
+      "id": "T077",
+      "split": "dev",
+      "source": "python: sum(1000,2000,...,15000) = 120000（可复跑）",
+      "version": "sv-2026Q3-v1",
+      "prompt": "求 1000 + 2000 + 3000 + ... + 15000（公差 1000、首项 1000、末项 15000 的等差数列之和）。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：120000"
+        ]
+      },
+      "reference": "项数 n=15，等差和=n/2*(首+末)=15/2*(1000+15000)=120000。可代回核验：1000+2000+...+15000=120000。",
+      "cohort": "2026Q3-sv",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "0cc958163d97ee65f4aef98464ee0652f3e5dde77fedb8b486353f67683902c0"
+    },
+    {
+      "id": "T078",
+      "split": "hidden",
+      "source": "python: 7+77+777+7777+77777 = 86415（可复跑）",
+      "version": "sv-2026Q3-v1",
+      "prompt": "求 7 + 77 + 777 + 7777 + 77777 的和。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：86415"
+        ]
+      },
+      "reference": "每项 7*(10^k-1)/9，k=1..5，求和 7/9*(10+100+...+100000-5)=86415。可逐项加和验算。",
+      "cohort": "2026Q3-sv",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "265bfdc9b77f23a705722c85223aae78329f03f8153d6ff3666c8fe4d41abb45"
+    },
+    {
+      "id": "T079",
+      "split": "fresh",
+      "source": "python: sum(1..99) = 4950（可复跑）",
+      "version": "sv-2026Q3-v1",
+      "prompt": "求 1 + 2 + 3 + ... + 99 的和。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：4950"
+        ]
+      },
+      "reference": "n=99 的等差和=99*100/2=4950。可代回核验 1+2+...+99=4950。",
+      "cohort": "2026Q3-sv",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "c3d47e36fc11ce6f5f56e3c6033f390a9f9c683021349bfb6fdbe76c1f4a5455"
+    },
+    {
+      "id": "T080",
+      "split": "dev",
+      "source": "python: 21%9 == (2+1)%9 == 3（可复跑）",
+      "version": "sv-2026Q3-v1",
+      "prompt": "验证性质：整数 a 除以 9 的余数等于 a 各位数字之和除以 9 的余数。以 a=21 为例：求 21÷9 的余数，并求 21 各位数字之和 2+1=3 除以 9 的余数。请问这两个余数是否相等？若相等请在最后一行以“最终答案：xxx”的格式（全角冒号）写出该公共余数（不含百分号）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：3"
+        ]
+      },
+      "reference": "21%9=3，(2+1)%9=3；性质成立。可代回核验：21=2*9+3=18+3。",
+      "cohort": "2026Q3-sv",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "c1f7ebe6a42eb13133922555982788189f2ce370c4515d402da31c8376bffcb1"
+    },
+    {
+      "id": "T081",
+      "split": "hidden",
+      "source": "python: 素数计数(2001..2099) = 14（可复跑）",
+      "version": "sv-2026Q3-v1",
+      "prompt": "2000 到 2100 之间（开区间，不含端点）有多少个素数？请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：14"
+        ]
+      },
+      "reference": "python 复跑 sum(1 for x in range(2001,2100) if isprime(x))=14。可代回抽样核验。",
+      "cohort": "2026Q3-sv",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "ab74f22020ae862880ae82461248ca838cc3df61182b032084320df16c532708"
+    },
+    {
+      "id": "T082",
+      "split": "fresh",
+      "source": "python: 素数计数(8501..8599) = 12（可复跑）",
+      "version": "sv-2026Q3-v1",
+      "prompt": "8500 到 8600 之间（开区间，不含端点）有多少个素数？请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案（不含逗号分隔符）。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：12"
+        ]
+      },
+      "reference": "python 复跑 =12。可代回抽样核验。",
+      "cohort": "2026Q3-sv",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "f1ace0df2cdb47f1bb129ed7136de7b300e3c7f6f63098771c397466428e5cdd"
+    },
+    {
+      "id": "T083",
+      "split": "dev",
+      "source": "python: gcd(48, 180) = 12（可复跑）",
+      "version": "sv-2026Q3-v1",
+      "prompt": "求 48 与 180 的最大公约数。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：12"
+        ]
+      },
+      "reference": "48=2^4*3，180=2^2*3^2*5，gcd=2^2*3=12。可代回：48/12=4, 180/12=15，互素。",
+      "cohort": "2026Q3-sv",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "f0bdc40a895101f2a9ffa444dd64c5036f89fd79f3aa16f26ff8dfc532f519ef"
+    },
+    {
+      "id": "T084",
+      "split": "hidden",
+      "source": "python: gcd(270, 192) = 6, 加 8 = 14（可复跑）",
+      "version": "sv-2026Q3-v1",
+      "prompt": "求 270 与 192 的最大公约数后，再加 8。请务必在最后一行以“最终答案：xxx”的格式（全角冒号）写出纯数字答案。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "最终答案：14"
+        ]
+      },
+      "reference": "gcd(270,192)=6，6+8=14。可代回：270=6*45, 192=6*32, 45 与 32 互素；6+8=14。",
+      "cohort": "2026Q3-sv",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "45ae79dcea8a6859021745839e6b62656c68742b3ff1c3783b8869ab7ac39898"
+    },
+    {
+      "id": "T085",
+      "split": "dev",
+      "source": "LLM 家族 KB · llama.md + llama_deepdive.md（llm-kb-digest.md §2.4, 2026-07-24）",
+      "version": "fact-2026Q3-v1",
+      "prompt": "Meta 最新发布的 Llama 4 系列中 Scout 模型在架构层面的关键参数是什么？",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "17B",
+          "109B",
+          "16",
+          "10M",
+          "iRoPE"
+        ]
+      },
+      "reference": "Llama 4 Scout：激活 17B、总 109B、16 routed 专家（+1 shared）、最长 10M 上下文（iRoPE 实现）。来源 HF meta-llama/Llama-4-Scout-17B-16E-Instruct + llama.md §2.4。",
+      "cohort": "2026Q3-fact",
+      "cohort_status": "active",
+      "capability": "fact_recall",
+      "hash": "ee067b3742473a35729258de77dd1d66e8a84eb6b01808fc2b35e6de57a9b61a"
+    },
+    {
+      "id": "T086",
+      "split": "hidden",
+      "source": "LLM 家族 KB · qwen.md + qwen_deepdive.md（llm-kb-digest.md §3, 2026-07-24）",
+      "version": "fact-2026Q3-v1",
+      "prompt": "Qwen3 旗舰 MoE 模型 235B-A22B 的关键架构参数是多少？",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "128",
+          "8",
+          "94",
+          "235B-A22B"
+        ]
+      },
+      "reference": "Qwen3-235B-A22B：128 routed 专家、每 token 激活 8 个、94 层；总参 235B / 激活 22B。来源 HF Qwen/Qwen3-235B-A22B-Instruct + qwen.md §3。",
+      "cohort": "2026Q3-fact",
+      "cohort_status": "active",
+      "capability": "fact_recall",
+      "hash": "94411181fdc07cf7ef1d78551d6438dc1b06d0e265cdad96270200f65e01ed12"
+    },
+    {
+      "id": "T087",
+      "split": "fresh",
+      "source": "LLM 家族 KB · phi.md + phi_deepdive.md（llm-kb-digest.md §3, 2026-07-24）",
+      "version": "fact-2026Q3-v1",
+      "prompt": "Phi-3.5 系列中唯一的 MoE 模型，其专家配置与总激活参数是什么？",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "16",
+          "2",
+          "6.6B"
+        ]
+      },
+      "reference": "Phi-3.5-MoE：16 个专家、每 token 激活 2 个 → 激活 6.6B 参数；总参约 60.8B（16×3.8B）。来源 phi.md §2.1 + HF microsoft/Phi-3.5-MoE-instruct。",
+      "cohort": "2026Q3-fact",
+      "cohort_status": "active",
+      "capability": "fact_recall",
+      "hash": "1cfaf35301ed766a1969c57c7dfa927471ffbb20e9665aa4be25863f69118fc3"
+    },
+    {
+      "id": "T088",
+      "split": "dev",
+      "source": "LLM 家族 KB · llama.md（llm-kb-digest.md §2.4 + §3.1, 2026-07-24）",
+      "version": "fact-2026Q3-v1",
+      "prompt": "Llama 3.1 405B 与 Llama 4 Scout 的训练数据规模分别是多少 token？",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "15.6T",
+          "40T"
+        ]
+      },
+      "reference": "Llama 3.1 405B 训练数据 15.6T tokens（arXiv 2407.21783 + HF 405B 卡）；Llama 4 Scout 预训练 ~40T tokens（HF Scout 卡）。来源 llama.md §3.1 + llama_deepdive.md。",
+      "cohort": "2026Q3-fact",
+      "cohort_status": "active",
+      "capability": "fact_recall",
+      "hash": "42d124d04ffa2494c57d81e8280f63bbd94235b42f36c068051f3e5671613dfe"
+    },
+    {
+      "id": "T089",
+      "split": "hidden",
+      "source": "LLM 家族 KB · qwen.md（llm-kb-digest.md §3, 2026-07-24）",
+      "version": "fact-2026Q3-v1",
+      "prompt": "Qwen3 在训练数据规模与多语言覆盖上有哪些官方披露的关键数字？",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "36T",
+          "119"
+        ]
+      },
+      "reference": "Qwen3 训练数据约 36T tokens（近 Qwen2.5 两倍），覆盖 119 种语言与方言；引入混合思考模式（/think）与思考预算。来源 qwen.md §3 + Qwen3 官方博客。",
+      "cohort": "2026Q3-fact",
+      "cohort_status": "active",
+      "capability": "fact_recall",
+      "hash": "b9bcc812d69b75799be0a6d4e4d494652368bfcb165cc057dd8000c26255097e"
+    },
+    {
+      "id": "T090",
+      "split": "fresh",
+      "source": "LLM 家族 KB · llama.md + qwen.md（llm-kb-digest.md §2.4 + §3, 2026-07-24）",
+      "version": "fact-2026Q3-v1",
+      "prompt": "Llama 3 与 Qwen2.5 的分词器词表大小分别是多少？",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "128256",
+          "151,643"
+        ]
+      },
+      "reference": "Llama 3：vocab_size=128256（128000 普通 token + 256 special），tiktoken 风格 BPE。Qwen2.5：自研字节级 BPE，词表 151,643。来源 llama.md §2.4 + qwen.md §3。",
+      "cohort": "2026Q3-fact",
+      "cohort_status": "active",
+      "capability": "fact_recall",
+      "hash": "e412d2ae5f5e79783ecf8e40e0037d8096f7b0985d43e70711d589793c3c5c8a"
+    },
+    {
+      "id": "T091",
+      "split": "dev",
+      "source": "Tree of Thoughts 论文摘要（arXiv:2305.10601v2, 实时抓取）",
+      "version": "rc-2026Q3-v1",
+      "prompt": "请阅读以下论文摘要并**逐字引用**关于搜索策略的关键短语（含 BFS/DFS/lookahead/状态评估）：\n摘要原文：「... Tree of Thoughts (ToT) generalizes Chain of Thought ... ToT explores the space of reasoning steps by branching at each step via generating k candidates and uses BFS or DFS with self-consistency or lookahead/backtracking to evaluate states ...」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "BFS",
+          "DFS",
+          "lookahead"
+        ]
+      },
+      "reference": "摘要原话：BFS/DFS + lookahead/backtracking。context_grounding_v1 应引用精确短语，不能只答'分支搜索'。",
+      "cohort": "2026Q3-rc",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "0cee42c0e918675542006fa3df5c2e8d304b3ecf66fcfc34929169fc7b77c267"
+    },
+    {
+      "id": "T092",
+      "split": "hidden",
+      "source": "AutoGen 摘要（arXiv:2308.08155v2, 实时抓取）",
+      "version": "rc-2026Q3-v1",
+      "prompt": "请阅读以下 AutoGen 摘要，**逐字引用** AutoGen agents 的核心属性短语（不少于 3 个）：\n摘要原文：「AutoGen agents are customizable, conversable, and can operate in various modes that employ combinations of LLMs, human inputs, and tools ... they can converse with each other to accomplish tasks.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "customizable",
+          "conversable"
+        ]
+      },
+      "reference": "摘要原话 customizable, conversable。context_grounding_v1 应回指这些精确术语。",
+      "cohort": "2026Q3-rc",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "5af921ea0f956e4b322912ae32bb2802ae3d1f755f1b8ea446f74da21c3bc608"
+    },
+    {
+      "id": "T093",
+      "split": "fresh",
+      "source": "Qwen3 Technical Report（arXiv:2505.09388, 实时抓取）",
+      "version": "rc-2026Q3-v1",
+      "prompt": "请阅读以下 Qwen3 摘要，**精确提取** Qwen3 的旗舰 MoE 模型规模与训练 token 总数（含数字与单位）：\n摘要原文：「Qwen3-235B-A22B (235B total parameters, 22B activated) ... trained on approximately 36T tokens, covering 119 languages and dialects ...」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "235B",
+          "22B",
+          "36T",
+          "119"
+        ]
+      },
+      "reference": "235B 总 / 22B 激活 / 36T tokens / 119 种语言。context_grounding_v1 应逐字引出 4 个数字。",
+      "cohort": "2026Q3-rc",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "bb1ea59760cbc9486358ab32a0bd6d8a3bd7d43d3036d12edf856d846216397f"
+    },
+    {
+      "id": "T094",
+      "split": "dev",
+      "source": "Tree of Thoughts 摘要（arXiv:2305.10601v2, 实时抓取）",
+      "version": "rc-2026Q3-v1",
+      "prompt": "请阅读以下 ToT 摘要，**根据原文推理**：ToT 与 Chain of Thought (CoT) 的关键区别是什么？请**逐字引用**摘要中描述这一区别的短语。\n摘要原文：「... ToT generalizes over the popular Chain of Thought approach to prompting language models, and enables exploration over coherent units of text (thoughts) that serve as intermediate steps toward problem solving ...」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "generalizes over",
+          "coherent units of text",
+          "thoughts"
+        ]
+      },
+      "reference": "摘要原话 generalizes over ... coherent units of text ... thoughts。context_grounding_v1 应引用原话术语，不能只答'CoT 是单链、ToT 是树'。",
+      "cohort": "2026Q3-rc",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "53af57771a037fff132cba4c10cec891ce149b25e1b8fb6250e90447d602fe21"
+    },
+    {
+      "id": "T095",
+      "split": "hidden",
+      "source": "Llama 3.1 / 3.3 HF 模型卡（meta-llama/Meta-Llama-3.1-405B-Instruct, meta-llama/Llama-3.3-70B-Instruct）",
+      "version": "rc-2026Q3-v1",
+      "prompt": "请阅读以下两段 HF 模型卡文本，**精确对比并引用原话数字**：\nLlama 3.1 405B 卡：「HumanEval 89.0 (0-shot pass@1); GSM8K 96.8 (8-shot CoT); MATH 73.8 (0-shot CoT)」\nLlama 3.3 70B 卡：「HumanEval 88.4; MATH 77.0 (0-shot CoT); MGSM 91.1 (0-shot)」\n问题：哪个模型在 MATH 上分数更高？高多少？",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "77.0",
+          "73.8",
+          "Llama 3.3"
+        ]
+      },
+      "reference": "Llama 3.3 70B 在 MATH 77.0 vs Llama 3.1 405B 73.8，高 3.2。context_grounding_v1 应引用三个原话数字。",
+      "cohort": "2026Q3-rc",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "4c545bc01645195f51a34064bb4bcf4cb63077f929c7db05f77c605710cc1550"
+    },
+    {
+      "id": "T096",
+      "split": "fresh",
+      "source": "Phi-3 Technical Report（arXiv:2404.14219, 实时抓取）",
+      "version": "rc-2026Q3-v1",
+      "prompt": "请阅读以下 Phi-3 论文摘要，**精确提取** Phi-3-mini 训练数据规模（带单位）并**逐字引用**摘要中关于训练范式的关键短语：\n摘要原文：「... Phi-3-mini (3.8B parameters) trained on 3.3T tokens. Training recipe includes synthetic data derived from textbooks and curated web content ...」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "3.3T",
+          "3.8B",
+          "synthetic data",
+          "textbooks"
+        ]
+      },
+      "reference": "3.3T tokens, 3.8B parameters, synthetic data from textbooks。context_grounding_v1 应逐字引用 4 个原话元素。",
+      "cohort": "2026Q3-rc",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "e3d13626cce7bef396bd0e381943f3701ec02380828c0f846789bbdfdf17eb04"
+    },
+    {
+      "id": "T097",
+      "split": "dev",
+      "source": "LLM 家族 KB · llama.md + qwen.md（llm-kb-digest.md §2.4 + §3, 2026-07-24）",
+      "version": "verify-2026Q3-v3",
+      "prompt": "Llama 3 与 Qwen2.5 的精确词表大小（纯数字）？",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "128256",
+          "151,643"
+        ]
+      },
+      "reference": "Llama 3 vocab_size=128256；Qwen2.5 字节级 BPE 词表 151,643。verifier_v1 应核验两个不同数字——baseline 倾向漏 1 个或估错。",
+      "cohort": "2026Q3-verify",
+      "cohort_status": "active",
+      "capability": "fact_recall",
+      "hash": "f28fdf6af205f308a6e1ec9ceae9e7ba2f8d0d676736586ee5f03d6393ac7d92"
+    },
+    {
+      "id": "T098",
+      "split": "hidden",
+      "source": "LLM 家族 KB · llama.md（llm-kb-digest.md §2.4, 2026-07-24）",
+      "version": "verify-2026Q3-v3",
+      "prompt": "Llama 4 Scout 三个数字：激活参数 + 总参数 + 最长上下文（用 B/M 单位）？",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "17B",
+          "109B",
+          "10M"
+        ]
+      },
+      "reference": "Llama 4 Scout：激活 17B、总 109B、最长 10M 上下文（iRoPE 实现）。verifier_v1 应核验 3 个不同单位数字（17B/109B/10M）——baseline 倾向估 17B/200B/200K（错单位）。",
+      "cohort": "2026Q3-verify",
+      "cohort_status": "active",
+      "capability": "fact_recall",
+      "hash": "3bf503e55dc5d633c5e5e4f9f32b30df959aac6342da784b3be124002acb7db8"
+    },
+    {
+      "id": "T099",
+      "split": "dev",
+      "source": "LLM 家族 KB · qwen.md（llm-kb-digest.md §3, 2026-07-24）",
+      "version": "verify-2026Q3-v3",
+      "prompt": "Qwen3-235B-A22B 四个数字：总参 + 激活参 + routed 专家数 + 每 token 激活数？",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "235B",
+          "22B",
+          "128",
+          "8"
+        ]
+      },
+      "reference": "Qwen3-235B-A22B：总参 235B / 激活 22B / 128 routed 专家 / 每 token 激活 8 专家。verifier_v1 应核验 4 个不同单位/范围数字——baseline 倾向漏 1-2 个或答 235B/22B 不提专家。",
+      "cohort": "2026Q3-verify",
+      "cohort_status": "active",
+      "capability": "fact_recall",
+      "hash": "fd7ef0cf13420f3d6eaa0074b72ba89153d84546753eae52c3737f1cac22a8c1"
+    },
+    {
+      "id": "T100",
+      "split": "fresh",
+      "source": "LLM 家族 KB · llama.md（llm-kb-digest.md §2.4, 2026-07-24）",
+      "version": "verify-2026Q3-v3",
+      "prompt": "Llama 4 Maverick 三个数字：激活 + 总参 + routed 专家数？",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "17B",
+          "400B",
+          "128"
+        ]
+      },
+      "reference": "Llama 4 Maverick：激活 17B、总 400B、128 routed + 1 shared 专家。verifier_v1 应核验 3 个数字——baseline 倾向只记 17B/400B 漏 128 专家数。",
+      "cohort": "2026Q3-verify",
+      "cohort_status": "active",
+      "capability": "fact_recall",
+      "hash": "31b7c8b56794de106265fe3309708efc97a57f68782e277f2529921d8d852337"
+    },
+    {
+      "id": "T101",
+      "split": "hidden",
+      "source": "LLM 家族 KB · llama.md（llm-kb-digest.md §2.4, 2026-07-24）",
+      "version": "verify-2026Q3-v3",
+      "prompt": "Llama 4 Behemoth 三个数字：激活 + 总参 + routed 专家数？",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "288B",
+          "2T",
+          "16"
+        ]
+      },
+      "reference": "Llama 4 Behemoth：激活 288B、总 ~2T、16 routed 专家（训练中未发布）。verifier_v1 应核验 3 个数字——baseline 倾向漏 ~2T 总参。",
+      "cohort": "2026Q3-verify",
+      "cohort_status": "active",
+      "capability": "fact_recall",
+      "hash": "e0f1acd37fda03fe578405ee6a3a29bb82c7693687b69a8beba45448272653be"
+    },
+    {
+      "id": "T102",
+      "split": "fresh",
+      "source": "LLM 家族 KB · qwen.md（llm-kb-digest.md §3, 2026-07-24）",
+      "version": "verify-2026Q3-v3",
+      "prompt": "Qwen3 旗舰 235B-A22B 的 routed 专家数 + 每 token 激活专家数（精确）？",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "128",
+          "8"
+        ]
+      },
+      "reference": "Qwen3-235B-A22B: 128 routed 专家 + 每 token 激活 8。verifier_v1 应核验 2 个专家架构数——baseline 倾向估 64/16 或 256/16。",
+      "cohort": "2026Q3-verify",
+      "cohort_status": "active",
+      "capability": "fact_recall",
+      "hash": "a83e9b0d99d7bfb98ca4e91993847bf863cc4442240419b4072f174fc69969a7"
+    },
+    {
+      "id": "T103",
+      "split": "dev",
+      "source": "Tree of Thoughts 摘要（arXiv:2305.10601v2, 2026-07-24 固定摘录）含两段源文",
+      "version": "rc-2026Q3-v2",
+      "prompt": "阅读两段材料，分别从材料中逐字引用 ToT 的搜索/中间表示描述，不能只做概括。\n材料 A：「Tree of Thoughts generalizes over Chain of Thought and enables exploration over coherent units of text (thoughts) that serve as intermediate steps toward problem solving.」\n材料 B：「ToT explores the space of reasoning steps by branching at each step via generating k candidates and can use BFS or DFS with evaluation and backtracking.」\n请给出两段原话引用并标注来自 A/B。",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "coherent units of text",
+          "intermediate steps",
+          "branching at each step",
+          "BFS or DFS"
+        ]
+      },
+      "reference": "A 含 coherent units of text 与 intermediate steps；B 含 branching at each step 与 BFS or DFS。context_grounding_v1 应逐字回指两段 source。",
+      "cohort": "2026Q3-rc2",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "fa7aee8ec71a0aeda70524c2d6b49affc320cdcb06383af35d90422ed7f4cc3b"
+    },
+    {
+      "id": "T104",
+      "split": "hidden",
+      "source": "AutoGen 摘要（arXiv:2308.08155v2, 2026-07-24 固定摘录）含干扰句",
+      "version": "rc-2026Q3-v2",
+      "prompt": "只根据下方摘要，逐字引用描述 AutoGen agent 属性与协作接口的原文短语；不要用自己的同义词替换。\n原文：「AutoGen agents are customizable, conversable, and can operate in various modes that employ combinations of LLMs, human inputs, and tools. Some configurations use a single model repeatedly, while others coordinate multiple agents to accomplish tasks.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "customizable",
+          "conversable",
+          "combinations of LLMs, human inputs, and tools"
+        ]
+      },
+      "reference": "原文精确短语 customizable / conversable / combinations of LLMs, human inputs, and tools。",
+      "cohort": "2026Q3-rc2",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "fe69f42f36e4db0ca0c9fe4ca41c48cc38de89709961851db5025b06ceb577da"
+    },
+    {
+      "id": "T105",
+      "split": "dev",
+      "source": "Phi-3 Technical Report 摘要（arXiv:2404.14219, 2026-07-24 固定摘录）含干扰信息",
+      "version": "rc-2026Q3-v2",
+      "prompt": "从以下摘要中逐字引用训练数据规模与数据来源两类信息；保留原文的数字、单位和限定词。\n原文：「Phi-3-mini has 3.8B parameters and is trained on 3.3T tokens. The recipe combines synthetic data derived from textbooks with curated web content; the evaluation section separately reports benchmark settings and should not be treated as training data.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "3.8B",
+          "3.3T",
+          "synthetic data derived from textbooks"
+        ]
+      },
+      "reference": "参数 3.8B、训练 token 3.3T、来源 synthetic data derived from textbooks；禁止使用 evaluation 段数字。",
+      "cohort": "2026Q3-rc2",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "165a396a4e9df0067ac73b361a269b8255b88eff255986d8e8ca63014018006e"
+    },
+    {
+      "id": "T106",
+      "split": "hidden",
+      "source": "Qwen3 Technical Report 摘要（arXiv:2505.09388, 2026-07-24 固定摘录）",
+      "version": "rc-2026Q3-v2",
+      "prompt": "逐字引用 Qwen3 训练规模与多语言覆盖两个方面的关键数字与原文短语；不要把 R1-style reasoning budget 误用为 Qwen3 的描述。\n原文：「Qwen3-235B-A22B is trained on approximately 36T tokens covering 119 languages and dialects; the model supports a hybrid thinking mode controllable via /think and exposes a thinking budget parameter.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "36T",
+          "119",
+          "/think",
+          "thinking budget"
+        ]
+      },
+      "reference": "36T tokens、119 languages and dialects、/think、thinking budget。",
+      "cohort": "2026Q3-rc2",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "66aec16f79f667f8e5015b46dea2732f1748e972ab8e8cc6864920597e1641f8"
+    },
+    {
+      "id": "T107",
+      "split": "fresh",
+      "source": "Llama 3.1 / 3.3 HF 模型卡（meta-llama/Meta-Llama-3.1-405B-Instruct, meta-llama/Llama-3.3-70B-Instruct, 2026-07-24 固定摘录）",
+      "version": "rc-2026Q3-v2",
+      "prompt": "逐字引用两段 HF 模型卡文本，精确比较 MATH 分数并给出胜者。\nLlama 3.1 405B 卡：「HumanEval 89.0 (0-shot pass@1); MATH 73.8 (0-shot CoT); GSM8K 96.8 (8-shot CoT)」\nLlama 3.3 70B 卡：「HumanEval 88.4; MATH 77.0 (0-shot CoT); MGSM 91.1 (0-shot)」\n问题：在 MATH 上哪个模型分数更高？高多少分？",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "77.0",
+          "73.8",
+          "Llama 3.3 70B"
+        ]
+      },
+      "reference": "Llama 3.3 70B 在 MATH 77.0 vs Llama 3.1 405B 73.8，高 3.2。",
+      "cohort": "2026Q3-rc2",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "15bb5739f845f3402318fe2d4a47b7571b81546bb1544b293968fd0f0b98f0f4"
+    },
+    {
+      "id": "T108",
+      "split": "fresh",
+      "source": "GLM 官方模型卡（THUDM/glm-4-9b-chat, 2026-07-24 固定摘录）含历史与现版本对比",
+      "version": "rc-2026Q3-v2",
+      "prompt": "逐字引用 GLM-4-9B 上下文窗口长度、训练 token 总量、与旧版本 GLM 相比的关键技术差异三类数字/短语。\n原文：「GLM-4-9B supports 128K-token context. Training is reported as 10T tokens with multi-stage curriculum. Compared to earlier GLM, GLM-4 switches to grouped-query attention and a more uniform layer design, dropping the PRepLN normalization that earlier GLMs used.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "128K",
+          "10T",
+          "grouped-query attention",
+          "PRepLN"
+        ]
+      },
+      "reference": "128K 上下文、10T tokens、grouped-query attention、相对旧版不再使用 PRepLN。",
+      "cohort": "2026Q3-rc2",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "41f37b38093bbb19c128b7659a37f245299a0f6296038aeb36c070d78aa19f00"
+    },
+    {
+      "id": "T109",
+      "split": "dev",
+      "source": "OpenAI function-calling 官方介绍片段（platform.openai.com/docs, 2026-07-24 固定摘录）",
+      "version": "rc-2026Q3-v3",
+      "prompt": "逐字引用下面材料中描述 function calling 核心机制与安全边界的关键短语；不要用自己的同义词替换。原文：「Function calling lets a model output a structured JSON argument that the host application can route to a real function; the model is not making the API call itself and tools should be sandboxed.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "structured JSON argument",
+          "host application",
+          "tools should be sandboxed"
+        ]
+      },
+      "reference": "structured JSON argument / host application / tools should be sandboxed。",
+      "cohort": "2026Q3-rc3",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "44c8ad291d45243f1dd6db354e33d668b83cc332c2765f6b9f9622a017d29f95"
+    },
+    {
+      "id": "T110",
+      "split": "hidden",
+      "source": "Tailscale ACL 官方文档片段（tailscale.com/kb/1018, 2026-07-24 固定摘录）",
+      "version": "rc-2026Q3-v3",
+      "prompt": "逐字引用下面材料中描述 default ACL 行为与覆盖范围的原文短语。原文：「If no ACL rules match a connection, the default policy applies; the implicit default is deny. ACLs are evaluated in order, and the first match wins; wildcards may be used in source and destination but are not allowed in field-level matchers like HTTP hosts.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "the default policy applies",
+          "the first match wins",
+          "not allowed in field-level matchers like HTTP hosts"
+        ]
+      },
+      "reference": "the default policy applies / the first match wins / not allowed in field-level matchers like HTTP hosts。",
+      "cohort": "2026Q3-rc3",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "486cc62ee3a384cd550bc6271ad3d827d82cd2940656c77b4fca5a05366cccb1"
+    },
+    {
+      "id": "T111",
+      "split": "dev",
+      "source": "OpenAI embedding-v3 发布说明片段（platform.openai.com/docs/guides/embeddings, 2026-07-24 固定摘录）",
+      "version": "rc-2026Q3-v3",
+      "prompt": "逐字引用下面材料中关于 embedding-3 与 ada-002 维度差异的原文短语。原文：「text-embedding-3-small returns 1536-dimensional vectors and supports shorter output dimensions; text-embedding-3-large outputs up to 3072 dimensions. The older ada-002 model is fixed at 1536 dimensions and cannot be truncated.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "1536-dimensional vectors",
+          "3072 dimensions",
+          "fixed at 1536 dimensions and cannot be truncated"
+        ]
+      },
+      "reference": "1536-dimensional vectors / 3072 dimensions / fixed at 1536 dimensions and cannot be truncated。",
+      "cohort": "2026Q3-rc3",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "a19e1e969beb8362c65bc7e48d71d7d38356c9df86248c60ad305a8dd879e7c9"
+    },
+    {
+      "id": "T112",
+      "split": "hidden",
+      "source": "NATS JetStream 文档片段（docs.nats.io/nats-concepts/jetstream, 2026-07-24 固定摘录）",
+      "version": "rc-2026Q3-v3",
+      "prompt": "逐字引用下面材料中关于 stream retention 与 replay 行为的两条原文短语。原文：「JetStream supports both Limits-based and Interest-based retention. Replay policy can be set to instant for fast catch-up or replay-all for full event log replay.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Limits-based and Interest-based retention",
+          "instant for fast catch-up",
+          "replay-all for full event log replay"
+        ]
+      },
+      "reference": "Limits-based and Interest-based retention / instant for fast catch-up / replay-all for full event log replay。",
+      "cohort": "2026Q3-rc3",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "c0465d1b4f3fb1749b6b94807542638d989ebfa309bc00bc97b36632c2103b98"
+    },
+    {
+      "id": "T113",
+      "split": "fresh",
+      "source": "Linux man page summary for `mount(8)`（man7.org/linux/man-pages/man8/mount.8.html, 2026-07-24 固定摘录）",
+      "version": "rc-2026Q3-v3",
+      "prompt": "逐字引用下面材料中关于 `mount --bind` 与 read-only 重挂的原文短语。原文：「The mount command supports bind mounts via --bind and --rbind. To remount an existing mount read-only, use mount -o remount,ro.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "--bind and --rbind",
+          "remount,ro"
+        ]
+      },
+      "reference": "原文精确短语 --bind and --rbind、remount,ro。",
+      "cohort": "2026Q3-rc3",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "f5ae318f2e45a194785a1efc669237a88d79b2dcab7d12f304ae796109741bbf"
+    },
+    {
+      "id": "T114",
+      "split": "dev",
+      "source": "Sphinx autodoc tutorial（sphinx-doc.org/en/master/usage/extensions/autodoc.html, 2026-07-24 固定摘录）",
+      "version": "rc-2026Q3-v3",
+      "prompt": "逐字引用下面材料中关于 `.. autoclass::` 与成员选项 `members`、`undoc-members` 的原文短语。原文：「Use .. autoclass:: to document a class. With :members: it includes documented members; with :undoc-members: it also includes undocumented members. The order is alphabetical by default.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          ":members:",
+          ":undoc-members:",
+          "alphabetical by default"
+        ]
+      },
+      "reference": ":members: / :undoc-members: / alphabetical by default。",
+      "cohort": "2026Q3-rc3",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "8ebde628bb234c4f90c97f71b5a3b852bc4393b5ace1636bee4e8667aa2b6ac1"
+    },
+    {
+      "id": "T115",
+      "split": "fresh",
+      "source": "PEP 8 — Style Guide for Python Code（peps.python.org/pep-0008/, 2026-07-24 固定摘录）",
+      "version": "rc-2026Q3-v3",
+      "prompt": "逐字引用下面材料中关于 import 分组、每组顺序的原文短语。原文：「Imports should usually be on separate lines; imports are grouped in the following order: standard library imports, related third party imports, and finally local application/library specific imports.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "on separate lines",
+          "standard library imports",
+          "related third party imports"
+        ]
+      },
+      "reference": "on separate lines / standard library imports / related third party imports。",
+      "cohort": "2026Q3-rc3",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "d7e0c8bfda9c3476f80a69efa6f824b5de20e3bbca0049eadee9fa5e60ae58b4"
+    },
+    {
+      "id": "T116",
+      "split": "hidden",
+      "source": "PostgreSQL EXPLAIN docs（postgresql.org/docs/current/using-explain.html, 2026-07-24 固定摘录）",
+      "version": "rc-2026Q3-v3",
+      "prompt": "逐字引用下面材料中关于 `EXPLAIN ANALYZE` 与 plan reading 的原文短语。原文：「EXPLAIN ANALYZE actually runs the query and returns measured run time and row counts. Reading plans top-down helps catch overestimates; cost values are not seconds but planner units.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "actually runs the query and returns measured run time",
+          "cost values are not seconds but planner units"
+        ]
+      },
+      "reference": "actually runs the query and returns measured run time / cost values are not seconds but planner units。",
+      "cohort": "2026Q3-rc3",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "e57bdeff6a9a2a94f8f7056606845f385c0dd9dcfb0b9cf4190f98646bbc3e12"
+    },
+    {
+      "id": "T117",
+      "split": "dev",
+      "source": "Apple Foundation Models docs（developer.apple.com/documentation/FoundationModels, 2026-07-24 固定摘录）",
+      "version": "rc-2026Q3-v3",
+      "prompt": "逐字引用下面材料中关于 session-based 推理与 guided generation 的原文短语。原文：「Foundation Models sessions carry state across requests; guided generation constrains tool calls to a JSON schema you provide. On-device inference never leaves the device.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "sessions carry state across requests",
+          "constrains tool calls to a JSON schema you provide",
+          "never leaves the device"
+        ]
+      },
+      "reference": "sessions carry state across requests / constrains tool calls to a JSON schema you provide / never leaves the device。",
+      "cohort": "2026Q3-rc3",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "baa513840e46461531bc04ebb7a54fe41e028542fa1e1e333861a56cb88285ea"
+    },
+    {
+      "id": "T118",
+      "split": "fresh",
+      "source": "GitHub Actions docs（docs.github.com/en/actions, 2026-07-24 固定摘录）",
+      "version": "rc-2026Q3-v3",
+      "prompt": "逐字引用下面材料中关于 job 依赖、矩阵策略的原文短语。原文：「Use needs: to express job dependencies so a job runs only after other jobs succeed. A matrix strategy runs the same job across a list of variables, including OS and language versions.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "needs: to express job dependencies",
+          "matrix strategy",
+          "OS and language versions"
+        ]
+      },
+      "reference": "needs: to express job dependencies / matrix strategy / OS and language versions。",
+      "cohort": "2026Q3-rc3",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "3516a70c6e907ce8c38bc6c689baf32fc05cfb5de31d7d0cf9197afe03f2c8be"
+    },
+    {
+      "id": "T123",
+      "split": "dev",
+      "source": "Linux kernel BPF docs (kernel.org/doc/html/latest/bpf/, 2026-07-24 固定摘录)",
+      "version": "rc-2026Q3-v4",
+      "prompt": "逐字引用下面材料中关于 BPF 尾部调用 (tail call) 与 helper 函数调用的两条关键原文短语（不可用同义词改写）。原文：「BPF programs can issue tail calls via bpf_tail_call() to chain into another BPF program; the helper subsystem exposes functions like bpf_probe_read() via the bpf_helper_funcs[] table.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "bpf_tail_call()",
+          "bpf_probe_read()",
+          "bpf_helper_funcs[]"
+        ]
+      },
+      "reference": "bpf_tail_call() / bpf_probe_read() / bpf_helper_funcs[] 三处精确 API 名是 ground truth。",
+      "cohort": "2026Q3-rc4",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "8d03810b0ad360132dcd23ceb5d91d31b1ea17a59780c8bd5510931024c1df18"
+    },
+    {
+      "id": "T124",
+      "split": "hidden",
+      "source": "Vim documentation :help registers (vimhelp.org/eval.txt.html, 2026-07-24 固定摘录)",
+      "version": "rc-2026Q3-v4",
+      "prompt": "逐字引用下面 Vim 文档中关于寄存器 '%' 前缀的引用方式与无名寄存器的原文短语。原文：「Predefined registers are denoted with '%' followed by a single character: %a for the alphanumeric register, %_ for the black hole register, and %# for the alternate filename.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "%a for the alphanumeric register",
+          "%_ for the black hole register",
+          "%# for the alternate filename"
+        ]
+      },
+      "reference": "%a / %_ / %# 三处精确原文短语。",
+      "cohort": "2026Q3-rc4",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "0315340831140b1c2be779dbff62f813a1d216156664ea98604453913e5adf51"
+    },
+    {
+      "id": "T125",
+      "split": "fresh",
+      "source": "GNU Make manual (gnu.org/software/make/manual/html_node/Automatic-Variables.html, 2026-07-24 固定摘录)",
+      "version": "rc-2026Q3-v4",
+      "prompt": "逐字引用下面 GNU Make 文档中关于自动变量 $@、$<、$^ 的原文定义短语（不可改写为中文同义表达）。原文：「$@ evaluates to the file name of the target, $< to the first prerequisite, and $^ to all prerequisites.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "$@",
+          "$<",
+          "$^"
+        ]
+      },
+      "reference": "$@/$</$^ 三处精确原文符号。",
+      "cohort": "2026Q3-rc4",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "52edabc00d27c39bb89995080a8a95013007d9b44285b1260b88a858e760d8e3"
+    },
+    {
+      "id": "T126",
+      "split": "dev",
+      "source": "C++23 draft (eel.is/c++draft/, 2026-07-24 固定摘录 — 来自 [dcl.fct.def.coroutine])",
+      "version": "rc-2026Q3-v4",
+      "prompt": "逐字引用下面 C++23 标准草案中关于 co_return 与 co_await 的原文关键短语（不可改写）。原文：「A coroutine is a function that suspends execution and later resumes; co_await suspends pending an awaitable, co_yield emits a result, co_return completes the coroutine.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "co_await suspends pending an awaitable",
+          "co_yield emits a result",
+          "co_return completes the coroutine"
+        ]
+      },
+      "reference": "co_await / co_yield / co_return 三处精确原文短语。",
+      "cohort": "2026Q3-rc4",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "d98a50017029ecfaa094ef1a1ca13349bc28530a0fe9cd83d9ff1891ff5b11d4"
+    },
+    {
+      "id": "T127",
+      "split": "hidden",
+      "source": "Apple Metal Shading Language Spec (developer.apple.com/metal/Metal-Shading-Language-Spec.pdf, 2026-07-24 固定摘录)",
+      "version": "rc-2026Q3-v4",
+      "prompt": "逐字引用下面 Metal 文档中关于 threadgroup memory 与 device memory 的原文区别短语（不可同义改写）。原文：「threadgroup memory is shared across threads in a single threadgroup and is typically much smaller than device memory; device memory is accessible by all threads but access is uncached.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "shared across threads in a single threadgroup",
+          "accessible by all threads but access is uncached"
+        ]
+      },
+      "reference": "threadgroup 共享 + device uncached 两条精确原文短语。",
+      "cohort": "2026Q3-rc4",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "3daf23ef23c8909cf5f44f14cf8684d6b895be6c40e4bf75d0c06bdb9580380b"
+    },
+    {
+      "id": "T128",
+      "split": "fresh",
+      "source": "SQLite docs (sqlite.org/lang_select.html, 2026-07-24 固定摘录)",
+      "version": "rc-2026Q3-v4",
+      "prompt": "逐字引用下面 SQLite 文档中关于 `IN` 与 `BETWEEN` 的原文行为描述。原文：「The IN operator returns true if its left operand equals any of the values in the right-hand list; BETWEEN returns true if the value is greater than or equal to the lower bound and less than or equal to the upper bound.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "greater than or equal to the lower bound",
+          "less than or equal to the upper bound"
+        ]
+      },
+      "reference": "IN 一句 + BETWEEN 两处原文短语（>= lower, <= upper）。",
+      "cohort": "2026Q3-rc4",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "724eb7d6f5c776616d4ede87f6afdef5570ce8aeb82833858083406a90353d9a"
+    },
+    {
+      "id": "T129",
+      "split": "dev",
+      "source": "Django docs (docs.djangoproject.com/en/stable/topics/db/queries/, 2026-07-24 固定摘录)",
+      "version": "rc-2026Q3-v4",
+      "prompt": "逐字引用下面 Django 文档中关于 QuerySet filter 与 exclude 的原文语义短语。原文：「filter() returns a new QuerySet containing objects that match the given lookup parameters; exclude() returns a new QuerySet containing objects that do not match the given lookup parameters.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "objects that match the given lookup parameters",
+          "objects that do not match the given lookup parameters"
+        ]
+      },
+      "reference": "filter / exclude 两处精确原文短语。",
+      "cohort": "2026Q3-rc4",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "8c5f78adffce82f2d4d75b3fe659db8b6ff1cd3dfb0203f51d267679d83b4bb8"
+    },
+    {
+      "id": "T130",
+      "split": "hidden",
+      "source": "Docker docs (docs.docker.com/engine/network/drivers/, 2026-07-24 固定摘录)",
+      "version": "rc-2026Q3-v4",
+      "prompt": "逐字引用下面 Docker 文档中关于 bridge 网络驱动与 host 网络驱动的原文区别短语。原文：「The bridge driver creates a virtual Ethernet bridge that containers attach to; the host driver removes network isolation and uses the host's networking directly.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "creates a virtual Ethernet bridge that containers attach to",
+          "removes network isolation and uses the host's networking directly"
+        ]
+      },
+      "reference": "bridge + host 两处精确原文短语。",
+      "cohort": "2026Q3-rc4",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "ec1b83f57ec67ab8db2b40791de3e10e8d9918bf1e7a183429f7cfb5b3c2a89b"
+    },
+    {
+      "id": "T131",
+      "split": "fresh",
+      "source": "OAuth 2.1 draft (datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1, 2026-07-24 固定摘录)",
+      "version": "rc-2026Q3-v4",
+      "prompt": "逐字引用下面 OAuth 2.1 草案中关于 PKCE 与 scope 参数的原文定义。原文：「The code_challenge and code_verifier parameters implement Proof Key for Code Exchange (PKCE); the scope parameter delimits the privileges requested by the client.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "code_challenge and code_verifier",
+          "delimits the privileges requested by the client"
+        ]
+      },
+      "reference": "code_challenge/code_verifier + scope 两处精确原文短语。",
+      "cohort": "2026Q3-rc4",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "58ad11a07d7096f8c98efe0e81ed544cd3f5663dd5520c82ff196e3331778b09"
+    },
+    {
+      "id": "T132",
+      "split": "dev",
+      "source": "OpenAPI 3.1.0 spec (spec.openapis.org/oas/v3.1.0, 2026-07-24 固定摘录)",
+      "version": "rc-2026Q3-v4",
+      "prompt": "逐字引用下面 OpenAPI 文档中关于 components 与 $ref 关键字的原文定义短语。原文：「The components object holds a set of reusable objects identified by their keys; $ref allows referencing other elements by JSON Pointer, replacing or augmenting the original definition.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "holds a set of reusable objects identified by their keys",
+          "referencing other elements by JSON Pointer, replacing or augmenting the original definition"
+        ]
+      },
+      "reference": "components + $ref 两处精确原文短语。",
+      "cohort": "2026Q3-rc4",
+      "cohort_status": "active",
+      "capability": "reading_comprehension",
+      "hash": "79bf49fc05322c1a74f5de74b58f0f192315f31eba1465022d28bc22f972bc8e"
+    },
+    {
+      "id": "T133",
+      "split": "dev",
+      "source": "NVIDIA NeMo Framework docs (docs.nvidia.com/nemo-framework/, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 NeMo 文档中关于 model parallelism 三种策略（TP/PP/CP）的原文短语。原文：「NeMo supports three model parallelism strategies: tensor parallelism (TP), pipeline parallelism (PP), and context parallelism (CP); they can be combined for very large models.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "tensor parallelism (TP)",
+          "pipeline parallelism (PP)",
+          "context parallelism (CP)"
+        ]
+      },
+      "reference": "tensor parallelism (TP) / pipeline parallelism (PP) / context parallelism (CP).",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "ece6cea90f5d6a105363e76eb3dc9c016ddec3f605368a628fb5af2970374dae"
+    },
+    {
+      "id": "T134",
+      "split": "dev",
+      "source": "Hugging Face TRL docs (huggingface.co/docs/trl, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 TRL 文档中关于 SFTTrainer 的四个关键参数的原文名。原文：「SFTTrainer takes a model and dataset, with key parameters max_seq_length, packing, dataset_text_field, and formatting_func; it handles instruction tuning and completion-only loss.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "max_seq_length",
+          "packing",
+          "dataset_text_field",
+          "formatting_func"
+        ]
+      },
+      "reference": "max_seq_length / packing / dataset_text_field / formatting_func.",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "8c79994512b913c3130b7c8499e31bcd94be5a1cba5565aca99c52c8ee9e7163"
+    },
+    {
+      "id": "T135",
+      "split": "dev",
+      "source": "PyTorch Distributed docs (pytorch.org/docs/stable/distributed.html, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 PyTorch 文档中关于 DistributedDataParallel 与 DDP 的两条关键原文短语。原文：「DistributedDataParallel (DDP) is a multi-process parallelism module that replicates the model across processes and synchronizes gradients via all-reduce.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "replicates the model across processes",
+          "synchronizes gradients via all-reduce"
+        ]
+      },
+      "reference": "replicates the model across processes / synchronizes gradients via all-reduce.",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "88aada11ae204382fb84f2fbb032d36892df9f888c2e0fb1099f18911d4ab87a"
+    },
+    {
+      "id": "T136",
+      "split": "dev",
+      "source": "LangChain docs (python.langchain.com/docs/introduction/, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 LangChain 文档中关于 RAG chain 与 retriever 集成的原文短语。原文：「A retriever returns relevant documents given a query; chains combine a retriever with a prompt and model to form a question-answering pipeline.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "returns relevant documents given a query",
+          "combine a retriever with a prompt and model"
+        ]
+      },
+      "reference": "returns relevant documents given a query / combine a retriever with a prompt and model.",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "345da7d8d77c2e94747fc8fc231fa8246dad67fdc9ec20994f5458575a271723"
+    },
+    {
+      "id": "T137",
+      "split": "dev",
+      "source": "LlamaIndex docs (docs.llamaindex.ai/en/stable/, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 LlamaIndex 文档中关于 QueryEngine 与 list_index 的原文短语。原文：「QueryEngine is a generic interface that takes a query string and returns a Response object; list_index concatenates all nodes into a single document for retrieval.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "takes a query string and returns a Response object",
+          "list_index concatenates all nodes into a single document"
+        ]
+      },
+      "reference": "takes a query string and returns a Response object / list_index concatenates all nodes into a single document.",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "b7cf35cfaf0fb39941db0fa563f9c87f8bebe724f1d4c8ec6abf60ffa3467c58"
+    },
+    {
+      "id": "T138",
+      "split": "dev",
+      "source": "vLLM docs (docs.vllm.ai/en/latest/, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 vLLM 文档中关于 PagedAttention 与 KV cache 的原文短语。原文：「PagedAttention manages KV cache as fixed-size pages to reduce fragmentation; it enables higher throughput under variable sequence lengths.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "manages KV cache as fixed-size pages",
+          "higher throughput under variable sequence lengths"
+        ]
+      },
+      "reference": "manages KV cache as fixed-size pages / higher throughput under variable sequence lengths.",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "e0c345066d8b2aa352a37edb7532d5348fe91e115f524d32c10e4f3f569f74dd"
+    },
+    {
+      "id": "T139",
+      "split": "dev",
+      "source": "DeepSpeed docs (www.deepspeed.ai/tutorials/zero/, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 DeepSpeed 文档中关于 ZeRO-3 三种分区类型的原文短语。原文：「ZeRO-3 partitions three model states across data-parallel ranks: optimizer states (Pos), gradients (Pg), and parameters (Pp).」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "optimizer states (Pos)",
+          "gradients (Pg)",
+          "parameters (Pp)"
+        ]
+      },
+      "reference": "optimizer states (Pos) / gradients (Pg) / parameters (Pp).",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "baea9f4791668c6957a924badb5ff174e943191719a4e60a5f7595a3e7f8cf4c"
+    },
+    {
+      "id": "T140",
+      "split": "dev",
+      "source": "FastAPI docs (fastapi.tiangolo.com/tutorial/, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 FastAPI 文档中关于 Pydantic model 字段类型的原文短语。原文：「Pydantic models use Python type hints to validate data; supported types include str, int, float, bool, list, dict, and Optional.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Python type hints to validate data",
+          "str, int, float, bool, list, dict, and Optional"
+        ]
+      },
+      "reference": "Python type hints to validate data / str, int, float, bool, list, dict, and Optional.",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "reasoning",
+      "hash": "a44d73a22c942ba7be85a9df5a8b62880089439baaae0024543d3a668ee21a64"
+    },
+    {
+      "id": "T141",
+      "split": "hidden",
+      "source": "JSON Schema draft-2020-12 spec (json-schema.org/draft/2020-12, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 JSON Schema 规范中关于 oneOf / anyOf / allOf 区别的原文短语。原文：「oneOf validates against exactly one of the listed schemas; anyOf validates against one or more; allOf validates against all listed schemas.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "exactly one of the listed schemas",
+          "one or more",
+          "all listed schemas"
+        ]
+      },
+      "reference": "exactly one of the listed schemas / one or more / all listed schemas.",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "7f9491b9a927d24cf66078bac2c9f0c90016618f7650ea35f82eb2d642a6bed8"
+    },
+    {
+      "id": "T142",
+      "split": "hidden",
+      "source": "Pydantic v2 docs (docs.pydantic.dev/latest/, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 Pydantic v2 文档中关于 model_validator 与 field_validator 区别的原文短语。原文：「model_validator runs after the model is instantiated and validates the whole instance; field_validator runs per-field during validation.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "runs after the model is instantiated",
+          "validates the whole instance",
+          "runs per-field during validation"
+        ]
+      },
+      "reference": "runs after the model is instantiated + validates the whole instance / runs per-field during validation.",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "26b70dff4ad6ca1e9aaa3a4dfa2f6a7683d64ffb3ac14b63fd49633efa781a46"
+    },
+    {
+      "id": "T143",
+      "split": "hidden",
+      "source": "OpenAI Function Calling docs (platform.openai.com/docs/guides/function-calling, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 OpenAI 文档中关于 function calling response_format 的原文短语。原文：「The response includes a finish_reason of tool_calls and an array of tool call objects; each tool_call contains id, type, and function with name and arguments.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "finish_reason of tool_calls",
+          "id, type, and function with name and arguments"
+        ]
+      },
+      "reference": "finish_reason of tool_calls / id, type, and function with name and arguments.",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "65823b0575cbd6aaabfe61c9048602fd7bc17398171677d0f01be4b12dbdd4f2"
+    },
+    {
+      "id": "T144",
+      "split": "hidden",
+      "source": "Anthropic Tool Use docs (docs.anthropic.com/en/docs/tool-use, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 Anthropic 文档中关于 tool_use 与 tool_result block 字段的原文短语。原文：「tool_use blocks have id, name, and input; tool_result blocks have tool_use_id, content, and optional is_error flag.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "id, name, and input",
+          "tool_use_id, content, and optional is_error flag"
+        ]
+      },
+      "reference": "id, name, and input / tool_use_id, content, and optional is_error flag.",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "2138a128ee9e3ba6303ac9d84b3c7553f5fb916bddab6824f895149ab65ee0b7"
+    },
+    {
+      "id": "T145",
+      "split": "hidden",
+      "source": "GitHub Actions Workflow syntax (docs.github.com/en/actions/reference/workflow-syntax-for-github-actions, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 GitHub Actions 文档中关于 permissions 字段与 GITHUB_TOKEN 默认行为的原文短语。原文：「The permissions key scopes the GITHUB_TOKEN to read-all by default in repositories; write can be granted per-job or globally.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "scopes the GITHUB_TOKEN",
+          "read-all by default"
+        ]
+      },
+      "reference": "scopes the GITHUB_TOKEN / read-all by default.",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "structured_output",
+      "hash": "8233c3645f8ea3a0fd1eb73d5784ab0c03e20629fcb24a0996942d576f932174"
+    },
+    {
+      "id": "T146",
+      "split": "fresh",
+      "source": "OpenAI Function Calling docs (platform.openai.com/docs/guides/function-calling, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 OpenAI Function Calling 文档中关于 parallel function calls 的原文短语。原文：「Parallel function calls let the model invoke multiple tools in a single turn; the order of tool_calls in the response mirrors the order the model produced them.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "invoke multiple tools in a single turn",
+          "mirrors the order the model produced them"
+        ]
+      },
+      "reference": "invoke multiple tools in a single turn / mirrors the order the model produced them.",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "fact_recall",
+      "hash": "7984359bc2517360cb171ae392e0f82e95a718b826e7da09640b499e7dbca13a"
+    },
+    {
+      "id": "T147",
+      "split": "fresh",
+      "source": "Anthropic docs (docs.anthropic.com/en/docs/build-with-claude/extended-thinking, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 Anthropic extended thinking 文档中关于 thinking budget 的原文短语。原文：「Extended thinking uses a thinking budget to control how many tokens the model uses for internal reasoning before responding; budgets above 1024 tokens typically require streaming.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "thinking budget",
+          "budgets above 1024 tokens typically require streaming"
+        ]
+      },
+      "reference": "thinking budget / budgets above 1024 tokens typically require streaming.",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "fact_recall",
+      "hash": "39f0ff9936ace0813ddca5ff68cfbc8f759dc184f8e41854450e96e5aeb37d90"
+    },
+    {
+      "id": "T148",
+      "split": "fresh",
+      "source": "vLLM docs (docs.vllm.ai/en/latest/serving/openai_compatible_server.html, 2026-07-24 fixed extract)",
+      "version": "core-2026Q4-v1",
+      "prompt": "逐字引用 vLLM 文档中关于 OpenAI-compatible server 启动命令的原文参数。原文：「Start the OpenAI-compatible server with python -m vllm.entrypoints.openai.api_server --model <name> --port 8000; the server exposes /v1/chat/completions.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "python -m vllm.entrypoints.openai.api_server",
+          "/v1/chat/completions"
+        ]
+      },
+      "reference": "python -m vllm.entrypoints.openai.api_server / /v1/chat/completions.",
+      "cohort": "2026Q4-core",
+      "cohort_status": "active",
+      "capability": "fact_recall",
+      "hash": "9a3837f1f03c1c37950398726655dffe49c5c004807a7569d1f46a8e3ab6da7f"
+    },
+    {
+      "id": "T149",
+      "split": "dev",
+      "source": "Anthropic Model Context Protocol spec — Resources (modelcontextprotocol.io/specification/2025-06-18/server/resources)",
+      "version": "protocol-2026Q4-v1-v2-verified",
+      "prompt": "逐字引用 MCP 文档中关于 resources 资源类型与 URI 命名的原文短语。原文：「Each resource is uniquely identified by a URI. Resources can contain either text or binary data; resources carry a mimeType field, and resources, resource templates and content blocks support optional annotations.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "uniquely identified by a URI",
+          "text or binary data",
+          "mimeType"
+        ]
+      },
+      "reference": "Each resource is uniquely identified by a URI; resources can contain either text or binary data and carry a mimeType field, with optional annotations.",
+      "cohort": "2026Q4-protocol",
+      "cohort_status": "active",
+      "capability": "protocol_mcp",
+      "hash": "da382802b7b05ce3555458bf074db1eb3b19d7d9a4b4503013c309e03932e2ba"
+    },
+    {
+      "id": "T150",
+      "split": "hidden",
+      "source": "Anthropic Model Context Protocol spec — Tools (modelcontextprotocol.io/specification/2025-06-18/server/tools)",
+      "version": "protocol-2026Q4-v1-v2-verified",
+      "prompt": "逐字引用 MCP 文档中关于 tools 工具调用的 inputSchema 字段与参数校验的原文短语。原文：「Each tool is uniquely identified by a name and includes metadata describing its schema. A tool's inputSchema is a JSON Schema defining expected parameters. Servers MUST validate all tool inputs.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "uniquely identified by a name",
+          "JSON Schema defining expected parameters",
+          "Validate all tool inputs"
+        ]
+      },
+      "reference": "Each tool is uniquely identified by a name; its inputSchema is a JSON Schema defining expected parameters, and servers MUST validate all tool inputs.",
+      "cohort": "2026Q4-protocol",
+      "cohort_status": "active",
+      "capability": "protocol_mcp",
+      "hash": "40383671ebbbd5e3c9836491a9951eaa066a51466408d0a2273441b82ed0e87e"
+    },
+    {
+      "id": "T151",
+      "split": "fresh",
+      "source": "Anthropic Model Context Protocol spec — Prompts (modelcontextprotocol.io/specification/2025-06-18/server/prompts)",
+      "version": "protocol-2026Q4-v1-v2-verified",
+      "prompt": "逐字引用 MCP 文档中关于 prompts 提示模板与 arguments 字段的原文短语。原文：「Prompts are designed to be user-controlled. Prompts are surfaced via prompts/list and retrieved via prompts/get; each prompt declares an optional list of arguments.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "user-controlled",
+          "prompts/list",
+          "prompts/get",
+          "optional list of arguments"
+        ]
+      },
+      "reference": "Prompts are user-controlled; they are surfaced via prompts/list and prompts/get, and each prompt declares an optional list of arguments.",
+      "cohort": "2026Q4-protocol",
+      "cohort_status": "active",
+      "capability": "protocol_mcp",
+      "hash": "0fcf8046af70c650e45d9657832af97d7d3ffe22167d94c33c95a7f32e52a23d"
+    },
+    {
+      "id": "T152",
+      "split": "dev",
+      "source": "Anthropic Model Context Protocol spec — Sampling (modelcontextprotocol.io/specification/2025-06-18/client/sampling)",
+      "version": "protocol-2026Q4-v1-v2-verified",
+      "prompt": "逐字引用 MCP 文档中关于 sampling 采样请求与 human-in-the-loop 控制的原文短语。原文：「MCP provides a standardized way for servers to request LLM sampling from clients. For trust and safety there SHOULD always be a human in the loop. Model selection uses a preference system combining capability priorities with model hints.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "request LLM sampling",
+          "human in the loop",
+          "preference system"
+        ]
+      },
+      "reference": "Servers request LLM sampling from clients; there should always be a human in the loop, and model selection uses a preference system of capability priorities and model hints.",
+      "cohort": "2026Q4-protocol",
+      "cohort_status": "active",
+      "capability": "protocol_mcp",
+      "hash": "08f0e705a6dcecc3d1535620ed41cec718678edf5db9fb26ab02c5d0851cfdbc"
+    },
+    {
+      "id": "T153",
+      "split": "dev",
+      "source": "Google A2A specification (raw.githubusercontent.com/google/A2A/main/docs/specification.md)",
+      "version": "protocol-2026Q4-v1-v2-verified",
+      "prompt": "逐字引用 A2A 文档中关于 Agent Card 的原文短语。原文：「An Agent Card is a JSON metadata document published by an A2A Server, describing its identity, capabilities, skills, service endpoint, and authentication requirements.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "JSON metadata document",
+          "describing its identity, capabilities, skills",
+          "authentication requirements"
+        ]
+      },
+      "reference": "An Agent Card is a JSON metadata document published by an A2A Server, describing its identity, capabilities, skills, service endpoint, and authentication requirements.",
+      "cohort": "2026Q4-protocol",
+      "cohort_status": "active",
+      "capability": "protocol_a2a",
+      "hash": "ae441b9d793ae0aa33eb2524b80c09add5f2c13cc85604007dcf848d8b12744b"
+    },
+    {
+      "id": "T154",
+      "split": "hidden",
+      "source": "Google A2A specification (raw.githubusercontent.com/google/A2A/main/docs/specification.md)",
+      "version": "protocol-2026Q4-v1-v2-verified",
+      "prompt": "逐字引用 A2A 文档中关于 task 生命周期状态机的原文短语。原文：「An A2A task progresses through states: submitted, working, input-required, completed, failed, or canceled. The server MUST return immediately with either a Task object or a Message object.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "submitted",
+          "working",
+          "input-required",
+          "completed",
+          "failed",
+          "canceled",
+          "Task",
+          "Message"
+        ]
+      },
+      "reference": "An A2A task progresses through states submitted, working, input-required, completed, failed, or canceled; the server returns either a Task object or a Message object.",
+      "cohort": "2026Q4-protocol",
+      "cohort_status": "active",
+      "capability": "protocol_a2a",
+      "hash": "ef20a108dba39388ccb68e10e346cad4524eec27c4d17f2b4f6df3671440c690"
+    },
+    {
+      "id": "T155",
+      "split": "fresh",
+      "source": "Google A2A specification (raw.githubusercontent.com/google/A2A/main/docs/specification.md)",
+      "version": "protocol-2026Q4-v1-v2-verified",
+      "prompt": "逐字引用 A2A 文档中关于 message parts 类型的原文短语。原文：「A Part is the smallest unit of content within a Message or Artifact. Parts can contain text, file references, or structured data.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "smallest unit of content",
+          "text, file references, or structured data"
+        ]
+      },
+      "reference": "A Part is the smallest unit of content within a Message or Artifact; parts can contain text, file references, or structured data.",
+      "cohort": "2026Q4-protocol",
+      "cohort_status": "active",
+      "capability": "protocol_a2a",
+      "hash": "97872d3a0d387a26d41f55bf31a1f550670287fd80cc8400722da29dda23f45c"
+    },
+    {
+      "id": "T156",
+      "split": "dev",
+      "source": "Google A2A specification (raw.githubusercontent.com/google/A2A/main/docs/specification.md)",
+      "version": "protocol-2026Q4-v1-v2-verified",
+      "prompt": "逐字引用 A2A 文档中关于 streaming 与 server-sent events 的原文短语。原文：「Long-running A2A tasks use Server-Sent Events for streaming updates; each event delivers a TaskStatusUpdateEvent or TaskArtifactUpdateEvent to the client.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Server-Sent Events",
+          "TaskStatusUpdateEvent",
+          "TaskArtifactUpdateEvent"
+        ]
+      },
+      "reference": "Long-running A2A tasks use Server-Sent Events for streaming; events deliver a TaskStatusUpdateEvent or TaskArtifactUpdateEvent.",
+      "cohort": "2026Q4-protocol",
+      "cohort_status": "active",
+      "capability": "protocol_a2a",
+      "hash": "2256be14f0859058b20a2f2d1c4f96308e283e8df6be14d33b437672527a8b57"
+    },
+    {
+      "id": "T157",
+      "split": "dev",
+      "source": "AGNTCY Open Agentic Schema Framework (docs.agntcy.org/oasf/open-agentic-schema-framework/)",
+      "version": "protocol-2026Q4-v1-v2-verified",
+      "prompt": "逐字引用 AGNTCY 文档中关于 OASF (Open Agentic Schema Framework) 的原文短语。原文：「The Open Agentic Schema Framework (OASF) is a standardized schema system for defining and managing AI agent capabilities, interactions, and metadata. OASF records can be annotated with skills and domains to enable effective announcement and discovery; at its core is the record object.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Open Agentic Schema Framework (OASF)",
+          "standardized schema system",
+          "annotated with skills and domains",
+          "record object"
+        ]
+      },
+      "reference": "The Open Agentic Schema Framework (OASF) is a standardized schema system for agent capabilities; OASF records can be annotated with skills and domains, and at its core is the record object.",
+      "cohort": "2026Q4-protocol",
+      "cohort_status": "active",
+      "capability": "protocol_agntcy",
+      "hash": "64ee101d05f759893036174f3323736a355def7dc2929d34fb380753b94124bd"
+    },
+    {
+      "id": "T158",
+      "split": "hidden",
+      "source": "AGNTCY Agent Directory Service (docs.agntcy.org/dir/records-validation)",
+      "version": "protocol-2026Q4-v1-v2-verified",
+      "prompt": "逐字引用 AGNTCY 文档中关于 agent discovery 与 directory service 的原文短语。原文：「The Agent Directory is a Federated registry for publishing, verifying, and discovering agents and multi-agent applications. It lets an organization announce OASF records and lets others discover them by skill, capability, or annotation.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "Federated registry for publishing, verifying, and discovering",
+          "discover them by skill, capability, or annotation"
+        ]
+      },
+      "reference": "The Agent Directory is a Federated registry for publishing, verifying, and discovering agents; it lets others discover them by skill, capability, or annotation.",
+      "cohort": "2026Q4-protocol",
+      "cohort_status": "active",
+      "capability": "protocol_agntcy",
+      "hash": "64619f54ac74e716c73025ccbf06e6948c7cadf63cb67cd660fba1a427566ee3"
+    },
+    {
+      "id": "T159",
+      "split": "fresh",
+      "source": "AGNTCY SLIM Overview (docs.agntcy.org/slim/overview/)",
+      "version": "protocol-2026Q4-v1-v2-verified",
+      "prompt": "逐字引用 AGNTCY SLIM 文档中关于 group communication 与可靠投递的原文短语。原文：「SLIM (Secure Low-Latency Interactive Messaging) provides native support for channels and group communication, reliable message delivery, and end-to-end encryption using the MLS protocol; it extends gRPC with publish/subscribe.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "channels and group communication",
+          "reliable message delivery",
+          "end-to-end encryption",
+          "publish/subscribe"
+        ]
+      },
+      "reference": "SLIM provides channels and group communication, reliable message delivery, and end-to-end encryption using the MLS protocol; it extends gRPC with publish/subscribe.",
+      "cohort": "2026Q4-protocol",
+      "cohort_status": "active",
+      "capability": "protocol_agntcy",
+      "hash": "bfc931fb143abf319038a9f13517dcb75bb1a36a87d29e288f25337374b9f486"
+    },
+    {
+      "id": "T160",
+      "split": "dev",
+      "source": "AGNTCY Identity (docs.agntcy.org/identity/identity/) + Agent Directory records (docs.agntcy.org/dir/records-validation)",
+      "version": "protocol-2026Q4-v1-v2-verified",
+      "prompt": "逐字引用 AGNTCY 文档中关于 agent 可验证身份与签名记录的原文短语。原文：「AGNTCY Identity issues and verifies decentralized, cryptographically verifiable identities for agents and tools via verifiable credentials. Agent records are signed with a private key and can be verified against a JWKS file.」",
+      "rubric": {
+        "type": "contains",
+        "required": [
+          "cryptographically verifiable identities",
+          "verifiable credentials",
+          "signed with a private key",
+          "JWKS"
+        ]
+      },
+      "reference": "AGNTCY Identity issues cryptographically verifiable identities via verifiable credentials; agent records are signed with a private key and verified against a JWKS file.",
+      "cohort": "2026Q4-protocol",
+      "cohort_status": "active",
+      "capability": "protocol_agntcy",
+      "hash": "55e763dd0ac2272f2b61e90867c6aedbdb5fac070091c18cd6d40572bf924464"
+    }
+  ]
+}
