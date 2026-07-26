@@ -1,0 +1,79 @@
+name: security-audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  sensitive-residue:
+    name: Detect re-introduced private fields
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run sensitive-residue audit
+        run: python _audit_sensitive_residue.py --ci
+
+  python-syntax:
+    name: Compile-check all Python sources
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Compile all .py files
+        run: |
+          python - <<'PY'
+          import compileall, sys
+          ok = compileall.compile_dir('.', quiet=1, force=True)
+          sys.exit(0 if ok else 1)
+          PY
+
+  manifest-tampering:
+    name: Re-anchor manifest canonical hash
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify T029-T031 placeholders are in place
+        run: |
+          python - <<'PY'
+          import json, sys
+          m = json.load(open('assets/bench_manifest.json', encoding='utf-8'))
+          placeholders = {
+              'T029': ['REPLACE_WITH_YOUR_KB_PAPER_COUNT',
+                       'REPLACE_WITH_YOUR_EMBEDDING_MODEL',
+                       'REPLACE_WITH_YOUR_VECTOR_INDEX'],
+              'T030': ['REPLACE_WITH_COMPONENT_A_NAME',
+                       'REPLACE_WITH_COMPONENT_A_COUNT',
+                       'REPLACE_WITH_COMPONENT_B_NAME'],
+              'T031': ['REPLACE_WITH_VERIFY_STRATEGY_NAME',
+                       'REPLACE_WITH_DIMENSION_1',
+                       'REPLACE_WITH_DIMENSION_2']}
+          tids = {t['id']: t for t in m['tasks']}
+          bad = []
+          for tid, expected in placeholders.items():
+              req = tids[tid]['rubric'].get('required', [])
+              for ph in expected:
+                  if ph not in req:
+                      bad.append(f'{tid} missing {ph}')
+          if bad:
+              print('FAIL: placeholders regressed:')
+              for b in bad: print(f'  {b}')
+              sys.exit(1)
+          print(f'OK: T029/T030/T031 still carry the open-source placeholders.')
+          PY
