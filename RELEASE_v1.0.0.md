@@ -47,6 +47,14 @@ the effect to **+20.4%** over 32 tasks × K=15 (n = 480 pairs) with CI
   Mistral-7B) is built (`_r28_multimodel.py`) but requires compute beyond
   the 6 GB-VRAM / 16 GB-RAM development machine. We mark this row
   explicitly "未消" in `EFFECT_SIZE_CI_POWER_r28_FINAL.md` §4.
+- **Path-A fine-tuning negative results (ledger #37, #38)**: Five rounds
+  of weight-update interventions (SFT / LoRA / DPO with β∈{0.1, 0.05},
+  r∈{8,16}, lr∈{2e-5, 2e-4}) on 30-101 training pairs all failed to
+  produce measurable gain under the pre-registered eval-gate. DPO v2
+  (ledger #38, β=0.05, 101 pairs) trained successfully (166 s, rewards
+  0.875-1.0, margins 0.20-0.25) but evaluation hung at 45 min with zero
+  stdout output — suspected greedy-generation deadlock. Full negative-
+  result meta-analysis in `PATH_A_META_ANALYSIS_r28_v2.md`.
 - **Closed-source probes** (T029-T031 in the manifest) are kept as
   `REPLACE_WITH_YOUR_*` placeholders so anyone with a private/local KB can
   instantiate the closed-book probe without inheriting the original
