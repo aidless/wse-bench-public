@@ -52,8 +52,8 @@ pip install torch==2.5.1 transformers==4.57.3 bitsandbytes peft trl scipy
 python _download_qwen3b.py --out F:/hf_cache/models/Qwen--Qwen2.5-3B-Instruct
 
 # 3. Run the strict ablation (paired base vs cand, K=5 seeds, 16 tasks)
-python _r27_strict_ablation.py        # cand arm (with grounding prefix)
-python ._ablation_30q_k5.py           # base arm (no prefix)
+# NOTE: _r27_strict_ablation.py was not committed; cand-arm (with grounding prefix) results are preserved in results_r28_prefix_ablation_k5.json
+# NOTE: _ablation_30q_k5.py was not committed (only a macOS "._" shadow file); base-arm results are in ablation_comparison_30q.json and results_ablation_30q_k5.json
 
 # 4. Effect size + CI + power
 python _r28_effectsize_analysis.py    # writes _r28_effectsize_summary.json
