@@ -1,4 +1,5 @@
 # WSE-Bench — Eval-Gated Self-Evolution Benchmark
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  [![Data](https://img.shields.io/badge/data-CC--BY--4.0-lightgrey.svg)](LICENSE)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
@@ -116,3 +117,5 @@ raw numbers in the ledger entry.
 ## License
 
 MIT — see `LICENSE`.
+
+> **Dual license.** WSE-Bench releases the benchmark tasks, datasets, and evaluation results under
