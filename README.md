@@ -67,10 +67,19 @@ python _r28_largen_replication.py     # writes _r28_largen_summary.json
 python _r28_prefix_ablation.py        # writes _r28_prefix_ablation_summary.json
 ```
 
-**Important**: every script uses `ROOT = Path(r'__WSE_REPO_ROOT__')` as a
-placeholder for the absolute path of your local clone. Replace this with your
-own clone path (or set `WSE_REPO_ROOT` env var and patch the `ROOT` line) before
-running. The scripts use `torch.manual_seed(seed)` per call, so per-seed
+**Paths**: 20 of the 113 root scripts carry a `__WSE_REPO_ROOT__` placeholder.
+All 20 read the `WSE_REPO_ROOT` env var first and fall back to the literal, so
+no file editing is needed:
+
+```bash
+export WSE_REPO_ROOT="$(pwd)"
+python tools/fix_repo_root.py     # prints the exact counts; exits 1 if any remain
+```
+
+(The other 93 scripts take `--corpus`/`--out` arguments or resolve relative to
+`assets/bench_manifest.json`. An earlier revision of this README claimed *every*
+script needed hand-patching — that was wrong on both counts and is why the tool
+above exists.) The scripts use `torch.manual_seed(seed)` per call, so per-seed
 outputs are bit-exact reproducible across runs on the same hardware.
 
 ## Scope and known limits (honest disclosure)

@@ -1,6 +1,7 @@
 """Insert rc3 (T109-T118) tasks + closing ] of tasks list in build_bench.py."""
 from pathlib import Path
-p = Path(r"__WSE_REPO_ROOT__/build_bench.py")
+import os
+p = Path((os.environ.get("WSE_REPO_ROOT") or "__WSE_REPO_ROOT__")) / "build_bench.py"
 text = p.read_text(encoding="utf-8")
 
 t109_t118 = '''],

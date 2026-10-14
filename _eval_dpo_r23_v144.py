@@ -7,7 +7,8 @@ from pathlib import Path
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from peft import PeftModel
 
-root = Path(r'__WSE_REPO_ROOT__')
+import os as _os
+root = Path(_os.environ.get('WSE_REPO_ROOT') or r'__WSE_REPO_ROOT__')
 manifest = json.load(open(root / 'assets' / 'bench_manifest.json', encoding='utf-8'))
 sys.path.insert(0, str(root))
 from eval_self_evolution import score_task, is_pass

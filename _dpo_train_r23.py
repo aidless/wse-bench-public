@@ -11,7 +11,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from trl import DPOConfig, DPOTrainer
 
-root = Path(r'__WSE_REPO_ROOT__')
+import os as _os
+root = Path(_os.environ.get('WSE_REPO_ROOT') or r'__WSE_REPO_ROOT__')
 
 os.environ['HF_HOME'] = r'F:/hf_cache/hf_home'
 os.environ['BITSANDBYTES_NOWELCOME'] = '1'

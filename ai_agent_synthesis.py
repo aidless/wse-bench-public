@@ -5,7 +5,8 @@ import json
 from pathlib import Path
 from datetime import datetime
 
-root = Path(r'__WSE_REPO_ROOT__')
+import os as _os
+root = Path(_os.environ.get('WSE_REPO_ROOT') or r'__WSE_REPO_ROOT__')
 out_dir = root / 'self_evo_kb'
 out_dir.mkdir(parents=True, exist_ok=True)
 

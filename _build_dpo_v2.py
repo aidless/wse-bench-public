@@ -7,7 +7,8 @@ import json, re
 from pathlib import Path
 from collections import defaultdict
 
-root = Path(r'__WSE_REPO_ROOT__')
+import os as _os
+root = Path(_os.environ.get('WSE_REPO_ROOT') or r'__WSE_REPO_ROOT__')
 manifest = json.load(open(root / 'assets' / 'bench_manifest.json', encoding='utf-8'))
 task_by_id = {t['id']: t for t in manifest['tasks']}
 dev_ids = {t['id'] for t in manifest['tasks'] if t.get('split') == 'dev'}

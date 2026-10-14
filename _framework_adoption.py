@@ -7,7 +7,8 @@ import re
 from pathlib import Path
 from collections import Counter, defaultdict
 
-root = Path(r'__WSE_REPO_ROOT__')
+import os as _os
+root = Path(_os.environ.get('WSE_REPO_ROOT') or r'__WSE_REPO_ROOT__')
 github_p = Path(r'F:/Research/github_ai_projects/ai_projects_v3.jsonl')
 out_p = root / 'framework_adoption_empirical.json'
 

@@ -1,5 +1,6 @@
 import json
-d = json.load(open(r'__WSE_REPO_ROOT__/submissions_reason_10seeds.json', encoding='utf-8'))
+import os as _os
+d = json.load(open((_os.environ.get('WSE_REPO_ROOT') or r'__WSE_REPO_ROOT__') + '/submissions_reason_10seeds.json', encoding='utf-8'))
 print('keys:', list(d.keys()))
 for k, v in d.items():
     if k.endswith('_seeds'):

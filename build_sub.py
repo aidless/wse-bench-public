@@ -1,4 +1,5 @@
 import json
+import os
 
 a = {}
 a["T001"] = "AgentBench 全称 AgentBench: Evaluating LLMs as Agents，由清华大学 THUDM 团队（Xiao Liu 等）提出，发表于 ICLR 2024。"
@@ -62,6 +63,6 @@ a["T029"] = "REPLACE_WITH_YOUR_KB_PAPER_COUNT 篇论文，embedding=REPLACE_WITH
 a["T030"] = "自治 agent 进化基因=组件 A(REPLACE_WITH_COMPONENT_A_NAME, REPLACE_WITH_COMPONENT_A_COUNT 条规则) + 组件 B(REPLACE_WITH_COMPONENT_B_NAME)。"
 a["T031"] = "REPLACE_WITH_VERIFY_STRATEGY_NAME 在求解后独立复核 REPLACE_WITH_DIMENSION_1、REPLACE_WITH_DIMENSION_2 等维度。"
 
-with open("__WSE_REPO_ROOT__/submissions_candidate_selective.json","w",encoding="utf-8") as f:
+with open(os.environ.get("WSE_REPO_ROOT") or "__WSE_REPO_ROOT__" + "/submissions_candidate_selective.json","w",encoding="utf-8") as f:
     json.dump(a, f, ensure_ascii=False, indent=2)
 print("WROTE", len(a), "entries")

@@ -1,6 +1,7 @@
 import json
+import os as _os
 for fn in ['submissions_fact_10seeds.json', 'submissions_hard_15seeds.json', 'submissions_struct_10seeds.json', 'submissions_sv_10seeds.json', 'submissions_verify_10seeds_v3.json', 'submissions_rc_10seeds.json']:
-    p = f'__WSE_REPO_ROOT__/{fn}'
+    p = f"{_os.environ.get('WSE_REPO_ROOT') or '__WSE_REPO_ROOT__'}/{fn}"
     d = json.load(open(p, encoding='utf-8'))
     print(fn, 'cohort', d.get('cohort'), 'task_ids', len(d.get('task_ids', [])))
     for k in d:

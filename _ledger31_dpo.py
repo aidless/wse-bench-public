@@ -5,7 +5,8 @@ import json, sys
 from datetime import datetime
 from pathlib import Path
 
-root = Path(r'__WSE_REPO_ROOT__')
+import os as _os
+root = Path(_os.environ.get('WSE_REPO_ROOT') or r'__WSE_REPO_ROOT__')
 ledger_path = root / 'assets' / 'evolution_ledger.json'
 result_path = root / 'results_dpo_r23_v144.json'
 

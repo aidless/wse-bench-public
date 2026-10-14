@@ -1,5 +1,6 @@
 import json,glob,os
-root = r'__WSE_REPO_ROOT__'
+import os as _os
+root = _os.environ.get('WSE_REPO_ROOT') or r'__WSE_REPO_ROOT__'
 for p in sorted(glob.glob(root + r'/submissions*.json')):
     if 'lora' in p.lower():
         continue
