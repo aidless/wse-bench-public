@@ -10,6 +10,17 @@ to evaluate **eval-gated self-evolution loops** on small LLMs. Each task is
 graded by a deterministic rubric and admits paired McNemar testing across
 candidate vs. baseline system prompts.
 
+## Repo status: data + report release, not a runnable package
+
+This is a **release repository**: the benchmark manifest, the ledger, the
+audit reports, and the exact scripts that produced them. It ships **no
+install entry point and no test suite** — running `pytest` here finds
+nothing, by design. The reproduction scripts keep their original
+author-machine paths (e.g. `F:\hf_cache`) as provenance records of how the
+numbers were produced; treat them as documentation, not as a supported
+CLI. The canonical entry point is regenerating on your own machine via
+the reproduction scripts below.
+
 ## What this repo gives you
 
 | Component | Where | Purpose |
