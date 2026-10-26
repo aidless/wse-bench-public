@@ -1,0 +1,10 @@
+# captured 2026-10-25 from: python3 demo.py (rc=0, 85 ms)
+# raw stdout; docs/assets/demo.gif is a curated view
+manifest : 156 tasks · 14 cohorts
+hash lock: 153/156 intact · documented redactions T029, T030, T031
+ledger   : 37 entries · PROMOTE=10 · HOLD=9 · AUDIT_VERDICT=5 · REVERT=4
+r28 test : b=14 c=29 k=43 p=0.0315 · ledger match=True
+effect   : OR=2.07 [1.06, 4.24] · post-hoc power=0.59
+strict   : --verify still refuses T029-T031 by design (documented redaction)
+audit    : PASS — artifacts are internally consistent; 3 redactions are documented, not silent
+demo     : read-only · 0 model calls · not a benchmark run

@@ -21,6 +21,23 @@ numbers were produced; treat them as documentation, not as a supported
 CLI. The canonical entry point is regenerating on your own machine via
 the reproduction scripts below.
 
+## 60-second release audit
+
+No install, no model:
+
+```bash
+git clone https://github.com/aidless/wse-bench-public && cd wse-bench-public
+python3 demo.py
+```
+
+![release audit terminal demo](docs/assets/demo.gif)
+
+The audit checks 153 hash-locked tasks, names the 3 documented redactions
+(T029–T031), counts the 37 ledger entries, and reprints the r28 paired-test
+summary. It is read-only and is not a benchmark run. Strict
+`eval_self_evolution.py --verify` still refuses the 3 redacted tasks by design;
+the demo classifies them, it does not bless them.
+
 ## What this repo gives you
 
 | Component | Where | Purpose |
@@ -28,7 +45,7 @@ the reproduction scripts below.
 | Benchmark manifest | `assets/bench_manifest.json` | 156 tasks across 14 cohorts (core / ext / fact / hard / rc{1-4} / reason / struct / sv / verify / 2026Q4-core / 2026Q4-protocol) |
 | Deterministic grader | `eval_self_evolution.py` | `score_task`, `is_pass`, `PASS_THRESHOLD` |
 | Audit harness | `audit_contamination.py`, `_audit_contamination_r28.py` | Detects prompt-leakage bugs and impossible-closedbook probes |
-| Per-round ledger | `assets/evolution_ledger.json` | Append-only audit log of every promotion/revert decision (35 entries, r17 → r28) |
+| Per-round ledger | `assets/evolution_ledger.json` | Append-only audit log of every promotion/revert decision (37 entries, r17 → r28) |
 | Reproduction scripts | `_r28_*` (without leading underscore) | Large-n replication, prefix component ablation, multi-model harness, DPO training |
 | Generation protocol | `eval_self_evolution.py` + `_r27_strict_ablation.py` | Qwen2.5-3B-Instruct 4-bit NF4, T=0.7, top_p=0.9, max_new=128, rep_pen=1.05 |
 | Analysis tools | `_r28_effectsize_analysis.py`, `_r28_bootstrap_ci.py`, `_r28_effectsize_summary.json` | Effect-size + 95% CI + power for paired McNemar |
