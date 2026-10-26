@@ -1,0 +1,17 @@
+# Generated from static import analysis (see AUDIT.md provenance note).
+# Repo: aidless/wse-bench-public
+# Only top-level third-party imports are listed; stdlib and in-repo modules are excluded.
+# Versions are intentionally unpinned unless a floor is required for API compatibility.
+
+datasets>=2.18  # _dpo_train_r23.py:67
+modelscope  # _download_qwen3b.py:7
+numpy>=1.24  # _r28_bootstrap_ci.py:8
+peft  # _dpo_train_r23.py:11
+scipy  # _r28_effectsize_analysis.py:26
+sympy  # _solve.py:3
+torch>=2.0  # _dpo_train_r23.py:9
+transformers>=4.40  # _dpo_train_r23.py:10
+trl  # _dpo_train_r23.py:12
+
+# --- optional / conditionally imported (guarded by try/except or lazily loaded) ---
+# kb_search  # kb_retriever.py:58
