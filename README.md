@@ -95,7 +95,7 @@ python _r28_largen_replication.py     # writes _r28_largen_summary.json
 python _r28_prefix_ablation.py        # writes _r28_prefix_ablation_summary.json
 ```
 
-**Paths**: 20 of the 113 root scripts carry a `__WSE_REPO_ROOT__` placeholder.
+**Paths**: 20 of the 114 root scripts carry a `__WSE_REPO_ROOT__` placeholder.
 All 20 read the `WSE_REPO_ROOT` env var first and fall back to the literal, so
 no file editing is needed:
 
@@ -109,6 +109,85 @@ python tools/fix_repo_root.py     # prints the exact counts; exits 1 if any rema
 script needed hand-patching — that was wrong on both counts and is why the tool
 above exists.) The scripts use `torch.manual_seed(seed)` per call, so per-seed
 outputs are bit-exact reproducible across runs on the same hardware.
+
+## Recompute the numbers (reproduction ledger)
+
+Every number quoted in this README has a committed source you can re-derive
+without editing any file:
+
+| Number | Recompute from | Command |
+|---|---|---|
+| 156 tasks / 14 cohorts | `assets/bench_manifest.json` | `python3 demo.py` (prints `manifest : 156 tasks · 14 cohorts`) |
+| 153/156 hash-lock intact | `eval_self_evolution.verify_hashes` | `python3 demo.py` (prints `hash lock: 153/156 intact`) |
+| 37 ledger entries | `assets/evolution_ledger.json` | `python3 demo.py` (prints `ledger   : 37 entries`) |
+| #33 b=14, c=29, p=0.0315 | `_r28_effectsize_summary.json` `verified_33` | `python3 demo.py` (prints `r28 test : b=14 c=29 k=43 p=0.0315`) |
+| OR=2.07 [1.06, 4.24], power=0.59 | `_r28_effectsize_summary.json` `effect_sizes[0]` / `power` | `python3 demo.py` (prints `effect   : OR=2.07 [1.06, 4.24] · power=0.59`) |
+| Large-n Δ=+20.4% CI [+11.9%, +29.0%] p=2.16e-10 | `EFFECT_SIZE_CI_POWER_r28_FINAL.md` §0 / `_r28_largen_summary.json` | `python _r28_effectsize_analysis.py` (writes `_r28_effectsize_summary.json`) |
+| Prefix ablation arms (base 30, quote 44, full 45) | `EFFECT_SIZE_CI_POWER_r28_FINAL.md` §2 | `python _r28_prefix_ablation.py` (writes `_r28_prefix_ablation_summary.json`) |
+
+The `demo.py` path is read-only and makes 0 model calls. The two `_r28_*`
+analysis scripts recompute the effect-size / CI / power numbers and rewrite
+their `_r28_*_summary.json` outputs, which are committed and hash-stable. To
+regenerate *model outputs* you additionally need the model weights (see the
+reproduction section above) and the original per-seed generations, which are
+not shipped (see "What's *not* in this repo").
+
+## Run the tests
+
+This is a **release repository**, so the tests are a read-only smoke gate
+against the release contract — they do not run a model or download weights:
+
+```bash
+python3 -m pytest tests/ -q        # 8 passed
+```
+
+`tests/test_release_audit.py` asserts: the manifest holds 156 tasks across 14
+cohorts; the hash lock is 153/156 intact with exactly 3 documented redactions
+(T029–T031); the r28 headline paired McNemar recomputes to p=0.0315 from
+b=14, c=29; the ledger has 37 entries; `demo.py` exits 0; and strict
+`--verify` stays fail-closed (exit 2) on the redactions. The same numbers can
+be re-derived directly with `python3 demo.py` (read-only, 0 model calls).
+
+## What this proves — and what it does not
+
+**Proves (within the evidence in this repo):**
+
+- On Qwen2.5-3B-Instruct 4-bit NF4, a single grounding-prefix intervention on
+  the RC cohort yields a **real, reproducible** improvement: the original #33
+  paired McNemar (b=14, c=29, p=0.0315, Δ=+18.8%) survives a same-protocol
+  re-test on fresh seeds (OLD16: Δ=+19.6%, CI [+6.3%, +33.8%]) and a 2×
+  pool-size replication (FULL n=480: Δ=+20.4%, CI [+11.9%, +29.0%],
+  p=2.16e-10). The held-out 16 tasks (NEW16, never used for #33) also show the
+  effect (Δ=+21.3%, CI [+10.8%, +30.8%]), so it is not a within-sample
+  artifact.
+- The prefix component ablation attributes almost all of the gain to the
+  `quote` component (C2): quote-only gives +17.5% vs. base; adding `role` (C1)
+  or `abstain` (C3) on top does not materially change it.
+- The harness is fail-closed: tampering with the benchmark is detected by the
+  hash lock, and the 3 closed-source probe tasks are redacted to
+  `REPLACE_WITH_YOUR_*` placeholders rather than silently dropped.
+
+**Does not prove (honest boundary):**
+
+- **Generality beyond this one model.** Qwen2.5-3B-Instruct is the *only* model
+  for which the #33 evidence chain exists. Multi-model replication
+  (Llama-3.1-8B, Mistral-7B) was attempted but could not complete on the
+  available 6 GB-VRAM / 16 GB-RAM hardware (marked "未消" in
+  `EFFECT_SIZE_CI_POWER_r28_FINAL.md` §4).
+- **Causal mechanism.** The ablation shows *which* component drives the gain,
+  not *why* it does. The `abstain` component (C3) even shows a slightly
+  negative point estimate (−3.8%) on its own, which the current data cannot
+  explain.
+- **Statistical confirmation of the component attribution.** After Holm
+  correction across the 4 new ablation arms, quote-only and quote+abstain sit
+  at p=0.095 — above the family-wise α=0.05. The point estimates are stable,
+  but the attribution is *exploratory*, not confirmatory.
+- **Closed-source probes.** T029–T031 only verify a *probe ability* (that a
+  model cannot answer a private/local fact from parametric memory alone) on
+  your own KB; they say nothing about any specific KB's scale or path.
+- **Production readiness.** No serving/API harness, no throughput or latency
+  claims, no deployment story. This is a benchmark + audit release, not a
+  product.
 
 ## Scope and known limits (honest disclosure)
 
