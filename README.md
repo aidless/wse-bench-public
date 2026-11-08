@@ -36,7 +36,9 @@ The audit checks 153 hash-locked tasks, names the 3 documented redactions
 (T029–T031), counts the 37 ledger entries, and reprints the r28 paired-test
 summary. It is read-only and is not a benchmark run. Strict
 `eval_self_evolution.py --verify` still refuses the 3 redacted tasks by design;
-the demo classifies them, it does not bless them.
+the demo classifies them, it does not bless them. Counts come from
+[`assets/bench_manifest.json`](assets/bench_manifest.json) (156 tasks; 153 hash-locked + 3 redactions)
+and [`assets/evolution_ledger.json`](assets/evolution_ledger.json) (37 entries).
 
 ## What this repo gives you
 
@@ -69,6 +71,9 @@ the demo classifies them, it does not bless them.
 The headline finding is **ledger entry #33**: a +18.8% absolute gain on 16
 RC-tasks (T103-T118) under a single grounding-prefix intervention, measured
 via paired McNemar (b=14, c=29, p=0.0315) on Qwen2.5-3B-Instruct 4-bit NF4.
+Raw per-task rows are in [`results_r27_strict_grounding_k5.json`](results_r27_strict_grounding_k5.json);
+the derived b/c/p and aggregates are in
+[`r27_strict_ablation_analysis.json`](r27_strict_ablation_analysis.json).
 
 To reproduce:
 
