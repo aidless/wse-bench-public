@@ -1,4 +1,6 @@
 # WSE-Bench — Eval-Gated Self-Evolution Benchmark
+
+[![CI](https://github.com/aidless/wse-bench-public/actions/workflows/secret-scan.yml/badge.svg)](https://github.com/aidless/wse-bench-public/actions/workflows/secret-scan.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  [![Data](https://img.shields.io/badge/data-CC--BY--4.0-lightgrey.svg)](LICENSE-DATA)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
