@@ -4,7 +4,7 @@
 
 - **156-task reading-comprehension + reasoning + citation-verification benchmark**
   across 14 cohorts.
-- **Per-round evolution ledger** (35 entries, r17 → r28) with strict promotion
+- **Per-round evolution ledger** (37 entries, r17 → r28) with strict promotion
   gates (paired McNemar p<0.05 *and* cluster bootstrap CI lower bound >0).
 - **Reproducible** under one generation protocol
   (Qwen2.5-3B-Instruct 4-bit NF4, T=0.7, top_p=0.9, max_new=128,
@@ -72,26 +72,18 @@ the effect to **+20.4%** over 32 tasks × K=15 (n = 480 pairs) with CI
 
 ## Reproducing the headline result
 
-```bash
-# Install
-python -m venv .venv && source .venv/bin/activate
-pip install torch==2.5.1 transformers==4.57.3 bitsandbytes scipy
+The offline check of the committed artifacts is `python3 demo.py` (see the
+README). It does not rerun the model.
 
-# Download Qwen2.5-3B-Instruct (~6 GB)
-python _download_qwen3b.py --out F:/hf_cache/models/Qwen--Qwen2.5-3B-Instruct
-
-# Run both arms (paired-baseline ablation, K=5, 16 tasks)
-python ._ablation_30q_k5.py            # base arm (no prefix)
-python _r27_strict_ablation.py         # cand arm (with grounding prefix)
-
-# Aggregate statistics
-python _r28_effectsize_analysis.py     # McNemar + Cohen's g + CI
-python _r28_bootstrap_ci.py            # cluster bootstrap (B=20000)
-```
-
-Note: every script uses `ROOT = Path(r'__WSE_REPO_ROOT__')` as a placeholder
-for your local clone path. Replace with your actual path or set the
-`WSE_REPO_ROOT` env var and adapt the `ROOT` line.
+A live rerun was done on the author's machine. These paths are provenance of
+that machine (`F:/hf_cache`), not a supported install layout. Two commands
+named in earlier drafts are **not in this tree** and will not run here:
+`_r27_strict_ablation.py` and `._ablation_30q_k5.py`. The cand-arm rows that
+were kept are `results_r28_prefix_ablation_k5.json`; the base-arm rows that
+were kept are `ablation_comparison_30q.json` and `results_ablation_30q_k5.json`.
+Not every script contains `__WSE_REPO_ROOT__`. The ones that do honor
+`WSE_REPO_ROOT` before falling back to that literal; `python3 tools/fix_repo_root.py`
+prints the count. Do not treat a green CI job as a substitute for this rerun.
 
 ## Security & privacy posture
 

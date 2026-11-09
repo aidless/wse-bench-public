@@ -1,0 +1,32 @@
+name: release-audit
+
+# Offline consistency gate for the data + report release.
+# Proves demo.py and the sealed-count drift check. Does not install a package,
+# download weights, or rerun a model. A green job is not a live evolution result.
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-audit:
+    name: Offline release audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Read-only demo (no install)
+        run: python3 demo.py
+
+      - name: Drift check 156/153/37 and r28 summary vs ledger
+        run: python3 tools/check_release_drift.py

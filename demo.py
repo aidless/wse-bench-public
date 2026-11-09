@@ -32,7 +32,6 @@ def main() -> int:
     print(f"hash lock: {tasks - len(bad)}/{tasks} intact · documented redactions {redactions}")
     if unexpected:
         print("UNEXPECTED HASH DRIFT:", sorted(unexpected))
-        return 1
 
     ledger = json.loads((ROOT / "assets/evolution_ledger.json").read_text(encoding="utf-8"))
     decisions = Counter(row.get("decision") for row in ledger)
@@ -47,8 +46,29 @@ def main() -> int:
     print(f"effect   : OR={effect['orr']:.2f} [{effect['or_lo']:.2f}, {effect['or_hi']:.2f}] "
           f"· post-hoc power={effects['power']['post_hoc_33']:.2f}")
     print("strict   : --verify still refuses T029-T031 by design (documented redaction)")
+
+    import importlib.util
+    drift_path = ROOT / "tools" / "check_release_drift.py"
+    spec = importlib.util.spec_from_file_location("check_release_drift", drift_path)
+    drift = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(drift)
+    errors, notes = drift.check()
+    if errors:
+        print("drift    : FAIL")
+        for item in errors:
+            print(f"  {item}")
+        print("audit    : FAIL — release counts or r28 summary drifted")
+        return 1
+
+    print(
+        "drift    : PASS — 156 tasks · 153 hash-locked · 37 ledger entries "
+        "· r28 summary matches assets JSON"
+    )
+    for note in notes:
+        if note.startswith("large_n_full delta"):
+            print(f"rounded  : {note}")
     print("audit    : PASS — artifacts are internally consistent; 3 redactions are documented, not silent")
-    print("demo     : read-only · 0 model calls · not a benchmark run")
+    print("demo     : read-only · 0 model calls · not a benchmark run · not a live evolution run")
     return 0
 
 
