@@ -6,10 +6,10 @@ WHY
 README used to say "every script uses ROOT = Path(r'__WSE_REPO_ROOT__')" and told
 you to replace it by hand. Neither half was true, and both cost a newcomer time:
 
-  * only 20 of the 113 root .py files carry the placeholder. The other 93 have no
-    ROOT line at all -- they resolve paths relative to the manifest or take
-    --corpus/--out arguments, so "patch every script" edited nothing and read as
-    if the tree were broken.
+  * only some root .py files carry the placeholder. The rest have no ROOT line
+    at all -- they resolve paths relative to the manifest or take --corpus/--out
+    arguments, so "patch every script" edited nothing and read as if the tree
+    were broken. The counts below are whatever this clone currently has.
   * of the 20 that DO carry it, the env var WSE_REPO_ROOT was already honoured at
     the top, so manual editing was never needed in the first place.
 
@@ -94,7 +94,7 @@ def main() -> int:
         print(f"rewrote {n} file(s)")
 
     # A remaining literal only matters when the env var is also unset: with the
-    # env set, those 20 scripts already resolve correctly.
+    # env set, scripts that honour it already resolve correctly.
     unresolved = len(literal_only) if not env else 0
     print(f"\nunresolved placeholders: {unresolved}")
     return 0 if unresolved == 0 else 1

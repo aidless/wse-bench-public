@@ -20,19 +20,27 @@ Contributions that fit the ordinary flow:
 
 ## Getting set up
 
+The offline audit needs no install:
+
 ```bash
 git clone https://github.com/aidless/wse-bench-public.git
 cd wse-bench-public
-pip install -r requirements.txt
+python3 demo.py
 ```
+
+`requirements.txt` lists libraries the author's live generation scripts import
+(torch, transformers, and the rest). Installing it does not turn this
+repository into a package, and it is not required for the audit.
 
 ## Verifying your change
 
 ```bash
-bash scripts/run_ablation.sh  # 或 python3 -m pytest -q
+python3 demo.py
+python3 tools/check_release_drift.py
 ```
 
-A pull request that does not state how it was verified will not be reviewed.
+There is no pytest suite, by design. `scripts/run_ablation.sh` is not in this
+release. A pull request that does not state how it was verified will not be reviewed.
 
 ## Claim-changing changes
 

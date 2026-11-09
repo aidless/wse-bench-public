@@ -1,46 +1,53 @@
-# WSE-Bench — Eval-Gated Self-Evolution Benchmark
+# WSE-Bench — sealed tasks and ledger for eval-gated self-evolution
 
 [![CI](https://github.com/aidless/wse-bench-public/actions/workflows/secret-scan.yml/badge.svg)](https://github.com/aidless/wse-bench-public/actions/workflows/secret-scan.yml)
+[![release audit](https://github.com/aidless/wse-bench-public/actions/workflows/release-audit.yml/badge.svg)](https://github.com/aidless/wse-bench-public/actions/workflows/release-audit.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  [![Data](https://img.shields.io/badge/data-CC--BY--4.0-lightgrey.svg)](LICENSE-DATA)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
-[![Reproducible: seeds+prompts locked](https://img.shields.io/badge/reproducible-seeds%2Bprompts-locked-green.svg)]()
 
-A 156-task benchmark + per-round evolution ledger + auditing toolkit designed
-to evaluate **eval-gated self-evolution loops** on small LLMs. Each task is
-graded by a deterministic rubric and admits paired McNemar testing across
-candidate vs. baseline system prompts.
+This repository releases 156 sealed tasks and a 37-entry evolution ledger for eval-gated self-evolution on small LLMs.
+It is a data and report release, not a supported CLI product and not an installable package.
+`python3 demo.py` audits those sealed files offline. It does not run a model, and it is not a live evolution loop.
 
-## Repo status: data + report release, not a runnable package
+**STATUS: WORK-IN-PROGRESS — not A yet.** No independent live reproduction is in this tree. Gaps: [`STATUS.md`](STATUS.md). Failure modes: [`FAILURE_MODES.md`](FAILURE_MODES.md).
 
-This is a **release repository**: the benchmark manifest, the ledger, the
-audit reports, and the exact scripts that produced them. It ships **no
-install entry point and no test suite** — running `pytest` here finds
-nothing, by design. The reproduction scripts keep their original
-author-machine paths (e.g. `F:\hf_cache`) as provenance records of how the
-numbers were produced; treat them as documentation, not as a supported
-CLI. The canonical entry point is regenerating on your own machine via
-the reproduction scripts below.
+## Offline audit (fresh clone)
 
-## 60-second release audit
-
-No install, no model:
+No install and no model. Standard library only:
 
 ```bash
 git clone https://github.com/aidless/wse-bench-public && cd wse-bench-public
 python3 demo.py
+python3 tools/check_release_drift.py
 ```
 
 ![release audit terminal demo](docs/assets/demo.gif)
 
-The audit checks 153 hash-locked tasks, names the 3 documented redactions
-(T029–T031), counts the 37 ledger entries, and reprints the r28 paired-test
-summary. It is read-only and is not a benchmark run. Strict
-`eval_self_evolution.py --verify` still refuses the 3 redacted tasks by design;
-the demo classifies them, it does not bless them. Counts come from
+`demo.py` checks 153 hash-locked tasks, names the 3 documented redactions
+(T029–T031), counts the 37 ledger entries, reprints the stored r28 paired-test
+summary, and exits 0 only if the drift check passes. The drift check fails
+when those counts move, when a hash failure is anything other than T029–T031,
+or when the r28 summary disagrees with the ledger outside the rounding
+tolerance in [`FAILURE_MODES.md`](FAILURE_MODES.md). Counts come from
 [`assets/bench_manifest.json`](assets/bench_manifest.json) (156 tasks; 153 hash-locked + 3 redactions)
 and [`assets/evolution_ledger.json`](assets/evolution_ledger.json) (37 entries).
+
+`eval_self_evolution.py --verify` still exits 2 on T029–T031. That is the
+redaction refusal. The drift check also fails if `--verify` exits 0: a clean
+lock would mean this is no longer the 153 + 3 release. There is **no pytest
+suite and no install entry point** — `pytest` finds nothing, by design.
+
+## What CI runs
+
+| Workflow | Proves | Does not prove |
+|---|---|---|
+| [secret-scan](.github/workflows/secret-scan.yml) | gitleaks on full git history | a statistical claim |
+| [security-audit](.github/workflows/security-audit.yml) | sensitive-residue scan, `compileall`, T029–T031 placeholders | a model rerun |
+| [release-audit](.github/workflows/release-audit.yml) | `demo.py` and the 156/153/37 drift check | a live evolution loop |
+
+The release-audit badge is that offline gate. It is not a model score.
 
 ## What this repo gives you
 
@@ -50,17 +57,17 @@ and [`assets/evolution_ledger.json`](assets/evolution_ledger.json) (37 entries).
 | Deterministic grader | `eval_self_evolution.py` | `score_task`, `is_pass`, `PASS_THRESHOLD` |
 | Audit harness | `audit_contamination.py`, `_audit_contamination_r28.py` | Detects prompt-leakage bugs and impossible-closedbook probes |
 | Per-round ledger | `assets/evolution_ledger.json` | Append-only audit log of every promotion/revert decision (37 entries, r17 → r28) |
-| Reproduction scripts | `_r28_*` (without leading underscore) | Large-n replication, prefix component ablation, multi-model harness, DPO training |
-| Generation protocol | `eval_self_evolution.py` + `_r27_strict_ablation.py` | Qwen2.5-3B-Instruct 4-bit NF4, T=0.7, top_p=0.9, max_new=128, rep_pen=1.05 |
+| Reproduction scripts | `_r28_*.py` in the repo root | Author scripts for large-n replication, prefix ablation, multi-model, DPO. Not a package entry point. The leading underscore is part of the filename. |
+| Generation protocol | recorded with the r28 notes | Qwen2.5-3B-Instruct 4-bit NF4, T=0.7, top_p=0.9, max_new=128, rep_pen=1.05. `_r27_strict_ablation.py` is not in this tree. |
 | Analysis tools | `_r28_effectsize_analysis.py`, `_r28_bootstrap_ci.py`, `_r28_effectsize_summary.json` | Effect-size + 95% CI + power for paired McNemar |
 | Research notes | `EFFECT_SIZE_CI_POWER_r28_FINAL.md`, `PATH_A_META_ANALYSIS_r28.md`, `SELF_AUDIT_r25_r26.md`, etc. | Honest negative results, methodology, scope |
 
 ## What's *not* in this repo (intentionally)
 
 - **Per-seed model outputs / submissions** — these contain T029-T031 answers that
-  leak the original author's private KB scale/path. After de-anonymising those
-  tasks to `REPLACE_WITH_YOUR_*` placeholders, regenerating on your own machine
-  via the reproduction scripts is the canonical entry point.
+  leak the original author's private KB scale/path. They are not published.
+  Regenerating them needs a local model. That is a live run, not the offline
+  audit, and not a package install.
 - **Private agent session notes** (`HANDOFF_NEW_CONVERSATION.md`,
   `self-evolution-overview.md`, `peS2o-self-evo-digest.md`,
   `workbuddy-workflows.md`) — kept locally, never published.
@@ -68,16 +75,27 @@ and [`assets/evolution_ledger.json`](assets/evolution_ledger.json) (37 entries).
   the original author's local KB; not useful outside that environment.
 - **Model weights / HF cache** — too large; download via the scripts.
 
-## Reproduce the headline results
+## Live evolution run (not reproduced here)
 
-The headline finding is **ledger entry #33**: a +18.8% absolute gain on 16
+The commands in this section are the author's generation path. They are not
+what CI runs, and they are not a supported install. Absolute paths such as
+`F:/hf_cache` and the literal `__WSE_REPO_ROOT__` are **provenance** of the
+machine that produced the committed JSON. Leave them as records. Do not read
+them as a working layout for a fresh clone.
+
+The headline stored result is **ledger entry #33**: a +18.8% absolute gain on 16
 RC-tasks (T103-T118) under a single grounding-prefix intervention, measured
 via paired McNemar (b=14, c=29, p=0.0315) on Qwen2.5-3B-Instruct 4-bit NF4.
+Those figures are committed artifacts. The offline audit cross-checks them
+against `_r28_effectsize_summary.json`. It does not recompute them from new
+samples. At n=80 the stored post-hoc power is about 0.59, and ledger entry 35
+records a cluster-bootstrap CI lower bound that touches 0. See
+[`FAILURE_MODES.md`](FAILURE_MODES.md).
 Raw per-task rows are in [`results_r27_strict_grounding_k5.json`](results_r27_strict_grounding_k5.json);
 the derived b/c/p and aggregates are in
 [`r27_strict_ablation_analysis.json`](r27_strict_ablation_analysis.json).
 
-To reproduce:
+Author command log (provenance, not a fresh-clone recipe):
 
 ```bash
 # 1. Install dependencies (a Linux/macOS shell or WSL; tested on Python 3.11)
@@ -102,20 +120,20 @@ python _r28_largen_replication.py     # writes _r28_largen_summary.json
 python _r28_prefix_ablation.py        # writes _r28_prefix_ablation_summary.json
 ```
 
-**Paths**: 20 of the 113 root scripts carry a `__WSE_REPO_ROOT__` placeholder.
-All 20 read the `WSE_REPO_ROOT` env var first and fall back to the literal, so
-no file editing is needed:
+**Paths (provenance).** Some root scripts still contain the literal
+`__WSE_REPO_ROOT__`. That string is the author's placeholder, not a directory
+you should create. The scripts that include it read `WSE_REPO_ROOT` first:
 
 ```bash
 export WSE_REPO_ROOT="$(pwd)"
-python tools/fix_repo_root.py     # prints the exact counts; exits 1 if any remain
+python3 tools/fix_repo_root.py
 ```
 
-(The other 93 scripts take `--corpus`/`--out` arguments or resolve relative to
-`assets/bench_manifest.json`. An earlier revision of this README claimed *every*
-script needed hand-patching — that was wrong on both counts and is why the tool
-above exists.) The scripts use `torch.manual_seed(seed)` per call, so per-seed
-outputs are bit-exact reproducible across runs on the same hardware.
+The tool prints the live count. It exits 1 only when a file keeps the literal
+and does not read the env var. An earlier README claimed every script needed a
+hand edit. That was wrong. The generation scripts call `torch.manual_seed(seed)`
+per call. The offline audit does not rerun them, so it does not confirm
+bit-exact outputs on a new machine.
 
 ## Scope and known limits (honest disclosure)
 
@@ -160,6 +178,6 @@ raw numbers in the ledger entry.
 
 ## License
 
-MIT — see `LICENSE`.
+Code is MIT — see `LICENSE`.
 
-> **Dual license.** WSE-Bench releases the benchmark tasks, datasets, and evaluation results under
+> **Dual license.** Code in this repository is MIT (`LICENSE`). Benchmark tasks, datasets, documents, and evaluation results are CC BY 4.0 (`LICENSE-DATA`).
