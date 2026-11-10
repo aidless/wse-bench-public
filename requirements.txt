@@ -5,7 +5,7 @@
 
 datasets>=2.18  # _dpo_train_r23.py:67
 modelscope  # _download_qwen3b.py:7
-numpy>=1.24  # _r28_bootstrap_ci.py:8
+numpy>=2.5.4  # _r28_bootstrap_ci.py:8
 peft  # _dpo_train_r23.py:11
 scipy  # _r28_effectsize_analysis.py:26
 sympy  # _solve.py:3
