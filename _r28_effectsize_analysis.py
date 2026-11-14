@@ -130,7 +130,7 @@ print(f"  EMPIRICAL b (base+,cand-) = {b_cnt}")
 print(f"  EMPIRICAL c (base-,cand+) = {c_cnt}")
 print(f"  discordant k                = {k}")
 print(f"  EMPIRICAL exact p (2-sided) = {p_emp:.6f}")
-print(f"  LEDGER    b/c/p             = 14 / 29 / 0.031539")
+print("  LEDGER    b/c/p             = 14 / 29 / 0.031539")
 print(f"  MATCH b/c : {b_cnt == 14 and c_cnt == 29}   MATCH p : {abs(p_emp - 0.031539) < 1e-3}")
 
 # ---------------------------------------------------------------------------
@@ -207,12 +207,12 @@ for target in (0.80, 0.90):
               f"(≈ {math.ceil(found/K_SEED)} tasks @K=5)")
 
 # #32: power indeterminate (K-inconsistent, task-aggregated). State explicitly.
-print(f"\n  [#32 RC_V4] power NOT computable cleanly: design uses K=5+10 mixed,")
-print(f"    task-aggregated b/c (b=1,c=8) with no per-pair raw file available.")
-print(f"    Recommendation: re-run with same K (e.g. K=5) on 30 tasks for a")
-print(f"    publishable power statement. Lower bound on detectable effect with")
-print(f"    b=1,c=8 already achieved significance (p=0.039), so the *observed*")
-print(f"    effect is real, but its precision (CI width) is wide (see Part 2).")
+print("\n  [#32 RC_V4] power NOT computable cleanly: design uses K=5+10 mixed,")
+print("    task-aggregated b/c (b=1,c=8) with no per-pair raw file available.")
+print("    Recommendation: re-run with same K (e.g. K=5) on 30 tasks for a")
+print("    publishable power statement. Lower bound on detectable effect with")
+print("    b=1,c=8 already achieved significance (p=0.039), so the *observed*")
+print("    effect is real, but its precision (CI width) is wide (see Part 2).")
 
 # ---------------------------------------------------------------------------
 # PART 4 — STRATEGY_AUDIT_V4 necessity margins
@@ -234,9 +234,9 @@ for name, frm, to in v4:
     drop = frm - to
     margin = drop / NOISE
     print(f"  {name:<22}{frm:>7.3f}{to:>7.3f}{drop:>8.3f}{margin:>8.1f}x")
-print(f"  NOTE: single-run within-system ablations (no K repetition) -> magnitude")
-print(f"        vs pre-registered noise floor; NO variance/CI. For a publishable")
-print(f"        NECESSARY claim each removal needs K=5 replication to get SE + CI.")
+print("  NOTE: single-run within-system ablations (no K repetition) -> magnitude")
+print("        vs pre-registered noise floor; NO variance/CI. For a publishable")
+print("        NECESSARY claim each removal needs K=5 replication to get SE + CI.")
 
 # ---------------------------------------------------------------------------
 # Persist machine-readable summary

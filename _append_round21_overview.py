@@ -29,4 +29,4 @@ if n == 0:
     raise SystemExit("round 20 section not found")
 overview.write_text(new_text, encoding="utf-8")
 assert "\ufffd" not in overview.read_text(encoding="utf-8")
-print(f"round 20 section replaced with round 21")
+print("round 20 section replaced with round 21")

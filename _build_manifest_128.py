@@ -2,7 +2,7 @@
 Focus on subdomains that previous cohorts left at ceiling (T107-style 'all source
 span reachable by paraphrasing') and on harder multi-span / cross-document tasks.
 """
-import json, os, hashlib
+import json, hashlib
 from pathlib import Path
 
 ROOT = Path(r"F:\test\2026-07-24-08-21-57")

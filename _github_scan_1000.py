@@ -8,7 +8,7 @@ deep-learning, transformer, diffusion, speech, robotics, etc.
 
 Constraint: ≥100 stars per project to filter quality.
 """
-import json, time, urllib.request, urllib.parse, os
+import json, time, urllib.request, urllib.parse
 from pathlib import Path
 
 OUT_DIR = Path(r'F:/Research/github_ai_projects')

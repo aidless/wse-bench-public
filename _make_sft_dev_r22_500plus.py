@@ -2,7 +2,7 @@
 Uses all the existing K=5 raw submissions, deduplicates by (task_id, answer), filters by
 is_pass=True, and restricts to dev split only (strictly excluding hidden/fresh).
 """
-import json, os
+import json
 from pathlib import Path
 from collections import defaultdict, Counter
 
@@ -142,4 +142,4 @@ manifest_out = {
     "preregistration": "preregistration_pathA_r22.json (TBD)",
 }
 (ROOT / "sft_dev_r22_500plus_manifest.json").write_text(json.dumps(manifest_out, ensure_ascii=False, indent=2), encoding="utf-8")
-print(f"wrote manifest")
+print("wrote manifest")

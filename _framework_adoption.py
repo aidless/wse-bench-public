@@ -3,7 +3,6 @@ From AI Agent 报告 §11 + GitHub 1517 projects (cluster=Agents 342 个),
 cross-classify frameworks and produce empirical adoption rates.
 """
 import json
-import re
 from pathlib import Path
 from collections import Counter, defaultdict
 

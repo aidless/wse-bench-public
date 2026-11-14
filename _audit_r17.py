@@ -1,9 +1,7 @@
 """轮17：6 策略栈 STRATEGY_AUDIT_V3（v102 102题 5 策略 + verifier_v1）。"""
 import json, os, sys
-from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import eval_self_evolution as E
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(BASE, "results_audit_r17_v3.json")

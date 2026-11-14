@@ -30,7 +30,6 @@ import argparse
 import os
 import pathlib
 import re
-import sys
 
 PLACEHOLDER = re.compile(r".*__WSE_REPO_ROOT__.*")
 

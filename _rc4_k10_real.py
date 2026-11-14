@@ -2,7 +2,7 @@
 Same Qwen2.5-3B-Instruct base, K=10 distinct seeds (1001-1010), do_sample=True temperature=0.7 top_p=0.9.
 10 题 × 2 臂 × 10 seeds = 200 generations, ~45 min.
 """
-import os, json, sys, time, gc, statistics
+import os, json, sys, time, statistics
 for k in list(os.environ):
     if len(os.environ.get(k, "")) > 30000:
         del os.environ[k]

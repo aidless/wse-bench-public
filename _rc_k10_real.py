@@ -2,7 +2,7 @@
 K=10 distinct seeds (101-110) for both arms. Reuses the same base/generation settings
 as round 20 to make results directly comparable and combinable.
 """
-import os, json, sys, time, gc, statistics
+import os, json, sys, time, statistics
 for k in list(os.environ):
     if len(os.environ.get(k, "")) > 30000:
         del os.environ[k]

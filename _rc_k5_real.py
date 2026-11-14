@@ -8,7 +8,7 @@ real model generations under a deterministic-feeling eval protocol.
 Output: raw submissions to JSON, per-task pass per seed, McNemar over the
 pooled K seeds, and bootstrap CI for overall delta.
 """
-import os, json, sys, time, gc, statistics
+import os, json, sys, time, statistics
 for k in list(os.environ):
     if len(os.environ.get(k, "")) > 30000:
         del os.environ[k]

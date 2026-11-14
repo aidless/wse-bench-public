@@ -3,7 +3,7 @@
 目的：确认 baseline 在该 cohort 非满分（有真 headroom），否则重设计更难题。
 注意：以下 baseline 提交为模型在"无 schema_guard 自校验"下的真实直答输出（含自然超长 summary、
 偶发拍平嵌套、微妙枚举误判、多字段漏填等真实倾向），由 harness 盲评。"""
-import json, sys, os
+import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import eval_self_evolution as E
 

@@ -10,7 +10,7 @@ build_bench.py — 生成自进化评估基准 WSE-Bench（WorkBuddy Self-Evolut
      任一字段被改动 → 哈希失配 → 评估失效（防"为过题改答案"）。
 用法：python build_bench.py
 """
-import json, hashlib, os, re
+import json, hashlib, os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 assets = os.path.join(BASE, "assets")

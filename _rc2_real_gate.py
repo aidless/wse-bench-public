@@ -4,7 +4,7 @@ Both arms use the same Qwen2.5-3B-Instruct base, same generation settings, and
 freshly generated answers. The candidate arm inserts a context-grounding prefix
 that instructs the model to locate the source span first and quote it verbatim.
 """
-import os, json, sys, time, gc
+import os, json, sys, time
 for k in list(os.environ):
     if len(os.environ.get(k, "")) > 30000:
         del os.environ[k]

@@ -2,13 +2,12 @@
 Reference policy = base Qwen2.5-3B (no LoRA adapter).
 Trains for 1 epoch with batch size 1 (gradient accumulation 4).
 """
-import json, os, sys, math, random, time
+import json, os, time
 from pathlib import Path
-from dataclasses import dataclass
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+from peft import LoraConfig, prepare_model_for_kbit_training
 from trl import DPOConfig, DPOTrainer
 
 import os as _os

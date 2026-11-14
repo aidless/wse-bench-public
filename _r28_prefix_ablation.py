@@ -14,7 +14,7 @@ Reused arms  : base (results_ablation_30q_k5.json), full (+grounding,
 Analysis: paired McNemar of each arm vs base; component attribution table.
 NOTE: multiple comparisons (4 arms) -> report Holm-adjusted p as well.
 """
-import json, os, time, sys
+import json, os, sys
 import torch
 from pathlib import Path
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig

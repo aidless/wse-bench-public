@@ -120,7 +120,6 @@ b = summarize(base_res, 'base')
 d = summarize(lora_res, 'dpo_v2')
 
 # McNemar on paired (b,c) discordant counts
-import math
 b_count, c_count = 0, 0
 for tid in [t['id'] for t in tasks_eval]:
     bp = base_res[tid]['is_pass']; cp = lora_res[tid]['is_pass']
@@ -137,7 +136,7 @@ def exact_mcnemar(b, c):
     return min(1.0, sum(comb(k, i) for i in range(0, lo + 1)) / 2 ** k * 2)
 
 
-print(f'\n=== summary ===')
+print('\n=== summary ===')
 print(f'  base:      pass={b["pass"]}/{b["n"]} ({b["pass_rate"]*100:.1f}%)')
 print(f'  dpo_v2:    pass={d["pass"]}/{d["n"]} ({d["pass_rate"]*100:.1f}%)')
 print(f'  discordant: b={b_count} c={c_count}')

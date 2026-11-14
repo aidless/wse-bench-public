@@ -6,9 +6,8 @@ WorkBuddy-host env var patch (2026-07-26): ACC_PRODUCT_CONFIG_V3 (35万字符)
     causes accelerate's clear_environment -> ValueError > 32767 char limit.
     Prune oversized env vars BEFORE importing accelerate/transformers/trl.
 """
-import json, os, sys, math, random, time
+import json, os, time
 from pathlib import Path
-from dataclasses import dataclass
 
 # ---- env hygiene (must run before heavy imports) ----
 _MAX_ENV_LEN = 8000  # safety threshold; HF/PATH etc all fit under this
@@ -22,7 +21,7 @@ os.environ['TOKENIZERS_PARALLELISM'] = 'false'
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+from peft import LoraConfig, prepare_model_for_kbit_training
 from trl import DPOConfig, DPOTrainer
 
 # WSE_REPO_ROOT is the cloned local path; falls back to the placeholder

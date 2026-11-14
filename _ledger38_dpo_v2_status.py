@@ -76,7 +76,7 @@ else:
                 "并在 #38 重复登记。Any future reference to path A should cite #37 + #38 同时。"
     })
     P.write_text(json.dumps(entries, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
-    print(f'added entry #38 (R28_DPO_V2)')
+    print('added entry #38 (R28_DPO_V2)')
 
 # Verify
 L2 = json.loads(P.read_text(encoding='utf-8'))

@@ -1,7 +1,7 @@
 """RC2 headroom prescreen: 3 K=1 baseline attempts on T103-T108, each giving a partial answer.
 Records per-task score from is_pass; bucket the failures. Output a headroom report.
 """
-import json, os, sys
+import json, sys
 from pathlib import Path
 ROOT = Path(r"F:\test\2026-07-24-08-21-57")
 sys.path.insert(0, str(ROOT))

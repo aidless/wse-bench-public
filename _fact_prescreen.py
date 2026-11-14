@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """第十四轮 headroom K=3 预检：baseline 直答盲测 T085-T090，记录失败模式分桶。
 v12/v13 教训：按失败模式分桶，诚实标记无 headroom 子域；预检驱动候选预注册。"""
-import json, os, sys, statistics
+import os, sys
 from collections import defaultdict
 
 BASE = os.path.dirname(os.path.abspath(__file__))

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """第十二轮 headroom K=3 预检：baseline 直答盲测 T073-T084，记录失败模式。
 铁律 v10：预检要按失败模式分桶（v11 教训）；主实验基线 seed 必须全新不复用预检 seed。"""
-import json, os, sys, statistics
+import os, sys
 from collections import defaultdict
 
 BASE = os.path.dirname(os.path.abspath(__file__))

@@ -2,7 +2,7 @@
 This bypasses the syntax mess in build_bench.py by using a fresh Python script that
 constructs the manifest directly from the existing 108-task manifest + new RC3 tasks.
 """
-import json, os, sys
+import json, sys
 from pathlib import Path
 
 ROOT = Path(r"F:\test\2026-07-24-08-21-57")

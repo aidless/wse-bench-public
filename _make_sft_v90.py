@@ -134,4 +134,4 @@ with open(os.path.join(ROOT, "sft_v90_5strat_manifest.json"), "w", encoding="utf
 
 print()
 print(f"wrote {out_jsonl} ({len(unique_sft)} pairs)")
-print(f"wrote sft_v90_5strat_manifest.json")
+print("wrote sft_v90_5strat_manifest.json")

@@ -1,10 +1,8 @@
 """账本 #21 verifier_v1 PROMOTE + registry promoted + v102 全库结果 + STRATEGY_AUDIT_V3 (6 策略)。"""
-import json, os, statistics, sys
+import json, os, sys
 from datetime import datetime
-from collections import Counter
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import eval_self_evolution as E
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 LEDGER = os.path.join(BASE, "assets", "evolution_ledger.json")

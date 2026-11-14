@@ -56,7 +56,7 @@ audit_by_id = {
 # 修复 bug: verifier_v1 必须存在于 strategies 列表中
 ids = {s["id"] for s in reg["strategies"]}
 if "verifier_v1" not in ids:
-    print(f"  修复：添加 verifier_v1 到 strategies 列表")
+    print("  修复：添加 verifier_v1 到 strategies 列表")
     reg["strategies"].append({
         "id": "verifier_v1",
         "target_axis": "fact_recall + structured_output (cross-rubric)",

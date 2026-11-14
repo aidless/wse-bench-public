@@ -3,7 +3,7 @@ For each (task, strategy, seed): chosen = high-score answer; rejected = low-scor
 
 Constraint: dev-only (no hidden/fresh).
 """
-import json, re
+import json
 from pathlib import Path
 from collections import defaultdict
 

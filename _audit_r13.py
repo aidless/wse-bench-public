@@ -7,7 +7,6 @@
 """
 import json
 import os
-import statistics
 import sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))

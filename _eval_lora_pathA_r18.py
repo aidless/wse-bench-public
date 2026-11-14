@@ -1,7 +1,7 @@
 """Clean PATH_A r18 diagnostic: same base, same prompts/settings, hidden+fresh only.
 No promotion/ledger write is performed here; it produces an auditable result for review.
 """
-import os, json, time, gc, sys
+import os, json, time, sys
 for k in list(os.environ):
     if len(os.environ.get(k, "")) > 30000:
         del os.environ[k]

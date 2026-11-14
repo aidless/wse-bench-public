@@ -13,7 +13,7 @@ Design (2026-07-25):
 Protocol identical to ._r27_strict_ablation.py (Qwen2.5-3B-Instruct NF4,
 temp=0.7, top_p=0.9, max_new_tokens=128, rep_pen=1.05, manual_seed per call).
 """
-import json, os, time, sys, math, random
+import json, os, time, sys, random
 import torch
 from pathlib import Path
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig

@@ -80,7 +80,7 @@ def generate(prompt, max_new_tokens=256):
     return tokenizer.decode(gen, skip_special_tokens=True).strip()
 
 
-print(f"开始 96 题推理 (max_new_tokens=256, unbuffered)...", flush=True)
+print("开始 96 题推理 (max_new_tokens=256, unbuffered)...", flush=True)
 results = {}
 t0 = time.time()
 for i, tid in enumerate(sorted(tmap.keys()), 1):

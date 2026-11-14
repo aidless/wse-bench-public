@@ -1,5 +1,5 @@
 """轮16 verifier_v1 K=3 headroom 预检 v3（cohort 重设计后）。"""
-import json, os, sys
+import os, sys
 from collections import defaultdict
 
 BASE = os.path.dirname(os.path.abspath(__file__))

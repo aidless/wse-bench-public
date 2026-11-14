@@ -4,7 +4,7 @@
 双比较 Bonferroni 校正：晋升门 p < 0.025 且 CI 下界 > 0 且 c > b。
 复用 eval_self_evolution 的 score_task / is_pass / mcnemar_exact。
 """
-import json, statistics, importlib.util, sys
+import json, statistics, importlib.util
 
 spec = importlib.util.spec_from_file_location("E", "eval_self_evolution.py")
 E = importlib.util.module_from_spec(spec)

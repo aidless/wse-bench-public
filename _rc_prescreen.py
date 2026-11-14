@@ -3,7 +3,7 @@
 - 设计：context_grounding_v1 目标场景——需要精确回指源 span。
 - baseline 倾向释义/总结（关键字命中）但漏精确 span 引用，预期有 headroom。
 - 预检 3 seed 估计 baseline 答"全精确 span 引用"的难度。"""
-import json, os, sys
+import os, sys
 from collections import defaultdict
 
 BASE = os.path.dirname(os.path.abspath(__file__))

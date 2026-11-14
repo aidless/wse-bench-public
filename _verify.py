@@ -1,4 +1,4 @@
-import math, sympy
+import math
 
 # 独立复核：用循环取模法验证幂模
 def pow_mod_loop(a, e, m):

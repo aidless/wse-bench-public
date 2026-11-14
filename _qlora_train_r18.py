@@ -1,7 +1,7 @@
 """PATH_A round 18 retry: leakage-safe dev-only low-intrusion QLoRA.
 Windows/RTX3060 path; no Unsloth. Uses the locally cached Qwen2.5-3B snapshot.
 """
-import os, json, gc, time
+import os, json, time
 # WorkBuddy injects an oversized env var that breaks accelerate cleanup on Windows.
 for k in list(os.environ):
     if len(os.environ.get(k, "")) > 30000:

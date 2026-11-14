@@ -1,4 +1,3 @@
-import io
 from pathlib import Path
 root = Path(r"F:\test\2026-07-24-08-21-57")
 overview = root / "self-evolution-overview.md"
